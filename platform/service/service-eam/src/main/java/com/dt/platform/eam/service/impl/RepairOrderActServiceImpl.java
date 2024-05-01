@@ -220,6 +220,11 @@ public class RepairOrderActServiceImpl extends SuperService<RepairOrderAct> impl
 				assetProcessRecord.setBusinessCode(act.getBusinessCode());
 				assetProcessRecord.setProcessType(AssetOperateEnum.EAM_ASSET_REPAIR_ORDER_ACT.code());
 				assetProcessRecord.setProcessdTime(new Date());
+				String operUserId="sysinter";
+				if(SessionUser.getCurrent()!=null){
+					operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+				}
+				assetProcessRecord.setProcessUserId(operUserId);
 				assetProcessRecordService.insert(assetProcessRecord);
 				//修改维修状态
 				List<Asset> list=new ArrayList<>();

@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import org.github.foxnic.web.domain.hrm.Employee;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
@@ -23,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产处理记录
  * <p>资产处理记录 , 数据表 eam_asset_process_record 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-23 18:44:07
- * @sign 6EDE2FB2DAAC2670B3A9BDE5780FA427
+ * @since 2024-05-01 09:45:39
+ * @sign 02C1D716DC9AB714BABB9DF14A289B7B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -80,15 +81,15 @@ public class AssetProcessRecord extends Entity {
 	private String useUserId;
 	
 	/**
-	 * 变更人：变更人
+	 * 操作人员：操作人员
 	*/
-	@ApiModelProperty(required = false,value="变更人" , notes = "变更人")
+	@ApiModelProperty(required = false,value="操作人员" , notes = "操作人员" , example = "E001")
 	private String processUserId;
 	
 	/**
-	 * 变更时间：变更时间
+	 * 操作时间：操作时间
 	*/
-	@ApiModelProperty(required = false,value="变更时间" , notes = "变更时间" , example = "2023-12-17 06:56:52")
+	@ApiModelProperty(required = false,value="操作时间" , notes = "操作时间" , example = "2023-12-17 06:56:52")
 	private Date processdTime;
 	
 	/**
@@ -141,6 +142,12 @@ public class AssetProcessRecord extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
+	
+	/**
+	 * operUser：operUser
+	*/
+	@ApiModelProperty(required = false,value="operUser" , notes = "operUser")
+	private Employee operUser;
 	
 	/**
 	 * 获得 主键<br>
@@ -276,17 +283,17 @@ public class AssetProcessRecord extends Entity {
 	}
 	
 	/**
-	 * 获得 变更人<br>
-	 * 变更人
-	 * @return 变更人
+	 * 获得 操作人员<br>
+	 * 操作人员
+	 * @return 操作人员
 	*/
 	public String getProcessUserId() {
 		return processUserId;
 	}
 	
 	/**
-	 * 设置 变更人
-	 * @param processUserId 变更人
+	 * 设置 操作人员
+	 * @param processUserId 操作人员
 	 * @return 当前对象
 	*/
 	public AssetProcessRecord setProcessUserId(String processUserId) {
@@ -295,17 +302,17 @@ public class AssetProcessRecord extends Entity {
 	}
 	
 	/**
-	 * 获得 变更时间<br>
-	 * 变更时间
-	 * @return 变更时间
+	 * 获得 操作时间<br>
+	 * 操作时间
+	 * @return 操作时间
 	*/
 	public Date getProcessdTime() {
 		return processdTime;
 	}
 	
 	/**
-	 * 设置 变更时间
-	 * @param processdTime 变更时间
+	 * 设置 操作时间
+	 * @param processdTime 操作时间
 	 * @return 当前对象
 	*/
 	public AssetProcessRecord setProcessdTime(Date processdTime) {
@@ -495,6 +502,25 @@ public class AssetProcessRecord extends Entity {
 		this.version=version;
 		return this;
 	}
+	
+	/**
+	 * 获得 operUser<br>
+	 * operUser
+	 * @return operUser
+	*/
+	public Employee getOperUser() {
+		return operUser;
+	}
+	
+	/**
+	 * 设置 operUser
+	 * @param operUser operUser
+	 * @return 当前对象
+	*/
+	public AssetProcessRecord setOperUser(Employee operUser) {
+		this.operUser=operUser;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -557,6 +583,9 @@ public class AssetProcessRecord extends Entity {
 		inst.setId(this.getId());
 		inst.setProcessType(this.getProcessType());
 		inst.setUseUserId(this.getUseUserId());
+		if(all) {
+			inst.setOperUser(this.getOperUser());
+		}
 		inst.clearModifies();
 		return inst;
 	}
@@ -633,6 +662,7 @@ public class AssetProcessRecord extends Entity {
 			this.setProcessType(DataParser.parse(String.class, map.get(AssetProcessRecordMeta.PROCESS_TYPE)));
 			this.setUseUserId(DataParser.parse(String.class, map.get(AssetProcessRecordMeta.USE_USER_ID)));
 			// others
+			this.setOperUser(DataParser.parse(Employee.class, map.get(AssetProcessRecordMeta.OPER_USER)));
 			return true;
 		} else {
 			try {
@@ -654,6 +684,7 @@ public class AssetProcessRecord extends Entity {
 				this.setProcessType( (String)map.get(AssetProcessRecordMeta.PROCESS_TYPE));
 				this.setUseUserId( (String)map.get(AssetProcessRecordMeta.USE_USER_ID));
 				// others
+				this.setOperUser( (Employee)map.get(AssetProcessRecordMeta.OPER_USER));
 				return true;
 			} catch (Exception e) {
 				return false;

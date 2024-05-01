@@ -172,6 +172,11 @@ public class FailureRegistrationServiceImpl extends SuperService<FailureRegistra
 					assetProcessRecord.setBusinessCode(bill.getBusinessCode());
 					assetProcessRecord.setProcessType(AssetOperateEnum.EAM_EQUIPMENT_FAILURE_REGISTRATION.code());
 					assetProcessRecord.setProcessdTime(new Date());
+					String operUserId="sysinter";
+					if(SessionUser.getCurrent()!=null){
+						operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+					}
+					assetProcessRecord.setProcessUserId(operUserId);
 					assetProcessRecordService.insert(assetProcessRecord);
 				}
 			}

@@ -5,13 +5,14 @@ import com.dt.platform.domain.eam.AssetProcessRecordVO;
 import java.util.List;
 import com.dt.platform.domain.eam.AssetProcessRecord;
 import java.util.Date;
+import org.github.foxnic.web.domain.hrm.Employee;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-23 18:44:07
+ * @since 2024-05-01 09:45:39
  * @sign D5CEEB05B76DE32B1F519872EAA0AD72
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -209,24 +210,24 @@ public class AssetProcessRecordVOMeta extends AssetProcessRecordMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetProcessRecordVO,java.lang.String> USE_USER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetProcessRecordVO.class ,USE_USER_ID, java.lang.String.class, "使用人", "使用人", java.lang.String.class, null);
 	
 	/**
-	 * 变更人 , 类型: java.lang.String
+	 * 操作人员 , 类型: java.lang.String
 	*/
 	public static final String PROCESS_USER_ID="processUserId";
 	
 	/**
-	 * 变更人 , 类型: java.lang.String
+	 * 操作人员 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetProcessRecordVO,java.lang.String> PROCESS_USER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetProcessRecordVO.class ,PROCESS_USER_ID, java.lang.String.class, "变更人", "变更人", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetProcessRecordVO,java.lang.String> PROCESS_USER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetProcessRecordVO.class ,PROCESS_USER_ID, java.lang.String.class, "操作人员", "操作人员", java.lang.String.class, null);
 	
 	/**
-	 * 变更时间 , 类型: java.util.Date
+	 * 操作时间 , 类型: java.util.Date
 	*/
 	public static final String PROCESSD_TIME="processdTime";
 	
 	/**
-	 * 变更时间 , 类型: java.util.Date
+	 * 操作时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetProcessRecordVO,java.util.Date> PROCESSD_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetProcessRecordVO.class ,PROCESSD_TIME, java.util.Date.class, "变更时间", "变更时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetProcessRecordVO,java.util.Date> PROCESSD_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetProcessRecordVO.class ,PROCESSD_TIME, java.util.Date.class, "操作时间", "操作时间", java.util.Date.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -309,9 +310,19 @@ public class AssetProcessRecordVOMeta extends AssetProcessRecordMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetProcessRecordVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetProcessRecordVO.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
+	 * operUser , 类型: org.github.foxnic.web.domain.hrm.Employee
+	*/
+	public static final String OPER_USER="operUser";
+	
+	/**
+	 * operUser , 类型: org.github.foxnic.web.domain.hrm.Employee
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetProcessRecordVO,org.github.foxnic.web.domain.hrm.Employee> OPER_USER_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetProcessRecordVO.class ,OPER_USER, org.github.foxnic.web.domain.hrm.Employee.class, "operUser", "operUser", org.github.foxnic.web.domain.hrm.Employee.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ASSET_ID , BUSINESS_CODE , PROCESS_TYPE , CONTENT , NOTES , USE_USER_ID , PROCESS_USER_ID , PROCESSD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ASSET_ID , BUSINESS_CODE , PROCESS_TYPE , CONTENT , NOTES , USE_USER_ID , PROCESS_USER_ID , PROCESSD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , OPER_USER };
 	
 	/**
 	 * 代理类
@@ -531,8 +542,8 @@ public class AssetProcessRecordVOMeta extends AssetProcessRecordMeta {
 		}
 		
 		/**
-		 * 设置 变更人
-		 * @param processUserId 变更人
+		 * 设置 操作人员
+		 * @param processUserId 操作人员
 		 * @return 当前对象
 		*/
 		public AssetProcessRecord setProcessUserId(String processUserId) {
@@ -542,8 +553,8 @@ public class AssetProcessRecordVOMeta extends AssetProcessRecordMeta {
 		}
 		
 		/**
-		 * 设置 变更时间
-		 * @param processdTime 变更时间
+		 * 设置 操作时间
+		 * @param processdTime 操作时间
 		 * @return 当前对象
 		*/
 		public AssetProcessRecord setProcessdTime(Date processdTime) {
@@ -639,6 +650,17 @@ public class AssetProcessRecordVOMeta extends AssetProcessRecordMeta {
 			super.setVersion(version);
 			return this;
 		}
+		
+		/**
+		 * 设置 operUser
+		 * @param operUser operUser
+		 * @return 当前对象
+		*/
+		public AssetProcessRecord setOperUser(Employee operUser) {
+			super.change(OPER_USER,super.getOperUser(),operUser);
+			super.setOperUser(operUser);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -674,17 +696,18 @@ public class AssetProcessRecordVOMeta extends AssetProcessRecordMeta {
 			inst.setUseUserId(this.getUseUserId());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
-				inst.setPageIndex(this.getPageIndex());
-				inst.setSortType(this.getSortType());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSearchValue(this.getSearchValue());
+				inst.setOperUser(this.getOperUser());
 			}
 			inst.clearModifies();
 			return inst;

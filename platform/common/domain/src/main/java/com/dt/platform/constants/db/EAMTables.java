@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-04-30 16:45:30
+ * @since 2024-05-01 09:37:24
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -7057,14 +7057,14 @@ public class EAMTables {
 		public static final DBField USE_USER_ID = new DBField(DBDataType.STRING , "use_user_id","useUserId","使用人","使用人",false,false,true);
 		
 		/**
-		 * 变更人
+		 * 操作人员
 		*/
-		public static final DBField PROCESS_USER_ID = new DBField(DBDataType.STRING , "process_user_id","processUserId","变更人","变更人",false,false,true);
+		public static final DBField PROCESS_USER_ID = new DBField(DBDataType.STRING , "process_user_id","processUserId","操作人员","操作人员",false,false,true);
 		
 		/**
-		 * 变更时间
+		 * 操作时间
 		*/
-		public static final DBField PROCESSD_TIME = new DBField(DBDataType.DATE , "processd_time","processdTime","变更时间","变更时间",false,false,true);
+		public static final DBField PROCESSD_TIME = new DBField(DBDataType.DATE , "processd_time","processdTime","操作时间","操作时间",false,false,true);
 		
 		/**
 		 * 创建人ID

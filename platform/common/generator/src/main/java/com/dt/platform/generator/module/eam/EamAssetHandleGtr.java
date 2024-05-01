@@ -40,7 +40,7 @@ public class EamAssetHandleGtr extends BaseCodeGenerator{
 
         cfg.view().field(EAMTables.EAM_ASSET_HANDLE.NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_HANDLE.NOTES).search().fuzzySearch();
-
+        cfg.view().field(EAMTables.EAM_ASSET_HANDLE.BUSINESS_CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_HANDLE.CONTENT).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_HANDLE.PLAN_FINISH_DATE).search().range();
         cfg.view().search().inputLayout(

@@ -145,11 +145,14 @@ public class EamRelationManager extends RelationManager {
 
         this.setupAssetHandlerType();
 
-
+        this.setupAssetProcessRecord();
 
     }
 
-
+    public void setupAssetProcessRecord() {
+        this.property(AssetProcessRecordMeta.OPER_USER_PROP)
+                .using(EAMTables.EAM_ASSET_PROCESS_RECORD.PROCESS_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+    }
 
     public void setupAssetHandlerType() {
         this.property(AssetHandleTypeMeta.ASSET_STATUS_DATA_PROP)

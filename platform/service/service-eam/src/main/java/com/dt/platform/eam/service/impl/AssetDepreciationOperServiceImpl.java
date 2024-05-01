@@ -199,14 +199,19 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 			//上次折旧时间
 			ups.setDepreciationOperTime(assetDetail.getBusinessDate());
 
-			AssetProcessRecord ar=new AssetProcessRecord();
-			ar.setAssetId(assetDetail.getAssetId());
-			ar.setBusinessCode(bill.getBusinessCode());
-			ar.setProcessType(AssetOperateEnum.EAM_ASSET_DEPRECIATION_OPER.code());
-			ar.setProcessdTime(new Date());
-			ar.setContent("发生资产折旧动作 ");
+			AssetProcessRecord record=new AssetProcessRecord();
+			record.setAssetId(assetDetail.getAssetId());
+			record.setBusinessCode(bill.getBusinessCode());
+			record.setProcessType(AssetOperateEnum.EAM_ASSET_DEPRECIATION_OPER.code());
+			record.setProcessdTime(new Date());
+			record.setContent("发生资产折旧动作 ");
+			String operUserId="sysinter";
+			if(SessionUser.getCurrent()!=null){
+				operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+			}
+			record.setProcessUserId(operUserId);
 			assetList.add(ups);
-			assetOperList.add(ar);
+			assetOperList.add(record);
 			if(batchCnt>500){
 				assetGroupList.add(assetList);
 				assetGroupList=new ArrayList<>();

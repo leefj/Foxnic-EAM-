@@ -1,8 +1,11 @@
 package com.dt.platform.eam.controller;
 
 import java.util.List;
+import com.dt.platform.domain.eam.Asset;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,8 +70,8 @@ public class AssetProcessRecordController extends SuperController {
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.CONTENT, value = "操作内容", required = false, dataTypeClass = String.class, example = "【所属公司】由上海分公司变更为- 【资产分类】由服务器变更为- 【使用人员】由李方捷(2021001007)变更为- 【厂商】由-变更为戴尔有限公司 【物品档案】由-变更为121 【资产编号】由AS-5824106925变更为1212 【核对时间】由null变更为2021-10-21 "),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.USE_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESS_USER_ID, value = "变更人", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESSD_TIME, value = "变更时间", required = false, dataTypeClass = Date.class, example = "2021-10-19 12:51:00"),
+		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESS_USER_ID, value = "操作人员", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESSD_TIME, value = "操作时间", required = false, dataTypeClass = Date.class, example = "2021-10-19 12:51:00"),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
@@ -123,8 +126,8 @@ public class AssetProcessRecordController extends SuperController {
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.CONTENT, value = "操作内容", required = false, dataTypeClass = String.class, example = "【所属公司】由上海分公司变更为- 【资产分类】由服务器变更为- 【使用人员】由李方捷(2021001007)变更为- 【厂商】由-变更为戴尔有限公司 【物品档案】由-变更为121 【资产编号】由AS-5824106925变更为1212 【核对时间】由null变更为2021-10-21 "),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.USE_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESS_USER_ID, value = "变更人", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESSD_TIME, value = "变更时间", required = false, dataTypeClass = Date.class, example = "2021-10-19 12:51:00"),
+		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESS_USER_ID, value = "操作人员", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESSD_TIME, value = "操作时间", required = false, dataTypeClass = Date.class, example = "2021-10-19 12:51:00"),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetProcessRecordVOMeta.PAGE_INDEX, AssetProcessRecordVOMeta.PAGE_SIZE, AssetProcessRecordVOMeta.SEARCH_FIELD, AssetProcessRecordVOMeta.FUZZY_FIELD, AssetProcessRecordVOMeta.SEARCH_VALUE, AssetProcessRecordVOMeta.SORT_FIELD, AssetProcessRecordVOMeta.SORT_TYPE, AssetProcessRecordVOMeta.IDS })
@@ -148,8 +151,8 @@ public class AssetProcessRecordController extends SuperController {
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.CONTENT, value = "操作内容", required = false, dataTypeClass = String.class, example = "【所属公司】由上海分公司变更为- 【资产分类】由服务器变更为- 【使用人员】由李方捷(2021001007)变更为- 【厂商】由-变更为戴尔有限公司 【物品档案】由-变更为121 【资产编号】由AS-5824106925变更为1212 【核对时间】由null变更为2021-10-21 "),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.USE_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESS_USER_ID, value = "变更人", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESSD_TIME, value = "变更时间", required = false, dataTypeClass = Date.class, example = "2021-10-19 12:51:00"),
+		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESS_USER_ID, value = "操作人员", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESSD_TIME, value = "操作时间", required = false, dataTypeClass = Date.class, example = "2021-10-19 12:51:00"),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetProcessRecordVOMeta.PAGE_INDEX, AssetProcessRecordVOMeta.PAGE_SIZE, AssetProcessRecordVOMeta.SEARCH_FIELD, AssetProcessRecordVOMeta.FUZZY_FIELD, AssetProcessRecordVOMeta.SEARCH_VALUE, AssetProcessRecordVOMeta.SORT_FIELD, AssetProcessRecordVOMeta.SORT_TYPE, AssetProcessRecordVOMeta.IDS })
@@ -175,7 +178,8 @@ public class AssetProcessRecordController extends SuperController {
         Result<AssetProcessRecord> result = new Result<>();
         AssetProcessRecord assetProcessRecord = assetProcessRecordService.getById(id);
         // join 关联的对象
-        assetProcessRecordService.dao().fill(assetProcessRecord).execute();
+        assetProcessRecordService.dao().fill(assetProcessRecord).with(AssetProcessRecordMeta.OPER_USER).execute();
+        assetProcessRecordService.dao().join(assetProcessRecord.getOperUser(), Person.class);
         result.success(true).data(assetProcessRecord);
         return result;
     }
@@ -210,8 +214,8 @@ public class AssetProcessRecordController extends SuperController {
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.CONTENT, value = "操作内容", required = false, dataTypeClass = String.class, example = "【所属公司】由上海分公司变更为- 【资产分类】由服务器变更为- 【使用人员】由李方捷(2021001007)变更为- 【厂商】由-变更为戴尔有限公司 【物品档案】由-变更为121 【资产编号】由AS-5824106925变更为1212 【核对时间】由null变更为2021-10-21 "),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.USE_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESS_USER_ID, value = "变更人", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESSD_TIME, value = "变更时间", required = false, dataTypeClass = Date.class, example = "2021-10-19 12:51:00"),
+		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESS_USER_ID, value = "操作人员", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESSD_TIME, value = "操作时间", required = false, dataTypeClass = Date.class, example = "2021-10-19 12:51:00"),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetProcessRecordVOMeta.PAGE_INDEX, AssetProcessRecordVOMeta.PAGE_SIZE })
@@ -236,8 +240,8 @@ public class AssetProcessRecordController extends SuperController {
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.CONTENT, value = "操作内容", required = false, dataTypeClass = String.class, example = "【所属公司】由上海分公司变更为- 【资产分类】由服务器变更为- 【使用人员】由李方捷(2021001007)变更为- 【厂商】由-变更为戴尔有限公司 【物品档案】由-变更为121 【资产编号】由AS-5824106925变更为1212 【核对时间】由null变更为2021-10-21 "),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.USE_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESS_USER_ID, value = "变更人", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESSD_TIME, value = "变更时间", required = false, dataTypeClass = Date.class, example = "2021-10-19 12:51:00"),
+		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESS_USER_ID, value = "操作人员", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetProcessRecordVOMeta.PROCESSD_TIME, value = "操作时间", required = false, dataTypeClass = Date.class, example = "2021-10-19 12:51:00"),
 		@ApiImplicitParam(name = AssetProcessRecordVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
@@ -247,7 +251,12 @@ public class AssetProcessRecordController extends SuperController {
         Result<PagedList<AssetProcessRecord>> result = new Result<>();
         PagedList<AssetProcessRecord> list = assetProcessRecordService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        assetProcessRecordService.dao().fill(list).execute();
+        assetProcessRecordService.dao().fill(list).with(AssetProcessRecordMeta.OPER_USER).execute();
+
+
+        List<Employee> useUser = CollectorUtil.collectList(list, AssetProcessRecord::getOperUser);
+        assetProcessRecordService.dao().join(useUser, Person.class);
+
         result.success(true).data(list);
         return result;
     }

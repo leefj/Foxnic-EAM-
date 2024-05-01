@@ -187,6 +187,11 @@ public class AssetRepairServiceImpl extends SuperService<AssetRepair> implements
 						assetProcessRecord.setBusinessCode(repair.getBusinessCode());
 						assetProcessRecord.setProcessType(AssetOperateEnum.EAM_ASSET_REPAIR.code());
 						assetProcessRecord.setProcessdTime(new Date());
+						String operUserId="sysinter";
+						if(SessionUser.getCurrent()!=null){
+							operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+						}
+						assetProcessRecord.setProcessUserId(operUserId);
 						assetProcessRecordService.insert(assetProcessRecord);
 					}
 				}

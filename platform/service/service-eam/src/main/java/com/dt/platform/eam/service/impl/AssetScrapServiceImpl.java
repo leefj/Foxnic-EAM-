@@ -117,7 +117,11 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 				rcd.setProcessdTime(new Date());
 				rcd.setContent("资产进行报废处理");
 				rcd.setBusinessCode(billData.getBusinessCode());
-				rcd.setProcessUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+				String operUserId="sysinter";
+				if(SessionUser.getCurrent()!=null){
+					operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+				}
+				rcd.setProcessUserId(operUserId);
 				assetProcessRecordService.insert(rcd,false);
 			}
 			String sql="update eam_asset set clean_time=now(),clean_out_type=?,scrap_id=?, asset_status=?,owner_code=? where id in (select asset_id from eam_asset_item where handle_id=? and crd in ('r','c') and deleted=0)";

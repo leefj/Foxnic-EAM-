@@ -126,7 +126,11 @@ public class RfidLabelServiceImpl extends SuperService<RfidLabel> implements IRf
 			AssetProcessRecord record=new AssetProcessRecord();
 			record.setAssetId(rfidLabel.getAssetId());
 			record.setContent("RFID发卡,RFID卡标签:"+rfidLabel.getLabel());
-			record.setProcessUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+			String operUserId="sys_async";
+			if(SessionUser.getCurrent()!=null){
+				operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+			}
+			record.setProcessUserId(operUserId);
 			record.setProcessdTime(new Date());
 			record.setBusinessCode(rfidLabel.getId());
 			record.setProcessType(AssetOperateEnum.RFID_RELEASE.code());

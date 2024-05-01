@@ -75,6 +75,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=='processUserId'){
+                if(r.processUserId&&r.processUserId=="sysinter"){
+                    return "异步调用";
+                }
+            }
             if(value==null) return "";
             return value;
         },

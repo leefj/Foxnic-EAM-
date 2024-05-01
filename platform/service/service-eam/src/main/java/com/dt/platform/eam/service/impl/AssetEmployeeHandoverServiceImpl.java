@@ -426,6 +426,11 @@ public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployee
 					rcd.setProcessType(AssetOperateEnum.EAM_ASSET_EMPLOYEE_HANDOVER.code());
 					rcd.setProcessdTime(new Date());
 					rcd.setContent("资产进行交接,交接至"+org+"部门,交接管理人:"+user);
+					String operUserId="sysinter";
+					if(SessionUser.getCurrent()!=null){
+						operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+					}
+					rcd.setProcessUserId(operUserId);
 					assetProcessRecordService.insert(rcd,false);
 					bill.setStatus(AssetHandleStatusEnum.COMPLETE.code());
 					super.update(bill,SaveMode.NOT_NULL_FIELDS,false);

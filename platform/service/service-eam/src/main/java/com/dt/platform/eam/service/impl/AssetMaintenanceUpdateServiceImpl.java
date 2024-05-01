@@ -23,6 +23,7 @@ import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.framework.dao.DBConfigs;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -154,6 +155,11 @@ public class AssetMaintenanceUpdateServiceImpl extends SuperService<AssetMainten
 		actionRecord.setBusinessCode(assetMaintenanceUpdate.getBusinessCode());
 		actionRecord.setContent("维保数据变更");
 		actionRecord.setProcessType(AssetOperateEnum.EAM_ASSET_CHANGE_MAINTENANCE_2 .code());
+		String operUserId="sysinter";
+		if(SessionUser.getCurrent()!=null){
+			operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+		}
+		actionRecord.setProcessUserId(operUserId);
 		assetProcessRecordService.insert(actionRecord);
 		return ErrorDesc.success();
 	}

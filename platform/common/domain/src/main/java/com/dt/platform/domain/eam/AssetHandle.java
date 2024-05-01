@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产处置
  * <p>资产处置 , 数据表 eam_asset_handle 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-30 14:22:53
+ * @since 2024-05-01 08:06:24
  * @sign A62C49E2B2338B3F78FB53F5C43F0B4B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -45,7 +45,7 @@ public class AssetHandle extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "837783514769260544")
 	private String id;
 	
 	/**
@@ -57,37 +57,37 @@ public class AssetHandle extends Entity {
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "H-0000000033")
 	private String businessCode;
 	
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "这是默认标题")
 	private String name;
 	
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
 	private String status;
 	
 	/**
 	 * 处置类型：处置类型
 	*/
-	@ApiModelProperty(required = false,value="处置类型" , notes = "处置类型")
+	@ApiModelProperty(required = false,value="处置类型" , notes = "处置类型" , example = "fq")
 	private String type;
 	
 	/**
 	 * 内容：内容
 	*/
-	@ApiModelProperty(required = false,value="内容" , notes = "内容")
+	@ApiModelProperty(required = false,value="内容" , notes = "内容" , example = "12121212")
 	private String content;
 	
 	/**
 	 * 处理日期：处理日期
 	*/
-	@ApiModelProperty(required = false,value="处理日期" , notes = "处理日期")
+	@ApiModelProperty(required = false,value="处理日期" , notes = "处理日期" , example = "2024-04-30 12:00:00")
 	private Date planFinishDate;
 	
 	/**
@@ -111,13 +111,13 @@ public class AssetHandle extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-04-30 08:12:35")
 	private Date createTime;
 	
 	/**
@@ -135,7 +135,7 @@ public class AssetHandle extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -156,19 +156,19 @@ public class AssetHandle extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1714479136000")
 	private String selectedCode;
 	
 	/**

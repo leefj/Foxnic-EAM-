@@ -538,6 +538,11 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 					r.setProcessdTime(new Date());
 					r.setProcessType(AssetOperateEnum.EAM_ASSET_INVENTORY.code());
 					r.setContent("盘点操作结束 "+inventoryAssetList.get(i).getNotes());
+					String operUserId="sysinter";
+					if(SessionUser.getCurrent()!=null){
+						operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+					}
+					r.setProcessUserId(operUserId);
 					rcdsList.add(r);
 				}
 				assetProcessRecordServiceImpl.insertList(rcdsList);

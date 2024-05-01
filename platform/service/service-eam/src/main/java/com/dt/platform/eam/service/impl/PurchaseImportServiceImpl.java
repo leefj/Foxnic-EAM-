@@ -170,11 +170,15 @@ public class PurchaseImportServiceImpl extends SuperService<PurchaseImport> impl
 				dao.execute("update eam_asset set asset_code=? where id=?",codeResult.getData().toString(),asset.getId());
 				AssetProcessRecord rcd=new AssetProcessRecord();
 				rcd.setAssetId(asset.getId());
-				rcd.setProcessUserId(SessionUser.getCurrent().getActivatedEmployeeId());
 				rcd.setBusinessCode(purchaseImport.getId());
 				rcd.setProcessdTime(new Date());
 				rcd.setProcessType("eam_asset_insert");
 				rcd.setContent("来自采购订单,订单编号:"+purchaseImport.getOrderName());
+				String operUserId="sysinter";
+				if(SessionUser.getCurrent()!=null){
+					operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+				}
+				rcd.setProcessUserId(operUserId);
 				assetProcessRecordService.insert(rcd,true);
 			}
 		}else{

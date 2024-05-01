@@ -48,6 +48,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
+import com.mysql.jdbc.log.Log;
 import org.apache.poi.ss.usermodel.*;
 import org.github.foxnic.web.constants.enums.changes.ApprovalAction;
 import org.github.foxnic.web.constants.enums.changes.ApprovalMode;
@@ -335,7 +336,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			String rkey=lineToHump(key);
 			String before="-";
 			String after="-";
-
 			if(AssetAttributeValueTypeEnum.ENUM.code().equals(valueType)){
 				if("asset_status".equals(key)){
 					if(!StringUtil.isBlank(assetJsonBefore.getString(rkey))){
@@ -412,6 +412,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			ups.set(dbTreaty.getUpdateUserIdField(), dbTreaty.getLoginUserId());
 		}
 		ups.where().and("id=?",assetBefore.getId());
+
 		Insert ins=new Insert("eam_asset_process_record");
 		ins.set("id",IDGenerator.getSnowflakeIdString());
 		ins.setIf("asset_id",assetBefore.getId());
@@ -419,6 +420,11 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		ins.setIf("process_type",operType);
 		ins.setIf("notes",notes);
 		ins.setIf("content",ct);
+		String operUserId="none";
+		if(SessionUser.getCurrent()!=null){
+			operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+		}
+		ins.setIf("process_user_id",operUserId);
 		ins.setIf("use_user_id",StringUtil.isBlank(useUserId)?null:useUserId);
 		ins.set("processd_time",new Date());
 		if(tm.getColumn(dbTreaty.getCreateTimeField())!=null) {
@@ -430,9 +436,15 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		if(tm.getColumn(dbTreaty.getDeletedField())!=null) {
 			ins.set(dbTreaty.getDeletedField(), dbTreaty.getFalseValue());
 		}
+		Logger.info("update:\n"+ups.getSQL());
 
+		Logger.info("change:\n"+ins.getSQL());
 		data.put("update",ups);
-		data.put("change",ins);
+		if(StringUtil.isBlank(ct)||ct.length()<3){
+			Logger.info("没有变更内容");
+		}else{
+			data.put("change",ins);
+		}
 		return data;
 	}
 
@@ -572,7 +584,9 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			ins.set("owner_code",AssetOwnerCodeEnum.ASSET_CHANGE_RECORD.code());
 			ins.setIf("tenant_id",SessionUser.getCurrent().getActivatedTenantId());
 			for(String key:changeMap.keySet()){
-				ins.set(key,changeMap.get(key));
+				if(changeMap.get(key)!=null){
+					ins.set(key,changeMap.get(key));
+				}
 			}
 			ins.set("id",changeId);
 			dao.execute(ins);
@@ -601,7 +615,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		dao().join(assetAfter.getManager(), Person.class);
 		dao().join(assetAfter.getUseUser(), Person.class);
 		JSONObject assetJsonAfter=BeanUtil.toJSONObject(assetAfter);
-
 		//获取注册的允许变更记录的字段
 		String sql="select id,code,label,value_type,value_path from eam_asset_attribute where code not in ('status','business_code','batch_code') and deleted=0 and tenant_id=?";
 		RcdSet rs=dao.query(sql,SessionUser.getCurrent().getActivatedTenantId());
@@ -615,7 +628,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		}
 		Logger.info("需要更新的字段列表:"+rChangeMap);
 		//获取before数据
-
 		dao.fill(assetBefore).with(AssetMeta.CATEGORY)
 				.with(AssetMeta.CATEGORY_FINANCE)
 				.with(AssetMeta.GOODS)
@@ -640,18 +652,20 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		dao().join(managers, Person.class);
 		List<Employee> useUser= CollectorUtil.collectList(assetBefore,Asset::getUseUser);
 		dao().join(useUser, Person.class);
-
 		for(Asset asset: assetBefore){
 			HashMap<String,SQL> result=parseAssetChange(asset,assetJsonAfter,colsMap,rChangeMap,businessCode,operType,notes);
-			updateSqls.add(result.get("update"));
-			changeSqls.add(result.get("change"));
+			if(result.containsKey("update")){
+				updateSqls.add(result.get("update"));
+			}
+			if(result.containsKey("change")){
+				changeSqls.add(result.get("change"));
+			}
 		}
-		Logger.info("update change size:"+updateSqls.size());
+		Logger.info("update change count:"+updateSqls.size());
 		for(SQL s:updateSqls){
 			Logger.info(s.getSQL());
 		}
-
-		Logger.info("change change size:"+changeSqls.size());
+		Logger.info("change change count:"+changeSqls.size());
 		for(SQL s:changeSqls){
 			Logger.info(s.getSQL());
 		}
@@ -819,8 +833,12 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			rcd.setProcessType("eam_asset_insert");
 			rcd.setContent("资产入库已完成审批,审批人"+SessionUser.getCurrent().getRealName());
 			rcd.setProcessdTime(new Date());
-			rcd.setUseUserId(SessionUser.getCurrent().getActivatedEmployeeId());
-			rcd.setProcessUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+			String operUserId="sysinter";
+			if(SessionUser.getCurrent()!=null){
+				operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+				rcd.setUseUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+			}
+			rcd.setProcessUserId(operUserId);
 			rcd.setBusinessCode(IDGenerator.getSnowflakeIdString());
 			rcd.setNotes("单节点审批模式");
 			assetProcessRecordService.insert(rcd,false);
@@ -1051,6 +1069,11 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			record.setBusinessCode(bussinessCode);
 			record.setContent("资产入库");
 			record.setProcessType(AssetOperateEnum.EAM_ASSET_INSERT.code());
+			String operUserId="sysinter";
+			if(SessionUser.getCurrent()!=null){
+				operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+			}
+			record.setProcessUserId(operUserId);
 			insertAssetsDtl.add(record);
 		}
 
@@ -1283,11 +1306,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	 * */
 	@Override
 	public Result update(Asset asset , SaveMode mode) {
-		if(!StringUtil.isBlank(asset.getAssetCode())){
-			asset.setAssetCode(null);
-		}
-
-
 
 		//判断是否序列号要唯一,满足非空唯一即可
 		if(AssetOwnerCodeEnum.ASSET.code().equals(asset.getOwnerCode())&& !StringUtil.isBlank(asset.getSerialNumber()) && operateService.queryAssetSerialNumberNeedUnique() ){
@@ -1296,8 +1314,56 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			}
 		}
 
+		if(AssetOwnerCodeEnum.ASSET.code().equals(asset.getOwnerCode())){
+			Asset beforeAsset=this.getById(asset.getId());
+			List<Asset> list=new ArrayList<Asset>();
+			list.add(beforeAsset);
+			//变化部分
+			HashMap<String,Object> map=new HashMap<>();
+			map.put("name",asset.getName());
+			map.put("model",asset.getModel());
+			map.put("asset_code",asset.getAssetCode());
+			map.put("asset_status",asset.getAssetStatus());
+			map.put("manufacturer_id",asset.getManufacturerId());
+			map.put("serial_number",asset.getSerialNumber());
+			map.put("own_company_id",asset.getOwnCompanyId());
+			map.put("manager_id",asset.getManagerId());
+			map.put("use_organization_id",asset.getUseOrganizationId());
+			map.put("use_user_id",asset.getUseUserId());
+			map.put("source_id",asset.getSourceId());
+			map.put("purchase_date",asset.getPurchaseDate());
+			map.put("production_date",asset.getProductionDate());
+			map.put("register_date",asset.getRegisterDate());
+			map.put("maintainer_id",asset.getMaintainerId());
+			map.put("maintenance_status",asset.getAssetMaintenanceStatus());
+			map.put("suggest_maintenance_method",asset.getSuggestMaintenanceMethod());
+			map.put("director",asset.getDirector());
+			map.put("supplier_id",asset.getSupplierId());
+			map.put("tax_amount_price",asset.getTaxAmountPrice());
+			map.put("total_amount_price",asset.getTotalAmountPrice());
+			map.put("original_unit_price",asset.getOriginalUnitPrice());
+			map.put("nav_price",asset.getNavPrice());
+			map.put("asset_used_service_life",asset.getAssetUsedServiceLife());
+			map.put("depreciation_id",asset.getDepreciationId());
+			map.put("residuals_rate",asset.getResidualsRate());
+			map.put("residuals_price",asset.getResidualsPrice());
+			map.put("tax_amount_rate",asset.getTaxAmountRate());
+			map.put("depreciation_oper_time",asset.getDepreciationOperTime());
+			map.put("equipment_ip",asset.getEquipmentIp());
+			map.put("manage_ip",asset.getManageIp());
+			map.put("equipment_conf",asset.getEquipmentIp());
+			map.put("equipment_environment_code",asset.getEquipmentEnvironmentCode());
+			map.put("rack_id",asset.getRackId());
+			map.put("rack_up_number",asset.getRackUpNumber());
+			map.put("rack_down_number",asset.getRackDownNumber());
+			map.put("equipment_serial_number",asset.getEquipmentSerialNumber());
+			HashMap<String,List<SQL>> resultMap=parseAssetChangeRecordWithChangeAsset(list,map,asset.getId(),AssetOperateEnum.DIRECT_UPDATE_ASSET.code(),"");
+			List<SQL> changeSqlList=resultMap.get("change");
+			if (changeSqlList.size() > 0) {
+				dao.batchExecute(changeSqlList);
+			}
+		}
 		Logger.info("##############set save :"+asset.getOwnCompanyId());
-
 		Result r=super.update(asset , mode);
 		return r;
 	}

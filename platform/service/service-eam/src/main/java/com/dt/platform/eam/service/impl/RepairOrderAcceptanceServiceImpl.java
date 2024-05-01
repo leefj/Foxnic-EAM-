@@ -106,6 +106,11 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 					assetProcessRecord.setBusinessCode(accept.getBusinessCode());
 					assetProcessRecord.setProcessType(AssetOperateEnum.EAM_ASSET_REPAIR_ORDER_ACCEPTANCE.code());
 					assetProcessRecord.setProcessdTime(new Date());
+					String operUserId="sysinter";
+					if(SessionUser.getCurrent()!=null){
+						operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+					}
+					assetProcessRecord.setProcessUserId(operUserId);
 					assetProcessRecordService.insert(assetProcessRecord);
 				}
 			}

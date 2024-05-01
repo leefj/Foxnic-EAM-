@@ -14,6 +14,7 @@ import java.util.Map;
 import com.dt.platform.domain.eam.meta.AssetProcessRecordVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
+import org.github.foxnic.web.domain.hrm.Employee;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -22,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产处理记录VO类型
  * <p>资产处理记录 , 数据表 eam_asset_process_record 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-23 18:44:07
+ * @since 2024-05-01 09:45:39
  * @sign D5CEEB05B76DE32B1F519872EAA0AD72
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -420,16 +421,17 @@ public class AssetProcessRecordVO extends AssetProcessRecord {
 		inst.setUseUserId(this.getUseUserId());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setOperUser(this.getOperUser());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -509,14 +511,15 @@ public class AssetProcessRecordVO extends AssetProcessRecord {
 			this.setUseUserId(DataParser.parse(String.class, map.get(AssetProcessRecordVOMeta.USE_USER_ID)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(AssetProcessRecordVOMeta.SEARCH_FIELD)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetProcessRecordVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(AssetProcessRecordVOMeta.SORT_TYPE)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(AssetProcessRecordVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetProcessRecordVOMeta.FUZZY_FIELD)));
-			this.setSortField(DataParser.parse(String.class, map.get(AssetProcessRecordVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetProcessRecordVOMeta.PAGE_SIZE)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetProcessRecordVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(AssetProcessRecordVOMeta.SORT_TYPE)));
+			this.setSortField(DataParser.parse(String.class, map.get(AssetProcessRecordVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(AssetProcessRecordVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(AssetProcessRecordVOMeta.QUERY_LOGIC)));
+			this.setOperUser(DataParser.parse(Employee.class, map.get(AssetProcessRecordVOMeta.OPER_USER)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssetProcessRecordVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -540,14 +543,15 @@ public class AssetProcessRecordVO extends AssetProcessRecord {
 				this.setUseUserId( (String)map.get(AssetProcessRecordVOMeta.USE_USER_ID));
 				// others
 				this.setSearchField( (String)map.get(AssetProcessRecordVOMeta.SEARCH_FIELD));
-				this.setPageIndex( (Integer)map.get(AssetProcessRecordVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(AssetProcessRecordVOMeta.SORT_TYPE));
 				this.setRequestAction( (String)map.get(AssetProcessRecordVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(AssetProcessRecordVOMeta.FUZZY_FIELD));
-				this.setSortField( (String)map.get(AssetProcessRecordVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(AssetProcessRecordVOMeta.PAGE_SIZE));
+				this.setPageIndex( (Integer)map.get(AssetProcessRecordVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(AssetProcessRecordVOMeta.SORT_TYPE));
+				this.setSortField( (String)map.get(AssetProcessRecordVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(AssetProcessRecordVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(AssetProcessRecordVOMeta.QUERY_LOGIC));
+				this.setOperUser( (Employee)map.get(AssetProcessRecordVOMeta.OPER_USER));
 				this.setSearchValue( (String)map.get(AssetProcessRecordVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {

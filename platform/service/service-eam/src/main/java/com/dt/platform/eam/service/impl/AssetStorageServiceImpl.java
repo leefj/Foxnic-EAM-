@@ -230,6 +230,11 @@ public class AssetStorageServiceImpl extends SuperService<AssetStorage> implemen
 					record.setBusinessCode(bill.getBusinessCode());
 					record.setContent("资产入库");
 					record.setProcessType(AssetOperateEnum.EAM_ASSET_STORAGE.code());
+					String operUserId="sysinter";
+					if(SessionUser.getCurrent()!=null){
+						operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+					}
+					record.setProcessUserId(operUserId);
 					insertRecordList.add(record);
 				}
 				assetProcessRecordService.insertList(insertRecordList);

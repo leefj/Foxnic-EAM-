@@ -153,7 +153,7 @@
                     </div>
                     <!-- 来源 , sourceId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('来源')}" class="search-label sourceId-label">来源</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('资产来源')}" class="search-label sourceId-label">来源</span><span class="search-colon">:</span></div>
                         <div id="sourceId" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_source'}" style="width:140px" extraParam="{}"></div>
                     </div>
 
@@ -163,7 +163,7 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('资产名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
                         <input id="name" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
                     <!-- 规格型号 , model ,typeName=text_input, isHideInSearch=false -->
@@ -173,7 +173,7 @@
                     </div>
                     <!-- 序列号 , serialNumber ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('序列号')}" class="search-label serialNumber-label">序列号</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('资产序列')}" class="search-label serialNumber-label">序列号</span><span class="search-colon">:</span></div>
                         <input id="serialNumber" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
                     <!-- 资产备注 , assetNotes ,typeName=text_area, isHideInSearch=false -->
@@ -194,7 +194,7 @@
                     </div>
                     <!-- 使用公司/部门 , useOrganizationId ,typeName=button, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('使用公司/部门')}" class="search-label useOrganizationId-label">使用公司/部门</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('使用部门')}" class="search-label useOrganizationId-label">使用公司/部门</span><span class="search-colon">:</span></div>
                             <input lay-filter="useOrganizationId" id="useOrganizationId" name="useOrganizationId"  type="hidden" class="layui-input"   />
                             <button id="useOrganizationId-button" type="button" action-type="org-dialog" class="layui-btn layui-btn-primary   " style="width: 140px"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择组织节点')}" th:default-label="${lang.translate('请选择组织节点')}">按钮文本</span></button>
                     </div>
@@ -217,7 +217,7 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 位置 , positionId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('位置')}" class="search-label positionId-label">位置</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('存放位置')}" class="search-label positionId-label">位置</span><span class="search-colon">:</span></div>
                         <div id="positionId" th:data="${'/service-eam/eam-position/query-paged-list'}" style="width:140px" extraParam="{}"></div>
                     </div>
                     <!-- 业务编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
