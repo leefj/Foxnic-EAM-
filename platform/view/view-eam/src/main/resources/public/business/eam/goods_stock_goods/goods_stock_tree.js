@@ -15,6 +15,14 @@ function ListPage() {
 	var parentId=CATEGORY_PARENT_ID;
 
 
+	 function assetListFunc() {
+		var formHeight=$(".form-container").height();
+		ifr.height((formHeight-100)+"px");
+		var queryString="?source=asset&assetId="+data.id;
+		win.location='/business/eam/inspection_rcd/inspection_rcd_list.html' + queryString;
+	}
+
+
 	/**
 	 * 入口函数，初始化
 	 */
@@ -22,6 +30,11 @@ function ListPage() {
 
 		admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload;
 		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
+
+
+
+
+
 
 		admin.putTempData('eam-asset-list-data-btn-controller', {addButton:"hide",deleteButton:"hide",opsEditButton:"hide",opsDeleteButton:"hide"},true);
 		var cfgs = {
@@ -64,30 +77,30 @@ function ListPage() {
 			}
 			return childNodes;
 		}
-
+alert("1");
 		setTimeout(function(){
-
 			var toolbarHeight=$("#toolbar")[0].clientHeight;
 			var fullHeight=$(window).height();
 			var fullWidth=$(window).width();
 			var treeHeight=fullHeight-toolbarHeight-1;
 			$("#tree-container").height(treeHeight);
-			$("#asset-list-ifr").height(fullHeight-70);
+			$("#asset-list-ifr").height(fullHeight);
+
+			console.log("fullHeight",fullHeight);
+			console.log("treeHeight",treeHeight);
+
 			$("#asset-list-ifr").show();
-
-
-		},10);
+		},15);
 
 		//
 		bindSearchEvent();
+		assetListFunc();
 	}
 
 	var editingNode=null;
 	function onNodeClick(event, treeId, treeNode) {
-		console.log("click",$("#asset-list-ifr")[0])
 		if(treeNode==null) return;
 		editingNode=treeNode;
-
 		$("#asset-list-ifr")[0].contentWindow.module.searchCategory(treeNode.id);
 	}
 

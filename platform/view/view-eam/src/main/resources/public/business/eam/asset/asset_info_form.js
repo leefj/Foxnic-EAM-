@@ -17,6 +17,7 @@ function FormPage() {
 	var extDataId;
 	var action=null;
 	var categorySelect;
+	var fdata;
 	/**
 	 * 入口函数，初始化
 	 */
@@ -24,6 +25,7 @@ function FormPage() {
 		admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
+		fdata = admin.getTempData('eam-asset-form-data');
 		action=admin.getTempData('eam-asset-form-data-form-action');
 		//如果没有修改和保存权限，
 		// if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
@@ -48,6 +50,32 @@ function FormPage() {
 
 		setTimeout(adjustPopup(),1000)
 
+		$("#partRcd-tab").on('click', function(){
+			queryTabData("none","partRcdList");
+		});
+		$("#repairRcd-tab").on('click', function(){
+			queryTabData("none","repairRcdList");
+		});
+		$("#maintainRcd-tab").on('click', function(){
+			queryTabData("none","maintainRcdList");
+		});
+		$("#insepectionRcd-tab").on('click', function(){
+			queryTabData("none","insepectionRcdList");
+		});
+		$("#history-tab").on('click', function(){
+			queryTabData("none","historyList");
+		});
+
+		function queryTabData(label,elId){
+			var formIfrs=$(".form-iframe");
+			for (var i = 0; i < formIfrs.length; i++) {
+				var jsFn=$(formIfrs[i]).attr("js-fn");
+				if(jsFn==elId){
+					jsFn=window.pageExt.form[jsFn];
+					jsFn && jsFn($(formIfrs[i]),$(formIfrs[i])[0].contentWindow,fdata);
+				}
+			}
+		}
 	}
 
 	/**
@@ -1205,13 +1233,16 @@ function FormPage() {
 		var formIfrs=$(".form-iframe");
 		for (var i = 0; i < formIfrs.length; i++) {
 			var jsFn=$(formIfrs[i]).attr("js-fn");
-			if(window.pageExt.form){
-				jsFn=window.pageExt.form[jsFn];
-				jsFn && jsFn($(formIfrs[i]),$(formIfrs[i])[0].contentWindow,formData);
+			if(i==0){
+				if(window.pageExt.form){
+					jsFn=window.pageExt.form[jsFn];
+					jsFn && jsFn($(formIfrs[i]),$(formIfrs[i])[0].contentWindow,formData);
+				}
 			}
 		}
 
 	}
+
 
 	function getFormData() {
 		var data=form.val("data-form");

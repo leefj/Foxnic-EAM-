@@ -75,7 +75,7 @@ function ListPage() {
             var treeHeight=fullHeight-toolbarHeight-1;
             $("#tree-container").height(treeHeight);
             // $("#form-view").height(fullHeight-6);
-            $("#basic-info-ifr").height(fullHeight-70);
+            $("#basic-info-ifr").height(fullHeight-0);
             // $(".layui-col-md4").width("200px");
             // $(".layui-col-md8").width((fullWidth-200)+"px");
         },10);

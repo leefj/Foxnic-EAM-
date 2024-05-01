@@ -324,8 +324,8 @@ function ListPage() {
 		var index=admin.popupCenter({
 			title: "选择资产",
 			resize: false,
-			offset: [formTop,null],
-			area: ["80%","90%"],
+			offset: [15,null],
+			area: ["90%","90%"],
 			type: 2,
 			id:"eam-asset-select-data-win",
 			content: '/business/eam/asset/asset_select_list.html?assetSelectedCode='+ASSET_SELECTED_CODE,

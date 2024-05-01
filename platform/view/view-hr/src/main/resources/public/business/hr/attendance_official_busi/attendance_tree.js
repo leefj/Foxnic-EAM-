@@ -51,13 +51,13 @@ function ListPage() {
             var treeHeight=fullHeight-toolbarHeight-1;
             $("#tree-container").height(treeHeight);
             // $("#form-view").height(fullHeight-6);
-            $("#org-basic-info-ifr").height(fullHeight-70);
+            $("#org-basic-info-ifr").height(fullHeight-0);
             $("#org-basic-info-ifr").show();
 
-            $("#pos-basic-info-ifr").height(fullHeight-70);
+            $("#pos-basic-info-ifr").height(fullHeight-0);
             $("#pos-basic-info-ifr").show();
 
-            $("#employee-list-ifr").height(fullHeight-70);
+            $("#employee-list-ifr").height(fullHeight-0);
             $("#employee-list-ifr").show();
             // $(".layui-col-md4").width("200px");
             // $(".layui-col-md8").width((fullWidth-200)+"px");

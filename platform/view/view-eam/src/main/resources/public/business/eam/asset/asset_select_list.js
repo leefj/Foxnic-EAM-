@@ -72,13 +72,12 @@ function ListPage() {
 			var toolbarHeight=$("#toolbar")[0].clientHeight;
 			var fullHeight=$(window).height();
 			var fullWidth=$(window).width();
+			console.log("fullHeight:",fullHeight);
 			var treeHeight=fullHeight-toolbarHeight-1;
 			$("#tree-container").height(treeHeight);
-			// $("#form-view").height(fullHeight-6);
-			$("#basic-info-ifr").height(fullHeight-70);
-			// $(".layui-col-md4").width("200px");
-			// $(".layui-col-md8").width((fullWidth-200)+"px");
-		},10);
+			$("#assetList").height(fullHeight-0);
+			$("#assetList").show();
+		},15);
 
 		//
 		bindSearchEvent();

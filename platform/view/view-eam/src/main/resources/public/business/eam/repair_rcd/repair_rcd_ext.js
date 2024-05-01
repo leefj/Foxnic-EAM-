@@ -49,7 +49,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-              cfg.cellMinWidth=160;;
+              cfg.height='full-28';
+              cfg.cellMinWidth=160;
         },
         /**
          * 表格渲染后调用

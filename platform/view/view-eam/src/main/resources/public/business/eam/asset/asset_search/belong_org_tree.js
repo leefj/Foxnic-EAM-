@@ -63,7 +63,7 @@ function ListPage() {
             var fullWidth=$(window).width();
             var treeHeight=fullHeight-toolbarHeight-1;
             $("#tree-container").height(treeHeight);
-            $("#asset-list-ifr").height(fullHeight-70);
+            $("#asset-list-ifr").height(fullHeight);
             $("#asset-list-ifr").show();
 
         },10);

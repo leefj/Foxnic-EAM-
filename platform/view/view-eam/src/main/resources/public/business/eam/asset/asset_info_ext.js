@@ -826,28 +826,36 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         afterSubmit:function (param,result) {
             console.log("afterSubmit",param,result);
         },
+
         historyList:function (ifr,win,data) {
-            ifr.height("450px");
+            var formHeight=$(".form-container").height();
+            ifr.height((formHeight-100)+"px");
             var queryString="?source=asset&assetId="+data.id;
             win.location='/business/eam/asset_process_record/asset_process_record_list.html' + queryString;
         },
+
+
         insepectionRcdList:function (ifr,win,data) {
-            ifr.height("450px");
+            var formHeight=$(".form-container").height();
+            ifr.height((formHeight-100)+"px");
             var queryString="?source=asset&assetId="+data.id;
             win.location='/business/eam/inspection_rcd/inspection_rcd_list.html' + queryString;
         },
         maintainRcdList:function (ifr,win,data) {
-            ifr.height("450px");
+            var formHeight=$(".form-container").height();
+            ifr.height((formHeight-100)+"px");
             var queryString="?source=asset&assetId="+data.id;
             win.location='/business/eam/maintain_rcd/maintain_rcd_list.html' + queryString;
         },
         repairRcdList:function (ifr,win,data) {
-            ifr.height("450px");
+            var formHeight=$(".form-container").height();
+            ifr.height((formHeight-100)+"px");
             var queryString="?source=asset&assetId="+data.id;
             win.location='/business/eam/repair_rcd/repair_rcd_list.html' + queryString;
         },
         partRcdList:function (ifr,win,data) {
-            ifr.height("450px");
+            var formHeight=$(".form-container").height();
+            ifr.height((formHeight-100)+"px");
             var queryString="?source=asset&assetId="+data.id+"&ownerCode=part&ownerType=part";
             win.location='/business/eam/goods_stock_goods/asset_part_goods_list.html' + queryString;
         },
