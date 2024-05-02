@@ -88,9 +88,10 @@ public class GoodsStockGoodsPageController extends ViewController {
 	}
 
 	@RequestMapping("/asset_part_goods_list.html")
-	public String selectedSubGoodsStock(Model model,HttpServletRequest request,String assetId,String ownerCode) {
+	public String goodsStock(Model model,HttpServletRequest request,String assetId,String ownerCode,String ownerType) {
 		model.addAttribute("assetId",assetId);
 		model.addAttribute("ownerCode",ownerCode);
+		model.addAttribute("ownerType",ownerType);
 		return prefix+"/asset_part_goods_list";
 	}
 

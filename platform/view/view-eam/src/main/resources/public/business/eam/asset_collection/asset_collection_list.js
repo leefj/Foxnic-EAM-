@@ -472,7 +472,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["90%",height+"px"],
 			type: 2,
 			id:"eam-asset-collection-form-data-win",
 			content: '/business/eam/asset_collection/asset_collection_form.html' + (queryString?("?"+queryString):""),

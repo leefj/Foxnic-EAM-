@@ -834,7 +834,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             win.location='/business/eam/asset_process_record/asset_process_record_list.html' + queryString;
         },
 
-
         insepectionRcdList:function (ifr,win,data) {
             var formHeight=$(".form-container").height();
             ifr.height((formHeight-100)+"px");
@@ -856,8 +855,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         partRcdList:function (ifr,win,data) {
             var formHeight=$(".form-container").height();
             ifr.height((formHeight-100)+"px");
-            var queryString="?source=asset&assetId="+data.id+"&ownerCode=part&ownerType=part";
-            win.location='/business/eam/goods_stock_goods/asset_part_goods_list.html' + queryString;
+            // var queryString="?source=asset&assetId="+data.id+"&ownerCode=part&ownerType=part";
+            // win.location='/business/eam/goods_stock_goods/asset_part_goods_list.html' + queryString;
+            var queryString="?source=asset&assetId="+data.id;
+            win.location='/business/eam/asset/asset_sub_data_tab.html' + queryString;
         },
         /**
          * 末尾执行

@@ -128,7 +128,7 @@ public class EamAssetCollectionGtr extends BaseCodeGenerator {
         //分成分组布局
         cfg.view().form().labelWidth(70);
         cfg.view().formWindow().bottomSpace(20);
-        cfg.view().formWindow().width(Config.baseFormWidth);
+        cfg.view().formWindow().width(Config.baseFormWidth_90);
 
         cfg.view().form().addGroup(null,
                 new Object[] {

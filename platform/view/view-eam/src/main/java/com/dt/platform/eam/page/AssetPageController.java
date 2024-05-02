@@ -64,6 +64,16 @@ public class AssetPageController extends ViewController {
 	/**
 	 * 资产
 	 */
+	@RequestMapping("/asset_sub_data_tab.html")
+	public String assetSubData(Model model,HttpServletRequest request,String assetId) {
+		model.addAttribute("assetId",assetId);
+		return prefix+"/asset_sub_data_tab";
+	}
+
+
+	/**
+	 * 资产
+	 */
 	@RequestMapping("/asset_info_scan.html")
 	public String asset_info_scan(Model model,HttpServletRequest request,String code) {
 		model.addAttribute("code",code);

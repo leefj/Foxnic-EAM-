@@ -8,9 +8,10 @@ public class Config {
     public static int textAreaHeight_Z=50;
     public static int textAreaHeight_60=60;
     public static int textAreaHeight_30=30;
-    public static String baseFormWidth="80%";
+    public static String baseFormWidth="85%";
     public static String baseFormWidth_75="75%";
     public static String baseFormWidth_50="50%";
+    public static String baseFormWidth_90="90%";
     public static String baseFormWidth_95="95%";
 
 

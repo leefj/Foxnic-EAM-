@@ -459,7 +459,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["90%",height+"px"],
 			type: 2,
 			id:"eam-asset-tranfer-form-data-win",
 			content: '/business/eam/asset_tranfer/asset_tranfer_form.html' + (queryString?("?"+queryString):""),

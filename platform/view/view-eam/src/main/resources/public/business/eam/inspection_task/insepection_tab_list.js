@@ -22,7 +22,7 @@ function ListPage() {
 				}
 			}
 		}
-		queryTabData("none");
+
 		$("#wait_count_tab").on('click', function(){
 			queryTabData("none","waitFunc");
 		});

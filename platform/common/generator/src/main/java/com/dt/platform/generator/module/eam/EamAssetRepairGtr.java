@@ -101,7 +101,7 @@ public class EamAssetRepairGtr extends BaseCodeGenerator{
 
         cfg.view().form().labelWidth(70);
         cfg.view().list().operationColumn().width(350);
-        cfg.view().formWindow().width(Config.baseFormWidth);
+        cfg.view().formWindow().width(Config.baseFormWidth_90);
 
 
         cfg.view().form().labelWidth(70);

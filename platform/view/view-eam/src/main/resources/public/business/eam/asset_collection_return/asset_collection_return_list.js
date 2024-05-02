@@ -515,7 +515,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["90%",height+"px"],
 			type: 2,
 			id:"eam-asset-collection-return-form-data-win",
 			content: '/business/eam/asset_collection_return/asset_collection_return_form.html' + (queryString?("?"+queryString):""),

@@ -26,8 +26,6 @@ function ListPage() {
 		}
 
 
-		queryTabData("none");
-
 		$("#not_dispatch_count_tab").on('click', function(){
 			queryTabData("none","orderDispatched");
 			//$("#orderRepairing").contentWindow.calWidth();

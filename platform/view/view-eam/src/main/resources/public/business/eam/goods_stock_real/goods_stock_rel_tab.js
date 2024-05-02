@@ -24,7 +24,6 @@ function ListPage() {
 				}
 			}
 		}
-		queryTabData("none");
 		$("#same_tab").on('click', function(){
 			queryTabData("none","sameData");
 		});

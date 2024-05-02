@@ -124,7 +124,7 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
 
         //分成分组布局
         cfg.view().formWindow().bottomSpace(20);
-        cfg.view().formWindow().width("100%");
+        cfg.view().formWindow().width(Config.baseFormWidth_95);
 
         cfg.view().search().rowsDisplay(1);
         cfg.view().form().labelWidth(70);

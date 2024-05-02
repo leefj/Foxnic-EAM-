@@ -134,7 +134,7 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
 
         cfg.view().form().labelWidth(70);
         cfg.view().formWindow().bottomSpace(20);
-        cfg.view().formWindow().width(Config.baseFormWidth);
+        cfg.view().formWindow().width(Config.baseFormWidth_90);
 
         cfg.view().form().addGroup(null,
                 new Object[] {

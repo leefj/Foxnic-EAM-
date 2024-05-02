@@ -99,8 +99,9 @@ function ListPage() {
 			var toolbarHeight=$("#toolbar")[0].clientHeight;
 			var fullHeight=$(window).height();
 			var fullWidth=$(window).width();
-			var treeHeight=fullHeight-toolbarHeight-1;
+			var treeHeight=fullHeight-toolbarHeight-1-80;
 			$("#tree-container").height(treeHeight);
+			$("#menu-tree").height(treeHeight);
 			$("#asset-list-ifr").height(fullHeight);
 
 			$("#asset-list-ifr").show();

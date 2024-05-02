@@ -73,8 +73,9 @@ function ListPage() {
 			var fullHeight=$(window).height();
 			var fullWidth=$(window).width();
 			console.log("fullHeight:",fullHeight);
-			var treeHeight=fullHeight-toolbarHeight-1;
+			var treeHeight=fullHeight-toolbarHeight-1-80;
 			$("#tree-container").height(treeHeight);
+			$("#menu-tree").height(treeHeight);
 			$("#assetList").height(fullHeight-0);
 			$("#assetList").show();
 		},15);

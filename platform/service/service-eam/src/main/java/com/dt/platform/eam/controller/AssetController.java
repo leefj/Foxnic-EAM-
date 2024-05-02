@@ -1919,7 +1919,7 @@ public class AssetController extends SuperController {
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = assetService.queryAssetSubGoodsStockPagedList(sample, sample.getId(), sample.getOwnerCode(), sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        assetService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
+        assetService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         assetService.dao().join(originatorList, Person.class);
         List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);

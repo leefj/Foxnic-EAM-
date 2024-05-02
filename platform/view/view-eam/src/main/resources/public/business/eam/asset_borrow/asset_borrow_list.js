@@ -448,7 +448,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["90%",height+"px"],
 			type: 2,
 			id:"eam-asset-borrow-form-data-win",
 			content: '/business/eam/asset_borrow/asset_borrow_form.html' + (queryString?("?"+queryString):""),

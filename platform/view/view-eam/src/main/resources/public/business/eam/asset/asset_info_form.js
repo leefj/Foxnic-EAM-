@@ -1233,12 +1233,12 @@ function FormPage() {
 		var formIfrs=$(".form-iframe");
 		for (var i = 0; i < formIfrs.length; i++) {
 			var jsFn=$(formIfrs[i]).attr("js-fn");
-			if(i==0){
-				if(window.pageExt.form){
-					jsFn=window.pageExt.form[jsFn];
-					jsFn && jsFn($(formIfrs[i]),$(formIfrs[i])[0].contentWindow,formData);
-				}
-			}
+			// if(i==0){
+			// 	if(window.pageExt.form){
+			// 		jsFn=window.pageExt.form[jsFn];
+			// 		jsFn && jsFn($(formIfrs[i]),$(formIfrs[i])[0].contentWindow,formData);
+			// 	}
+			// }
 		}
 
 	}

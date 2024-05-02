@@ -11,31 +11,38 @@ function ListPage() {
 	this.init=function(layui) {
 		admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
 		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
-		//调用 iframe 加载过程
+
 		var formIfrs=$(".form-iframe");
 		for (var i = 0; i < formIfrs.length; i++) {
-			var jsFn=$(formIfrs[i]).attr("js-fn");
-			if(i==0){
-				if(window.pageExt.list){
-					jsFn=window.pageExt.list[jsFn];
-					jsFn && jsFn($(formIfrs[i]),$(formIfrs[i])[0].contentWindow,'idle');
+			var jsFn = $(formIfrs[i]).attr("js-fn");
+			if (jsFn == "stockFunc"){
+				if (window.pageExt.list) {
+					jsFn = window.pageExt.list[jsFn];
+					jsFn && jsFn($(formIfrs[i]), $(formIfrs[i])[0].contentWindow, 'idle');
 				}
+				break;
 			}
-
 		}
 
-		$("#wait_count_tab").on('click', function(){
-			queryTabData("none","waitFunc");
+		if(window.pageExt.list){
+			jsFn=window.pageExt.list[jsFn];
+			jsFn && jsFn($(formIfrs[i]),$(formIfrs[i])[0].contentWindow,'idle');
+		}
+
+		$("#asset_data_tab").on('click', function(){
+			queryTabData("none","assetFunc","stock_data");
 		});
-		$("#acting_count_tab").on('click', function(){
-			queryTabData("none","actingFunc");
+		$("#goods_data_tab").on('click', function(){
+			queryTabData("none","goodsFunc","goods_data");
+		});
+		$("#stock_data_tab").on('click', function(){
+			queryTabData("none","stockFunc","stock_data");
+
 		});
 
-		$("#all_data_tab").on('click', function(){
-			queryTabData("none","allFunc");
-		});
 	}
-	function queryTabData(label,elId){
+	function queryTabData(label,elId,frameId){
+		$("#"+frameId).show();
 		var formIfrs=$(".form-iframe");
 		for (var i = 0; i < formIfrs.length; i++) {
 			var jsFn=$(formIfrs[i]).attr("js-fn");
@@ -44,15 +51,6 @@ function ListPage() {
 				jsFn && jsFn($(formIfrs[i]),$(formIfrs[i])[0].contentWindow,'idle');
 			}
 		}
-		admin.post("/service-eam/eam-maintain-task/query-status-count-data", { label :label }, function (r) {
-			if (r.success) {
-				var data=r.data;
-				$("#wait_count").html(data.waitCount);
-				$("#acting_count").html(data.actingCount);
-			} else {
-				fox.showMessage(r);
-			}
-		});
 	}
 
 	window.module={};

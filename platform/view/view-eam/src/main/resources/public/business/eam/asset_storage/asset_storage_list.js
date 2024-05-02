@@ -496,7 +496,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["100%",height+"px"],
+			area: ["95%",height+"px"],
 			type: 2,
 			id:"eam-asset-storage-form-data-win",
 			content: '/business/eam/asset_storage/asset_storage_form.html' + (queryString?("?"+queryString):""),

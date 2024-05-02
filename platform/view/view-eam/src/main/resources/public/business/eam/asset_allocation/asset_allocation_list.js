@@ -499,7 +499,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["90%",height+"px"],
 			type: 2,
 			id:"eam-asset-allocation-form-data-win",
 			content: '/business/eam/asset_allocation/asset_allocation_form.html' + (queryString?("?"+queryString):""),
