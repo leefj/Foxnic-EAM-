@@ -242,10 +242,12 @@ public class InventoryController extends SuperController {
         Inventory inventory = inventoryService.getById(id);
         // join 关联的对象
         inventoryService.dao().fill(inventory).with(InventoryMeta.INVENTORY_ASSET_INFO_LIST).with(InventoryMeta.MANAGER).with(InventoryMeta.ORIGINATOR).with(InventoryMeta.DIRECTOR).with(InventoryMeta.INVENTORY_USER).with(InventoryMeta.CATEGORY).with(InventoryMeta.WAREHOUSE).with(InventoryMeta.POSITION).execute();
+
         inventoryService.dao().join(inventory.getDirector(), Person.class);
         inventoryService.dao().join(inventory.getManager(), Person.class);
         inventoryService.dao().join(inventory.getOriginator(), Person.class);
         inventoryService.dao().join(inventory.getInventoryUser(), Person.class);
+
         result.success(true).data(inventory);
         return result;
     }
@@ -343,13 +345,16 @@ public class InventoryController extends SuperController {
         // join 关联的对象
         inventoryService.dao().fill(list).with(InventoryMeta.INVENTORY_ASSET_INFO_LIST).with(InventoryMeta.MANAGER).with(InventoryMeta.ORIGINATOR).with(InventoryMeta.INVENTORY_USER).with(InventoryMeta.DIRECTOR).with(InventoryMeta.CATEGORY).with(InventoryMeta.WAREHOUSE).with(InventoryMeta.POSITION).execute();
         List<List<Employee>> managerList = CollectorUtil.collectList(list.getList(), Inventory::getManager);
+
         List<Employee> managers = managerList.stream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
         inventoryService.dao().join(managers, Person.class);
         List<Employee> originator = CollectorUtil.collectList(list.getList(), Inventory::getOriginator);
         inventoryService.dao().join(originator, Person.class);
+
         List<List<Employee>> usersList = CollectorUtil.collectList(list.getList(), Inventory::getInventoryUser);
         List<Employee> users = usersList.stream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
         inventoryService.dao().join(users, Person.class);
+
         List<List<Employee>> directorList = CollectorUtil.collectList(list.getList(), Inventory::getDirector);
         List<Employee> directors = directorList.stream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
         inventoryService.dao().join(directors, Person.class);

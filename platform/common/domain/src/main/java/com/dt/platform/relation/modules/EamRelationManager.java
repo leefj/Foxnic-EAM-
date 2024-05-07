@@ -38,7 +38,11 @@ public class EamRelationManager extends RelationManager {
         this.setupScrap();
         this.setupAssetAttributeItem();
         this.setupInventoryPlan();
+
+        this.setupStockInventoryPlan();
+
         this.setupInventory();
+        this.setupStockInventory();
         this.setupInventoryUser();
         this.setupInventoryDirecotor();
         this.setupInventoryAsset();
@@ -146,6 +150,9 @@ public class EamRelationManager extends RelationManager {
         this.setupAssetHandlerType();
 
         this.setupAssetProcessRecord();
+
+        this.setupStockInventoryAsset();
+
 
     }
 
@@ -1700,10 +1707,6 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_PURCHASE_ORDER.CHECK_ID).join(EAMTables.EAM_PURCHASE_CHECK.ID);
 
 
-
-
-
-
     }
 
 
@@ -1924,8 +1927,31 @@ public class EamRelationManager extends RelationManager {
     }
 
 
-    public void setupInventoryPlan() {
+    public void setupStockInventoryPlan() {
 
+        this.property(StockInventoryPlanMeta.INVENTORY_TASK_PROP)
+                .using(EAMTables.EAM_STOCK_INVENTORY_PLAN.ID).join(EAMTables.EAM_STOCK_INVENTORY_TASK.PLAN_ID);
+
+        // 关联来源
+        this.property(StockInventoryPlanMeta.INVENTORY_PLAN_TYPE_PROP)
+                .using(EAMTables.EAM_STOCK_INVENTORY_PLAN.PLAN_TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_inventory_plan_type'");
+    }
+
+
+    public void setupStockInventoryAsset() {
+
+        this.property(StockInventoryAssetMeta.OPER_USER_PROP)
+                .using(EAMTables.EAM_STOCK_INVENTORY_ASSET.OPER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        // 关联来源
+        this.property(StockInventoryAssetMeta.GOODS_STOCK_ASSET_PROP)
+                .using(EAMTables.EAM_STOCK_INVENTORY_ASSET.ASSET_ID).join(EAMTables.EAM_GOODS_STOCK.ID);
+
+    }
+
+
+    public void setupInventoryPlan() {
 
         // 关联来源
         this.property(InventoryPlanMeta.INVENTORY_PLAN_TYPE_PROP)
@@ -1935,13 +1961,38 @@ public class EamRelationManager extends RelationManager {
         this.property(InventoryPlanMeta.INVENTORY_PROP)
                 .using(EAMTables.EAM_INVENTORY_PLAN.ID).join(EAMTables.EAM_INVENTORY.PLAN_ID);
 
-
-
-
     }
 
 
-
+    private HashMap<String,Integer> calculateStockInventoryAssetQuantityStatistics(List<StockInventoryAsset> assets){
+        HashMap<String,Integer> map=new HashMap<>();
+        int notCount=0;
+        int count=0;
+        int loss=0;
+        int surplus=0;
+        int dataException=0;
+        if(assets!=null&&assets.size()>0){
+            for(int i=0;i<assets.size();i++){
+                if(AssetInventoryDetailStatusEnum.NOT_COUNTED.code().equals( assets.get(i).getInventoryStatus())){
+                    notCount++;
+                }else if(AssetInventoryDetailStatusEnum.COUNTED.code().equals( assets.get(i).getInventoryStatus())){
+                    count++;
+                }else if(AssetInventoryDetailStatusEnum.LOSS.code().equals( assets.get(i).getInventoryStatus())){
+                    loss++;
+                }else if(AssetInventoryDetailStatusEnum.SURPLUS.code().equals( assets.get(i).getInventoryStatus())){
+                    surplus++;
+                }else if(AssetInventoryDetailStatusEnum.EXCEPTION.code().equals( assets.get(i).getInventoryStatus())){
+                    dataException++;
+                }
+            }
+            map.put(AssetInventoryDetailStatusEnum.NOT_COUNTED.code(),notCount);
+            map.put(AssetInventoryDetailStatusEnum.COUNTED.code(),count);
+            map.put(AssetInventoryDetailStatusEnum.LOSS.code(),loss);
+            map.put(AssetInventoryDetailStatusEnum.SURPLUS.code(),surplus);
+            map.put(AssetInventoryDetailStatusEnum.EXCEPTION.code(),dataException);
+        }
+        return map;
+    }
 
     private HashMap<String,Integer> calculateInventoryAssetQuantityStatistics(List<InventoryAsset> assets){
         HashMap<String,Integer> map=new HashMap<>();
@@ -1973,11 +2024,46 @@ public class EamRelationManager extends RelationManager {
         return map;
     }
 
+    public void setupStockInventory(){
+        //制单人
+        this.property(StockInventoryTaskMeta.ORIGINATOR_PROP)
+                .using(EAMTables.EAM_STOCK_INVENTORY_TASK.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        //制单人
+        this.property(StockInventoryTaskMeta.DIRECTOR_PROP)
+                .using(EAMTables.EAM_STOCK_INVENTORY_TASK.DIRECTOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
+        //盘点人
+        this.property(StockInventoryTaskMeta.INVENTORY_USER_LIST_PROP)
+                .using(EAMTables.EAM_STOCK_INVENTORY_TASK.ID).join(EAMTables.EAM_INVENTORY_USER.INVENTORY_ID)
+                .using(EAMTables.EAM_INVENTORY_USER.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
+        //仓库
+        this.property(StockInventoryTaskMeta.WAREHOUSE_LIST_PROP)
+                .using(EAMTables.EAM_STOCK_INVENTORY_TASK.ID).join(EAMTables.EAM_INVENTORY_WAREHOUSE.INVENTORY_ID)
+                .using(EAMTables.EAM_INVENTORY_WAREHOUSE.VALUE).join(EAMTables.EAM_WAREHOUSE.ID);
+
+        this.property(StockInventoryTaskMeta.INVENTORY_ASSET_INFO_LIST_PROP)
+                .using(EAMTables.EAM_STOCK_INVENTORY_TASK.ID).join(EAMTables.EAM_STOCK_INVENTORY_ASSET.TASK_ID).after((tag,inventory,assets,map)->{
+            HashMap<String,Integer> data= calculateStockInventoryAssetQuantityStatistics(assets);
+            inventory.setInventoryAssetCountByNotCounted(data.getOrDefault(AssetInventoryDetailStatusEnum.NOT_COUNTED.code(),0));
+            inventory.setInventoryAssetCountByCounted(data.getOrDefault(AssetInventoryDetailStatusEnum.COUNTED.code(),0));
+            inventory.setInventoryAssetCountByLoss(data.getOrDefault(AssetInventoryDetailStatusEnum.LOSS.code(),0));
+            inventory.setInventoryAssetCountBySurplus(data.getOrDefault(AssetInventoryDetailStatusEnum.SURPLUS.code(),0));
+            inventory.setInventoryAssetCountByException(data.getOrDefault(AssetInventoryDetailStatusEnum.EXCEPTION.code(),0));
+            return assets;
+        });
+
+
+
+    }
+
     public void setupInventory() {
 
         this.property(InventoryMeta.INVENTORY_ASSET_INFO_LIST_PROP)
                 .using(EAMTables.EAM_INVENTORY.ID).join(EAMTables.EAM_INVENTORY_ASSET.INVENTORY_ID).after((tag,inventory,assets,map)->{
-
             HashMap<String,Integer> data= calculateInventoryAssetQuantityStatistics(assets);
             inventory.setInventoryAssetCountByNotCounted(data.getOrDefault(AssetInventoryDetailStatusEnum.NOT_COUNTED.code(),0));
             inventory.setInventoryAssetCountByCounted(data.getOrDefault(AssetInventoryDetailStatusEnum.COUNTED.code(),0));

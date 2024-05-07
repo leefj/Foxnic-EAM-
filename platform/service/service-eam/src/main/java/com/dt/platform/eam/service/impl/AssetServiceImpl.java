@@ -350,7 +350,26 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 							after=v.text();
 						}
 					}
-				}else if("equipment_environment_code".equals(key)){
+
+				}
+				if("equipment_status".equals(key)){
+					if(!StringUtil.isBlank(assetJsonBefore.getString(rkey))){
+						CodeTextEnum v=EnumUtil.parseByCode(AssetEquipmentStatusEnum.class,assetJsonBefore.getString(rkey));
+						if(v!=null){
+							before=v.text();
+						}
+					}
+					if(!StringUtil.isBlank(assetJsonAfter.getString(rkey))){
+						CodeTextEnum v=EnumUtil.parseByCode(AssetEquipmentStatusEnum.class,assetJsonAfter.getString(rkey));
+						if(v!=null){
+							after=v.text();
+						}
+					}
+				}
+
+
+
+				else if("equipment_environment_code".equals(key)){
 					if(!StringUtil.isBlank(assetJsonBefore.getString(rkey))){
 						CodeTextEnum v=EnumUtil.parseByCode(AssetEquipmentStatusEnum.class,assetJsonBefore.getString(rkey));
 						if(v!=null){
@@ -383,24 +402,24 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			}else if(AssetAttributeValueTypeEnum.STRING.code().equals(valueType)
 					||AssetAttributeValueTypeEnum.DOUBLE.code().equals(valueType)
 					||AssetAttributeValueTypeEnum.DATE.code().equals(valueType)
-					||AssetAttributeValueTypeEnum.INTEGER.code().equals(valueType)
-			){
+					||AssetAttributeValueTypeEnum.INTEGER.code().equals(valueType)){
 				before=assetJsonBefore.getString(rkey);
 				after=assetJsonAfter.getString(rkey);
 			}else{
 				continue;
 			}
-
 			//只更新不是null部分
 			ups.setIf(key,assetJsonAfter.get(rkey));
 			//  ups.setIf(key,assetAfterRcd.getOriginalValue(key));
-			if( !((before+"").equals(after+"") ) ){
+			if(before==null&&after==null){
+				continue;
+			}
+			if(before==null||(!before.equals(after))){
 				if("use_user_id".equals(key)){
 					useUserId=assetJsonAfter.getString("useUserId");
 				}
 				ct=ct+"【"+label+"】由"+before+"变更为"+after+" ";
 			}
-
 		}
 		//StringUtil.isBlank(assetJsonAfter.getOrDefault("useUserId",""))?null:assetJsonAfter.getOrDefault("useUserId","");
 		Logger.info("资产编号:"+assetBefore.getAssetCode()+",变更内容:"+ct);
@@ -425,7 +444,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			operUserId=SessionUser.getCurrent().getActivatedEmployeeId();
 		}
 		ins.setIf("process_user_id",operUserId);
-		ins.setIf("use_user_id",StringUtil.isBlank(useUserId)?null:useUserId);
+		//ins.setIf("use_user_id",StringUtil.isBlank(useUserId)?null:useUserId);
 		ins.set("processd_time",new Date());
 		if(tm.getColumn(dbTreaty.getCreateTimeField())!=null) {
 			ins.set(dbTreaty.getCreateTimeField(),new Date());
@@ -584,6 +603,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			ins.set("owner_code",AssetOwnerCodeEnum.ASSET_CHANGE_RECORD.code());
 			ins.setIf("tenant_id",SessionUser.getCurrent().getActivatedTenantId());
 			for(String key:changeMap.keySet()){
+				System.out.println("key:"+key+","+changeMap.get(key));
 				if(changeMap.get(key)!=null){
 					ins.set(key,changeMap.get(key));
 				}
@@ -611,6 +631,9 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.ASSET_CYCLE_STATUS)
 				.with(AssetMeta.EQUIPMENT_ENVIRONMENT)
 				.with(AssetMeta.ASSET_MAINTENANCE_STATUS)
+				.with(AssetMeta.MAINTENANCE_METHOD_DATA)
+				.with(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA)
+				.with(AssetMeta.FINANCIAL_OPTION_DICT)
 				.execute();
 		dao().join(assetAfter.getManager(), Person.class);
 		dao().join(assetAfter.getUseUser(), Person.class);
@@ -623,7 +646,11 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		HashMap<String, Object> rChangeMap=new HashMap<>();
 		for(String key:changeMap.keySet()){
 			if(colsMap.containsKey(key)){
-				rChangeMap.put(key,changeMap.get(key));
+				if(changeMap.get(key)!=null){
+					rChangeMap.put(key,changeMap.get(key));
+				}else{
+					Logger.info("字段:"+key+" 值为null,不更新");
+				}
 			}
 		}
 		Logger.info("需要更新的字段列表:"+rChangeMap);
@@ -647,6 +674,9 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.SAFETY_LEVEL)
 				.with(AssetMeta.EQUIPMENT_ENVIRONMENT)
 				.with(AssetMeta.ASSET_MAINTENANCE_STATUS)
+				.with(AssetMeta.MAINTENANCE_METHOD_DATA)
+				.with(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA)
+				.with(AssetMeta.FINANCIAL_OPTION_DICT)
 				.execute();
 		List<Employee> managers= CollectorUtil.collectList(assetBefore,Asset::getManager);
 		dao().join(managers, Person.class);
@@ -1334,10 +1364,18 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			map.put("purchase_date",asset.getPurchaseDate());
 			map.put("production_date",asset.getProductionDate());
 			map.put("register_date",asset.getRegisterDate());
+			map.put("maintainer_name",asset.getMaintainerName());
+			map.put("maintainer_price",asset.getMaintenancePrice());
 			map.put("maintainer_id",asset.getMaintainerId());
-			map.put("maintenance_status",asset.getAssetMaintenanceStatus());
-			map.put("suggest_maintenance_method",asset.getSuggestMaintenanceMethod());
+			map.put("maintenance_status",asset.getMaintenanceStatus());
+			map.put("maintenance_method",asset.getMaintenanceMethod());
+			map.put("maintenance_start_date",asset.getMaintenanceStartDate());
+			map.put("maintenance_end_date",asset.getMaintenanceEndDate());
+			map.put("contacts",asset.getContacts());
+			map.put("contact_information",asset.getContactInformation());
 			map.put("director",asset.getDirector());
+			map.put("suggest_maintenance_method",asset.getSuggestMaintenanceMethod());
+			map.put("maintenance_notes",asset.getMaintenanceNotes());
 			map.put("supplier_id",asset.getSupplierId());
 			map.put("tax_amount_price",asset.getTaxAmountPrice());
 			map.put("total_amount_price",asset.getTotalAmountPrice());
@@ -1351,12 +1389,25 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			map.put("depreciation_oper_time",asset.getDepreciationOperTime());
 			map.put("equipment_ip",asset.getEquipmentIp());
 			map.put("manage_ip",asset.getManageIp());
-			map.put("equipment_conf",asset.getEquipmentIp());
+			map.put("equipment_conf",asset.getEquipmentConf());
 			map.put("equipment_environment_code",asset.getEquipmentEnvironmentCode());
 			map.put("rack_id",asset.getRackId());
 			map.put("rack_up_number",asset.getRackUpNumber());
 			map.put("rack_down_number",asset.getRackDownNumber());
+			map.put("equipment_cpu",asset.getEquipmentCpu());
+			map.put("equipment_memory",asset.getEquipmentMemory());
+			map.put("equipment_label",asset.getEquipmentLabel());
+			map.put("position_id",asset.getPositionId());
+			map.put("position_detail",asset.getPositionDetail());
 			map.put("equipment_serial_number",asset.getEquipmentSerialNumber());
+			map.put("purpose",asset.getPurpose());
+			map.put("financial_category_id",asset.getFinancialCategoryId());
+			map.put("financial_option",asset.getFinancialOption());
+			map.put("expense_item",asset.getExpenseItem());
+			map.put("customer_info",asset.getCustomerInfo());
+			map.put("financial_notes",asset.getFinancialNotes());
+			map.put("safety_level_code",asset.getSafetyLevelCode());
+			map.put("equipment_status",asset.getEquipmentStatus());
 			HashMap<String,List<SQL>> resultMap=parseAssetChangeRecordWithChangeAsset(list,map,asset.getId(),AssetOperateEnum.DIRECT_UPDATE_ASSET.code(),"");
 			List<SQL> changeSqlList=resultMap.get("change");
 			if (changeSqlList.size() > 0) {

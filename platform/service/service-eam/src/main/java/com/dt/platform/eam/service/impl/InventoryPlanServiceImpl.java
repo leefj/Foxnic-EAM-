@@ -8,6 +8,7 @@ import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.InventoryMeta;
 import com.dt.platform.domain.eam.meta.InventoryPlanMeta;
 import com.dt.platform.eam.service.IInventoryPlanService;
+import com.dt.platform.eam.service.IStockInventoryTaskService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
@@ -58,6 +59,7 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
+
 	/**
 	 * 获得 DAO 对象
 	 * */
@@ -70,13 +72,14 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 		if(id==null) throw new IllegalArgumentException("id 不允许为 null ");
 		sample.setId(id);
 		InventoryPlan plan=dao.queryEntity(sample);
+		if(!StatusEnableEnum.ENABLE.code().equals(plan.getStatus())){
+			return ErrorDesc.failureMessage("当前状态无法应用模板!");
+		}
+
 		dao().fill(plan)
 				.with(InventoryPlanMeta.INVENTORY_PLAN_TYPE)
 				.with(InventoryPlanMeta.INVENTORY)
 				.execute();
-		if(!StatusEnableEnum.ENABLE.code().equals(plan.getStatus())){
-			return ErrorDesc.failureMessage("当前状态无法应用模板!");
-		}
 
 		if(plan.getInventory()!=null&&plan.getInventory().getId()!=null){
 

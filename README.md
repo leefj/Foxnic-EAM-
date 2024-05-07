@@ -46,7 +46,7 @@ curl -s 'http://resource.rainbooow.com:30001/deploy.sh'|bash
 ```
 ### 安装包
 - https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.42-linux-glibc2.12-x86_64.tar.gz
-- http://resource.rainbooow.com/upload/app_release_last.tar.gz
+- http://121.43.103.102/upload/app_release_last.tar.gz
 
 #### 正常一键安装结束后输出内容
 ![输入图片说明](https://foruda.gitee.com/images/1705383748841564969/53e711f8_448530.jpeg "install.jpg")

@@ -293,9 +293,9 @@ function ListPage() {
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
 					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("positionId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+						opts.push(window.pageExt.list.selectBoxDataTransform("positionId",{data:data[i],name:data[i].fullName,value:data[i].id},data[i],data,i));
 					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].id});
+						opts.push({data:data[i],name:data[i].fullName,value:data[i].id});
 					}
 				}
 				return opts;

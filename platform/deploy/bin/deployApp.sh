@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2024/01/23"
+modify_date="2024/05/30"
 ####################################################################################
 # run:
 #   sh deployApp.sh
@@ -766,7 +766,7 @@ fi
 # appUrl1=http://prodshop.maimaiyouhuiquan.com/upload/$app_soft_name
 # appUrl2=http://resource.rainbooow.com/$app_soft_name
 # appUrl3=https://lank-public.oss-cn-hangzhou.aliyuncs.com/$app_soft_name
-appUrl1=http://prodshop.maimaiyouhuiquan.com/upload/$app_soft_name
+appUrl1=http://121.43.103.102/upload/$app_soft_name
 appUrl2=http://prodshop.maimaiyouhuiquan.com/upload/$app_soft_name
 appUrl3=http://prodshop.maimaiyouhuiquan.com/upload/$app_soft_name
 echo "download:$appUrl1";

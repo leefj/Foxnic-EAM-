@@ -157,9 +157,15 @@ delete from sys_menu where hierarchy like '%809752346140606464%';
 delete from sys_menu where hierarchy like '%613652361268690944%';
 delete from sys_menu where hierarchy like '%613652361268690944%';
 delete from sys_menu where hierarchy like '%613652361268690944%';
+-- 物品管理
+delete from sys_menu where hierarchy like '%839032550306349056%';
+delete from sys_menu where hierarchy like '%573246967962927104%';
+delete from sys_menu where hierarchy like '%573246982118703104%';
+delete from sys_menu where hierarchy like '%573246982961758208%';
 -- 隐藏
 update sys_menu set hidden=1 where hierarchy like '%577783476611198976%';
 update sys_menu set hidden=1 where hierarchy like '%617101382733791232%';
 update sys_menu set hidden=1 where hierarchy like '%734474163506380800%';
+update sys_menu set hidden=1 where hierarchy like '%568742566711787520%';
 commit;
 

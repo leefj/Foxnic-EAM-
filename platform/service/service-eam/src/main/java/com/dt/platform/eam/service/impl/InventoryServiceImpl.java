@@ -486,8 +486,6 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		}else{
 			return ErrorDesc.failure().message("当前盘点状态，不允许该操作!");
 		}
-
-
 	}
 
 	@Override
@@ -497,7 +495,7 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 			inventory.setInventoryStatus(AssetInventoryActionStatusEnum.CANCEL.code());
 			return super.update(inventory,SaveMode.NOT_NULL_FIELDS);
 		}else{
-			return ErrorDesc.failure().message("当前盘点状态，不允许该操作!");
+			return ErrorDesc.failureMessage("当前盘点状态，不允许该操作!");
 		}
 	}
 
@@ -507,15 +505,15 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		q.setInventoryId(id);
 		q.setStatus(AssetInventoryDetailStatusEnum.NOT_COUNTED.code());
 		if(inventoryAssetServiceImpl.queryList(q).size()>0){
-			return ErrorDesc.failure().message("资产未盘点完，不能进行结束操作!");
+			return ErrorDesc.failureMessage("资产未盘点完，不能进行结束操作!");
 		}
-
 		Inventory inventory=this.getById(id);
 		if(AssetInventoryActionStatusEnum.ACTING.code().equals(inventory.getInventoryStatus())){
 			inventory.setInventoryStatus(AssetInventoryActionStatusEnum.FINISH.code());
+			inventory.setFinishTime(new Date());
 			return super.update(inventory,SaveMode.NOT_NULL_FIELDS);
 		}else{
-			return ErrorDesc.failure().message("当前盘点状态，不允许该操作!");
+			return ErrorDesc.failureMessage("当前盘点状态，不允许该操作!");
 		}
 	}
 
@@ -547,19 +545,14 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 				}
 				assetProcessRecordServiceImpl.insertList(rcdsList);
 			}
-
 			//追加的盘赢数据
 			dao.execute("update eam_asset set owner_code='asset' where owner_code='inventory_asset' and id in (select asset_id from eam_inventory_asset where deleted=0 and source='asset_plus' and inventory_id=?)",id);
 			//更新核对时间
 			dao.execute("update eam_inventory set data_status='"+AssetInventoryDataStatusEnum.SYNC.code()+"' where id=?",id);
 			dao.execute("update eam_asset set last_verification_date=now() where id in (select  asset_id from eam_inventory_asset where deleted=0 and inventory_id=?)",id);
-
-
 		}else{
 			return ErrorDesc.failure().message("当前盘点状态，不允许该操作!");
 		}
-
-
 		return ErrorDesc.success();
 	}
 
@@ -611,6 +604,8 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		if(StringUtil.isBlank(inventory.getStatus())){
 			inventory.setStatus(AssetHandleStatusEnum.COMPLETE.code());
 		}
+
+
 		if(StringUtil.isBlank(inventory.getInventoryStatus())){
 			inventory.setInventoryStatus(AssetInventoryActionStatusEnum.NOT_START.code());
 		}

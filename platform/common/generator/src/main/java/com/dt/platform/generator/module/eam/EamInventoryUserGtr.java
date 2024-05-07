@@ -29,7 +29,7 @@ public class EamInventoryUserGtr extends BaseCodeGenerator{
                 }
         );
 
-     //   cfg.setRelationField(EAMTables.EAM_INVENTORY_USER.INVENTORY_ID, EAMTables.EAM_INVENTORY_USER.USER_ID,true);
+
         cfg.setRelationField(Inventory.class,EAMTables.EAM_INVENTORY_USER.INVENTORY_ID, Employee.class,EAMTables.EAM_INVENTORY_USER.USER_ID,true);
 
         //文件生成覆盖模式

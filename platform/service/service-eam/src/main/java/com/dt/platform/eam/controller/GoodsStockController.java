@@ -864,6 +864,8 @@ public class GoodsStockController extends SuperController {
         PagedList<GoodsStock> list = goodsStockService.queryPagedListBySelect(sample, assetSearcbContent);
         // join 关联的对象
         goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.COST_DICT).with(GoodsStockMeta.GOODS_BY_BRAND).with(GoodsStockMeta.GOODS_BY_MANUFACTURER).with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
+
+
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
         List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);

@@ -32,9 +32,10 @@ public class EamInventoryPlanAssetGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.OWNER_CODE).basic().hidden(true);
 
+
         //eam_asset_change_data
         cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.NAME).search().fuzzySearch();
-        cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.NAME).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.NOTES).search().fuzzySearch();
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_INVENTORY_PLAN.STATUS,
@@ -42,6 +43,9 @@ public class EamInventoryPlanAssetGtr extends BaseCodeGenerator{
                         EAMTables.EAM_INVENTORY_PLAN.NOTES
                 }
         );
+
+
+
 
         cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.CREATE_TIME).table().hidden(true);
         cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.NAME).form().validate().required();
@@ -77,7 +81,7 @@ public class EamInventoryPlanAssetGtr extends BaseCodeGenerator{
         );
 
 
-        cfg.view().list().disableCreateNew();
+        cfg.view().list().disableBatchDelete();
         cfg.view().list().operationColumn().addActionButton("查看模板","viewTpl","viewTpl","viewTpl");
         cfg.view().list().operationColumn().addActionButton("修改模板","modifyTpl","modifyTpl","modifyTpl");
 
@@ -90,7 +94,7 @@ public class EamInventoryPlanAssetGtr extends BaseCodeGenerator{
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
-                .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
+                .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
                 .setListPage(WriteMode.WRITE_TEMP_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
