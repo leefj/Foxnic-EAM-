@@ -109,7 +109,6 @@ curl -s 'http://resource.rainbooow.com:30001/deploy.sh'|bash
 
 ### 系统DEMO
 - [Demo] 每天定时由阿里云效自动编译发布部署
-- [Demo] PC端:http://eam-demo.rainbooow.com:8089/index.html
 - [Demo] PC端:https://eam-demo.rainbooow.com:8090/index.html
 - [Demo] 移动端H5版:https://eam-demo.rainbooow.com:8091
 - [Demo] 移动端APP内置自行下载
