@@ -294,7 +294,7 @@ security:
   mode: both
   # 配置无需鉴权可以访问的地址
   # /service-storage/sys-file/upload/**,/service-storage/sys-file/image/** 移动端访问开放，后续修正
-  ignored-urls: /business/eam/asset/asset_info_scan.html,/jmreport/**/*,/jmreport/**,/jmreport/list,/ureport/**/*,/business/common/common/sso_login.html,/service-common/system/sso-check,/service-eam/eam-c-cust-repair-type/query-paged-list,/business/eam/c_cust_repair_apply/c_cust_repair_apply_form_full_p.html,/service-eam/eam-c-cust-repair-apply/query-paged-list,/service-eam/eam-c-cust-repair-apply/get-by-id,/service-eam/eam-c-cust-repair-apply/insert,/business/eam/c_cust_repair_apply/c_cust_repair_apply_list_public.html,/business/eam/c_cust_repair_apply/c_cust_repair_apply_form_public.html,/share/public.html,/service-storage/sys-file/download,/business/ops/software_media/software_media_public_list.html,/service-ops/ops-software-media/query-paged-list,/service-ops/ops-information-system/query-paged-list,/business/ops/information_system/information_system_public_list.html,/service-ops/ops-host/query-paged-list,/**/host_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-eam/eam-asset/user-login-data ,/back_to_portal.html,/service-storage/sys-file/upload/** , /service-storage/sys-file/image/** ,   /public.html ,/share/public.html , /console/** , /assets/** , /pages/** , /*.ico ,/static/**,/extmodule/** , /module/** ,  /**/*.css , /**/*.js , /error , /druid/**,/business/eam/user_book/**
+  ignored-urls: /syscomm/public/**,/ops/public/**,/hr/public/**,/eam/public/**,/test/**,/magic/web/**,/business/eam/asset/asset_info_scan.html,/jmreport/**/*,/jmreport/**,/jmreport/list,/ureport/**/*,/business/common/common/sso_login.html,/service-common/system/sso-check,/service-eam/eam-c-cust-repair-type/query-paged-list,/business/eam/c_cust_repair_apply/c_cust_repair_apply_form_full_p.html,/service-eam/eam-c-cust-repair-apply/query-paged-list,/service-eam/eam-c-cust-repair-apply/get-by-id,/service-eam/eam-c-cust-repair-apply/insert,/business/eam/c_cust_repair_apply/c_cust_repair_apply_list_public.html,/business/eam/c_cust_repair_apply/c_cust_repair_apply_form_public.html,/share/public.html,/service-storage/sys-file/download,/business/ops/software_media/software_media_public_list.html,/service-ops/ops-software-media/query-paged-list,/service-ops/ops-information-system/query-paged-list,/business/ops/information_system/information_system_public_list.html,/service-ops/ops-host/query-paged-list,/**/host_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-eam/eam-asset/user-login-data ,/back_to_portal.html,/service-storage/sys-file/upload/** , /service-storage/sys-file/image/** ,   /public.html ,/share/public.html , /console/** , /assets/** , /pages/** , /*.ico ,/static/**,/extmodule/** , /module/** ,  /**/*.css , /**/*.js , /error , /druid/**,/business/eam/user_book/**
   # mode=session 时配置的登录页面
   login-page: /login.html
   # 配置登录标识的范围与优先级,可选值在 LoginIdentityType 枚举中定义
@@ -371,8 +371,48 @@ app:
   tenant-id: T001
   sso:
     token-validate-api: http://127.0.0.1:8089/service-common/system/sso-check
-    client-name: APP-SSO
+    client-name: APP-SSO3
 
+magic-api:
+  web: /magic/web    # magic-api控制台访问地址
+  resource:          # magic-api数据存储信息配置
+    type: database
+    tableName: magic_api_file_v2
+    location: workspace/magic/data      # location表示使用本地文件存储，存储路径为工作目录workspace/magic/data下
+    #datasource:  primaryDataSource     # datasource表示数据源存储，这里指定使用的数据源， datasource和location选择一个
+    readonly: false # 是否是只读模式
+  auto-import-package: java.lang.*,java.util.* #自动导包
+  show-sql: true #配置打印SQL
+  secret-key: magic@KL123456
+  date-pattern: # 配置请求参数支持的日期格式
+    - yyyy-MM-dd
+    - yyyy-MM-dd HH:mm:ss
+    - yyyyMMddHHmmss
+    - yyyyMMdd
+  response: |- #配置JSON格式，格式为magic-script中的表达式
+    {
+      code: code,
+      message: message,
+      data,
+      timestamp,
+      requestTime,
+      executeTime,
+    }
+  response-code:
+    success: 1 #执行成功的code值
+    invalid: 0 #参数验证未通过的code值
+    exception: -1 #执行出现异常的code值
+  banner: false #是否显示banner
+  backup: #备份相关配置
+    enable: true #是否启用
+    max-history: -1 #备份保留天数，-1为永久保留
+    #datasource: magic  #指定数据源（单数据源时无需配置，多数据源时默认使用主数据源，如果存在其他数据源中需要指定。）
+    table-name: magic_backup_record_v2 #使用数据库存储备份时的表名
+  #security: # 安全配置
+    #username: admin # 登录用的用户名
+    #password: 123456 # 登录用的密码
+  debug:
+    timeout: 60 # 断点超时时间，默认60s
 liteflow:
   rule-source-ext-data-map:
     url: jdbc:mysql://localhost:3306/poseidon

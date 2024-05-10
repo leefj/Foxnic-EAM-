@@ -40,7 +40,10 @@ public interface UserServiceProxy {
     public static final String API_PREFIX = "/" + API_BASIC_PATH + "/" + API_CONTEXT_PATH + "/";
 
 
-
+    /**
+     * 更新员工导入
+     */
+    public static final String CURRENT_USER_INFO = API_PREFIX + "current-user-info";
     /**
      * 控制器类名
      */

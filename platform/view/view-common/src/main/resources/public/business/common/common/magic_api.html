@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+    <title th:text="${lang.translate('快速开发')}">快速开发</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+<body style="margin-top：30px">
+<div id="main_content" >
+    <iframe id="mainFrame" name="mainFrame" scrolling="yes"  th:src="${path}"
+            frameborder="0" style="padding: 0px; width: 100%; height:90%;"></iframe>
+</div>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script th:inline="javascript" type="text/javascript">
+    document.getElementById("mainFrame").style.height = "700px";//最好设置为minHeight
+    var result = 0
+    var page = "magic"
+    var url="/magic/web/index.html"
+    if(page=="jump"){
+        console.log(123,path);
+        window.location.href="/business/common/screen/dataview/dist/index.html#/chart/preview/770337750971842560";
+    }else{
+        if(result=="0"){
+            $("#mainFrame").attr("src", url);
+            startInit('mainFrame', 700);
+            var browserVersion = window.navigator.userAgent.toUpperCase();
+            var isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
+            var isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
+            var isChrome = browserVersion.indexOf("CHROME") > -1 ? true : false;
+            var isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
+            var isIE = (!!window.ActiveXObject || "ActiveXObject" in window);
+            var isIE9More = (! -[1,] == false);
+        }else{
+            alert(message);
+        }
+    }
+    function reinitIframe(iframeId, minHeight) {
+        try {
+            var iframe = document.getElementById(iframeId);
+            var bHeight = 0;
+            if (isChrome == false && isSafari == false) {
+                try {
+                    bHeight = iframe.contentWindow.document.body.scrollHeight;
+                } catch (ex) {
+                }
+            }
+            var dHeight = 0;
+            if (isFireFox == true)
+                dHeight = iframe.contentWindow.document.documentElement.offsetHeight + 2;//如果火狐浏览器高度不断增加删除+2
+            else if (isIE == false && isOpera == false && iframe.contentWindow) {
+                try {
+                    dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                } catch (ex) {
+                }
+            }
+            else if (isIE == true && isIE9More) {//ie9+
+                var heightDeviation = bHeight - eval("window.IE9MoreRealHeight" + iframeId);
+                if (heightDeviation == 0) {
+                    bHeight += 3;
+                } else if (heightDeviation != 3) {
+                    eval("window.IE9MoreRealHeight" + iframeId + "=" + bHeight);
+                    bHeight += 3;
+                }
+            }
+            else//ie[6-8]、OPERA
+                bHeight += 3;
+
+            var height = Math.max(bHeight, dHeight);
+            if (height < minHeight) height = minHeight;
+            //alert(iframe.contentWindow.document.body.scrollHeight + "~" + iframe.contentWindow.document.documentElement.scrollHeight);
+            iframe.style.height = height + "px";
+        } catch (ex) { }
+    }
+    function startInit(iframeId, minHeight) {
+        eval("window.IE9MoreRealHeight" + iframeId + "=0");
+        window.setInterval("reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
+    }
+
+</script>
+</body>
+</html>

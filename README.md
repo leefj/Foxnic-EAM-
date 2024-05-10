@@ -159,6 +159,10 @@ curl -s 'http://resource.rainbooow.com:30001/deploy.sh'|bash
  
 
 # 系统演示预览
+
+
+![输入图片说明](https://foruda.gitee.com/images/1715334667829189669/bf1b5bec_448530.png "551715334616_.pic.png")
+
 ![输入图片说明](https://foruda.gitee.com/images/1684211929402666916/6e6746d0_448530.jpeg "9.jpg")
 ![输入图片说明](https://foruda.gitee.com/images/1684212033095305227/399a4c16_448530.png "10.png")
 ![输入图片说明](https://foruda.gitee.com/images/1684211684098779220/734b0293_448530.png "2.png")

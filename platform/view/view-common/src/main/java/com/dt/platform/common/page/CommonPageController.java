@@ -124,6 +124,12 @@ public class CommonPageController extends ViewController {
 		return prefix+"/iframe_dashboard";
 	}
 
+	@RequestMapping("/magic_api.html")
+	public String magicApi(Model model,HttpServletRequest request) {
+		return prefix+"/magic_api";
+		
+	}
+
 	@RequestMapping("/iframe.html")
 	public String iframe(Model model,HttpServletRequest request,String code,String path,String page) {
 		String result="0";

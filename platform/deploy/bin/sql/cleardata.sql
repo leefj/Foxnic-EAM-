@@ -272,7 +272,7 @@ delete from eam_c1_sync_asset where 1=1;
 delete from sys_log_collect where 1=1;
 delete from sys_material_resource where 1=1;
 -- clear hrm
-delete from hrm_organization where id not in ('2');
+-- delete from hrm_organization where id not in ('2');
 delete from sys_user where deleted=1;
 delete from sys_user_tenant where deleted=1;
 delete from hrm_employee where deleted=1;
