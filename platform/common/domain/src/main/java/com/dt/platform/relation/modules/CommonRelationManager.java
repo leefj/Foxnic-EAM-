@@ -37,7 +37,15 @@ public class CommonRelationManager extends RelationManager {
 
         this.setupScreenDsData();
 
+        this.setupPageInfoHis();
+
     }
+
+    public void setupPageInfoHis() {
+        this.property(PageInfoHisMeta.PAGE_INFO_PROP)
+                .using(SysTables.SYS_PAGE_INFO_HIS.PAGE_ID).join(SysTables.SYS_PAGE_INFO.ID);
+    }
+
 
     public void setupScreenDsData() {
         this.property(ScreenDsDataMeta.SCREEN_DS_CATEGORY_PROP)

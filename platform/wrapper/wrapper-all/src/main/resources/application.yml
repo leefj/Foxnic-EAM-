@@ -374,7 +374,15 @@ app:
     client-name: APP-SSO3
 
 magic-api:
+  show-url: false #是否显示接口地址
   web: /magic/web    # magic-api控制台访问地址
+  task:
+    thread-name-prefix: magic-task- #线程池名字前缀
+    pool:
+      size: 8 #线程池大小，默认值为CPU核心数
+    shutdown:
+      awaitTermination: false #关闭时是否等待任务执行完毕，默认为false
+      awaitTerminationPeriod: 10s # 关闭时最多等待任务执行完毕的时间
   resource:          # magic-api数据存储信息配置
     type: database
     tableName: magic_api_file_v2

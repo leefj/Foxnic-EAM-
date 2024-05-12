@@ -77,6 +77,8 @@ public class SysDBMetaGenerator {
 					||table.startsWith("sys_mapping_owner")
 					||table.startsWith("sys_dashboard_layer")
 					||table.startsWith("sys_dashboard_layer_ele")
+					||table.startsWith("sys_page_info")
+					||table.startsWith("sys_page_info_his")
 			)
 				return true;
 			return false;
