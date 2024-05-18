@@ -17,8 +17,8 @@ import {RendererEditor, BasicEditor} from 'amis-editor';
     target: '233'
   }
 })
-export default class MyRendererEditor extends BasicEditor {
-  tipName = '组件';
+export default class YourRendererEditor extends BasicEditor {
+  tipName = 'lank';
   settingsSchema = {
     title: '自定义组件配置',
     body: [

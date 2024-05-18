@@ -285,6 +285,9 @@ public class PageInfoController extends SuperController {
 		
 		Result<PagedList<PageInfo>> result=new Result<>();
 		PagedList<PageInfo> list=pageInfoService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
+		for(int i=0;i<list.getList().size();i++){
+			list.getList().get(i).setDefJson("null");
+		}
 		result.success(true).data(list);
 		return result;
 	}

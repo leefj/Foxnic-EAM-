@@ -268,6 +268,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
+            if(data&&data.id){
+               console.log("it")
+            }else{
+                data.defJson="{}"
+            }
             return true;
         },
         /**

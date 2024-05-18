@@ -1,7 +1,7 @@
 /**
  * 页面开发 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-05-12 14:35:23
+ * @since 2024-05-13 06:48:07
  */
 
 
@@ -87,7 +87,6 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'defJson', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('定义') , templet: function (d) { return templet('defJson',d.defJson,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }

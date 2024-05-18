@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
     <link rel="stylesheet" href="/business/common/page_info/amis_sdk/sdk.css" th:href="'/business/common/page_info/amis_sdk/sdk.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/business/common/page_info/amis_sdk/helper.css" th:href="'/business/common/page_info/amis_sdk/helper.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/business/common/page_info/amis_sdk/iconfont.css" th:href="'/business/common/page_info/amis_sdk/iconfont.css?'+${cacheKey}"/>
 </head>
 <style>
     html,
@@ -22,6 +24,14 @@
 </style>
 <body>
 <div id="root" class="app-wrapper"></div>
+
+<!--为了能通过iframe加载内部的页面-->
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+
 <script th:src="'/business/common/page_info/amis_sdk/sdk.js?'+${cacheKey}"></script>
 <script th:src="'/business/common/page_info/amis_sdk/rest.js?'+${cacheKey}"></script>
 <script th:src="'/business/common/page_info/amis_sdk/tinymce.js?'+${cacheKey}"></script>

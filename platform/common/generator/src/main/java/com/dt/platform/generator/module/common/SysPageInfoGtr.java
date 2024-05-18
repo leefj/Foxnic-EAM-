@@ -33,6 +33,7 @@ public class SysPageInfoGtr extends BaseCodeGenerator {
         cfg.view().search().inputWidth(Config.searchInputWidth);
         cfg.view().field(SysTables.SYS_PAGE_INFO.CREATE_TIME).table().disable(true);
         cfg.view().field(SysTables.SYS_PAGE_INFO.UPDATE_BY).table().disable(true);
+        cfg.view().field(SysTables.SYS_PAGE_INFO.DEF_JSON).table().disable(true);
         cfg.view().field(SysTables.SYS_PAGE_INFO.CODE).form().validate().required();
         cfg.view().field(SysTables.SYS_PAGE_INFO.NAME).form().validate().required();
         cfg.view().field(SysTables.SYS_PAGE_INFO.DEF_JSON).form().textArea().height(300);

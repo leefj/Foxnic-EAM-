@@ -37,6 +37,16 @@ modify_date="2024/05/30"
 #echo "enabled=1"             >>local.repo
 #echo "gpgcheck=0"            >>local.repo
 #yum clean all
+#
+#####db
+#CREATE DATABASE foxnic_demo DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+#####create user
+#create user 'app'@'%' identified by 'P@ssw0rd654321';
+#grant all privileges  on update_db.* to 'app'@'%' ;
+#grant all on update_db.* to 'app'@'%' ;
+#flush privileges;
+#
+
 ################################################################  config
 #value:eam,full
 app_range=eam

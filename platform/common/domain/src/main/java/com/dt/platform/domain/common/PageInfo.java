@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 页面开发
  * <p>页面开发 , 数据表 sys_page_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-05-12 14:35:21
+ * @since 2024-05-13 06:48:05
  * @sign 6D13AADF29291F4E23D2ACEE3B90C6B7
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
