@@ -14,6 +14,7 @@ import java.util.Map;
 import com.dt.platform.domain.common.meta.PageInfoVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
+import org.github.foxnic.web.domain.system.DictItem;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -22,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 页面开发VO类型
  * <p>页面开发 , 数据表 sys_page_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-05-13 06:48:05
+ * @since 2024-05-20 12:29:27
  * @sign B65EBF4BEFA1077D9B6033F7E22507CD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -415,15 +416,17 @@ public class PageInfoVO extends PageInfo {
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setLabelCode(this.getLabelCode());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
+			inst.setLabelDict(this.getLabelDict());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
@@ -501,14 +504,16 @@ public class PageInfoVO extends PageInfo {
 			this.setTenantId(DataParser.parse(String.class, map.get(PageInfoVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(PageInfoVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(PageInfoVOMeta.ID)));
+			this.setLabelCode(DataParser.parse(String.class, map.get(PageInfoVOMeta.LABEL_CODE)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(PageInfoVOMeta.SEARCH_FIELD)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(PageInfoVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(PageInfoVOMeta.SORT_TYPE)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(PageInfoVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(PageInfoVOMeta.FUZZY_FIELD)));
-			this.setSortField(DataParser.parse(String.class, map.get(PageInfoVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(PageInfoVOMeta.PAGE_SIZE)));
+			this.setLabelDict(DataParser.parse(DictItem.class, map.get(PageInfoVOMeta.LABEL_DICT)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(PageInfoVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(PageInfoVOMeta.SORT_TYPE)));
+			this.setSortField(DataParser.parse(String.class, map.get(PageInfoVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(PageInfoVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(PageInfoVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(PageInfoVOMeta.SEARCH_VALUE)));
@@ -529,14 +534,16 @@ public class PageInfoVO extends PageInfo {
 				this.setTenantId( (String)map.get(PageInfoVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(PageInfoVOMeta.DELETE_BY));
 				this.setId( (String)map.get(PageInfoVOMeta.ID));
+				this.setLabelCode( (String)map.get(PageInfoVOMeta.LABEL_CODE));
 				// others
 				this.setSearchField( (String)map.get(PageInfoVOMeta.SEARCH_FIELD));
-				this.setPageIndex( (Integer)map.get(PageInfoVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(PageInfoVOMeta.SORT_TYPE));
 				this.setRequestAction( (String)map.get(PageInfoVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(PageInfoVOMeta.FUZZY_FIELD));
-				this.setSortField( (String)map.get(PageInfoVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(PageInfoVOMeta.PAGE_SIZE));
+				this.setLabelDict( (DictItem)map.get(PageInfoVOMeta.LABEL_DICT));
+				this.setPageIndex( (Integer)map.get(PageInfoVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(PageInfoVOMeta.SORT_TYPE));
+				this.setSortField( (String)map.get(PageInfoVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(PageInfoVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(PageInfoVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(PageInfoVOMeta.SEARCH_VALUE));
@@ -570,6 +577,7 @@ public class PageInfoVO extends PageInfo {
 			this.setTenantId(DataParser.parse(String.class, r.getValue(PageInfoVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(PageInfoVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(PageInfoVOMeta.ID)));
+			this.setLabelCode(DataParser.parse(String.class, r.getValue(PageInfoVOMeta.LABEL_CODE)));
 			return true;
 		} else {
 			try {
@@ -587,6 +595,7 @@ public class PageInfoVO extends PageInfo {
 				this.setTenantId( (String)r.getValue(PageInfoVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(PageInfoVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(PageInfoVOMeta.ID));
+				this.setLabelCode( (String)r.getValue(PageInfoVOMeta.LABEL_CODE));
 				return true;
 			} catch (Exception e) {
 				return false;

@@ -34,6 +34,8 @@ public class SysLicenceGtr extends BaseCodeGenerator{
         cfg.view().field(SysTables.SYS_LICENCE_SWITCH.STATUS).form().validate().required().form().selectBox().enumType( LicenceStatusEnum.class);
         cfg.view().field(SysTables.SYS_LICENCE_SWITCH.LICENCE_TAB).form().validate().required().form().selectBox().enumType( LicenceTypeEnum.class);
 
+        cfg.view().field(SysTables.SYS_LICENCE_SWITCH.UPDATE_BY).table().disable(true);
+
         cfg.view().field(SysTables.SYS_LICENCE_SWITCH.ACTION_CONTENT).form().textArea().height(100);
         cfg.view().field(SysTables.SYS_LICENCE_SWITCH.NOTES).form().textArea().height(60);
         cfg.view().list().disableBatchDelete();
@@ -63,7 +65,7 @@ public class SysLicenceGtr extends BaseCodeGenerator{
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         cfg.buildAll();
     }
 

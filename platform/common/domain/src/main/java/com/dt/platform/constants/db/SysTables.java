@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-05-12 10:41:13
+ * @since 2024-05-20 07:28:53
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -2568,6 +2568,11 @@ public class SysTables {
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
 		
 		/**
+		 * 标签
+		*/
+		public static final DBField LABEL_CODE = new DBField(DBDataType.STRING , "label_code","labelCode","标签","标签",false,false,true);
+		
+		/**
 		 * 定义
 		*/
 		public static final DBField DEF_JSON = new DBField(DBDataType.STRING , "def_json","defJson","定义","定义",false,false,true);
@@ -2622,7 +2627,7 @@ public class SysTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public SYS_PAGE_INFO() {
-			this.init($NAME,"页面开发" , ID , CODE , NAME , DEF_JSON , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"页面开发" , ID , CODE , NAME , LABEL_CODE , DEF_JSON , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final SYS_PAGE_INFO $TABLE=new SYS_PAGE_INFO();
 	}

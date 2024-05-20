@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+    <title th:text="${lang.translate('组件')}">组件</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/business/oa/portal/portal.css" th:href="'/business/oa/portal/portal.css?'+${cacheKey}"/>
+    <script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+<body>
+<div class="portal-container">
+    <div class="layui-row">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <div class="oa-portal-card-item-none">
+                    <a class="oa-portal-card-item-title">关联系统</a>
+                </div>
+            </div>
+            <div class="layui-card-body" style="background-color: white;height: 300px;" >
+                <div class="system-div" id="system-data">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+
+    window.openSystem=function(url) {
+        console.log(url);
+        let win = window.open(url, "_blank");
+    }
+
+    var systemData = $("#system-data");
+    $.ajax({
+        url : "/service-oa/oa-system-information/query-paged-list",
+        type : "post",
+        async : true,//此处需要注意的是要想获取ajax返回的值这个async属性必须设置成同步的，否则获取不到返回值
+        data : {pageSize:5,pageIndex:1,status:"enable",type:"notice"},
+        dataType : "json",
+        success : function(r) {
+            if (r.success) {
+                var html="";
+                if(r.data&&r.data.list&&r.data.list.length>0){
+                    var list=r.data.list;
+                    for(var i=0;i<list.length;i++){
+                        html=html+"<div class=\"item-div\">\n" +
+                            "<image style=\"height:25px;width:25px\" src=\"/service-storage/sys-file/image?id="+list[i].pictureId+"\"></image>\n" +
+                            "<span class=\"item-info\"><a  href=\"javascript:openSystem('"+list[i].url+"')\" class=\"item-info-a\" >"+list[i].name+"</a></span>\n" +
+                            "</div>"
+                    }
+                    systemData.html(html);
+                }else{
+                    systemData.html("无");
+
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

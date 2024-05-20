@@ -34,12 +34,18 @@ public class CommonRelationManager extends RelationManager {
 
         this.setupDashBoardLayer();
         this.setupDashBoardLayerEle();
-
         this.setupScreenDsData();
-
         this.setupPageInfoHis();
+        this.setupPageInfo();
 
     }
+
+    public void setupPageInfo() {
+        this.property(PageInfoMeta.LABEL_DICT_PROP)
+                .using(SysTables.SYS_PAGE_INFO.LABEL_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='sys_page_label'");
+    }
+
 
     public void setupPageInfoHis() {
         this.property(PageInfoHisMeta.PAGE_INFO_PROP)

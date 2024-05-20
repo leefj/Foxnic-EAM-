@@ -8,22 +8,26 @@
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
     <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
-    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
 </head>
-<body style="margin-top：30px">
+<body style="margin:0px!important;padding-top:0px!important">
 <div id="main_content" >
     <iframe id="mainFrame" name="mainFrame" scrolling="yes"  th:src="${path}"
-            frameborder="0" style="padding: 0px; width: 100%; height:90%;"></iframe>
+            frameborder="0" style="padding: 0px; width: 100%; height:95%;"></iframe>
 </div>
 <script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
 <script th:inline="javascript" type="text/javascript">
-    document.getElementById("mainFrame").style.height = "700px";//最好设置为minHeight
+    document.getElementById("mainFrame").style.height = "850px";//最好设置为minHeight
     var result = 0
     var page = "magic"
     var url="/magic/web/index.html"
     if(page=="jump"){
-        console.log(123,path);
         window.location.href="/business/common/screen/dataview/dist/index.html#/chart/preview/770337750971842560";
     }else{
         if(result=="0"){
@@ -78,8 +82,8 @@
         } catch (ex) { }
     }
     function startInit(iframeId, minHeight) {
-        eval("window.IE9MoreRealHeight" + iframeId + "=0");
-        window.setInterval("reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
+        // eval("window.IE9MoreRealHeight" + iframeId + "=0");
+        // window.setInterval("reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
     }
 
 </script>

@@ -5,13 +5,14 @@ import com.dt.platform.domain.common.PageInfoVO;
 import java.util.List;
 import com.dt.platform.domain.common.PageInfo;
 import java.util.Date;
+import org.github.foxnic.web.domain.system.DictItem;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-05-13 06:48:05
+ * @since 2024-05-20 12:29:27
  * @sign B65EBF4BEFA1077D9B6033F7E22507CD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -169,6 +170,16 @@ public class PageInfoVOMeta extends PageInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.PageInfoVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.common.PageInfoVO.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
 	
 	/**
+	 * 标签 , 类型: java.lang.String
+	*/
+	public static final String LABEL_CODE="labelCode";
+	
+	/**
+	 * 标签 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.PageInfoVO,java.lang.String> LABEL_CODE_PROP = new BeanProperty(com.dt.platform.domain.common.PageInfoVO.class ,LABEL_CODE, java.lang.String.class, "标签", "标签", java.lang.String.class, null);
+	
+	/**
 	 * 定义 , 类型: java.lang.String
 	*/
 	public static final String DEF_JSON="defJson";
@@ -279,9 +290,19 @@ public class PageInfoVOMeta extends PageInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.PageInfoVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.common.PageInfoVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * labelDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String LABEL_DICT="labelDict";
+	
+	/**
+	 * labelDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.PageInfoVO,org.github.foxnic.web.domain.system.DictItem> LABEL_DICT_PROP = new BeanProperty(com.dt.platform.domain.common.PageInfoVO.class ,LABEL_DICT, org.github.foxnic.web.domain.system.DictItem.class, "labelDict", "labelDict", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , DEF_JSON , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , LABEL_CODE , DEF_JSON , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , LABEL_DICT };
 	
 	/**
 	 * 代理类
@@ -457,6 +478,17 @@ public class PageInfoVOMeta extends PageInfoMeta {
 		}
 		
 		/**
+		 * 设置 标签
+		 * @param labelCode 标签
+		 * @return 当前对象
+		*/
+		public PageInfo setLabelCode(String labelCode) {
+			super.change(LABEL_CODE,super.getLabelCode(),labelCode);
+			super.setLabelCode(labelCode);
+			return this;
+		}
+		
+		/**
 		 * 设置 定义
 		 * @param defJson 定义
 		 * @return 当前对象
@@ -576,6 +608,17 @@ public class PageInfoVOMeta extends PageInfoMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+		
+		/**
+		 * 设置 labelDict
+		 * @param labelDict labelDict
+		 * @return 当前对象
+		*/
+		public PageInfo setLabelDict(DictItem labelDict) {
+			super.change(LABEL_DICT,super.getLabelDict(),labelDict);
+			super.setLabelDict(labelDict);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -606,15 +649,17 @@ public class PageInfoVOMeta extends PageInfoMeta {
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setLabelCode(this.getLabelCode());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
-				inst.setPageIndex(this.getPageIndex());
-				inst.setSortType(this.getSortType());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setLabelDict(this.getLabelDict());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());

@@ -247,6 +247,7 @@ public class ReportCategoryController extends SuperController {
     public Result<ReportCategory> getById(String id) {
         Result<ReportCategory> result = new Result<>();
         ReportCategory reportCategory = reportCategoryService.getById(id);
+
         result.success(true).data(reportCategory);
         return result;
     }

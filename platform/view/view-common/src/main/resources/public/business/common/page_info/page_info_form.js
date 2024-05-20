@@ -1,7 +1,7 @@
 /**
  * 页面开发 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-05-13 06:48:08
+ * @since 2024-05-20 12:29:30
  */
 
 function FormPage() {
@@ -118,6 +118,38 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 labelCode 下拉字段
+		fox.renderSelectBox({
+			el: "labelCode",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("标签",'','cmp:form'),
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("labelCode",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("labelCode",{data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 	}
 
 	/**
@@ -171,6 +203,8 @@ function FormPage() {
 
 
 
+			//设置  标签 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#labelCode",formData.labelDict);
 
 			//处理fillBy
 
@@ -233,6 +267,8 @@ function FormPage() {
 
 
 
+		//获取 标签 下拉框的值
+		data["labelCode"]=fox.getSelectedValue("labelCode",false);
 
 		return data;
 	}

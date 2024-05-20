@@ -1,10 +1,16 @@
 package com.dt.platform.generator.module.common;
 
 import com.dt.platform.common.page.PageInfoPageController;
+import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.SysTables;
+import com.dt.platform.domain.common.meta.PageInfoMeta;
+import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.common.PageInfoServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
+import org.github.foxnic.web.domain.system.DictItem;
+import org.github.foxnic.web.domain.system.meta.DictItemMeta;
+import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
 
 public class SysPageInfoGtr extends BaseCodeGenerator {
 
@@ -19,8 +25,14 @@ public class SysPageInfoGtr extends BaseCodeGenerator {
         cfg.view().field(SysTables.SYS_PAGE_INFO.NAME).search().fuzzySearch();
         cfg.view().field(SysTables.SYS_PAGE_INFO.CODE).search().fuzzySearch();
 
+        cfg.getPoClassFile().addSimpleProperty(DictItem.class,"labelDict","labelDict","labelDict");
+
+
+        cfg.view().list().disableBatchDelete();
+
         cfg.view().search().inputLayout(
                 new Object[]{
+                        SysTables.SYS_PAGE_INFO.LABEL_CODE,
                         SysTables.SYS_PAGE_INFO.CODE,
                         SysTables.SYS_PAGE_INFO.NAME,
                 }
@@ -39,6 +51,14 @@ public class SysPageInfoGtr extends BaseCodeGenerator {
         cfg.view().field(SysTables.SYS_PAGE_INFO.DEF_JSON).form().textArea().height(300);
         cfg.view().field(SysTables.SYS_PAGE_INFO.NOTES).form().textArea().height(80);
 
+
+        cfg.view().field(SysTables.SYS_PAGE_INFO.LABEL_CODE)
+                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=sys_page_label")
+                .paging(false).filter(false).toolbar(false)
+                .valueField(DictItemMeta.CODE).
+                textField(DictItemMeta.LABEL).
+                fillWith(PageInfoMeta.LABEL_DICT).muliti(false);
+
         cfg.view().formWindow().bottomSpace(120);
         cfg.view().formWindow().width(Config.baseFormWidth);
 
@@ -46,6 +66,7 @@ public class SysPageInfoGtr extends BaseCodeGenerator {
                 new Object[] {
                         SysTables.SYS_PAGE_INFO.CODE,
                         SysTables.SYS_PAGE_INFO.NAME,
+                        SysTables.SYS_PAGE_INFO.LABEL_CODE,
                         SysTables.SYS_PAGE_INFO.DEF_JSON,
                         SysTables.SYS_PAGE_INFO.NOTES,
                 }
@@ -56,7 +77,7 @@ public class SysPageInfoGtr extends BaseCodeGenerator {
         cfg.view().list().operationColumn().addActionButton("设计","designer","designer-button");
         cfg.view().list().operationColumn().addActionButton("预览","review","review-button");
 
-       cfg.view().list().disableBatchDelete();
+
 
 
 

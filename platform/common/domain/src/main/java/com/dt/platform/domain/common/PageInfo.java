@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import org.github.foxnic.web.domain.system.DictItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
@@ -23,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 页面开发
  * <p>页面开发 , 数据表 sys_page_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-05-13 06:48:05
- * @sign 6D13AADF29291F4E23D2ACEE3B90C6B7
+ * @since 2024-05-20 12:29:27
+ * @sign 68A8C50BE6A7D1A4F9E02CF533BDB078
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -46,19 +47,25 @@ public class PageInfo extends Entity {
 	/**
 	 * 编码：编码
 	*/
-	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "12")
+	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "system_code_mgr")
 	private String code;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "12")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "编码管理页面")
 	private String name;
+	
+	/**
+	 * 标签：标签
+	*/
+	@ApiModelProperty(required = false,value="标签" , notes = "标签")
+	private String labelCode;
 	
 	/**
 	 * 定义：定义
 	*/
-	@ApiModelProperty(required = false,value="定义" , notes = "定义" , example = " ")
+	@ApiModelProperty(required = false,value="定义" , notes = "定义" , example = "")
 	private String defJson;
 	
 	/**
@@ -88,7 +95,7 @@ public class PageInfo extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-05-12 01:43:13")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-05-18 07:09:20")
 	private Date updateTime;
 	
 	/**
@@ -115,7 +122,7 @@ public class PageInfo extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "3")
+	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "30")
 	private Integer version;
 	
 	/**
@@ -123,6 +130,12 @@ public class PageInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * labelDict：labelDict
+	*/
+	@ApiModelProperty(required = false,value="labelDict" , notes = "labelDict")
+	private DictItem labelDict;
 	
 	/**
 	 * 获得 主键<br>
@@ -178,6 +191,25 @@ public class PageInfo extends Entity {
 	*/
 	public PageInfo setName(String name) {
 		this.name=name;
+		return this;
+	}
+	
+	/**
+	 * 获得 标签<br>
+	 * 标签
+	 * @return 标签
+	*/
+	public String getLabelCode() {
+		return labelCode;
+	}
+	
+	/**
+	 * 设置 标签
+	 * @param labelCode 标签
+	 * @return 当前对象
+	*/
+	public PageInfo setLabelCode(String labelCode) {
+		this.labelCode=labelCode;
 		return this;
 	}
 	
@@ -420,6 +452,25 @@ public class PageInfo extends Entity {
 		this.tenantId=tenantId;
 		return this;
 	}
+	
+	/**
+	 * 获得 labelDict<br>
+	 * labelDict
+	 * @return labelDict
+	*/
+	public DictItem getLabelDict() {
+		return labelDict;
+	}
+	
+	/**
+	 * 设置 labelDict
+	 * @param labelDict labelDict
+	 * @return 当前对象
+	*/
+	public PageInfo setLabelDict(DictItem labelDict) {
+		this.labelDict=labelDict;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -479,6 +530,10 @@ public class PageInfo extends Entity {
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setLabelCode(this.getLabelCode());
+		if(all) {
+			inst.setLabelDict(this.getLabelDict());
+		}
 		inst.clearModifies();
 		return inst;
 	}
@@ -551,7 +606,9 @@ public class PageInfo extends Entity {
 			this.setTenantId(DataParser.parse(String.class, map.get(PageInfoMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(PageInfoMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(PageInfoMeta.ID)));
+			this.setLabelCode(DataParser.parse(String.class, map.get(PageInfoMeta.LABEL_CODE)));
 			// others
+			this.setLabelDict(DataParser.parse(DictItem.class, map.get(PageInfoMeta.LABEL_DICT)));
 			return true;
 		} else {
 			try {
@@ -569,7 +626,9 @@ public class PageInfo extends Entity {
 				this.setTenantId( (String)map.get(PageInfoMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(PageInfoMeta.DELETE_BY));
 				this.setId( (String)map.get(PageInfoMeta.ID));
+				this.setLabelCode( (String)map.get(PageInfoMeta.LABEL_CODE));
 				// others
+				this.setLabelDict( (DictItem)map.get(PageInfoMeta.LABEL_DICT));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -600,6 +659,7 @@ public class PageInfo extends Entity {
 			this.setTenantId(DataParser.parse(String.class, r.getValue(PageInfoMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(PageInfoMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(PageInfoMeta.ID)));
+			this.setLabelCode(DataParser.parse(String.class, r.getValue(PageInfoMeta.LABEL_CODE)));
 			return true;
 		} else {
 			try {
@@ -617,6 +677,7 @@ public class PageInfo extends Entity {
 				this.setTenantId( (String)r.getValue(PageInfoMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(PageInfoMeta.DELETE_BY));
 				this.setId( (String)r.getValue(PageInfoMeta.ID));
+				this.setLabelCode( (String)r.getValue(PageInfoMeta.LABEL_CODE));
 				return true;
 			} catch (Exception e) {
 				return false;

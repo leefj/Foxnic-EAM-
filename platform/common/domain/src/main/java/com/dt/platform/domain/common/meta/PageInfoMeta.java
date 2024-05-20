@@ -3,14 +3,15 @@ package com.dt.platform.domain.common.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.common.PageInfo;
 import java.util.Date;
+import org.github.foxnic.web.domain.system.DictItem;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-05-13 06:48:05
- * @sign 6D13AADF29291F4E23D2ACEE3B90C6B7
+ * @since 2024-05-20 12:29:27
+ * @sign 68A8C50BE6A7D1A4F9E02CF533BDB078
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,6 +46,16 @@ public class PageInfoMeta {
 	 * 名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.common.PageInfo,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.common.PageInfo.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
+	
+	/**
+	 * 标签 , 类型: java.lang.String
+	*/
+	public static final String LABEL_CODE="labelCode";
+	
+	/**
+	 * 标签 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.PageInfo,java.lang.String> LABEL_CODE_PROP = new BeanProperty(com.dt.platform.domain.common.PageInfo.class ,LABEL_CODE, java.lang.String.class, "标签", "标签", java.lang.String.class, null);
 	
 	/**
 	 * 定义 , 类型: java.lang.String
@@ -157,9 +168,19 @@ public class PageInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.PageInfo,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.common.PageInfo.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * labelDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String LABEL_DICT="labelDict";
+	
+	/**
+	 * labelDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.PageInfo,org.github.foxnic.web.domain.system.DictItem> LABEL_DICT_PROP = new BeanProperty(com.dt.platform.domain.common.PageInfo.class ,LABEL_DICT, org.github.foxnic.web.domain.system.DictItem.class, "labelDict", "labelDict", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , NAME , DEF_JSON , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , CODE , NAME , LABEL_CODE , DEF_JSON , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , LABEL_DICT };
 	
 	/**
 	 * 代理类
@@ -199,6 +220,17 @@ public class PageInfoMeta {
 		public PageInfo setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
+			return this;
+		}
+		
+		/**
+		 * 设置 标签
+		 * @param labelCode 标签
+		 * @return 当前对象
+		*/
+		public PageInfo setLabelCode(String labelCode) {
+			super.change(LABEL_CODE,super.getLabelCode(),labelCode);
+			super.setLabelCode(labelCode);
 			return this;
 		}
 		
@@ -322,6 +354,17 @@ public class PageInfoMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+		
+		/**
+		 * 设置 labelDict
+		 * @param labelDict labelDict
+		 * @return 当前对象
+		*/
+		public PageInfo setLabelDict(DictItem labelDict) {
+			super.change(LABEL_DICT,super.getLabelDict(),labelDict);
+			super.setLabelDict(labelDict);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -352,6 +395,10 @@ public class PageInfoMeta {
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setLabelCode(this.getLabelCode());
+			if(all) {
+				inst.setLabelDict(this.getLabelDict());
+			}
 			inst.clearModifies();
 			return inst;
 		}

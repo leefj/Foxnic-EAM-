@@ -27,6 +27,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+            var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+            toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+            document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
         },
         /**
          * 表格渲染前调用

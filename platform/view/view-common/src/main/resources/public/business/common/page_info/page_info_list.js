@@ -1,7 +1,7 @@
 /**
  * 页面开发 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-05-13 06:48:07
+ * @since 2024-05-20 12:29:29
  */
 
 
@@ -87,6 +87,7 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'labelCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签'), templet: function (d) { return templet('labelCode' ,fox.joinLabel(d.labelDict,"label",',','','labelCode'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
@@ -160,6 +161,7 @@ function ListPage() {
 		var value = {};
 		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.labelCode={ inputType:"select_box", value: getSelectedValue("#labelCode","value") ,fillBy:["labelDict"]  , label:getSelectedValue("#labelCode","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -206,6 +208,33 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 labelCode 下拉字段
+		fox.renderSelectBox({
+			el: "labelCode",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("labelCode",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("labelCode",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}

@@ -49,10 +49,6 @@ function PortalPage() {
 
 		// 监听流程实例的tab事件
 		element.on('tab(process-instances-tab)', function(data){
-
-			console.log(this); //当前Tab标题所在的原始DOM元素
-			console.log(data.index); //得到当前Tab的所在下标
-			console.log(data.elem); //得到当前的Tab大容器
 			var el=$(data.elem);
 			el=el.find("li");
 			el=$(el[data.index]);
@@ -62,7 +58,7 @@ function PortalPage() {
 
 
 		// requestUserProcessDefinitions("/service-bpm/portal/query-commonly-used",15,"commonly-used");
-		 requestUserProcessDefinitions("/service-bpm/portal/query-latest-used",15,"latest-used");
+		requestUserProcessDefinitions("/service-bpm/portal/query-latest-used",15,"latest-used");
 		requestProcessDefinitionCatalogs("/service-bpm/portal/query-latest-used",15,"latest-used");
 
 
@@ -298,6 +294,7 @@ function PortalPage() {
 
 	function refreshProcessInstances(data,approvalCatalog) {
 		var usr=settings.getUser();
+		console.log("usr:",usr);
 		var userId=usr.user.id;
 		var container = $(".process-instances-list-"+approvalCatalog);
 		container.empty();
