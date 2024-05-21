@@ -55,10 +55,17 @@ public class PageInfoPageController extends ViewController {
 
 
 	@RequestMapping("/page_info_apply.html")
-	public String apply(Model model,HttpServletRequest request,String code,String id,String type) {
+	public String apply(Model model,HttpServletRequest request,String code,String id,String type,String page) {
 		model.addAttribute("id", id);
 		model.addAttribute("code", code);
 		model.addAttribute("type", type);
+		model.addAttribute("libVersion", 120);
+		model.addAttribute("cssHelper", "/business/common/page_info/amis_sdk/helper.css");
+		model.addAttribute("cssFont", "/business/common/page_info/amis_sdk/iconfont.css");
+		model.addAttribute("cssSdk", "/business/common/page_info/amis_sdk/sdk.css");
+		model.addAttribute("jsSdk", "/business/common/page_info/amis_sdk/sdk.js");
+		model.addAttribute("jsRest", "/business/common/page_info/amis_sdk/rest.js");
+		model.addAttribute("jsTinymce", "/business/common/page_info/amis_sdk/tinymce.js");
 		PageInfo info=null;
 		if(!StringUtil.isBlank(code)){
 			PageInfoVO infoQuery=new PageInfoVO();
@@ -71,19 +78,18 @@ public class PageInfoPageController extends ViewController {
 		}
 		if(info!=null){
 			model.addAttribute("jsonStr", info.getDefJson());
-			//model.addAttribute("json", JSONObject.parseObject(info.getDefJson()));
 		}else{
-			Result<PageInfo>  objRes= PageInfoServiceProxy.api().getById(id);
+			Result<PageInfo> objRes= PageInfoServiceProxy.api().getById(id);
 			if(objRes.isSuccess()&&objRes.getData()!=null){
 				model.addAttribute("jsonStr",objRes.getData().getDefJson() );
-			//	model.addAttribute("json", JSONObject.parseObject(objRes.getData().getDefJson()));
 			}
 		}
-		return getTemplatePath(prefix,"page_info_apply");
+		String pageStr="page_info_apply";
+		if(!StringUtil.isBlank(page)){
+			pageStr=page;
+		}
+		return getTemplatePath(prefix,pageStr);
 	}
-
-
-
 
 	/**
 	 * 页面开发 功能主页面

@@ -1408,6 +1408,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			map.put("financial_notes",asset.getFinancialNotes());
 			map.put("safety_level_code",asset.getSafetyLevelCode());
 			map.put("equipment_status",asset.getEquipmentStatus());
+			map.put("asset_notes",asset.getAssetNotes());
 			HashMap<String,List<SQL>> resultMap=parseAssetChangeRecordWithChangeAsset(list,map,asset.getId(),AssetOperateEnum.DIRECT_UPDATE_ASSET.code(),"");
 			List<SQL> changeSqlList=resultMap.get("change");
 			if (changeSqlList.size() > 0) {

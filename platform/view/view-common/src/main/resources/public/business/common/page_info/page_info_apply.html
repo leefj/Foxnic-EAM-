@@ -6,42 +6,38 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
     <script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
-    <link rel="stylesheet" href="/business/common/page_info/amis_sdk/sdk.css" th:href="'/business/common/page_info/amis_sdk/sdk.css?'+${cacheKey}"/>
-    <link rel="stylesheet" href="/business/common/page_info/amis_sdk/helper.css" th:href="'/business/common/page_info/amis_sdk/helper.css?'+${cacheKey}"/>
-    <link rel="stylesheet" href="/business/common/page_info/amis_sdk/iconfont.css" th:href="'/business/common/page_info/amis_sdk/iconfont.css?'+${cacheKey}"/>
+    <script type="text/javascript" src="/business/common/page_info/localforage.min.js" th:src="'/business/common/page_info/localforage.min.js'"></script>
+    <script type="text/javascript" src="/business/common/page_info/loadJsCss.js" th:src="'/business/common/page_info/loadJsCss.js'"></script>
 </head>
 <style>
-    html,
-    body,
-    .app-wrapper {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
+    html,body,.app-wrapper {position: relative;width: 100%;height: 100%;margin: 0;padding: 0;}
 </style>
 <body>
 <div id="root" class="app-wrapper"></div>
-
-<!--为了能通过iframe加载内部的页面-->
-<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
-<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
-<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
-<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
-<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
-<script th:src="'/business/common/page_info/amis_sdk/sdk.js?'+${cacheKey}"></script>
-<script th:src="'/business/common/page_info/amis_sdk/rest.js?'+${cacheKey}"></script>
-<script th:src="'/business/common/page_info/amis_sdk/tinymce.js?'+${cacheKey}"></script>
 <script th:inline="javascript">
-    var JSONStrData = [[${jsonStr}]];
     var ID = [[${id}]];
-    (function () {
-        let amis = amisRequire('amis/embed');
-        let amisScoped=amis.embed("#root",JSON.parse(JSONStrData));
-    })();
+    var JSONStrData = [[${jsonStr}]];
+    var LIB_VERSION = [[${libVersion}]];
+    var CSS_HELPER = [[${cssHelper}]];
+    var CSS_FONT = [[${cssFont}]];
+    var CSS_SDK = [[${cssSdk}]];
+    var JS_SDK = [[${jsSdk}]];
+    var JS_REST = [[${jsRest}]];
+    var JS_TINYMCE = [[${jsTinymce}]];
+    whir.res.pageVersion = LIB_VERSION  //页面版本，用于检测是否需要更新缓存
+    whir.res.loadCss("css_amis_helper", CSS_HELPER);
+    whir.res.loadCss("css_amis_font", CSS_FONT);
+    whir.res.loadCss("css_amis_sdk", CSS_SDK);
+    whir.res.loadJs("js_amis_sdk", JS_SDK, function(){
+        (function () {
+            let amis = amisRequire('amis/embed');
+            let amisScoped=amis.embed("#root",JSON.parse(JSONStrData));
+        })();
+        whir.res.loadJs("js_rest", JS_REST);
+        whir.res.loadJs("js_tinymce", JS_TINYMCE);
+    });
 </script>
 </body>
 </html>
