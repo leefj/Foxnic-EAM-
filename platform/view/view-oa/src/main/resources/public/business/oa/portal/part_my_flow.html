@@ -24,13 +24,13 @@
 <body>
 <div class="portal-container">
     <div class="layui-row">
-            <div class="layui-card">
+            <div class="layui-card" id="card">
                 <div class="layui-card-header">
                     <div class="oa-portal-card-item-none">
                         <a class="oa-portal-card-item-title">我的流程</a>
                     </div>
                 </div>
-                <div class="layui-card-body" style="background-color: white;height: 300px;" >
+                <div class="layui-card-body" style="background-color: white;" >
                     <div class="system-div">
                         <div class="column process-instance-column">
                             <div class="layui-tab layui-tab-brief" lay-filter="process-instances-tab">
@@ -67,6 +67,16 @@
 </div>
 <script  th:inline="javascript">
 
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+    var parHeight=350;
+    if(getUrlParam("height")){
+        parHeight=getUrlParam("height");
+    }
+    $("#card").css("height",parHeight+"px");
 
 </script>
 

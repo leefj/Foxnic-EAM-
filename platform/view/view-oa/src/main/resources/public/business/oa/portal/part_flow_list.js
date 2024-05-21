@@ -25,6 +25,17 @@ function PortalPage() {
         admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
         layer = layui.layer,util = layui.util,fox = layui.foxnic,element=layui.element,bpm=layui.bpm;
 
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+        var parHeight=350;
+        if(getUrlParam("height")){
+            parHeight=getUrlParam("height");
+        }
+        $("#card").css("height",parHeight+"px");
+
         var carousel = layui.carousel;
         //建造实例
         carousel.render({
@@ -49,13 +60,9 @@ function PortalPage() {
             CURRENT_PROCESS_INSTANCE_CATALOG=el.attr("catalog")
         });
 
-
-
         // requestUserProcessDefinitions("/service-bpm/portal/query-commonly-used",15,"commonly-used");
         requestUserProcessDefinitions("/service-bpm/portal/query-latest-used",15,"latest-used");
         requestProcessDefinitionCatalogs("/service-bpm/portal/query-latest-used",15,"latest-used");
-
-
 
         var ps={}
         ps.pageIndex=1;
@@ -102,7 +109,6 @@ function PortalPage() {
         for (var c=0;c<data.length;c++) {
             var cata=data[c];
             if(!cata.processDefinitionList || cata.processDefinitionList.length==0) continue;
-
             html.push('<div class="catalog-unit">');
             html.push('<div class="catalog-title">');
             html.push('<img src="/service-storage/sys-file/image?id='+cata.iconFilePc+'" style="width: 28px;float: left;">');
@@ -126,9 +132,7 @@ function PortalPage() {
             html.push('</div>');
             html.push('</div>');
         }
-
         container.append(html.join("\n"));
-
         $(".process-definition-item").off("click");
         $(".process-definition-item").click(function (it) {
             var id=$(this).attr("id");
@@ -138,24 +142,14 @@ function PortalPage() {
             // bpm.openProcessView(null,null,false,{"formDefinitionCode":def.formDefinition.code},null,null,"bill", {});
             openProcessView2(null,null,false,{"formDefinitionCode":def.formDefinition.code},window.module.refreshTableData,window.module.refreshRowData,"process");
         });
-
         $("#start-process-button").click(function () {
-
-        });
-
-
+        })
     }
-
-
-
     function requestUserProcessDefinitions(url,limit,el) {
         admin.post(url,{limit:limit},function (r){
             refreshUserProcessDefinitions(r.data,el)
         });
     }
-
-
-
     function refreshUserProcessDefinitions(data,el) {
         var container = $("."+el);
         container.empty();

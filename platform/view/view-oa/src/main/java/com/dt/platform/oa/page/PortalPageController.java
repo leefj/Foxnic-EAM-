@@ -60,28 +60,38 @@ public class PortalPageController extends ViewController {
 		model.addAttribute("bannerList",list.toArray());
 		return getTemplatePath(prefix,"part_banner");
 	}
+	@RequestMapping("/part_flow_stat.html")
+	public String part_flow_stat(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"part_flow_stat");
+	}
+
 	@RequestMapping("/part_news.html")
 	public String part_news(Model model,HttpServletRequest request) {
 		return getTemplatePath(prefix,"part_news");
 	}
+
 	@RequestMapping("/part_notice.html")
 	public String part_notice(Model model,HttpServletRequest request) {
 		return getTemplatePath(prefix,"part_notice");
 	}
+
 	@RequestMapping("/part_my_flow.html")
 	public String part_my_flow(Model model,HttpServletRequest request) {
 		String userId= SessionUser.getCurrent().getUserId();
 		model.addAttribute("userId", userId);
 		return getTemplatePath(prefix,"part_my_flow");
 	}
+
 	@RequestMapping("/part_flow_list.html")
 	public String part_flow_list(Model model,HttpServletRequest request) {
 		return getTemplatePath(prefix,"part_flow_list");
 	}
+
 	@RequestMapping("/part_download.html")
 	public String part_download(Model model,HttpServletRequest request) {
 		return getTemplatePath(prefix,"part_download");
 	}
+
 	@RequestMapping("/part_rel_system.html")
 	public String part_rel_system(Model model,HttpServletRequest request) {
 		return getTemplatePath(prefix,"part_rel_system");

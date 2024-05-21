@@ -24,13 +24,13 @@
 <body>
 <div class="portal-container">
     <div class="layui-row">
-        <div class="layui-card">
+        <div class="layui-card" id="card">
             <div class="layui-card-header">
                 <div class="oa-portal-card-item-none">
                     <a class="oa-portal-card-item-title">关联系统</a>
                 </div>
             </div>
-            <div class="layui-card-body" style="background-color: white;height: 300px;" >
+            <div class="layui-card-body" style="background-color: white;" >
                 <div class="system-div" id="system-data">
                 </div>
             </div>
@@ -38,7 +38,16 @@
     </div>
 </div>
 <script>
-
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+    var parHeight=350;
+    if(getUrlParam("height")){
+        parHeight=getUrlParam("height");
+    }
+    $("#card").css("height",parHeight+"px");
 
     window.openSystem=function(url) {
         console.log(url);

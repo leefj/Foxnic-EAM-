@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="/business/oa/portal/portal.css" th:href="'/business/oa/portal/portal.css?'+${cacheKey}"/>
     <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
     <script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
-
     <style>
     </style>
     <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
@@ -25,20 +24,18 @@
 <body>
 <div class="portal-container">
     <!-- 流程分类 -->
-    <div class="catalog-row">
+    <div class="catalog-row" >
         <div class="catalog-unit" >
             <div class="catalog-title" >
                 <img src="/assets/images/bpm-portal/fav.png" style="width: 28px;float: left;"><div>工作流程</div>
             </div>
             <div class="process-definition-items commonly-used">
             </div>
-
         </div>
     </div>
 </div>
 <script  th:inline="javascript">
 </script>
-
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>

@@ -27,7 +27,7 @@
     <div class="layui-row">
         <div class="layui-carousel" id="carousel" >
             <div carousel-item>
-                <div th:each="item,stat:${bannerList}"><image style="height:280px;width:100%" th:src="'/service-storage/sys-file/download?id='+${item.pictureId}"></image></div>
+                <div th:each="item,stat:${bannerList}"><image style="width:100%" th:src="'/service-storage/sys-file/download?id='+${item.pictureId}"></image></div>
             </div>
         </div>
     </div>
@@ -36,8 +36,9 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-<script th:src="'/business/oa/portal/part_banner.js?'+${cacheKey}"></script>
+<script th:src="'/business/oa/portal/part_banner.js?1212'+${cacheKey}"></script>
 <script>
+
 </script>
 </body>
 </html>
