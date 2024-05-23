@@ -45,7 +45,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 数据库文档接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-14 20:44:37
+ * @since 2024-05-23 13:12:53
 */
 
 @InDoc
@@ -67,6 +67,7 @@ public class DbDocController extends SuperController {
 		@ApiImplicitParam(name = DbDocVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "valid"),
 		@ApiImplicitParam(name = DbDocVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "718915325168451584"),
 		@ApiImplicitParam(name = DbDocVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
+		@ApiImplicitParam(name = DbDocVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -174,6 +175,7 @@ public class DbDocController extends SuperController {
 		@ApiImplicitParam(name = DbDocVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "valid"),
 		@ApiImplicitParam(name = DbDocVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "718915325168451584"),
 		@ApiImplicitParam(name = DbDocVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
+		@ApiImplicitParam(name = DbDocVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { DbDocVOMeta.PAGE_INDEX , DbDocVOMeta.PAGE_SIZE , DbDocVOMeta.SEARCH_FIELD , DbDocVOMeta.FUZZY_FIELD , DbDocVOMeta.SEARCH_VALUE , DbDocVOMeta.DIRTY_FIELDS , DbDocVOMeta.SORT_FIELD , DbDocVOMeta.SORT_TYPE , DbDocVOMeta.DATA_ORIGIN , DbDocVOMeta.QUERY_LOGIC , DbDocVOMeta.REQUEST_ACTION , DbDocVOMeta.IDS } )
@@ -197,6 +199,7 @@ public class DbDocController extends SuperController {
 		@ApiImplicitParam(name = DbDocVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "valid"),
 		@ApiImplicitParam(name = DbDocVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "718915325168451584"),
 		@ApiImplicitParam(name = DbDocVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
+		@ApiImplicitParam(name = DbDocVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { DbDocVOMeta.PAGE_INDEX , DbDocVOMeta.PAGE_SIZE , DbDocVOMeta.SEARCH_FIELD , DbDocVOMeta.FUZZY_FIELD , DbDocVOMeta.SEARCH_VALUE , DbDocVOMeta.DIRTY_FIELDS , DbDocVOMeta.SORT_FIELD , DbDocVOMeta.SORT_TYPE , DbDocVOMeta.DATA_ORIGIN , DbDocVOMeta.QUERY_LOGIC , DbDocVOMeta.REQUEST_ACTION , DbDocVOMeta.IDS } )
@@ -263,6 +266,7 @@ public class DbDocController extends SuperController {
 		@ApiImplicitParam(name = DbDocVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "valid"),
 		@ApiImplicitParam(name = DbDocVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "718915325168451584"),
 		@ApiImplicitParam(name = DbDocVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
+		@ApiImplicitParam(name = DbDocVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { DbDocVOMeta.PAGE_INDEX , DbDocVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = DbDocServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -287,6 +291,7 @@ public class DbDocController extends SuperController {
 		@ApiImplicitParam(name = DbDocVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "valid"),
 		@ApiImplicitParam(name = DbDocVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "718915325168451584"),
 		@ApiImplicitParam(name = DbDocVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
+		@ApiImplicitParam(name = DbDocVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = DbDocServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

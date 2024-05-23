@@ -93,6 +93,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            if(TYPE){
+                param.type=TYPE;
+            }
             return true;
         },
         /**
@@ -124,6 +127,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单页面打开时，追加更多的参数信息
          * */
         makeFormQueryString:function(data,queryString,action) {
+
+            if(TYPE){
+                if(data&&data.id){
+                    queryString=queryString+"&type="+TYPE
+                }else{
+                    queryString="type="+TYPE
+                }
+            }
             return queryString;
         },
         /**
@@ -196,6 +207,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
+            if(TYPE){
+                setTimeout(function () {
+                    $("#type").parent().parent().hide();
+                },30);
+            }
         },
         /**
          * 窗口调节前
@@ -262,6 +278,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
+            if(data&&data.id){
+                console.log("none");
+            }else{
+                data.type=TYPE;
+            }
             return true;
         },
         /**

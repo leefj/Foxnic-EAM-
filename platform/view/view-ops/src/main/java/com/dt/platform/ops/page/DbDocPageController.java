@@ -41,7 +41,8 @@ public class DbDocPageController extends ViewController {
 	 * 数据库文档 功能主页面
 	 */
 	@RequestMapping("/db_doc_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String type) {
+		model.addAttribute("type", type);
 		return getTemplatePath(prefix,"db_doc_list");
 	}
 
@@ -49,7 +50,9 @@ public class DbDocPageController extends ViewController {
 	 * 数据库文档 表单页面
 	 */
 	@RequestMapping("/db_doc_form.html")
-	public String form(Model model,HttpServletRequest request , String id) {
+	public String form(Model model,HttpServletRequest request , String id,String type) {
+		model.addAttribute("type", type);
 		return getTemplatePath(prefix,"db_doc_form");
 	}
+
 }

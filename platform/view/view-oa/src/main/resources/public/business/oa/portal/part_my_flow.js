@@ -190,6 +190,10 @@ function PortalPage() {
 		});
 	}
 
+
+
+
+
 	function refreshProcessInstances(data,approvalCatalog) {
 		var usr=settings.getUser();
 		console.log("usr:",usr);
@@ -239,102 +243,15 @@ function PortalPage() {
 		}
 	}
 
-	function openProcessView2( processInstanceId , taskId ,newPage,params,refreshTableData,refreshRowData,refreshLocation,defaultValues) {
-
-
-
-		if(!defaultValues) defaultValues={};
-
-		admin.putVar("bpmDefaultValues",defaultValues);
-
-		var refreshOption={
-			refreshTableData:refreshTableData,
-			refreshRowData:refreshRowData,
-			refreshLocation:refreshLocation
-		}
-
-		admin.putVar("bpmRefreshOption",refreshOption);
-
-		if(!params) params={};
-		if(processInstanceId) {
-			params["processInstanceId"]= processInstanceId;
-		}
-		if(taskId) {
-			params["taskId"]= taskId;
-		}
-
-		var validateParam=0;
-		if (params["processDefinitionId"]) {
-			validateParam++;
-		}
-		if (params["processDefinitionCode"]) {
-			validateParam++;
-		}
-		if (params["formDefinitionCode"]) {
-			validateParam++;
-		}
-		if(validateParam>1) {
-			top.layer.msg("processDefinitionId , processDefinitionCode , formDefinitionCode 参数只能指定其中一个", {icon: 2, time: 3000});
-			return;
-		}
-
-		var queryString="";
-		var queryStrings=[];
-		for (var key in params) {
-			queryStrings.push(key+"="+params[key]);
-		}
-		queryString=queryStrings.join("&");
-
-		var me=this;
-		var action = processInstanceId?"edit":"create";
-		admin.putTempData('bpm-process-instance-form-data-form-action',action);
-
-		var fullHeight=$(top).height();
-		var fullwidth=$(top).width();
-		var title = fox.translate('流程实例');
-		if(action=="create") title=fox.translate('发起流程');
-		else if(action=="edit") title=fox.translate("流程审批");
-		else if(action=="view") title=fox.translate('流程详情');
-
-		var index=-1;
-		admin.putVar("updateProcessViewTitle",function (title) {
-			window.top.layer.title(title, index);
-		});
-
-		var iWidth =window.screen.availWidth*0.9;                          //弹出窗口的宽度;
-		var iHeight = 800;                         //弹出窗口的高度;
-
-		//获得窗口的垂直位置
-		var iTop = (window.screen.availHeight - 30 - iHeight) / 2;
-		//获得窗口的水平位置
-		var iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
-		window.open("/business/bpm/process_instance/process_instance_form.html" + (queryString?("?"+queryString):"") ,"",'width=' + iWidth + ',height=' + iHeight + ',top=' + iTop + ',left=' + iLeft +',menubar=no,toolbar=no, status=no,scrollbars=yes');
-		return 1
-
-		// //debugger
-		// index = layer.open({
-		// 	title: title,
-		// 	resize: false,
-		// 	// offset: [null,top],
-		// 	area: [(fullwidth-56)+"px",(fullHeight-56)+"px"],
-		// 	type: 2,
-		// 	id:"1234",
-		// 	content: '/business/bpm/process_instance/process_instance_form.html' + (queryString?("?"+queryString):""),
-		// 	success:function () {
-		// 		// alert(index);
-		// 		// var win=$("#layui-layer"+index);
-		// 		// var tools=win.find(".layui-layer-setwin");
-		// 		// tools.prepend("<a class=\"layui-icon layui-icon-radio\" href=\"javascript:;\" style='font-size: 16px'>设置</a>");
-		// 	},
-		// 	finish: function (ctx) {
-		//
-		// 	}
-		// });
-
-		// debugger
-		return 1;
+	function refreshTableData2(){
 
 	}
+
+	function refreshRowData2(){
+
+	}
+
+
 
 
 
@@ -343,8 +260,8 @@ function PortalPage() {
 		if(!inst) return;
 		debugger
 		admin.putTempData('bpm-process-instance-form-data', {});
-		//bpm.openProcessView(inst.id,null,false,{},window.module.refreshTableData,window.module.refreshRowData,"process");
-		openProcessView2(inst.id,null,false,{},window.module.refreshTableData,window.module.refreshRowData,"process");
+		bpm.openProcessView(inst.id,null,false,{},window.module.refreshTableData,window.module.refreshRowData,"process");
+		//openProcessView2(inst.id,null,false,{},window.module.refreshTableData,window.module.refreshRowData,"process");
 
 
 	}

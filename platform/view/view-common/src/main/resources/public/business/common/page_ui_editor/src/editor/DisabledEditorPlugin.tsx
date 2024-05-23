@@ -14,7 +14,6 @@ import {
 // 需要在组件面板中隐藏的组件
 const disabledRenderers = [
   'audio'
-
 ];
 
 export class ManagerEditorPlugin extends BasePlugin {

@@ -2,7 +2,7 @@
  * tansci-boot-ui-editor v1.2.0
  * author: fex
  * build tool: AKFun
- * build time: Mon May 20 2024 16:40:28 GMT+0800 (China Standard Time)
+ * build time: Wed May 22 2024 21:34:54 GMT+0800 (China Standard Time)
  * build tool info: https://github.com/wibetter/akfun
  */
 

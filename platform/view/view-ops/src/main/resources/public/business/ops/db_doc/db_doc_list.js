@@ -1,7 +1,7 @@
 /**
  * 数据库文档 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-14 20:44:38
+ * @since 2024-05-23 13:12:57
  */
 
 
@@ -464,7 +464,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["85%",height+"px"],
 			type: 2,
 			id:"ops-db-doc-form-data-win",
 			content: '/business/ops/db_doc/db_doc_form.html' + (queryString?("?"+queryString):""),

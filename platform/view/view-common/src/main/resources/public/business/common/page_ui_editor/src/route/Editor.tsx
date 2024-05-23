@@ -7,9 +7,21 @@ import {currentLocale} from 'i18n-runtime';
 import {Icon} from '../icons/index';
 import {IMainStore} from '../store';
 import '../editor/DisabledEditorPlugin'; // 用于隐藏一些不需要的Editor预置组件
-import '../renderer/MyRenderer';
-import '../editor/MyRenderer';
+
+import '../editor/IndexBannerPlugin.tsx';
+import '../editor/IndexNewsPlugin.tsx';
+import '../editor/IndexNoticePlugin.tsx';
+import '../editor/IndexDownloadPlugin.tsx';
+import '../editor/IndexRelSystemPlugin.tsx';
+
+import '../editor/FlowListPlugin.tsx';
+import '../editor/FlowMyPlugin.tsx';
+import '../editor/FlowProfilePlugin.tsx';
+
+
+
 import axios from 'axios';
+
 
 let currentIndex = -1;
 let host = `${window.location.protocol}//${window.location.host}`;
