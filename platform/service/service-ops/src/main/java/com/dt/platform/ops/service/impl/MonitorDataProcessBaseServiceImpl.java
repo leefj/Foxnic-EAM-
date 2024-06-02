@@ -64,7 +64,6 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
             "select a.id,c.monitor_tpl_code,c.code,c.interval_time,c.id indicator_id from\n" +
             "ops_monitor_node a,ops_monitor_node_tpl_item b,ops_monitor_tpl_indicator c\n" +
             "where a.deleted=0 \n" +
-           // "and a.status='online' \n" +
             "and a.node_enabled='enable' \n"+
             "and b.deleted=0 \n" +
             "and c.deleted=0 \n" +
@@ -339,12 +338,31 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
 
 
     @Override
-    public List<MonitorTplIndicator> queryExecuteIndicatorList(String nodeId,String monitorMethod) {
-        String sql="select distinct ret.indicator_id from ("+MonitorDataProcessBaseServiceImpl.findExecuteDataSql.replaceAll("#<MONITOR_METHOD>#",monitorMethod)+") ret where 1=1 ";
+    public List<MonitorTplIndicator> queryExecuteIndicatorList(String nodeId,String monitorMethod,String indicatorId,boolean isForce) {
+        String baseSql="";
+        String sql="";
+        if(isForce){
+            baseSql="select a.id,c.monitor_tpl_code,c.code,c.interval_time,c.id indicator_id from\n" +
+                    "ops_monitor_node a,ops_monitor_node_tpl_item b,ops_monitor_tpl_indicator c\n" +
+                    "where a.deleted=0 \n" +
+                    "and a.node_enabled='enable' \n" +
+                    "and b.deleted=0 \n" +
+                    "and c.deleted=0 \n" +
+                    "and c.status='enable' \n" +
+                    "and c.monitor_method='"+monitorMethod+"' \n" +
+                    "and a.id=b.node_id \n" +
+                    "and b.tpl_code=c.monitor_tpl_code";
+        }else{
+            baseSql=MonitorDataProcessBaseServiceImpl.findExecuteDataSql.replaceAll("#<MONITOR_METHOD>#",monitorMethod);
+        }
+        sql="select distinct ret.indicator_id from ("+baseSql+") ret where 1=1 ";
         if(!StringUtil.isBlank(nodeId)){
             sql=sql+" and ret.id='"+nodeId+"'";
         }
         ConditionExpr expr=new ConditionExpr();
+        if(!StringUtil.isBlank(indicatorId)){
+            expr.and("id=?",indicatorId);
+        }
         expr.and("id in ("+sql+")" );
         List<MonitorTplIndicator> list=monitorTplIndicatorService.queryList(expr);
         return list;

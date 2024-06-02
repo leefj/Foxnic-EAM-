@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-04-08 21:14:14
+ * @since 2024-06-02 14:19:23
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -5216,6 +5216,11 @@ public class OpsTables {
 		public static final DBField DB_FULL_NAME = new DBField(DBDataType.STRING , "db_full_name","dbFullName","数据库全名","数据库全名",false,false,true);
 		
 		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
 		 * 数据库
 		*/
 		public static final DBField DB_NAME = new DBField(DBDataType.STRING , "db_name","dbName","数据库","数据库",false,false,true);
@@ -5231,9 +5236,24 @@ public class OpsTables {
 		public static final DBField DB_PORT = new DBField(DBDataType.STRING , "db_port","dbPort","端口","端口",false,false,true);
 		
 		/**
+		 * 默认用户
+		*/
+		public static final DBField DB_USER = new DBField(DBDataType.STRING , "db_user","dbUser","默认用户","默认用户",false,false,true);
+		
+		/**
+		 * 第三方编码
+		*/
+		public static final DBField REL_CODE = new DBField(DBDataType.STRING , "rel_code","relCode","第三方编码","第三方编码",false,false,true);
+		
+		/**
 		 * 关联系统
 		*/
 		public static final DBField ASSOCIATED_SYSTEM = new DBField(DBDataType.STRING , "associated_system","associatedSystem","关联系统","关联系统",false,false,true);
+		
+		/**
+		 * 排序
+		*/
+		public static final DBField SORT = new DBField(DBDataType.INTEGER , "sort","sort","排序","排序",false,false,true);
 		
 		/**
 		 * 修改人ID
@@ -5275,7 +5295,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_INFO_APPLY() {
-			this.init($NAME,"变更数据库" , ID , CODE , DB_FULL_NAME , DB_NAME , DB_IP , DB_PORT , ASSOCIATED_SYSTEM , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , CREATE_BY , CREATE_TIME , VERSION);
+			this.init($NAME,"变更数据库" , ID , CODE , DB_FULL_NAME , STATUS , DB_NAME , DB_IP , DB_PORT , DB_USER , REL_CODE , ASSOCIATED_SYSTEM , SORT , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , CREATE_BY , CREATE_TIME , VERSION);
 		}
 		public static final OPS_DB_INFO_APPLY $TABLE=new OPS_DB_INFO_APPLY();
 	}
@@ -7166,6 +7186,11 @@ public class OpsTables {
 		public static final DBField WARN_LEVEL = new DBField(DBDataType.STRING , "warn_level","warnLevel","告警等级","告警等级",false,false,true);
 		
 		/**
+		 * 告警等级
+		*/
+		public static final DBField WARN_LEVEL_NAME = new DBField(DBDataType.STRING , "warn_level_name","warnLevelName","告警等级","告警等级",false,false,true);
+		
+		/**
 		 * 节点
 		*/
 		public static final DBField NODE_SHOW_NAME = new DBField(DBDataType.STRING , "node_show_name","nodeShowName","节点","节点",false,false,true);
@@ -7261,9 +7286,166 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
 		
 		public OPS_MONITOR_ALERT() {
-			this.init($NAME,"监控告警" , ID , NODE_ID , STATUS , WARN_LEVEL , NODE_SHOW_NAME , TRIGGER_ID , TRIGGER_NAME , TRIGGER_RULE_DESC , ALERT_VALUE , WARN_TIME , HANDLED_TIME , USER_ID , PROCESS_MESSAGE , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"监控告警" , ID , NODE_ID , STATUS , WARN_LEVEL , WARN_LEVEL_NAME , NODE_SHOW_NAME , TRIGGER_ID , TRIGGER_NAME , TRIGGER_RULE_DESC , ALERT_VALUE , WARN_TIME , HANDLED_TIME , USER_ID , PROCESS_MESSAGE , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_MONITOR_ALERT $TABLE=new OPS_MONITOR_ALERT();
+	}
+	
+	/**
+	 * 告警订阅
+	*/
+	public static class OPS_MONITOR_ALERT_BOOK extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_monitor_alert_book";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 全部对象
+		*/
+		public static final DBField MONITOR_IS_ALL = new DBField(DBDataType.STRING , "monitor_is_all","monitorIsAll","全部对象","全部对象",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		public OPS_MONITOR_ALERT_BOOK() {
+			this.init($NAME,"告警订阅" , ID , NAME , STATUS , MONITOR_IS_ALL , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final OPS_MONITOR_ALERT_BOOK $TABLE=new OPS_MONITOR_ALERT_BOOK();
+	}
+	
+	/**
+	 * 订阅规则
+	*/
+	public static class OPS_MONITOR_ALERT_BOOK_RULE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_monitor_alert_book_rule";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 类型,严重程度alert_level,节点分组node_group,节点node,发送用户to_user
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","严重程度alert_level,节点分组node_group,节点node,发送用户to_user",false,false,true);
+		
+		/**
+		 * 订阅
+		*/
+		public static final DBField BOOK_ID = new DBField(DBDataType.STRING , "book_id","bookId","订阅","订阅",false,false,true);
+		
+		/**
+		 * 数据
+		*/
+		public static final DBField VALUE = new DBField(DBDataType.STRING , "value","value","数据","数据",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		public OPS_MONITOR_ALERT_BOOK_RULE() {
+			this.init($NAME,"订阅规则" , ID , TYPE , BOOK_ID , VALUE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final OPS_MONITOR_ALERT_BOOK_RULE $TABLE=new OPS_MONITOR_ALERT_BOOK_RULE();
 	}
 	
 	/**
@@ -7335,6 +7517,202 @@ public class OpsTables {
 			this.init($NAME,"告警事件" , ID , ALERT_ID , EVENT_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_MONITOR_ALERT_EVENT $TABLE=new OPS_MONITOR_ALERT_EVENT();
+	}
+	
+	/**
+	 * 告警日志
+	*/
+	public static class OPS_MONITOR_ALERT_LOG extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_monitor_alert_log";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 用户
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
+		
+		/**
+		 * 通知方式
+		*/
+		public static final DBField ALERT_METHOD = new DBField(DBDataType.STRING , "alert_method","alertMethod","通知方式","通知方式",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField MSG = new DBField(DBDataType.STRING , "msg","msg","内容","内容",false,false,true);
+		
+		/**
+		 * 记录时间
+		*/
+		public static final DBField RCD_TIME = new DBField(DBDataType.DATE , "rcd_time","rcdTime","记录时间","记录时间",false,false,true);
+		
+		/**
+		 * 通知结果
+		*/
+		public static final DBField ACTION_RESULT_STATUS = new DBField(DBDataType.STRING , "action_result_status","actionResultStatus","通知结果","通知结果",false,false,true);
+		
+		/**
+		 * 结果明细
+		*/
+		public static final DBField ACTION_RESULT = new DBField(DBDataType.STRING , "action_result","actionResult","结果明细","结果明细",false,false,true);
+		
+		/**
+		 * 告警事件
+		*/
+		public static final DBField ALERT_ID = new DBField(DBDataType.STRING , "alert_id","alertId","告警事件","告警事件",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		public OPS_MONITOR_ALERT_LOG() {
+			this.init($NAME,"告警日志" , ID , USER_ID , ALERT_METHOD , MSG , RCD_TIME , ACTION_RESULT_STATUS , ACTION_RESULT , ALERT_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final OPS_MONITOR_ALERT_LOG $TABLE=new OPS_MONITOR_ALERT_LOG();
+	}
+	
+	/**
+	 * 告警方式
+	*/
+	public static class OPS_MONITOR_ALERT_METHOD extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_monitor_alert_method";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","name","name",false,false,true);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","类型",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 参数
+		*/
+		public static final DBField PS = new DBField(DBDataType.STRING , "ps","ps","参数","参数",false,false,true);
+		
+		/**
+		 * 命令
+		*/
+		public static final DBField CMD = new DBField(DBDataType.STRING , "cmd","cmd","命令","命令",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField BODY = new DBField(DBDataType.STRING , "body","body","内容","内容",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		public OPS_MONITOR_ALERT_METHOD() {
+			this.init($NAME,"告警方式" , ID , NAME , TYPE , STATUS , PS , CMD , BODY , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final OPS_MONITOR_ALERT_METHOD $TABLE=new OPS_MONITOR_ALERT_METHOD();
 	}
 	
 	/**
@@ -10291,14 +10669,14 @@ public class OpsTables {
 		public static final DBField WARN_LEVEL = new DBField(DBDataType.STRING , "warn_level","warnLevel","告警等级","告警等级",false,false,true);
 		
 		/**
-		 * 规则
+		 * 告警规则
 		*/
-		public static final DBField RULE = new DBField(DBDataType.STRING , "rule","rule","规则","规则",false,false,true);
+		public static final DBField RULE = new DBField(DBDataType.STRING , "rule","rule","告警规则","告警规则",false,false,true);
 		
 		/**
-		 * 告警值
+		 * 告警内容
 		*/
-		public static final DBField CONTENT_VALUE = new DBField(DBDataType.STRING , "content_value","contentValue","告警值","告警值",false,false,true);
+		public static final DBField CONTENT_VALUE = new DBField(DBDataType.STRING , "content_value","contentValue","告警内容","告警内容",false,false,true);
 		
 		/**
 		 * 状态
@@ -11465,6 +11843,116 @@ public class OpsTables {
 			this.init($NAME,"安全基线" , ID , BASE_TYPE_ID , NAME , BASE_VERSION , STATUS , USAGE_SCENARIOS , FILE_ID , CHECK_FILE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OPS_SAFETY_BASELINE $TABLE=new OPS_SAFETY_BASELINE();
+	}
+	
+	/**
+	 * 安全漏洞信息库
+	*/
+	public static class OPS_SECURITY_INFO_LIB extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_security_info_lib";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","类型",false,false,true);
+		
+		/**
+		 * 来源
+		*/
+		public static final DBField SOURCE = new DBField(DBDataType.STRING , "source","source","来源","来源",false,false,true);
+		
+		/**
+		 * 来源说明
+		*/
+		public static final DBField SOURCE_NAME = new DBField(DBDataType.STRING , "source_name","sourceName","来源说明","来源说明",false,false,true);
+		
+		/**
+		 * 风险等级
+		*/
+		public static final DBField SEC_LEVEL = new DBField(DBDataType.STRING , "sec_level","secLevel","风险等级","风险等级",false,false,true);
+		
+		/**
+		 * 影响范围
+		*/
+		public static final DBField DATA_SCORE = new DBField(DBDataType.STRING , "data_score","dataScore","影响范围","影响范围",false,false,true);
+		
+		/**
+		 * 处理方式
+		*/
+		public static final DBField PROCESS_CT = new DBField(DBDataType.STRING , "process_ct","processCt","处理方式","处理方式",false,false,true);
+		
+		/**
+		 * 发现时间
+		*/
+		public static final DBField BUSINESS_DATA = new DBField(DBDataType.DATE , "business_data","businessData","发现时间","发现时间",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OPS_SECURITY_INFO_LIB() {
+			this.init($NAME,"安全漏洞信息库" , ID , NAME , TYPE , SOURCE , SOURCE_NAME , SEC_LEVEL , DATA_SCORE , PROCESS_CT , BUSINESS_DATA , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final OPS_SECURITY_INFO_LIB $TABLE=new OPS_SECURITY_INFO_LIB();
 	}
 	
 	/**

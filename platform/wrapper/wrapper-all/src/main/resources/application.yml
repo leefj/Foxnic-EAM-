@@ -272,6 +272,10 @@ foxnic:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
         end-points: http://127.0.0.1:8099,1 | http://127.0.0.1:8099,1
+      service-common:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,1
       service-hrm:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...

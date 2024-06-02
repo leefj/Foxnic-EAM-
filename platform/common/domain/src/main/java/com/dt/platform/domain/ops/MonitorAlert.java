@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 监控告警
  * <p>监控告警 , 数据表 ops_monitor_alert 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 09:23:02
- * @sign E4E5F72A11835EED1424178582CF5C76
+ * @since 2024-06-01 23:51:34
+ * @sign 32981CC15AC8682E93D89D6C29F46665
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -64,6 +64,12 @@ public class MonitorAlert extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="告警等级" , notes = "告警等级" , example = "high")
 	private String warnLevel;
+	
+	/**
+	 * 告警等级：告警等级
+	*/
+	@ApiModelProperty(required = false,value="告警等级" , notes = "告警等级")
+	private String warnLevelName;
 	
 	/**
 	 * 节点：节点
@@ -273,6 +279,25 @@ public class MonitorAlert extends Entity {
 	*/
 	public MonitorAlert setWarnLevel(String warnLevel) {
 		this.warnLevel=warnLevel;
+		return this;
+	}
+	
+	/**
+	 * 获得 告警等级<br>
+	 * 告警等级
+	 * @return 告警等级
+	*/
+	public String getWarnLevelName() {
+		return warnLevelName;
+	}
+	
+	/**
+	 * 设置 告警等级
+	 * @param warnLevelName 告警等级
+	 * @return 当前对象
+	*/
+	public MonitorAlert setWarnLevelName(String warnLevelName) {
+		this.warnLevelName=warnLevelName;
 		return this;
 	}
 	
@@ -800,6 +825,7 @@ public class MonitorAlert extends Entity {
 		inst.setNodeShowName(this.getNodeShowName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setWarnLevelName(this.getWarnLevelName());
 		inst.setNodeId(this.getNodeId());
 		inst.setAlertValue(this.getAlertValue());
 		inst.setStatus(this.getStatus());
@@ -886,6 +912,7 @@ public class MonitorAlert extends Entity {
 			this.setNodeShowName(DataParser.parse(String.class, map.get(MonitorAlertMeta.NODE_SHOW_NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(MonitorAlertMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(MonitorAlertMeta.ID)));
+			this.setWarnLevelName(DataParser.parse(String.class, map.get(MonitorAlertMeta.WARN_LEVEL_NAME)));
 			this.setNodeId(DataParser.parse(String.class, map.get(MonitorAlertMeta.NODE_ID)));
 			this.setAlertValue(DataParser.parse(String.class, map.get(MonitorAlertMeta.ALERT_VALUE)));
 			this.setStatus(DataParser.parse(String.class, map.get(MonitorAlertMeta.STATUS)));
@@ -915,6 +942,7 @@ public class MonitorAlert extends Entity {
 				this.setNodeShowName( (String)map.get(MonitorAlertMeta.NODE_SHOW_NAME));
 				this.setDeleteBy( (String)map.get(MonitorAlertMeta.DELETE_BY));
 				this.setId( (String)map.get(MonitorAlertMeta.ID));
+				this.setWarnLevelName( (String)map.get(MonitorAlertMeta.WARN_LEVEL_NAME));
 				this.setNodeId( (String)map.get(MonitorAlertMeta.NODE_ID));
 				this.setAlertValue( (String)map.get(MonitorAlertMeta.ALERT_VALUE));
 				this.setStatus( (String)map.get(MonitorAlertMeta.STATUS));
@@ -957,6 +985,7 @@ public class MonitorAlert extends Entity {
 			this.setNodeShowName(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.NODE_SHOW_NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.ID)));
+			this.setWarnLevelName(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.WARN_LEVEL_NAME)));
 			this.setNodeId(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.NODE_ID)));
 			this.setAlertValue(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.ALERT_VALUE)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.STATUS)));
@@ -983,6 +1012,7 @@ public class MonitorAlert extends Entity {
 				this.setNodeShowName( (String)r.getValue(MonitorAlertMeta.NODE_SHOW_NAME));
 				this.setDeleteBy( (String)r.getValue(MonitorAlertMeta.DELETE_BY));
 				this.setId( (String)r.getValue(MonitorAlertMeta.ID));
+				this.setWarnLevelName( (String)r.getValue(MonitorAlertMeta.WARN_LEVEL_NAME));
 				this.setNodeId( (String)r.getValue(MonitorAlertMeta.NODE_ID));
 				this.setAlertValue( (String)r.getValue(MonitorAlertMeta.ALERT_VALUE));
 				this.setStatus( (String)r.getValue(MonitorAlertMeta.STATUS));

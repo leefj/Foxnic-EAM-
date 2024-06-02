@@ -28,7 +28,9 @@ import java.util.Map;
 
 public interface IMonitorNodeService extends  ISimpleIdService<MonitorNode,String> {
 
-	Result collect(String id,String tplCode);
+	Result batchCollect(List<String> ids,String tplCode);
+
+	Result collect(String id,String indicatorId,String tplCode);
 
 
 	Result copy(String id,String num);

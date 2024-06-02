@@ -12,13 +12,14 @@ import com.dt.platform.domain.ops.MonitorNodeGroup;
 import com.dt.platform.domain.ops.MonitorNodeType;
 import com.dt.platform.domain.ops.MonitorNodeSubtype;
 import com.dt.platform.domain.ops.MonitorTpl;
+import com.dt.platform.domain.ops.MonitorNodeTriggerLastData;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-17 14:28:38
+ * @since 2024-06-02 10:29:46
  * @sign 05DF7270C512DCD4908D3A955CF15039
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -496,6 +497,26 @@ public class MonitorNodeVOMeta extends MonitorNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeVO,com.dt.platform.domain.ops.MonitorNodeGroup> MONITOR_NODE_GROUP_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeVO.class ,MONITOR_NODE_GROUP, com.dt.platform.domain.ops.MonitorNodeGroup.class, "节点分组", "节点分组", com.dt.platform.domain.ops.MonitorNodeGroup.class, null);
 	
 	/**
+	 * 节点分组 , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorNodeGroup
+	*/
+	public static final String NODE_GROUP_LIST="nodeGroupList";
+	
+	/**
+	 * 节点分组 , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorNodeGroup
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeVO,com.dt.platform.domain.ops.MonitorNodeGroup> NODE_GROUP_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeVO.class ,NODE_GROUP_LIST, java.util.List.class, "节点分组", "节点分组", com.dt.platform.domain.ops.MonitorNodeGroup.class, null);
+	
+	/**
+	 * 节点分组 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String NODE_GROUP_IDS="nodeGroupIds";
+	
+	/**
+	 * 节点分组 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeVO,java.lang.String> NODE_GROUP_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeVO.class ,NODE_GROUP_IDS, java.util.List.class, "节点分组", "节点分组", java.lang.String.class, null);
+	
+	/**
 	 * 节点类型 , 类型: com.dt.platform.domain.ops.MonitorNodeType
 	*/
 	public static final String MONITOR_NODE_TYPE="monitorNodeType";
@@ -556,9 +577,19 @@ public class MonitorNodeVOMeta extends MonitorNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeVO,java.lang.String> UID_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeVO.class ,UID_LIST, java.util.List.class, "uidList", "uidList", java.lang.String.class, null);
 	
 	/**
+	 * triggerDataList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorNodeTriggerLastData
+	*/
+	public static final String TRIGGER_DATA_LIST="triggerDataList";
+	
+	/**
+	 * triggerDataList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorNodeTriggerLastData
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeVO,com.dt.platform.domain.ops.MonitorNodeTriggerLastData> TRIGGER_DATA_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeVO.class ,TRIGGER_DATA_LIST, java.util.List.class, "triggerDataList", "triggerDataList", com.dt.platform.domain.ops.MonitorNodeTriggerLastData.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NODE_IP , NODE_NAME_SHOW , PID , TYPE , SUB_TYPE , GROUP_ID , NODE_NAME , NODE_TYPE , NODE_ENABLED , STATUS , SSH_VOUCHER_ID , SSH_PORT , AGENT_PORT , ZABBIX_AGENT_PORT , SNMP_PORT , SNMP_VERSION , SNMP_COMMUNITY , JMX_PORT , IMPI_PORT , JDBC_URL , VAR , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SSH_VOUCHER , MONITOR_NODE_DB , MONITOR_NODE_VALUE_LIST , MONITOR_NODE_GROUP , MONITOR_NODE_TYPE , MONITOR_NODE_SUB_TYPE , MONITOR_TPL_LIST , MONITOR_TPL_IDS , CAL_INDICATOR_TPL_CODE , UID_LIST };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NODE_IP , NODE_NAME_SHOW , PID , TYPE , SUB_TYPE , GROUP_ID , NODE_NAME , NODE_TYPE , NODE_ENABLED , STATUS , SSH_VOUCHER_ID , SSH_PORT , AGENT_PORT , ZABBIX_AGENT_PORT , SNMP_PORT , SNMP_VERSION , SNMP_COMMUNITY , JMX_PORT , IMPI_PORT , JDBC_URL , VAR , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SSH_VOUCHER , MONITOR_NODE_DB , MONITOR_NODE_VALUE_LIST , MONITOR_NODE_GROUP , NODE_GROUP_LIST , NODE_GROUP_IDS , MONITOR_NODE_TYPE , MONITOR_NODE_SUB_TYPE , MONITOR_TPL_LIST , MONITOR_TPL_IDS , CAL_INDICATOR_TPL_CODE , UID_LIST , TRIGGER_DATA_LIST };
 	
 	/**
 	 * 代理类
@@ -1086,6 +1117,28 @@ public class MonitorNodeVOMeta extends MonitorNodeMeta {
 		}
 		
 		/**
+		 * 设置 节点分组
+		 * @param nodeGroupList 节点分组
+		 * @return 当前对象
+		*/
+		public MonitorNode setNodeGroupList(List<MonitorNodeGroup> nodeGroupList) {
+			super.change(NODE_GROUP_LIST,super.getNodeGroupList(),nodeGroupList);
+			super.setNodeGroupList(nodeGroupList);
+			return this;
+		}
+		
+		/**
+		 * 设置 节点分组
+		 * @param nodeGroupIds 节点分组
+		 * @return 当前对象
+		*/
+		public MonitorNode setNodeGroupIds(List<String> nodeGroupIds) {
+			super.change(NODE_GROUP_IDS,super.getNodeGroupIds(),nodeGroupIds);
+			super.setNodeGroupIds(nodeGroupIds);
+			return this;
+		}
+		
+		/**
 		 * 设置 节点类型
 		 * @param monitorNodeType 节点类型
 		 * @return 当前对象
@@ -1150,6 +1203,17 @@ public class MonitorNodeVOMeta extends MonitorNodeMeta {
 			super.setUidList(uidList);
 			return this;
 		}
+		
+		/**
+		 * 设置 triggerDataList
+		 * @param triggerDataList triggerDataList
+		 * @return 当前对象
+		*/
+		public MonitorNode setTriggerDataList(List<MonitorNodeTriggerLastData> triggerDataList) {
+			super.change(TRIGGER_DATA_LIST,super.getTriggerDataList(),triggerDataList);
+			super.setTriggerDataList(triggerDataList);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1198,28 +1262,31 @@ public class MonitorNodeVOMeta extends MonitorNodeMeta {
 			inst.setAgentPort(this.getAgentPort());
 			inst.setStatus(this.getStatus());
 			if(all) {
-				inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
 				inst.setSearchField(this.getSearchField());
-				inst.setRequestAction(this.getRequestAction());
 				inst.setUidList(this.getUidList());
 				inst.setFuzzyField(this.getFuzzyField());
-				inst.setMonitorNodeType(this.getMonitorNodeType());
 				inst.setPageSize(this.getPageSize());
-				inst.setMonitorNodeGroup(this.getMonitorNodeGroup());
-				inst.setMonitorTplList(this.getMonitorTplList());
 				inst.setSshVoucher(this.getSshVoucher());
+				inst.setTriggerDataList(this.getTriggerDataList());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setMonitorNodeDb(this.getMonitorNodeDb());
+				inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setMonitorNodeType(this.getMonitorNodeType());
+				inst.setMonitorNodeGroup(this.getMonitorNodeGroup());
+				inst.setNodeGroupIds(this.getNodeGroupIds());
+				inst.setMonitorTplList(this.getMonitorTplList());
 				inst.setMonitorTplIds(this.getMonitorTplIds());
 				inst.setMonitorNodeSubType(this.getMonitorNodeSubType());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setDirtyFields(this.getDirtyFields());
-				inst.setSortField(this.getSortField());
+				inst.setNodeGroupList(this.getNodeGroupList());
 				inst.setCalIndicatorTplCode(this.getCalIndicatorTplCode());
-				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
-				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSearchValue(this.getSearchValue());
-				inst.setMonitorNodeDb(this.getMonitorNodeDb());
 			}
 			inst.clearModifies();
 			return inst;

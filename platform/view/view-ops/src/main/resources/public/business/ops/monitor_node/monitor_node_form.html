@@ -2,7 +2,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-17 14:28:40
+ * @since 2024-06-02 10:29:51
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-7677-content">
+        <div class="layui-row form-row" id="random-3142-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -59,12 +59,25 @@
                         <input lay-filter="nodeIp" id="nodeIp" name="nodeIp" th:placeholder="${ lang.translate('请输入'+'IP') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
-            
-                <!-- select_box : 节点分组 ,  groupId  -->
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- select_box : 节点分组 ,  nodeGroupIds  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('节点分组')}">节点分组</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <div id="groupId" input-type="select" th:data="${'/service-ops/ops-monitor-node-group/query-paged-list'}" extraParam="{}"></div>
+                        <div id="nodeGroupIds" input-type="select" th:data="${'/service-ops/ops-monitor-node-group/query-paged-list'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
+                <!-- select_box : 监控模版 ,  monitorTplIds  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('监控模版')}">监控模版</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="monitorTplIds" input-type="select" th:data="${'/service-ops/ops-monitor-tpl/query-list'}" extraParam="{}"></div>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -73,14 +86,6 @@
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs4 form-column" >
 
-                <!-- select_box : 监控模版 ,  monitorTplIds  -->
-                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('监控模版')}">监控模版</div><div class="layui-required">*</div></div>
-                    <div class="layui-input-block ">
-                        <div id="monitorTplIds" input-type="select" th:data="${'/service-ops/ops-monitor-tpl/query-list'}" extraParam="{}"></div>
-                    </div>
-                </div>
-            
                 <!-- radio_box : 启用状态 ,  nodeEnabled  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('启用状态')}">启用状态</div><div class="layui-required">*</div></div>
@@ -98,36 +103,15 @@
                 </div>
             <!--结束：栏次内字段循环-->
             </div>
-             <!--开始：column 循环-->
-            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs4 form-column" >
-
-                <!-- select_box : 节点分类 ,  type  -->
-                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('节点分类')}">节点分类</div><div class="layui-required">*</div></div>
-                    <div class="layui-input-block ">
-                        <div id="type" input-type="select" th:data="${'/service-ops/ops-service-group/query-paged-list'}" extraParam="{}"></div>
-                    </div>
-                </div>
-            
-                <!-- text_input : 子类型 ,  subType -->
-                <div class="layui-form-item" style="display: none"inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('子类型')}">子类型</div></div>
-                    <div class="layui-input-block ">
-                        <input lay-filter="subType" id="subType" name="subType" th:placeholder="${ lang.translate('请输入'+'子类型') }" type="text" class="layui-input"  />
-                    </div>
-                </div>
-            <!--结束：栏次内字段循环-->
-            </div>
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9953-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-8413-fieldset">
             <legend>数据采集</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-9953-content">
+        <div class="layui-row form-row" id="random-8413-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -221,7 +205,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-7098-content">
+        <div class="layui-row form-row" id="random-3631-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -269,7 +253,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_NODEENABLED_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.MonitorEnableEnum')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.MonitorStatusEnum')}]];
-    var VALIDATE_CONFIG={"monitorTplIds":{"labelInForm":"监控模版","inputType":"select_box","required":true},"nodeNameShow":{"labelInForm":"可见主机名","inputType":"text_input","required":true},"groupId":{"labelInForm":"节点分组","inputType":"select_box","required":true},"nodeEnabled":{"labelInForm":"启用状态","inputType":"radio_box","required":true},"nodeIp":{"labelInForm":"IP","inputType":"text_input","required":true},"type":{"labelInForm":"节点分类","inputType":"select_box","required":true},"status":{"labelInForm":"监控状态","inputType":"radio_box","required":true}};
+    var VALIDATE_CONFIG={"monitorTplIds":{"labelInForm":"监控模版","inputType":"select_box","required":true},"nodeNameShow":{"labelInForm":"可见主机名","inputType":"text_input","required":true},"nodeEnabled":{"labelInForm":"启用状态","inputType":"radio_box","required":true},"nodeIp":{"labelInForm":"IP","inputType":"text_input","required":true},"nodeGroupIds":{"labelInForm":"节点分组","inputType":"select_box","required":true},"status":{"labelInForm":"监控状态","inputType":"radio_box","required":true}};
     var AUTH_PREFIX="ops_monitor_node";
 
 

@@ -3,6 +3,9 @@ package com.dt.platform.common.service.impl;
 import javax.annotation.Resource;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.common.service.IPageInfoHisService;
+import com.dt.platform.domain.common.PageInfoHis;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.commons.collection.MapUtil;
@@ -47,6 +50,10 @@ import java.util.Map;
 
 public class PageInfoServiceImpl extends SuperService<PageInfo> implements IPageInfoService {
 
+	@Autowired
+	private IPageInfoHisService pageInfoHisService;
+
+
 	/**
 	 * 注入DAO对象
 	 * */
@@ -75,6 +82,12 @@ public class PageInfoServiceImpl extends SuperService<PageInfo> implements IPage
 	@Override
 	public Result insert(PageInfo pageInfo,boolean throwsException) {
 		Result r=super.insert(pageInfo,throwsException);
+		if(r.isSuccess()) {
+			PageInfoHis his=new PageInfoHis();
+			his.setPageId(pageInfo.getId());
+			his.setDefJson(pageInfo.getDefJson());
+			pageInfoHisService.insert(his,false);
+		}
 		return r;
 	}
 
@@ -185,6 +198,12 @@ public class PageInfoServiceImpl extends SuperService<PageInfo> implements IPage
 	@Override
 	public Result update(PageInfo pageInfo , SaveMode mode,boolean throwsException) {
 		Result r=super.update(pageInfo , mode , throwsException);
+		if(r.isSuccess()) {
+			PageInfoHis his=new PageInfoHis();
+			his.setPageId(pageInfo.getId());
+			his.setDefJson(pageInfo.getDefJson());
+			pageInfoHisService.insert(his,false);
+		}
 		return r;
 	}
 

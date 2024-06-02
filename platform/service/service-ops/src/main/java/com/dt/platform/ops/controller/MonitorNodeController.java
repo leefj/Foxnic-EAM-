@@ -2,8 +2,13 @@ package com.dt.platform.ops.controller;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import com.alibaba.csp.sentinel.util.StringUtil;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.sql.expr.ConditionExpr;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -123,8 +128,8 @@ public class MonitorNodeController extends SuperController {
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorNodeServiceProxy.COLLECT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeServiceProxy.COLLECT)
-    public Result collect(String id, String tplCode) {
-        return monitorNodeService.collect(id, tplCode);
+    public Result collect(String id,String indicatorId, String tplCode) {
+        return monitorNodeService.collect(id, indicatorId,tplCode);
     }
 
     /**
@@ -297,9 +302,20 @@ public class MonitorNodeController extends SuperController {
         Result<MonitorNode> result = new Result<>();
         MonitorNode monitorNode = monitorNodeService.getById(id);
         // join 关联的对象
-        monitorNodeService.dao().fill(monitorNode).with(MonitorNodeMeta.MONITOR_TPL_LIST).with(MonitorNodeMeta.SSH_VOUCHER).with(MonitorNodeMeta.MONITOR_NODE_GROUP).with(MonitorNodeMeta.MONITOR_NODE_TYPE).execute();
+        monitorNodeService.dao().fill(monitorNode).with(MonitorNodeMeta.NODE_GROUP_LIST).with(MonitorNodeMeta.MONITOR_TPL_LIST).with(MonitorNodeMeta.SSH_VOUCHER).with(MonitorNodeMeta.MONITOR_NODE_GROUP).with(MonitorNodeMeta.MONITOR_NODE_TYPE).execute();
         result.success(true).data(monitorNode);
         return result;
+    }
+    /**
+     * 获取节点
+     */
+    @ApiOperation(value = "获取节点")
+
+    @ApiOperationSupport(order = 6)
+    @SentinelResource(value = MonitorNodeServiceProxy.BATCH_COLLECT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(MonitorNodeServiceProxy.BATCH_COLLECT)
+    public Result batchCollect(List<String> ids,String code) {
+       return monitorNodeService.batchCollect(ids,code);
     }
 
     /**
@@ -394,10 +410,30 @@ public class MonitorNodeController extends SuperController {
     @SentinelResource(value = MonitorNodeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<MonitorNode>> queryPagedList(MonitorNodeVO sample) {
+
         Result<PagedList<MonitorNode>> result = new Result<>();
-        PagedList<MonitorNode> list = monitorNodeService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+        ConditionExpr expr=new ConditionExpr();
+        expr.and("1=1");
+        String searchValue=sample.getSearchValue();
+        if(StringUtil.isNotBlank(searchValue)){
+            JSONObject valueJson=JSONObject.parseObject(searchValue);
+            if(valueJson!=null){
+                JSONObject nodeGroupIdsJson=valueJson.getJSONObject("nodeGroupIds");
+                if(nodeGroupIdsJson!=null){
+                    JSONArray nodeGroupIdsValue=nodeGroupIdsJson.getJSONArray("value");
+                    String nodeGrouId="";
+                    if(nodeGroupIdsValue!=null&&nodeGroupIdsValue.size()>0){
+                        nodeGrouId=nodeGroupIdsValue.get(0).toString();
+                    }
+                    if(StringUtil.isNotBlank(nodeGrouId)){
+                        expr.and("id in (select distinct book_id from ops_monitor_alert_book_rule where deleted=0 and value=? and type='node_group')",nodeGrouId);
+                    }
+                }
+            }
+        }
+        PagedList<MonitorNode> list = monitorNodeService.queryPagedList(sample,expr, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        monitorNodeService.dao().fill(list).with(MonitorNodeMeta.MONITOR_TPL_LIST).with(MonitorNodeMeta.SSH_VOUCHER).with(MonitorNodeMeta.MONITOR_NODE_GROUP).with(MonitorNodeMeta.MONITOR_NODE_TYPE).execute();
+        monitorNodeService.dao().fill(list).with(MonitorNodeMeta.NODE_GROUP_LIST).with(MonitorNodeMeta.MONITOR_TPL_LIST).with(MonitorNodeMeta.SSH_VOUCHER).with(MonitorNodeMeta.MONITOR_NODE_GROUP).with(MonitorNodeMeta.MONITOR_NODE_TYPE).execute();
         result.success(true).data(list);
         return result;
     }

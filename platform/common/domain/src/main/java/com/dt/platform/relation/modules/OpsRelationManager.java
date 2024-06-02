@@ -61,8 +61,90 @@ public class OpsRelationManager extends RelationManager {
         this.setupDBApplyExecute();
         this.setupDBChangeApply();
         this.setupDBExtApply();
+
+        this.setupLibApply();
+        this.setupMonitorAlertBook();
+        this.setupMonitorNode();
+
+        this.setupMonitorAlertLog();
     }
 
+    public void setupMonitorAlertLog() {
+        this.property(MonitorAlertLogMeta.SEND_USER_PROP)
+                .using(OpsTables.OPS_MONITOR_ALERT_LOG.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+    }
+    public void setupMonitorNode() {
+
+        this.property(MonitorNodeMeta.NODE_GROUP_LIST_PROP)
+                .using(OpsTables.OPS_MONITOR_NODE.ID).join(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.BOOK_ID)
+                .condition("type='node_group'")
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.VALUE).join(OpsTables.OPS_MONITOR_NODE_GROUP.ID);
+
+    }
+
+    public void setupMonitorAlertBook() {
+
+        this.property(MonitorAlertBookMeta.ALERT_METHOD_LIST_PROP)
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK.ID).join(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.BOOK_ID)
+                .condition("type='alert_method'")
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.VALUE).join(OpsTables.OPS_MONITOR_ALERT_METHOD.ID);
+
+
+        this.property(MonitorAlertBookMeta.NODE_GROUP_LIST_PROP)
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK.ID).join(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.BOOK_ID)
+                .condition("type='alert_node_group'")
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.VALUE).join(OpsTables.OPS_MONITOR_NODE_GROUP.ID);
+
+        this.property(MonitorAlertBookMeta.LEVEL_LIST_PROP)
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK.ID).join(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.BOOK_ID)
+                .condition("type='alert_level'")
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.VALUE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_alert_level'");
+
+
+        this.property(MonitorAlertBookMeta.NODE_LIST_PROP)
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK.ID).join(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.BOOK_ID)
+                .condition("type='alert_node'")
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.VALUE).join(OpsTables.OPS_MONITOR_NODE.ID);
+
+
+        this.property(MonitorAlertBookMeta.USER_GROUP_LIST_PROP)
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK.ID).join(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.BOOK_ID)
+                .condition("type='alert_user_group'")
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.VALUE).join(FoxnicWeb.SYS_BUSI_ROLE.ID);
+
+        this.property(MonitorAlertBookMeta.USER_LIST_PROP)
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK.ID).join(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.BOOK_ID)
+                .condition("type='alert_user'")
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.VALUE).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(MonitorAlertBookMeta.USER_GROUP_USER_LIST_PROP)
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK.ID).join(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.BOOK_ID)
+                .condition("type='alert_user_group'")
+                .using(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.VALUE).join(FoxnicWeb.SYS_BUSI_ROLE.ID)
+                .using(FoxnicWeb.SYS_BUSI_ROLE.ID).join(FoxnicWeb.SYS_BUSI_ROLE_MEMBER.ROLE_ID)
+                 .using(FoxnicWeb.SYS_BUSI_ROLE_MEMBER.MEMBER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
+    }
+    public void setupLibApply() {
+        this.property(SecurityInfoLibMeta.TYPE_DICT_PROP)
+                .using(OpsTables.OPS_SECURITY_INFO_LIB.TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_lib_type'");
+
+        this.property(SecurityInfoLibMeta.SOURCE_DICT_PROP)
+                .using(OpsTables.OPS_SECURITY_INFO_LIB.SOURCE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_lib_source'");
+
+
+        this.property(SecurityInfoLibMeta.LEVEL_DICT_PROP)
+                .using(OpsTables.OPS_SECURITY_INFO_LIB.SEC_LEVEL).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_lib_level'");
+
+
+
+    }
 
     public void setupDBExtApply() {
         this.property(DbExtractApplyMeta.APPLY_USER_PROP)

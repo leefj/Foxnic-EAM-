@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-17 14:28:40
+ * @since 2024-06-02 10:29:51
  */
 
 
@@ -86,12 +86,11 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'nodeIp', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('IP') , templet: function (d) { return templet('nodeIp',d.nodeIp,d);}  }
 					,{ field: 'nodeNameShow', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('可见主机名') , templet: function (d) { return templet('nodeNameShow',d.nodeNameShow,d);}  }
-					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点分类'), templet: function (d) { return templet('type' ,fox.joinLabel(d.monitorNodeType,"name",',','','type'),d);}}
-					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点分组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.monitorNodeGroup,"name",',','','groupId'),d);}}
 					,{ field: 'nodeEnabled', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否启用'), templet:function (d){ return templet('nodeEnabled',fox.getEnumText(RADIO_NODEENABLED_DATA,d.nodeEnabled,'','nodeEnabled'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('监控状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'jdbcUrl', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('Jdbc地址') , templet: function (d) { return templet('jdbcUrl',d.jdbcUrl,d);}  }
 					,{ field: 'monitorTplIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('监控模版'), templet: function (d) { return templet('monitorTplIds' ,fox.joinLabel(d.monitorTplList,"name",',','','monitorTplIds'),d);}}
+					,{ field: 'nodeGroupIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('节点分组'), templet: function (d) { return templet('nodeGroupIds' ,fox.joinLabel(d.nodeGroupList,"name",',','','nodeGroupIds'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -164,11 +163,10 @@ function ListPage() {
 		var value = {};
 		value.nodeIp={ inputType:"button",value: $("#nodeIp").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.nodeNameShow={ inputType:"button",value: $("#nodeNameShow").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.type={ inputType:"select_box", value: getSelectedValue("#type","value") ,fillBy:["monitorNodeType"]  , label:getSelectedValue("#type","nameStr") };
-		value.groupId={ inputType:"select_box", value: getSelectedValue("#groupId","value") ,fillBy:["monitorNodeGroup"]  , label:getSelectedValue("#groupId","nameStr") };
 		value.nodeEnabled={ inputType:"radio_box", value: getSelectedValue("#nodeEnabled","value"), label:getSelectedValue("#nodeEnabled","nameStr") };
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.nodeGroupIds={ inputType:"select_box", value: getSelectedValue("#nodeGroupIds","value") ,fillBy:["nodeGroupList"]  , label:getSelectedValue("#nodeGroupIds","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -215,68 +213,6 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
-		//渲染 type 下拉字段
-		fox.renderSelectBox({
-			el: "type",
-			radio: true,
-			size: "small",
-			filterable: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			paging: true,
-			pageRemote: true,
-			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("type",{data:data[i],name:data[i].name,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 groupId 下拉字段
-		fox.renderSelectBox({
-			el: "groupId",
-			radio: true,
-			size: "small",
-			filterable: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("groupId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			paging: true,
-			pageRemote: true,
-			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("groupId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].id});
-					}
-				}
-				return opts;
-			}
-		});
 		//渲染 nodeEnabled 搜索框
 		fox.renderSelectBox({
 			el: "nodeEnabled",
@@ -322,6 +258,37 @@ function ListPage() {
 						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 nodeGroupIds 下拉字段
+		fox.renderSelectBox({
+			el: "nodeGroupIds",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("nodeGroupIds",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("nodeGroupIds",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
 					}
 				}
 				return opts;
@@ -379,6 +346,9 @@ function ListPage() {
 					break;
 				case 'batch-del':
 					batchDelete(selected);
+					break;
+				case 'tool-collect-batch-func':
+					window.pageExt.list.collectBatchFunc && window.pageExt.list.collectBatchFunc(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();
@@ -536,7 +506,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["85%",height+"px"],
 			type: 2,
 			id:"ops-monitor-node-form-data-win",
 			content: '/business/ops/monitor_node/monitor_node_form.html' + (queryString?("?"+queryString):""),

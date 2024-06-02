@@ -26,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 节点
  * <p>节点 , 数据表 ops_monitor_node 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-17 14:28:38
- * @sign 911616E72A3DB035CB99FE22EBE210DA
+ * @since 2024-06-02 10:29:46
+ * @sign 4BA1E2ED7BC3733286A708AAD376271B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -43,31 +43,31 @@ public class MonitorNode extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "848718802559434752")
 	private String id;
 	
 	/**
 	 * IP：IP
 	*/
-	@ApiModelProperty(required = false,value="IP" , notes = "IP")
+	@ApiModelProperty(required = false,value="IP" , notes = "IP" , example = "121.43.103.102")
 	private String nodeIp;
 	
 	/**
 	 * 可见主机名：可见主机名
 	*/
-	@ApiModelProperty(required = false,value="可见主机名" , notes = "可见主机名")
+	@ApiModelProperty(required = false,value="可见主机名" , notes = "可见主机名" , example = "当前系统_Linux_121.43.103.102")
 	private String nodeNameShow;
 	
 	/**
 	 * 父节点：父节点
 	*/
-	@ApiModelProperty(required = false,value="父节点" , notes = "父节点")
+	@ApiModelProperty(required = false,value="父节点" , notes = "父节点" , example = "0")
 	private String pid;
 	
 	/**
 	 * 类型：类型
 	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "类型")
+	@ApiModelProperty(required = false,value="类型" , notes = "类型" , example = "os")
 	private String type;
 	
 	/**
@@ -79,7 +79,7 @@ public class MonitorNode extends Entity {
 	/**
 	 * 节点分组：节点分组
 	*/
-	@ApiModelProperty(required = false,value="节点分组" , notes = "节点分组")
+	@ApiModelProperty(required = false,value="节点分组" , notes = "节点分组" , example = "543027008297238528")
 	private String groupId;
 	
 	/**
@@ -97,43 +97,43 @@ public class MonitorNode extends Entity {
 	/**
 	 * 是否启用：是否启用
 	*/
-	@ApiModelProperty(required = false,value="是否启用" , notes = "是否启用")
+	@ApiModelProperty(required = false,value="是否启用" , notes = "是否启用" , example = "enable")
 	private String nodeEnabled;
 	
 	/**
 	 * 监控状态：监控状态
 	*/
-	@ApiModelProperty(required = false,value="监控状态" , notes = "监控状态")
+	@ApiModelProperty(required = false,value="监控状态" , notes = "监控状态" , example = "online")
 	private String status;
 	
 	/**
 	 * 凭证：SSH)
 	*/
-	@ApiModelProperty(required = false,value="凭证" , notes = "SSH)")
+	@ApiModelProperty(required = false,value="凭证" , notes = "SSH)" , example = "1")
 	private String sshVoucherId;
 	
 	/**
 	 * SSH端口：SSH端口
 	*/
-	@ApiModelProperty(required = false,value="SSH端口" , notes = "SSH端口")
+	@ApiModelProperty(required = false,value="SSH端口" , notes = "SSH端口" , example = "22")
 	private Integer sshPort;
 	
 	/**
 	 * Agent端口：Agent端口
 	*/
-	@ApiModelProperty(required = false,value="Agent端口" , notes = "Agent端口")
+	@ApiModelProperty(required = false,value="Agent端口" , notes = "Agent端口" , example = "10052")
 	private Integer agentPort;
 	
 	/**
 	 * Zabbix代理端口：Zabbix代理端口
 	*/
-	@ApiModelProperty(required = false,value="Zabbix代理端口" , notes = "Zabbix代理端口")
+	@ApiModelProperty(required = false,value="Zabbix代理端口" , notes = "Zabbix代理端口" , example = "10050")
 	private Integer zabbixAgentPort;
 	
 	/**
 	 * Snmp端口：Snmp端口
 	*/
-	@ApiModelProperty(required = false,value="Snmp端口" , notes = "Snmp端口")
+	@ApiModelProperty(required = false,value="Snmp端口" , notes = "Snmp端口" , example = "12345")
 	private Integer snmpPort;
 	
 	/**
@@ -151,13 +151,13 @@ public class MonitorNode extends Entity {
 	/**
 	 * Jmx端口：Jmx端口
 	*/
-	@ApiModelProperty(required = false,value="Jmx端口" , notes = "Jmx端口")
+	@ApiModelProperty(required = false,value="Jmx端口" , notes = "Jmx端口" , example = "12345")
 	private Integer jmxPort;
 	
 	/**
 	 * Impi端口：Impi端口
 	*/
-	@ApiModelProperty(required = false,value="Impi端口" , notes = "Impi端口")
+	@ApiModelProperty(required = false,value="Impi端口" , notes = "Impi端口" , example = "623")
 	private Integer impiPort;
 	
 	/**
@@ -181,31 +181,31 @@ public class MonitorNode extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-05-31 12:25:31")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-06-01 11:55:41")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -226,7 +226,7 @@ public class MonitorNode extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "8")
 	private Integer version;
 	
 	/**
@@ -252,6 +252,18 @@ public class MonitorNode extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="节点分组" , notes = "节点分组")
 	private MonitorNodeGroup monitorNodeGroup;
+	
+	/**
+	 * 节点分组：节点分组
+	*/
+	@ApiModelProperty(required = false,value="节点分组" , notes = "节点分组")
+	private List<MonitorNodeGroup> nodeGroupList;
+	
+	/**
+	 * 节点分组：节点分组
+	*/
+	@ApiModelProperty(required = false,value="节点分组" , notes = "节点分组")
+	private List<String> nodeGroupIds;
 	
 	/**
 	 * 节点类型：节点类型
@@ -288,6 +300,12 @@ public class MonitorNode extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="uidList" , notes = "uidList")
 	private List<String> uidList;
+	
+	/**
+	 * triggerDataList：triggerDataList
+	*/
+	@ApiModelProperty(required = false,value="triggerDataList" , notes = "triggerDataList")
+	private List<MonitorNodeTriggerLastData> triggerDataList;
 	
 	/**
 	 * 获得 主键<br>
@@ -997,6 +1015,66 @@ public class MonitorNode extends Entity {
 	}
 	
 	/**
+	 * 获得 节点分组<br>
+	 * 节点分组
+	 * @return 节点分组
+	*/
+	public List<MonitorNodeGroup> getNodeGroupList() {
+		return nodeGroupList;
+	}
+	
+	/**
+	 * 设置 节点分组
+	 * @param nodeGroupList 节点分组
+	 * @return 当前对象
+	*/
+	public MonitorNode setNodeGroupList(List<MonitorNodeGroup> nodeGroupList) {
+		this.nodeGroupList=nodeGroupList;
+		return this;
+	}
+	
+	/**
+	 * 添加 节点分组
+	 * @param nodeGroup 节点分组
+	 * @return 当前对象
+	*/
+	public MonitorNode addNodeGroup(MonitorNodeGroup... nodeGroup) {
+		if(this.nodeGroupList==null) nodeGroupList=new ArrayList<>();
+		this.nodeGroupList.addAll(Arrays.asList(nodeGroup));
+		return this;
+	}
+	
+	/**
+	 * 获得 节点分组<br>
+	 * 节点分组
+	 * @return 节点分组
+	*/
+	public List<String> getNodeGroupIds() {
+		return nodeGroupIds;
+	}
+	
+	/**
+	 * 设置 节点分组
+	 * @param nodeGroupIds 节点分组
+	 * @return 当前对象
+	*/
+	public MonitorNode setNodeGroupIds(List<String> nodeGroupIds) {
+		this.nodeGroupIds=nodeGroupIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 节点分组
+	 * @param nodeGroupId 节点分组
+	 * @return 当前对象
+	*/
+	public MonitorNode addNodeGroupId(String... nodeGroupId) {
+		if(this.nodeGroupIds==null) nodeGroupIds=new ArrayList<>();
+		this.nodeGroupIds.addAll(Arrays.asList(nodeGroupId));
+		return this;
+	}
+	
+	/**
 	 * 获得 节点类型<br>
 	 * 节点类型
 	 * @return 节点类型
@@ -1142,6 +1220,36 @@ public class MonitorNode extends Entity {
 		this.uidList.addAll(Arrays.asList(uid));
 		return this;
 	}
+	
+	/**
+	 * 获得 triggerDataList<br>
+	 * triggerDataList
+	 * @return triggerDataList
+	*/
+	public List<MonitorNodeTriggerLastData> getTriggerDataList() {
+		return triggerDataList;
+	}
+	
+	/**
+	 * 设置 triggerDataList
+	 * @param triggerDataList triggerDataList
+	 * @return 当前对象
+	*/
+	public MonitorNode setTriggerDataList(List<MonitorNodeTriggerLastData> triggerDataList) {
+		this.triggerDataList=triggerDataList;
+		return this;
+	}
+	
+	/**
+	 * 添加 triggerDataList
+	 * @param triggerData triggerDataList
+	 * @return 当前对象
+	*/
+	public MonitorNode addTriggerData(MonitorNodeTriggerLastData... triggerData) {
+		if(this.triggerDataList==null) triggerDataList=new ArrayList<>();
+		this.triggerDataList.addAll(Arrays.asList(triggerData));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1219,16 +1327,19 @@ public class MonitorNode extends Entity {
 		inst.setAgentPort(this.getAgentPort());
 		inst.setStatus(this.getStatus());
 		if(all) {
-			inst.setSshVoucher(this.getSshVoucher());
-			inst.setMonitorTplIds(this.getMonitorTplIds());
 			inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
-			inst.setMonitorNodeSubType(this.getMonitorNodeSubType());
 			inst.setUidList(this.getUidList());
 			inst.setMonitorNodeType(this.getMonitorNodeType());
-			inst.setCalIndicatorTplCode(this.getCalIndicatorTplCode());
 			inst.setMonitorNodeGroup(this.getMonitorNodeGroup());
-			inst.setMonitorNodeDb(this.getMonitorNodeDb());
+			inst.setNodeGroupIds(this.getNodeGroupIds());
 			inst.setMonitorTplList(this.getMonitorTplList());
+			inst.setSshVoucher(this.getSshVoucher());
+			inst.setMonitorTplIds(this.getMonitorTplIds());
+			inst.setMonitorNodeSubType(this.getMonitorNodeSubType());
+			inst.setNodeGroupList(this.getNodeGroupList());
+			inst.setTriggerDataList(this.getTriggerDataList());
+			inst.setCalIndicatorTplCode(this.getCalIndicatorTplCode());
+			inst.setMonitorNodeDb(this.getMonitorNodeDb());
 		}
 		inst.clearModifies();
 		return inst;
@@ -1320,11 +1431,11 @@ public class MonitorNode extends Entity {
 			this.setAgentPort(DataParser.parse(Integer.class, map.get(MonitorNodeMeta.AGENT_PORT)));
 			this.setStatus(DataParser.parse(String.class, map.get(MonitorNodeMeta.STATUS)));
 			// others
+			this.setMonitorNodeType(DataParser.parse(MonitorNodeType.class, map.get(MonitorNodeMeta.MONITOR_NODE_TYPE)));
+			this.setMonitorNodeGroup(DataParser.parse(MonitorNodeGroup.class, map.get(MonitorNodeMeta.MONITOR_NODE_GROUP)));
 			this.setSshVoucher(DataParser.parse(MonitorVoucher.class, map.get(MonitorNodeMeta.SSH_VOUCHER)));
 			this.setMonitorNodeSubType(DataParser.parse(MonitorNodeSubtype.class, map.get(MonitorNodeMeta.MONITOR_NODE_SUB_TYPE)));
-			this.setMonitorNodeType(DataParser.parse(MonitorNodeType.class, map.get(MonitorNodeMeta.MONITOR_NODE_TYPE)));
 			this.setCalIndicatorTplCode(DataParser.parse(String.class, map.get(MonitorNodeMeta.CAL_INDICATOR_TPL_CODE)));
-			this.setMonitorNodeGroup(DataParser.parse(MonitorNodeGroup.class, map.get(MonitorNodeMeta.MONITOR_NODE_GROUP)));
 			this.setMonitorNodeDb(DataParser.parse(MonitorNodeDb.class, map.get(MonitorNodeMeta.MONITOR_NODE_DB)));
 			return true;
 		} else {
@@ -1361,11 +1472,11 @@ public class MonitorNode extends Entity {
 				this.setAgentPort( (Integer)map.get(MonitorNodeMeta.AGENT_PORT));
 				this.setStatus( (String)map.get(MonitorNodeMeta.STATUS));
 				// others
+				this.setMonitorNodeType( (MonitorNodeType)map.get(MonitorNodeMeta.MONITOR_NODE_TYPE));
+				this.setMonitorNodeGroup( (MonitorNodeGroup)map.get(MonitorNodeMeta.MONITOR_NODE_GROUP));
 				this.setSshVoucher( (MonitorVoucher)map.get(MonitorNodeMeta.SSH_VOUCHER));
 				this.setMonitorNodeSubType( (MonitorNodeSubtype)map.get(MonitorNodeMeta.MONITOR_NODE_SUB_TYPE));
-				this.setMonitorNodeType( (MonitorNodeType)map.get(MonitorNodeMeta.MONITOR_NODE_TYPE));
 				this.setCalIndicatorTplCode( (String)map.get(MonitorNodeMeta.CAL_INDICATOR_TPL_CODE));
-				this.setMonitorNodeGroup( (MonitorNodeGroup)map.get(MonitorNodeMeta.MONITOR_NODE_GROUP));
 				this.setMonitorNodeDb( (MonitorNodeDb)map.get(MonitorNodeMeta.MONITOR_NODE_DB));
 				return true;
 			} catch (Exception e) {

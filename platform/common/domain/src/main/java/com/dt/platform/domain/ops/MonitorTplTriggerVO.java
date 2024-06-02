@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 触发器VO类型
  * <p>触发器 , 数据表 ops_monitor_tpl_trigger 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 09:32:58
+ * @since 2024-06-02 13:15:51
  * @sign 1CE0B46D4AE363891DE76A401E183965
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

@@ -48,7 +48,7 @@ public class MonitorDataProcessZabbixServerServiceImpl implements IMonitorDataPr
     }
 
     @Override
-    public Result collectNodeData(MonitorNode node) {
+    public Result collectNodeData(MonitorNode node,String indicatorId,boolean isForce) {
         return ErrorDesc.success();
     }
     @Override

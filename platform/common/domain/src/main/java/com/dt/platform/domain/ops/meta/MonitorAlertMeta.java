@@ -13,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 09:23:02
- * @sign E4E5F72A11835EED1424178582CF5C76
+ * @since 2024-06-01 23:51:34
+ * @sign 32981CC15AC8682E93D89D6C29F46665
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -59,6 +59,16 @@ public class MonitorAlertMeta {
 	 * 告警等级 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorAlert,java.lang.String> WARN_LEVEL_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorAlert.class ,WARN_LEVEL, java.lang.String.class, "告警等级", "告警等级", java.lang.String.class, null);
+	
+	/**
+	 * 告警等级 , 类型: java.lang.String
+	*/
+	public static final String WARN_LEVEL_NAME="warnLevelName";
+	
+	/**
+	 * 告警等级 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorAlert,java.lang.String> WARN_LEVEL_NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorAlert.class ,WARN_LEVEL_NAME, java.lang.String.class, "告警等级", "告警等级", java.lang.String.class, null);
 	
 	/**
 	 * 节点 , 类型: java.lang.String
@@ -283,7 +293,7 @@ public class MonitorAlertMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NODE_ID , STATUS , WARN_LEVEL , NODE_SHOW_NAME , TRIGGER_ID , TRIGGER_NAME , TRIGGER_RULE_DESC , ALERT_VALUE , WARN_TIME , HANDLED_TIME , USER_ID , PROCESS_MESSAGE , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_TPL_TRIGGER , USER };
+	public static final String[] $PROPS={ ID , NODE_ID , STATUS , WARN_LEVEL , WARN_LEVEL_NAME , NODE_SHOW_NAME , TRIGGER_ID , TRIGGER_NAME , TRIGGER_RULE_DESC , ALERT_VALUE , WARN_TIME , HANDLED_TIME , USER_ID , PROCESS_MESSAGE , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_TPL_TRIGGER , USER };
 	
 	/**
 	 * 代理类
@@ -334,6 +344,17 @@ public class MonitorAlertMeta {
 		public MonitorAlert setWarnLevel(String warnLevel) {
 			super.change(WARN_LEVEL,super.getWarnLevel(),warnLevel);
 			super.setWarnLevel(warnLevel);
+			return this;
+		}
+		
+		/**
+		 * 设置 告警等级
+		 * @param warnLevelName 告警等级
+		 * @return 当前对象
+		*/
+		public MonitorAlert setWarnLevelName(String warnLevelName) {
+			super.change(WARN_LEVEL_NAME,super.getWarnLevelName(),warnLevelName);
+			super.setWarnLevelName(warnLevelName);
 			return this;
 		}
 		
@@ -614,6 +635,7 @@ public class MonitorAlertMeta {
 			inst.setNodeShowName(this.getNodeShowName());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setWarnLevelName(this.getWarnLevelName());
 			inst.setNodeId(this.getNodeId());
 			inst.setAlertValue(this.getAlertValue());
 			inst.setStatus(this.getStatus());

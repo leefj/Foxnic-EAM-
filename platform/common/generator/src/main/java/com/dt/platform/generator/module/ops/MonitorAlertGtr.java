@@ -68,6 +68,12 @@ public class MonitorAlertGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_ALERT.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_MONITOR_ALERT.ID).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_ALERT.CREATE_TIME).table().disable(true);
+
+        cfg.view().field(OpsTables.OPS_MONITOR_ALERT.PROCESS_MESSAGE).table().disable(true);
+
+        cfg.view().field(OpsTables.OPS_MONITOR_ALERT.HANDLED_TIME).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_ALERT.UPDATE_BY).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_ALERT.WARN_LEVEL_NAME).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_ALERT.USER_ID).table().disable(true);
 
 

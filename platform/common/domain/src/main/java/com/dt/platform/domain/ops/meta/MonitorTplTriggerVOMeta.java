@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 09:32:58
+ * @since 2024-06-02 13:15:51
  * @sign 1CE0B46D4AE363891DE76A401E183965
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -171,24 +171,24 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> WARN_LEVEL_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,WARN_LEVEL, java.lang.String.class, "告警等级", "告警等级", java.lang.String.class, null);
 	
 	/**
-	 * 规则 , 类型: java.lang.String
+	 * 告警规则 , 类型: java.lang.String
 	*/
 	public static final String RULE="rule";
 	
 	/**
-	 * 规则 , 类型: java.lang.String
+	 * 告警规则 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> RULE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,RULE, java.lang.String.class, "规则", "规则", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> RULE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,RULE, java.lang.String.class, "告警规则", "告警规则", java.lang.String.class, null);
 	
 	/**
-	 * 告警值 , 类型: java.lang.String
+	 * 告警内容 , 类型: java.lang.String
 	*/
 	public static final String CONTENT_VALUE="contentValue";
 	
 	/**
-	 * 告警值 , 类型: java.lang.String
+	 * 告警内容 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> CONTENT_VALUE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,CONTENT_VALUE, java.lang.String.class, "告警值", "告警值", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> CONTENT_VALUE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,CONTENT_VALUE, java.lang.String.class, "告警内容", "告警内容", java.lang.String.class, null);
 	
 	/**
 	 * 状态 , 类型: java.lang.String
@@ -499,8 +499,8 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		}
 		
 		/**
-		 * 设置 规则
-		 * @param rule 规则
+		 * 设置 告警规则
+		 * @param rule 告警规则
 		 * @return 当前对象
 		*/
 		public MonitorTplTrigger setRule(String rule) {
@@ -510,8 +510,8 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		}
 		
 		/**
-		 * 设置 告警值
-		 * @param contentValue 告警值
+		 * 设置 告警内容
+		 * @param contentValue 告警内容
 		 * @return 当前对象
 		*/
 		public MonitorTplTrigger setContentValue(String contentValue) {

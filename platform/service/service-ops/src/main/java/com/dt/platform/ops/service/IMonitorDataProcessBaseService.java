@@ -34,7 +34,7 @@ public interface IMonitorDataProcessBaseService {
 
     List<MonitorNode> queryExecuteNodeList(String monitorMethod) ;
 
-    List<MonitorTplIndicator> queryExecuteIndicatorList(String nodeId,String monitorMethod);
+    List<MonitorTplIndicator> queryExecuteIndicatorList(String nodeId,String monitorMethod,String indicatorId,boolean isForce);
 
 
 

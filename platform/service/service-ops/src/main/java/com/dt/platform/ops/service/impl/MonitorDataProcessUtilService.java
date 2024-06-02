@@ -5,6 +5,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.ops.MonitorNode;
+import com.dt.platform.domain.ops.MonitorNodeTriggerLastData;
 import com.github.foxnic.dao.cache.CacheProperties;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
@@ -39,25 +40,25 @@ public class MonitorDataProcessUtilService {
     public DAO dao() { return dao; }
 
 
-    public BigDecimal lastDouble(MonitorNode node,String code,int minute){
-        String value=last(node,code,minute,"0");
+
+    public BigDecimal lastDouble(MonitorNode node,String code,String store,int minute){
+        String value=last(node,code,store,minute,"5");
         return new BigDecimal(value);
     }
 
-    public BigDecimal lastDouble(MonitorNode node,String code,int minute,String defValue){
-        String value=last(node,code,minute,defValue);
+    public BigDecimal lastDouble(MonitorNode node,String code,String store,int minute,String defValue){
+        String value=last(node,code,store,minute,defValue);
         return new BigDecimal(value);
     }
 
-    public String lastString(MonitorNode node,String code,int minute,String defValue){
-        return last(node,code,minute,defValue);
+    public String lastString(MonitorNode node,String code,String store,int minute,String defValue){
+        return last(node,code,store,minute,defValue);
     }
 
-    public String lastString(MonitorNode node,String code,int minute){
-        return last(node,code,minute,null);
+    public String lastString(MonitorNode node,String code,String store,int minute){
+        return last(node,code,store,minute,null);
     }
-
-    public String last(MonitorNode node,String code,int minute,String defValue){
+    public String last(MonitorNode node,String code,String store,int minute,String defValue){
         String curTplCode=node.getCalIndicatorTplCode();
         String res=defValue;
         String timestr="";
@@ -67,19 +68,38 @@ public class MonitorDataProcessUtilService {
         String sql="select "
                 +" (select value_column from ops_monitor_tpl_indicator where monitor_tpl_code=? and code=?) col,"
                 +" t.* from ops_monitor_node_value_last t"
-                +" where result_status='sucess' #TIME# and monitor_tpl_code=? and indicator_code=? and node_id=? "
-                +" and record_time=(select max(t.record_time) from ops_monitor_node_value_last t where result_status='sucess' and monitor_tpl_code=? and indicator_code=? and node_id=?)";
-        Rcd rs=dao.queryRecord(sql.replace("#TIME#",timestr),curTplCode,code,curTplCode,code,node.getId(),curTplCode,code,node.getId());
-        if(rs!=null){
-            res=rs.getString(rs.getString("col"));
-            String id=rs.getString("id");
-            if(node.getUidList()==null){
-                node.setUidList(new ArrayList<>());
-            }
-            node.getUidList().add(id);
+                +" where result_status='sucess' #<TIME># and monitor_tpl_code=? and indicator_code=? and node_id=? "
+                +" and record_time=(select max(t.record_time) from ops_monitor_node_value_last t where result_status='sucess' "
+                +" and monitor_tpl_code=? and indicator_code=? and node_id=?)";
+        RcdSet rs=dao.query(sql.replace("#<TIME>#",timestr),curTplCode,code,curTplCode,code,node.getId(),curTplCode,code,node.getId());
+        if(node.getTriggerDataList()==null){
+            node.setTriggerDataList(new ArrayList<>());
         }
+        if(rs!=null){
+            for(int i=0;i<rs.size();i++){
+                Rcd rcd=rs.getRcd(i);
+                //如果配置了store，则按照store获取，否则自动获取col
+                //在多个col时，需要配置store
+                String col="";
+                if(store==null){
+                    col=rcd.getString("col");
+                }else{
+                    col=store;
+                }
+                res=rcd.getString(col);
+                String id=rcd.getString("id");
+                MonitorNodeTriggerLastData data=new MonitorNodeTriggerLastData();
+                data.setId(id);
+                data.setValue(res);
+                data.setSourceData(rcd.toJSONObject());
+                node.getTriggerDataList().add(data);
+            }
+        }
+
         return res;
     }
+
+
 
     public String getStringJsonObject(String objStr,String col){
         JSONObject obj= JSONObject.parseObject(objStr);

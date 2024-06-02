@@ -6,7 +6,7 @@ public interface IMonitorDataProcessService {
 
     Result collectData();
 
-    Result collectNodeData(MonitorNode node);
+    Result collectNodeData(MonitorNode node,String indicatorId,boolean isForce);
 
     Result clearNodeValueLastHistoryData();
 

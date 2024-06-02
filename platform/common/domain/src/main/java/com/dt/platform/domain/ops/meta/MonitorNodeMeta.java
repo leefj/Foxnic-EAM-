@@ -11,14 +11,15 @@ import com.dt.platform.domain.ops.MonitorNodeGroup;
 import com.dt.platform.domain.ops.MonitorNodeType;
 import com.dt.platform.domain.ops.MonitorNodeSubtype;
 import com.dt.platform.domain.ops.MonitorTpl;
+import com.dt.platform.domain.ops.MonitorNodeTriggerLastData;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-17 14:28:38
- * @sign 911616E72A3DB035CB99FE22EBE210DA
+ * @since 2024-06-02 10:29:46
+ * @sign 4BA1E2ED7BC3733286A708AAD376271B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -375,6 +376,26 @@ public class MonitorNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,com.dt.platform.domain.ops.MonitorNodeGroup> MONITOR_NODE_GROUP_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,MONITOR_NODE_GROUP, com.dt.platform.domain.ops.MonitorNodeGroup.class, "节点分组", "节点分组", com.dt.platform.domain.ops.MonitorNodeGroup.class, null);
 	
 	/**
+	 * 节点分组 , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorNodeGroup
+	*/
+	public static final String NODE_GROUP_LIST="nodeGroupList";
+	
+	/**
+	 * 节点分组 , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorNodeGroup
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,com.dt.platform.domain.ops.MonitorNodeGroup> NODE_GROUP_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,NODE_GROUP_LIST, java.util.List.class, "节点分组", "节点分组", com.dt.platform.domain.ops.MonitorNodeGroup.class, null);
+	
+	/**
+	 * 节点分组 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String NODE_GROUP_IDS="nodeGroupIds";
+	
+	/**
+	 * 节点分组 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> NODE_GROUP_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,NODE_GROUP_IDS, java.util.List.class, "节点分组", "节点分组", java.lang.String.class, null);
+	
+	/**
 	 * 节点类型 , 类型: com.dt.platform.domain.ops.MonitorNodeType
 	*/
 	public static final String MONITOR_NODE_TYPE="monitorNodeType";
@@ -435,9 +456,19 @@ public class MonitorNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> UID_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,UID_LIST, java.util.List.class, "uidList", "uidList", java.lang.String.class, null);
 	
 	/**
+	 * triggerDataList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorNodeTriggerLastData
+	*/
+	public static final String TRIGGER_DATA_LIST="triggerDataList";
+	
+	/**
+	 * triggerDataList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorNodeTriggerLastData
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,com.dt.platform.domain.ops.MonitorNodeTriggerLastData> TRIGGER_DATA_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,TRIGGER_DATA_LIST, java.util.List.class, "triggerDataList", "triggerDataList", com.dt.platform.domain.ops.MonitorNodeTriggerLastData.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NODE_IP , NODE_NAME_SHOW , PID , TYPE , SUB_TYPE , GROUP_ID , NODE_NAME , NODE_TYPE , NODE_ENABLED , STATUS , SSH_VOUCHER_ID , SSH_PORT , AGENT_PORT , ZABBIX_AGENT_PORT , SNMP_PORT , SNMP_VERSION , SNMP_COMMUNITY , JMX_PORT , IMPI_PORT , JDBC_URL , VAR , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SSH_VOUCHER , MONITOR_NODE_DB , MONITOR_NODE_VALUE_LIST , MONITOR_NODE_GROUP , MONITOR_NODE_TYPE , MONITOR_NODE_SUB_TYPE , MONITOR_TPL_LIST , MONITOR_TPL_IDS , CAL_INDICATOR_TPL_CODE , UID_LIST };
+	public static final String[] $PROPS={ ID , NODE_IP , NODE_NAME_SHOW , PID , TYPE , SUB_TYPE , GROUP_ID , NODE_NAME , NODE_TYPE , NODE_ENABLED , STATUS , SSH_VOUCHER_ID , SSH_PORT , AGENT_PORT , ZABBIX_AGENT_PORT , SNMP_PORT , SNMP_VERSION , SNMP_COMMUNITY , JMX_PORT , IMPI_PORT , JDBC_URL , VAR , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SSH_VOUCHER , MONITOR_NODE_DB , MONITOR_NODE_VALUE_LIST , MONITOR_NODE_GROUP , NODE_GROUP_LIST , NODE_GROUP_IDS , MONITOR_NODE_TYPE , MONITOR_NODE_SUB_TYPE , MONITOR_TPL_LIST , MONITOR_TPL_IDS , CAL_INDICATOR_TPL_CODE , UID_LIST , TRIGGER_DATA_LIST };
 	
 	/**
 	 * 代理类
@@ -833,6 +864,28 @@ public class MonitorNodeMeta {
 		}
 		
 		/**
+		 * 设置 节点分组
+		 * @param nodeGroupList 节点分组
+		 * @return 当前对象
+		*/
+		public MonitorNode setNodeGroupList(List<MonitorNodeGroup> nodeGroupList) {
+			super.change(NODE_GROUP_LIST,super.getNodeGroupList(),nodeGroupList);
+			super.setNodeGroupList(nodeGroupList);
+			return this;
+		}
+		
+		/**
+		 * 设置 节点分组
+		 * @param nodeGroupIds 节点分组
+		 * @return 当前对象
+		*/
+		public MonitorNode setNodeGroupIds(List<String> nodeGroupIds) {
+			super.change(NODE_GROUP_IDS,super.getNodeGroupIds(),nodeGroupIds);
+			super.setNodeGroupIds(nodeGroupIds);
+			return this;
+		}
+		
+		/**
 		 * 设置 节点类型
 		 * @param monitorNodeType 节点类型
 		 * @return 当前对象
@@ -897,6 +950,17 @@ public class MonitorNodeMeta {
 			super.setUidList(uidList);
 			return this;
 		}
+		
+		/**
+		 * 设置 triggerDataList
+		 * @param triggerDataList triggerDataList
+		 * @return 当前对象
+		*/
+		public MonitorNode setTriggerDataList(List<MonitorNodeTriggerLastData> triggerDataList) {
+			super.change(TRIGGER_DATA_LIST,super.getTriggerDataList(),triggerDataList);
+			super.setTriggerDataList(triggerDataList);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -945,16 +1009,19 @@ public class MonitorNodeMeta {
 			inst.setAgentPort(this.getAgentPort());
 			inst.setStatus(this.getStatus());
 			if(all) {
-				inst.setSshVoucher(this.getSshVoucher());
-				inst.setMonitorTplIds(this.getMonitorTplIds());
 				inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
-				inst.setMonitorNodeSubType(this.getMonitorNodeSubType());
 				inst.setUidList(this.getUidList());
 				inst.setMonitorNodeType(this.getMonitorNodeType());
-				inst.setCalIndicatorTplCode(this.getCalIndicatorTplCode());
 				inst.setMonitorNodeGroup(this.getMonitorNodeGroup());
-				inst.setMonitorNodeDb(this.getMonitorNodeDb());
+				inst.setNodeGroupIds(this.getNodeGroupIds());
 				inst.setMonitorTplList(this.getMonitorTplList());
+				inst.setSshVoucher(this.getSshVoucher());
+				inst.setMonitorTplIds(this.getMonitorTplIds());
+				inst.setMonitorNodeSubType(this.getMonitorNodeSubType());
+				inst.setNodeGroupList(this.getNodeGroupList());
+				inst.setTriggerDataList(this.getTriggerDataList());
+				inst.setCalIndicatorTplCode(this.getCalIndicatorTplCode());
+				inst.setMonitorNodeDb(this.getMonitorNodeDb());
 			}
 			inst.clearModifies();
 			return inst;

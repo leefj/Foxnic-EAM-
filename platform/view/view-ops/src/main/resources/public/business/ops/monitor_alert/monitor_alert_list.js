@@ -1,7 +1,7 @@
 /**
  * 监控告警 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 09:23:03
+ * @since 2024-06-01 23:51:36
  */
 
 
@@ -90,8 +90,6 @@ function ListPage() {
 					,{ field: 'triggerName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('触发器') , templet: function (d) { return templet('triggerName',d.triggerName,d);}  }
 					,{ field: 'alertValue', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('监控数值') , templet: function (d) { return templet('alertValue',d.alertValue,d);}  }
 					,{ field: 'warnTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('告警时间') ,templet: function (d) { return templet('warnTime',fox.dateFormat(d.warnTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'handledTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('处理时间') ,templet: function (d) { return templet('handledTime',fox.dateFormat(d.handledTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'processMessage', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('处理内容') , templet: function (d) { return templet('processMessage',d.processMessage,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

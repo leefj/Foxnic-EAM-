@@ -93,7 +93,7 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
             // 处理当前分到的 若干元素，此处为 5 个
             List<Result> rs=new ArrayList<>();
             for (MonitorNode node : els) {
-                Result result=collectNodeData(node);
+                Result result=collectNodeData(node,null,false);
                 if(!result.isSuccess()){
                     Logger.info("node ip:"+node.getNodeIp()+",message"+result.getMessage());
                 }
@@ -108,7 +108,7 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
 
     //同一个节点指标必须一样
     @Override
-    public Result collectNodeData(MonitorNode node) {
+    public Result collectNodeData(MonitorNode node,String indicatorId,boolean isForce) {
 
         String sql="select distinct c.monitor_method from ops_monitor_tpl a,ops_monitor_node_tpl_item b,ops_monitor_tpl_indicator c\n" +
                 "where a.code=b.tpl_code \n" +
@@ -132,7 +132,7 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
         String user=varObj.getString("user");
         String pwd=varObj.getString("pwd");
         String me=rs.getRcd(0).getString("monitor_method");
-        List<MonitorTplIndicator> monitorTplIndicatorList=monitorDataProcessBaseService.queryExecuteIndicatorList(node.getId(),me);
+        List<MonitorTplIndicator> monitorTplIndicatorList=monitorDataProcessBaseService.queryExecuteIndicatorList(node.getId(),me,null,isForce);
         if(monitorTplIndicatorList==null||monitorTplIndicatorList.size()==0){
             return ErrorDesc.success();
         }

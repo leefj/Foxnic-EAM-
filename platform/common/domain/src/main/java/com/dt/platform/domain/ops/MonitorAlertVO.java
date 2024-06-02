@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 监控告警VO类型
  * <p>监控告警 , 数据表 ops_monitor_alert 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 09:23:02
+ * @since 2024-06-01 23:51:34
  * @sign B8316D1F4E7A66EBCB7702AF11988742
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -422,6 +422,7 @@ public class MonitorAlertVO extends MonitorAlert {
 		inst.setNodeShowName(this.getNodeShowName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setWarnLevelName(this.getWarnLevelName());
 		inst.setNodeId(this.getNodeId());
 		inst.setAlertValue(this.getAlertValue());
 		inst.setStatus(this.getStatus());
@@ -520,6 +521,7 @@ public class MonitorAlertVO extends MonitorAlert {
 			this.setNodeShowName(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.NODE_SHOW_NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.ID)));
+			this.setWarnLevelName(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.WARN_LEVEL_NAME)));
 			this.setNodeId(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.NODE_ID)));
 			this.setAlertValue(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.ALERT_VALUE)));
 			this.setStatus(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.STATUS)));
@@ -559,6 +561,7 @@ public class MonitorAlertVO extends MonitorAlert {
 				this.setNodeShowName( (String)map.get(MonitorAlertVOMeta.NODE_SHOW_NAME));
 				this.setDeleteBy( (String)map.get(MonitorAlertVOMeta.DELETE_BY));
 				this.setId( (String)map.get(MonitorAlertVOMeta.ID));
+				this.setWarnLevelName( (String)map.get(MonitorAlertVOMeta.WARN_LEVEL_NAME));
 				this.setNodeId( (String)map.get(MonitorAlertVOMeta.NODE_ID));
 				this.setAlertValue( (String)map.get(MonitorAlertVOMeta.ALERT_VALUE));
 				this.setStatus( (String)map.get(MonitorAlertVOMeta.STATUS));
@@ -611,6 +614,7 @@ public class MonitorAlertVO extends MonitorAlert {
 			this.setNodeShowName(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.NODE_SHOW_NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.ID)));
+			this.setWarnLevelName(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.WARN_LEVEL_NAME)));
 			this.setNodeId(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.NODE_ID)));
 			this.setAlertValue(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.ALERT_VALUE)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.STATUS)));
@@ -637,6 +641,7 @@ public class MonitorAlertVO extends MonitorAlert {
 				this.setNodeShowName( (String)r.getValue(MonitorAlertVOMeta.NODE_SHOW_NAME));
 				this.setDeleteBy( (String)r.getValue(MonitorAlertVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(MonitorAlertVOMeta.ID));
+				this.setWarnLevelName( (String)r.getValue(MonitorAlertVOMeta.WARN_LEVEL_NAME));
 				this.setNodeId( (String)r.getValue(MonitorAlertVOMeta.NODE_ID));
 				this.setAlertValue( (String)r.getValue(MonitorAlertVOMeta.ALERT_VALUE));
 				this.setStatus( (String)r.getValue(MonitorAlertVOMeta.STATUS));

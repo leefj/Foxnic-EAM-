@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 节点VO类型
  * <p>节点 , 数据表 ops_monitor_node 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-17 14:28:38
+ * @since 2024-06-02 10:29:46
  * @sign 05DF7270C512DCD4908D3A955CF15039
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -433,28 +433,31 @@ public class MonitorNodeVO extends MonitorNode {
 		inst.setAgentPort(this.getAgentPort());
 		inst.setStatus(this.getStatus());
 		if(all) {
-			inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
 			inst.setSearchField(this.getSearchField());
 			inst.setUidList(this.getUidList());
-			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
-			inst.setMonitorNodeType(this.getMonitorNodeType());
 			inst.setPageSize(this.getPageSize());
-			inst.setMonitorNodeGroup(this.getMonitorNodeGroup());
-			inst.setMonitorTplList(this.getMonitorTplList());
 			inst.setSshVoucher(this.getSshVoucher());
+			inst.setTriggerDataList(this.getTriggerDataList());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setDataOrigin(this.getDataOrigin());
+			inst.setQueryLogic(this.getQueryLogic());
+			inst.setMonitorNodeDb(this.getMonitorNodeDb());
+			inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setMonitorNodeType(this.getMonitorNodeType());
+			inst.setMonitorNodeGroup(this.getMonitorNodeGroup());
+			inst.setNodeGroupIds(this.getNodeGroupIds());
+			inst.setMonitorTplList(this.getMonitorTplList());
 			inst.setMonitorTplIds(this.getMonitorTplIds());
 			inst.setMonitorNodeSubType(this.getMonitorNodeSubType());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
+			inst.setNodeGroupList(this.getNodeGroupList());
 			inst.setCalIndicatorTplCode(this.getCalIndicatorTplCode());
-			inst.setDirtyFields(this.getDirtyFields());
-			inst.setSortField(this.getSortField());
-			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
-			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
-			inst.setMonitorNodeDb(this.getMonitorNodeDb());
 		}
 		inst.clearModifies();
 		return inst;
@@ -547,21 +550,21 @@ public class MonitorNodeVO extends MonitorNode {
 			this.setStatus(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.SEARCH_FIELD)));
-			this.setRequestAction(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.FUZZY_FIELD)));
-			this.setMonitorNodeType(DataParser.parse(MonitorNodeType.class, map.get(MonitorNodeVOMeta.MONITOR_NODE_TYPE)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(MonitorNodeVOMeta.PAGE_SIZE)));
-			this.setMonitorNodeGroup(DataParser.parse(MonitorNodeGroup.class, map.get(MonitorNodeVOMeta.MONITOR_NODE_GROUP)));
 			this.setSshVoucher(DataParser.parse(MonitorVoucher.class, map.get(MonitorNodeVOMeta.SSH_VOUCHER)));
+			this.setSortField(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.SORT_FIELD)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.QUERY_LOGIC)));
+			this.setMonitorNodeDb(DataParser.parse(MonitorNodeDb.class, map.get(MonitorNodeVOMeta.MONITOR_NODE_DB)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.REQUEST_ACTION)));
+			this.setMonitorNodeType(DataParser.parse(MonitorNodeType.class, map.get(MonitorNodeVOMeta.MONITOR_NODE_TYPE)));
+			this.setMonitorNodeGroup(DataParser.parse(MonitorNodeGroup.class, map.get(MonitorNodeVOMeta.MONITOR_NODE_GROUP)));
 			this.setMonitorNodeSubType(DataParser.parse(MonitorNodeSubtype.class, map.get(MonitorNodeVOMeta.MONITOR_NODE_SUB_TYPE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(MonitorNodeVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.SORT_TYPE)));
 			this.setCalIndicatorTplCode(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.CAL_INDICATOR_TPL_CODE)));
-			this.setSortField(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.SORT_FIELD)));
-			this.setDataOrigin(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.DATA_ORIGIN)));
-			this.setQueryLogic(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.SEARCH_VALUE)));
-			this.setMonitorNodeDb(DataParser.parse(MonitorNodeDb.class, map.get(MonitorNodeVOMeta.MONITOR_NODE_DB)));
 			return true;
 		} else {
 			try {
@@ -598,21 +601,21 @@ public class MonitorNodeVO extends MonitorNode {
 				this.setStatus( (String)map.get(MonitorNodeVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(MonitorNodeVOMeta.SEARCH_FIELD));
-				this.setRequestAction( (String)map.get(MonitorNodeVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(MonitorNodeVOMeta.FUZZY_FIELD));
-				this.setMonitorNodeType( (MonitorNodeType)map.get(MonitorNodeVOMeta.MONITOR_NODE_TYPE));
 				this.setPageSize( (Integer)map.get(MonitorNodeVOMeta.PAGE_SIZE));
-				this.setMonitorNodeGroup( (MonitorNodeGroup)map.get(MonitorNodeVOMeta.MONITOR_NODE_GROUP));
 				this.setSshVoucher( (MonitorVoucher)map.get(MonitorNodeVOMeta.SSH_VOUCHER));
+				this.setSortField( (String)map.get(MonitorNodeVOMeta.SORT_FIELD));
+				this.setDataOrigin( (String)map.get(MonitorNodeVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(MonitorNodeVOMeta.QUERY_LOGIC));
+				this.setMonitorNodeDb( (MonitorNodeDb)map.get(MonitorNodeVOMeta.MONITOR_NODE_DB));
+				this.setRequestAction( (String)map.get(MonitorNodeVOMeta.REQUEST_ACTION));
+				this.setMonitorNodeType( (MonitorNodeType)map.get(MonitorNodeVOMeta.MONITOR_NODE_TYPE));
+				this.setMonitorNodeGroup( (MonitorNodeGroup)map.get(MonitorNodeVOMeta.MONITOR_NODE_GROUP));
 				this.setMonitorNodeSubType( (MonitorNodeSubtype)map.get(MonitorNodeVOMeta.MONITOR_NODE_SUB_TYPE));
 				this.setPageIndex( (Integer)map.get(MonitorNodeVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(MonitorNodeVOMeta.SORT_TYPE));
 				this.setCalIndicatorTplCode( (String)map.get(MonitorNodeVOMeta.CAL_INDICATOR_TPL_CODE));
-				this.setSortField( (String)map.get(MonitorNodeVOMeta.SORT_FIELD));
-				this.setDataOrigin( (String)map.get(MonitorNodeVOMeta.DATA_ORIGIN));
-				this.setQueryLogic( (String)map.get(MonitorNodeVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(MonitorNodeVOMeta.SEARCH_VALUE));
-				this.setMonitorNodeDb( (MonitorNodeDb)map.get(MonitorNodeVOMeta.MONITOR_NODE_DB));
 				return true;
 			} catch (Exception e) {
 				return false;

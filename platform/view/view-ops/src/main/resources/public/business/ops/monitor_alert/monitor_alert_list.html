@@ -2,7 +2,7 @@
 /**
  * 监控告警 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 09:23:03
+ * @since 2024-06-01 23:51:35
  */
  -->
  <!DOCTYPE html>
@@ -46,10 +46,12 @@
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('处理状态')}" class="search-label status-label">处理状态</span><span class="search-colon">:</span></div>
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.MonitorWarnProcessStatusEnum')}" style="width:180px" extraParam="{}"></div>
                     </div>
+                    <!-- 告警等级 , warnLevelName ,typeName=text_input, isHideInSearch=true -->
                     <!-- 规则描述 , triggerRuleDesc ,typeName=text_input, isHideInSearch=true -->
                     <!-- 监控数值 , alertValue ,typeName=text_input, isHideInSearch=true -->
                     <!-- 处理人 , userId ,typeName=button, isHideInSearch=true -->
                     <!-- 处理内容 , processMessage ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 告警等级 , warnLevel ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('告警等级')}" class="search-label warnLevel-label">告警等级</span><span class="search-colon">:</span></div>

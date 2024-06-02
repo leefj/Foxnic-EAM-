@@ -26,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 触发器
  * <p>触发器 , 数据表 ops_monitor_tpl_trigger 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 09:32:58
- * @sign E7BE4C086BD5CE9615C4FD8F58A5A34E
+ * @since 2024-06-02 13:15:51
+ * @sign 81C3AC5E12E245CB724DAE02C1CF9633
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -59,15 +59,15 @@ public class MonitorTplTrigger extends Entity {
 	private String warnLevel;
 	
 	/**
-	 * 规则：规则
+	 * 告警规则：告警规则
 	*/
-	@ApiModelProperty(required = false,value="规则" , notes = "规则" , example = "cF:lastDouble(node,\"db.connect_number\",0,\"0\")>10")
+	@ApiModelProperty(required = false,value="告警规则" , notes = "告警规则" , example = "cF:lastDouble(node,\"db.connect_number\",0,\"0\")>1000")
 	private String rule;
 	
 	/**
-	 * 告警值：告警值
+	 * 告警内容：告警内容
 	*/
-	@ApiModelProperty(required = false,value="告警值" , notes = "告警值" , example = "cF:lastString(node,\"db.connect_number\",0,\"0\")")
+	@ApiModelProperty(required = false,value="告警内容" , notes = "告警内容" , example = "当前连接数:#<db_connect_number>#")
 	private String contentValue;
 	
 	/**
@@ -109,7 +109,7 @@ public class MonitorTplTrigger extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-10-06 08:31:06")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-06-02 12:26:20")
 	private Date updateTime;
 	
 	/**
@@ -136,7 +136,7 @@ public class MonitorTplTrigger extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "9")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "12")
 	private Integer version;
 	
 	/**
@@ -209,17 +209,17 @@ public class MonitorTplTrigger extends Entity {
 	}
 	
 	/**
-	 * 获得 规则<br>
-	 * 规则
-	 * @return 规则
+	 * 获得 告警规则<br>
+	 * 告警规则
+	 * @return 告警规则
 	*/
 	public String getRule() {
 		return rule;
 	}
 	
 	/**
-	 * 设置 规则
-	 * @param rule 规则
+	 * 设置 告警规则
+	 * @param rule 告警规则
 	 * @return 当前对象
 	*/
 	public MonitorTplTrigger setRule(String rule) {
@@ -228,17 +228,17 @@ public class MonitorTplTrigger extends Entity {
 	}
 	
 	/**
-	 * 获得 告警值<br>
-	 * 告警值
-	 * @return 告警值
+	 * 获得 告警内容<br>
+	 * 告警内容
+	 * @return 告警内容
 	*/
 	public String getContentValue() {
 		return contentValue;
 	}
 	
 	/**
-	 * 设置 告警值
-	 * @param contentValue 告警值
+	 * 设置 告警内容
+	 * @param contentValue 告警内容
 	 * @return 当前对象
 	*/
 	public MonitorTplTrigger setContentValue(String contentValue) {

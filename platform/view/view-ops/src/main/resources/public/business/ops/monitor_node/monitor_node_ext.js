@@ -151,7 +151,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
-
+        collectBatchFunc:function (selected, it){
+            console.log("collectBatchFunc",selected,it);
+            var btnClass="batch-collect-button";
+            var btn=$('.'+btnClass);
+            var api=moduleURL+"/batch-collect";
+            var pps={ids:selected,tplCode:""};
+            top.layer.confirm(fox.translate('确定进行数据采集操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, pps, function (r) {
+                    if (r.success) {
+                    }
+                    fox.showMessage(r);
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+        },
         collectFunc:function (ps, it){
             var btnClass="collect-button";
             if(ps.nodeEnabled=="disabled"){

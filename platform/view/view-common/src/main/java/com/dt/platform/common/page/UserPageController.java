@@ -1,7 +1,6 @@
 package com.dt.platform.common.page;
 
-import com.dt.platform.proxy.common.TestServiceProxy;
-import com.dt.platform.proxy.common.UserServiceProxy;
+import com.dt.platform.proxy.common.CommonServiceProxy;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +22,7 @@ public class UserPageController extends ViewController {
 
 	public static final String prefix="business/common/user";
 
-	private UserServiceProxy proxy;
+	private CommonServiceProxy proxy;
 
 	/**
 	 * 获得代理对象<br>
@@ -31,9 +30,9 @@ public class UserPageController extends ViewController {
 	 * 2、前后端分离时，通过配置，以Rest方式调用后端；<br>
 	 * 3、微服务时，通过feign调用; <br>
 	 * */
-	public UserServiceProxy proxy() {
+	public CommonServiceProxy proxy() {
 		if(proxy==null) {
-			proxy=UserServiceProxy.api();
+			proxy= CommonServiceProxy.api();
 		}
 		return proxy;
 	}

@@ -2,7 +2,7 @@
 /**
  * 触发器 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 09:32:59
+ * @since 2024-06-02 13:15:54
  */
  -->
  <!DOCTYPE html>
@@ -41,8 +41,8 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 告警等级 , warnLevel ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 规则 , rule ,typeName=text_area, isHideInSearch=true -->
-                    <!-- 告警值 , contentValue ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 告警规则 , rule ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 告警内容 , contentValue ,typeName=text_input, isHideInSearch=true -->
                     <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
@@ -52,6 +52,7 @@
                     </div>
                     <!-- 监控模版 , monitorTplCode ,typeName=select_box, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 触发器 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('触发器')}" class="search-label name-label">触发器</span><span class="search-colon">:</span></div>

@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-17 14:28:41
+ * @since 2024-06-02 10:29:51
  */
 
 function FormPage() {
@@ -126,8 +126,6 @@ function FormPage() {
 			filterable: true,
 			paging: true,
 			pageRemote: true,
-			layVerify: 'required',
-			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
@@ -164,8 +162,6 @@ function FormPage() {
 			filterable: true,
 			paging: true,
 			pageRemote: true,
-			layVerify: 'required',
-			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("groupId",data.arr,data.change,data.isAdd);
@@ -280,6 +276,44 @@ function FormPage() {
 				return opts;
 			}
 		});
+		//渲染 nodeGroupIds 下拉字段
+		fox.renderSelectBox({
+			el: "nodeGroupIds",
+			radio: false,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("节点分组",'','cmp:form'),
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("nodeGroupIds",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("nodeGroupIds",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 	}
 
 	/**
@@ -333,14 +367,12 @@ function FormPage() {
 
 
 
-			//设置  节点分类 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#type",formData.monitorNodeType);
-			//设置  节点分组 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#groupId",formData.monitorNodeGroup);
 			//设置  凭证 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#sshVoucherId",formData.sshVoucher);
 			//设置  监控模版 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#monitorTplIds",formData.monitorTplList);
+			//设置  节点分组 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#nodeGroupIds",formData.nodeGroupList);
 
 			//处理fillBy
 
@@ -403,14 +435,12 @@ function FormPage() {
 
 
 
-		//获取 节点分类 下拉框的值
-		data["type"]=fox.getSelectedValue("type",false);
-		//获取 节点分组 下拉框的值
-		data["groupId"]=fox.getSelectedValue("groupId",false);
 		//获取 凭证 下拉框的值
 		data["sshVoucherId"]=fox.getSelectedValue("sshVoucherId",false);
 		//获取 监控模版 下拉框的值
 		data["monitorTplIds"]=fox.getSelectedValue("monitorTplIds",true);
+		//获取 节点分组 下拉框的值
+		data["nodeGroupIds"]=fox.getSelectedValue("nodeGroupIds",true);
 
 		return data;
 	}

@@ -51,8 +51,8 @@ public class MonitorTplTriggerGtr extends BaseCodeGenerator{
                 .label("状态").radioBox().defaultIndex(0).enumType(MonitorEnableEnum.class);
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.NOTES).table().disable(true);
-        cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.MONITOR_TPL_CODE).table().disable(true);
-
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.UPDATE_BY).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.CONTENT_VALUE).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.CONTENT_VALUE).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.RULE).table().disable(true);
 

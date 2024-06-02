@@ -77,7 +77,7 @@ public class MonitorDataProcessCalculateServiceImpl implements IMonitorDataProce
             // 处理当前分到的 若干元素，此处为 5 个
             List<Result> rs=new ArrayList<>();
             for (MonitorNode node : els) {
-                Result result=collectNodeData(node);
+                Result result=collectNodeData(node,null,false);
                 if(!result.isSuccess()){
                     Logger.info("node ip:"+node.getNodeIp()+",message"+result.getMessage());
                 }
@@ -90,9 +90,9 @@ public class MonitorDataProcessCalculateServiceImpl implements IMonitorDataProce
     }
 
     @Override
-    public Result collectNodeData(MonitorNode node) {
+    public Result collectNodeData(MonitorNode node,String indicatorId,boolean isForce) {
         //获取指标
-        List<MonitorTplIndicator> monitorTplIndicatorList=monitorDataProcessBaseService.queryExecuteIndicatorList(node.getId(),MONITOR_METHOD);
+        List<MonitorTplIndicator> monitorTplIndicatorList=monitorDataProcessBaseService.queryExecuteIndicatorList(node.getId(),MONITOR_METHOD,null,isForce);
         Logger.info("method:"+this.MONITOR_METHOD+",collectData,process node:"+node.getId()+",ip:"+node.getNodeIp()+",find indicator number:"+monitorTplIndicatorList.size());
         List<Insert> list=calculateByNode(monitorTplIndicatorList,node);
         //开始执行insert

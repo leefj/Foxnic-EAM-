@@ -27,7 +27,12 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addListProperty(MonitorNodeValue.class,"monitorNodeValueList","数值信息","数值信息");
     //    cfg.getPoClassFile().addListProperty(MonitorNodeListValue.class,"monitorNodeListValueList","列表数值信息","列表数值信息");
 
-        cfg.getPoClassFile().addSimpleProperty(MonitorNodeGroup.class,"monitorNodeGroup","节点分组","节点分组");
+        cfg.getPoClassFile( ).addSimpleProperty(MonitorNodeGroup.class,"monitorNodeGroup","节点分组","节点分组");
+
+        cfg.getPoClassFile().addListProperty(MonitorNodeGroup.class,"nodeGroupList","节点分组","节点分组");
+        cfg.getPoClassFile().addListProperty(String.class,"nodeGroupIds","节点分组","节点分组");
+
+
         cfg.getPoClassFile().addSimpleProperty(MonitorNodeType.class,"monitorNodeType","节点类型","节点类型");
         cfg.getPoClassFile().addSimpleProperty(MonitorNodeSubtype.class,"monitorNodeSubType","节点子类型","节点子类型");
 
@@ -37,25 +42,29 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(String.class,"calIndicatorTplCode","当前模版","当前模版");
 
         cfg.getPoClassFile().addListProperty(String.class,"uidList","uidList","uidList");
+        cfg.getPoClassFile().addListProperty(MonitorNodeTriggerLastData.class,"triggerDataList","triggerDataList","triggerDataList");
+
       //  cfg.getPoClassFile().addSimpleProperty(String.class,"uidProcess","uidProcess","uidProcess");
 
         cfg.view().search().rowsDisplay(1);
         cfg.view().search().inputLayout(
                 new Object[]{
-                        OpsTables.OPS_MONITOR_NODE.GROUP_ID,
+                        MonitorNodeMeta.NODE_GROUP_IDS,
+                        OpsTables.OPS_MONITOR_NODE.NODE_ENABLED,
                         OpsTables.OPS_MONITOR_NODE.STATUS,
-                        OpsTables.OPS_MONITOR_NODE.NODE_IP,
                         OpsTables.OPS_MONITOR_NODE.NODE_NAME_SHOW,
                 },
                 new Object[]{
-                        OpsTables.OPS_MONITOR_NODE.TYPE,
-                        OpsTables.OPS_MONITOR_NODE.NODE_ENABLED,
+//                        OpsTables.OPS_MONITOR_NODE.TYPE,
+                        OpsTables.OPS_MONITOR_NODE.NODE_IP,
                         OpsTables.OPS_MONITOR_NODE.NOTES
                 }
         );
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
+        cfg.view().search().labelWidth(3,Config.searchLabelWidth);
+        cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.NODE_IP).search().fuzzySearch();
@@ -69,7 +78,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.SUB_TYPE).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.SUB_TYPE).table().disable(true);
-
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.TYPE).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.NODE_NAME).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.NODE_NAME).table().disable(true);
@@ -94,8 +103,9 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.JMX_PORT).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.SSH_PORT).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.GROUP_ID).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.SSH_VOUCHER_ID).table().disable(true);
-
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.UPDATE_BY).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.NODE_IP).form().validate().required();
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.NODE_NAME_SHOW).form().validate().required();
 
@@ -128,9 +138,18 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                 textField(MonitorVoucherMeta.NAME).
                 fillWith(MonitorNodeMeta.SSH_VOUCHER).muliti(false);
 
-        cfg.view().field(OpsTables.OPS_MONITOR_NODE.GROUP_ID)
+        cfg.view().field(MonitorNodeMeta.NODE_GROUP_IDS)
                 .basic().label("节点分组")
                 .form().validate().required().form().selectBox().queryApi(MonitorNodeGroupServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(true).toolbar(false)
+                .valueField(MonitorNodeGroupMeta.ID).
+                textField(MonitorNodeGroupMeta.NAME).
+                fillWith(MonitorNodeMeta.NODE_GROUP_LIST).muliti(true);
+
+
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.GROUP_ID)
+                .basic().label("节点分组")
+                .form().selectBox().queryApi(MonitorNodeGroupServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
                 .valueField(MonitorNodeGroupMeta.ID).
                 textField(MonitorNodeGroupMeta.NAME).
@@ -139,7 +158,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.TYPE)
                 .basic().label("节点分类")
-                .form().validate().required().form().selectBox().queryApi(ServiceGroupServiceProxy.QUERY_PAGED_LIST)
+                .form().selectBox().queryApi(ServiceGroupServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
                 .valueField(ServiceGroupMeta.CODE).
                 textField(ServiceGroupMeta.NAME).
@@ -159,17 +178,16 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                 new Object[] {
                         OpsTables.OPS_MONITOR_NODE.NODE_NAME_SHOW,
                         OpsTables.OPS_MONITOR_NODE.NODE_IP,
-                        OpsTables.OPS_MONITOR_NODE.GROUP_ID,
+
                 },
                 new Object[] {
+                        MonitorNodeMeta.NODE_GROUP_IDS,
                         MonitorNodeMeta.MONITOR_TPL_IDS,
+                },
+                new Object[] {
                         OpsTables.OPS_MONITOR_NODE.NODE_ENABLED,
                         OpsTables.OPS_MONITOR_NODE.STATUS,
-                },
-                new Object[] {
-                        OpsTables.OPS_MONITOR_NODE.TYPE,
-                        OpsTables.OPS_MONITOR_NODE.SUB_TYPE,
-
+//                        OpsTables.OPS_MONITOR_NODE.SUB_TYPE,
                 }
         );
 
@@ -198,6 +216,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                         OpsTables.OPS_MONITOR_NODE.NOTES,
                 }
         );
+        cfg.view().list().addToolButton("采集","collectBatchFunc","batch-collect-button","ops_monitor_node:collect");
         cfg.view().list().operationColumn().addActionButton("采集","collectFunc","collect-button","ops_monitor_node:collect");
         cfg.view().list().operationColumn().addActionButton("复制","copyFunc","copy-button","ops_monitor_node:copy");
         cfg.view().list().operationColumn().addActionButton("最新数据","lastFunc","last-button");

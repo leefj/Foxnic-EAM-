@@ -1,11 +1,10 @@
 package com.dt.platform.ops.service.impl;
 
 import com.alibaba.csp.sentinel.util.StringUtil;
-import com.dt.platform.domain.ops.MonitorNode;
-import com.dt.platform.domain.ops.MonitorNodeTplItem;
-import com.dt.platform.domain.ops.MonitorNodeTplItemVO;
-import com.dt.platform.domain.ops.MonitorNodeVO;
+import com.dt.platform.constants.enums.wms.StatusEnableEnum;
+import com.dt.platform.domain.ops.*;
 import com.dt.platform.ops.service.*;
+import com.dt.platform.proxy.ops.MonitorTplTriggerServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
@@ -63,6 +62,8 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 	IMonitorDataProcessZabbixServerService monitorDataProcessZabbixServerService;
 
 
+	@Autowired
+	private IMonitorAlertBookRuleService monitorAlertBookRuleService;
 
 	/**
 	 * 获得 DAO 对象
@@ -92,11 +93,37 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 		//保存关系
 		if(r.success()) {
 			monitorNodeTplItemServiceImpl.saveRelation(monitorNode.getId(), monitorNode.getMonitorTplIds());
+			dao.execute("delete from ops_monitor_alert_book_rule where book_id=? and type in ('node_group')",monitorNode.getId());
+			for(String value:monitorNode.getNodeGroupIds()){
+				MonitorAlertBookRule rule=new MonitorAlertBookRule();
+				rule.setBookId(monitorNode.getId());
+				rule.setValue(value);
+				rule.setType("node_group");
+				monitorAlertBookRuleService.insert(rule,true);
+			}
 		}
 		return r;
 	}
+
+
+
 	@Override
-	public Result collect(String id, String tplCode) {
+	public Result batchCollect(List<String> ids, String tplCode) {
+		for(String id:ids){
+			MonitorNode node=this.getById(id);
+			if(StatusEnableEnum.ENABLE.code().equals(node.getStatus())){
+				Result r=this.collect(id,null,tplCode);
+				if(!r.success()){
+					return r;
+				}
+			}
+		}
+		return ErrorDesc.success();
+	}
+
+	@Override
+	public Result collect(String id, String indicatorId,String tplCode) {
+
 		MonitorNode node=this.getById(id);
 		if(node==null){
 			return ErrorDesc.failureMessage("当前节点不存在");
@@ -104,11 +131,14 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 		if(!"enable".equals(node.getNodeEnabled())){
 			return ErrorDesc.failureMessage("当前节点状态不能进行采集操作");
 		}
-		monitorDataProcessScriptService.collectNodeData(node);
-		monitorDataProcessZabbixAgentService.collectNodeData(node);
-		monitorDataProcessZabbixServerService.collectNodeData(node);
-		monitorDataProcessJdbcService.collectNodeData(node);
-		monitorDataProcessCalculateService.collectNodeData(node);
+		monitorDataProcessScriptService.collectNodeData(node,indicatorId,true);
+		monitorDataProcessZabbixAgentService.collectNodeData(node,indicatorId,true);
+		monitorDataProcessZabbixServerService.collectNodeData(node,indicatorId,true);
+		monitorDataProcessJdbcService.collectNodeData(node,indicatorId,true);
+		monitorDataProcessCalculateService.collectNodeData(node,indicatorId,true);
+
+
+		MonitorTplTriggerServiceProxy.api().collectData();
 		return ErrorDesc.success();
 	}
 
@@ -243,6 +273,14 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 		//保存关系
 		if(r.success()) {
 			monitorNodeTplItemServiceImpl.saveRelation(monitorNode.getId(), monitorNode.getMonitorTplIds());
+			dao.execute("delete from ops_monitor_alert_book_rule where book_id=? and type in ('node_group')",monitorNode.getId());
+			for(String value:monitorNode.getNodeGroupIds()){
+				MonitorAlertBookRule rule=new MonitorAlertBookRule();
+				rule.setBookId(monitorNode.getId());
+				rule.setValue(value);
+				rule.setType("node_group");
+				monitorAlertBookRuleService.insert(rule,true);
+			}
 		}
 		return r;
 	}

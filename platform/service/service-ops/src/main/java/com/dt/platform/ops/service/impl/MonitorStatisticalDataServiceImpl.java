@@ -211,7 +211,7 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
     @Override
     public Result<JSONArray> queryNodeTreeResourceList() {
 
-         String sql="select * from ops_monitor_node_group where deleted=0 and id in (select distinct group_id from ops_monitor_node a where a.node_enabled='enable' and a.deleted=0)";
+         String sql="select * from ops_monitor_node_group where deleted=0 and id in (select distinct value from ops_monitor_alert_book_rule a,ops_monitor_node b where a.type='node_group' and a.deleted=0 and b.deleted=0 and book_id=b.id)";
          Result<JSONArray> result=new Result<>();
          JSONArray data=new JSONArray();
          RcdSet rs=dao.query(sql);
@@ -223,7 +223,8 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
              obj.put("name",r.getString("name"));
              obj.put("type","group");
              data.add(obj);
-             String nodeSql="select id,node_ip,node_name_show name,a.type show_type from ops_monitor_node a where a.node_enabled='enable' and a.deleted=0 and group_id=?";
+             String nodeSql="select id,node_ip,node_name_show name,a.type show_type from ops_monitor_node a where a.node_enabled='enable' and a.deleted=0 and id in ( \n" +
+                     "select distinct book_id from ops_monitor_alert_book_rule a,ops_monitor_node b where a.type='node_group' and a.deleted=0 and b.deleted=0 and book_id=b.id and a.value=?)";
              RcdSet nodeRs=dao.query(nodeSql,r.getString("id"));
              for(Rcd noder:nodeRs){
                  JSONObject nodeObj=new JSONObject();

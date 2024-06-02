@@ -26,10 +26,11 @@ import java.util.Map;
  * @since 2023-06-18 14:16:24
 */
 
-public interface IUserService extends  ISimpleIdService<UserImport,String> {
+public interface ICommonService extends  ISimpleIdService<UserImport,String> {
 
 
 	 Result<JSONObject> queryCurrentUserInfo();
 
+	 Object callMagicAPIService(String execType,String reqType,String path,Map<String, Object> params);
 
 }

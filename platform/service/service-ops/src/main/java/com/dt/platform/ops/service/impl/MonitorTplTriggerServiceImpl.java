@@ -2,20 +2,31 @@ package com.dt.platform.ops.service.impl;
 
 import javax.annotation.Resource;
 
+import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.constants.enums.ops.MonitorAlertMethodProcessStatusEnum;
+import com.dt.platform.constants.enums.ops.MonitorWarnLevelEnum;
 import com.dt.platform.constants.enums.ops.MonitorWarnProcessStatusEnum;
 import com.dt.platform.domain.ops.*;
+import com.dt.platform.domain.ops.meta.MonitorAlertBookMeta;
 import com.dt.platform.domain.ops.meta.MonitorTplTriggerMeta;
-import com.dt.platform.ops.service.IMonitorAlertEventService;
-import com.dt.platform.ops.service.IMonitorAlertService;
+import com.dt.platform.ops.service.*;
+import com.dt.platform.proxy.common.CommonServiceProxy;
 import com.github.foxnic.commons.concurrent.SimpleJoinForkTask;
 import com.github.foxnic.commons.log.Logger;
+import com.github.foxnic.commons.reflect.EnumUtil;
 import com.mysql.jdbc.log.Log;
 import org.apache.commons.jexl3.*;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.commons.collection.MapUtil;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -24,18 +35,14 @@ import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.spec.DAO;
 import java.lang.reflect.Field;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.api.error.ErrorDesc;
-import com.github.foxnic.dao.excel.ExcelWriter;
-import com.github.foxnic.dao.excel.ValidateResult;
-import com.github.foxnic.dao.excel.ExcelStructure;
-import java.io.InputStream;
 import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.meta.DBColumnMeta;
-import com.github.foxnic.sql.expr.Select;
-import com.dt.platform.ops.service.IMonitorTplTriggerService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 
 /**
@@ -57,6 +64,7 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
+
 	/**
 	 * 获得 DAO 对象
 	 * */
@@ -71,6 +79,11 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 	@Autowired
 	private IMonitorAlertEventService monitorAlertEventService;
 
+	@Autowired
+	private IMonitorAlertLogService monitorAlertLogService;
+
+	@Autowired
+	private IMonitorAlertBookService monitorAlertBookService;
 
 	@Override
 	public Object generateId(Field field) {
@@ -261,6 +274,8 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 		return super.queryList(sample,expr);
 	}
 
+
+
 	public Result collectData() {
 		List<MonitorTplTrigger> nodeList=this.queryCollectDataList();
 		dao.fill(nodeList).with(MonitorTplTriggerMeta.MONITOR_NODE_LIST).execute();
@@ -286,6 +301,8 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 		return ErrorDesc.success();
 	}
 
+
+
 	private String calculationValue(String jexlExp, Map<String, Object> map){
 		JexlBuilder jb=new JexlBuilder();
 		Map<String, Object> funcs =new HashMap<>();
@@ -298,14 +315,16 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 			jc.set(key, map.get(key));
 		}
 		Object r=expression.evaluate(jc);
+		Logger.info("calculationValue"+r);
 		if (null ==r) {
 			return "";
 		}
 		return r.toString();
 	}
 
-	public Result collectTriggerData(MonitorTplTrigger trigger) {
 
+
+	public Result collectTriggerData(MonitorTplTrigger trigger) {
 		List<MonitorNode> nodeList=trigger.getMonitorNodeList();
 		if(nodeList!=null&& nodeList.size()>0){
 			for(MonitorNode node:nodeList){
@@ -316,44 +335,194 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 
 	}
 
+	public Result actionToAlert(MonitorAlert alert){
+		String nodeId=alert.getNodeId();
+		String warnLevel=alert.getWarnLevel();
+		ConcurrentHashMap map=new ConcurrentHashMap();
+		String sql="select distinct id from (\n" +
+				"select a.id\n" +
+				"from ops_monitor_alert_book a,ops_monitor_alert_book_rule alertLevel \n" +
+				"where a.status='enable' and a.monitor_is_all='yes' and a.id=alertLevel.book_id \n" +
+				"and alertLevel.type='alert_level' and alertLevel.value='#<LEVEL>#'\n" +
+				"union all\n" +
+				"select a.id\n" +
+				"from ops_monitor_alert_book a,ops_monitor_alert_book_rule alertLevel,\n" +
+				"ops_monitor_alert_book_rule alertNodeGroup \n" +
+				"where a.status='enable' and a.monitor_is_all='no' \n" +
+				"and alertLevel.book_id =a.id and alertLevel.type='alert_level' and alertLevel.value='#<LEVEL>#'\n" +
+				"and alertNodeGroup.book_id =a.id and alertNodeGroup.type='alert_node_group' \n" +
+				"and alertNodeGroup.value in (select value from ops_monitor_alert_book_rule where type='node_group' and book_id='#<NODE_ID>#')\n" +
+				"union all\n" +
+				"select a.id\n" +
+				"from ops_monitor_alert_book a,ops_monitor_alert_book_rule alertLevel,\n" +
+				"ops_monitor_alert_book_rule alertNode \n" +
+				"where a.status='enable' and a.monitor_is_all='no' \n" +
+				"and alertLevel.book_id =a.id and alertLevel.type='alert_level' and alertLevel.value='#<LEVEL>#'\n" +
+				"and alertNode.book_id =a.id and alertNode.type='alert_node' \n" +
+				"and alertNode.value='#<NODE_ID>#'\n" +
+				")t";
+		MonitorAlertBookVO book=new MonitorAlertBookVO();
+		ConditionExpr expr=new ConditionExpr();
+		expr.and("id in ("+sql.replaceAll("#<NODE_ID>#",nodeId).replaceAll("#<LEVEL>#",warnLevel)+")");
+		List<MonitorAlertBook> bookList=monitorAlertBookService.queryList(book,expr);
+		if(bookList.size()>0){
+			dao.fill(bookList).with(MonitorAlertBookMeta.USER_LIST).with(MonitorAlertBookMeta.USER_GROUP_USER_LIST).with(MonitorAlertBookMeta.ALERT_METHOD_LIST).execute();
+			for(int i=0;i<bookList.size();i++) {
+				List<MonitorAlertMethod> methodList=bookList.get(i).getAlertMethodList();
+				List<Employee> user1List=bookList.get(i).getUserList();
+				List<Employee> user2List=bookList.get(i).getUserGroupUserList();
+				user1List.addAll(user2List);
+				for(int m=0;m<methodList.size();m++){
+					for(int u=0;u<user1List.size();u++) {
+						Employee user=user1List.get(u);
+						MonitorAlertMethod method=methodList.get(m);
+						String key=user.getId()+"_"+method.getId()+"_"+alert.getId();
+						if(map.containsKey(key)){
+							Logger.info("本条已处理，不需要重复处理,key:"+key);
+							continue;
+						}else{
+							actionToAlertNotice(alert,method,user);
+						}
+					}
+				}
+			}
+		}
+		return ErrorDesc.success();
+	}
+
+	public Result actionToAlertNotice(MonitorAlert alert,MonitorAlertMethod method,Employee user){
+
+		if("enable".equals(method.getStatus())){
+			DateFormat d=new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒SSS毫秒");
+			String body=method.getBody()
+					.replace("#<NODE>#",alert.getNodeShowName())
+					.replace("#<ACTION>#","告警")
+					.replace("#<WARN_LEVEL>#",EnumUtil.parseByCode(MonitorWarnLevelEnum.class,alert.getWarnLevel()).text())
+					.replace("#<TRIGGER_NAME>#",alert.getTriggerName())
+					.replace("#<RULE_NAME>#",alert.getTriggerRuleDesc())
+					.replace("#<VALUE>#",alert.getAlertValue())
+					.replace("#<WARN_TIME>#",d.format(alert.getWarnTime()));
+			MonitorAlertLog log=new MonitorAlertLog();
+			log.setAlertId(alert.getId());
+			log.setUserId(user.getId());
+			log.setMsg(body);
+			log.setRcdTime(new Date());
+			if("shell".equals(method.getType())){
+				log.setAlertMethod("脚本");
+				log.setActionResultStatus(MonitorAlertMethodProcessStatusEnum.SUCCESS.code());
+				String cmd=method.getCmd()
+						.replace("#<NODE>#",alert.getNodeShowName())
+						.replace("#<ACTION>#","告警")
+						.replace("#<WARN_LEVEL>#",EnumUtil.parseByCode(MonitorWarnLevelEnum.class,alert.getWarnLevel()).text())
+						.replace("#<TRIGGER_NAME>#",alert.getTriggerName())
+						.replace("#<RULE_NAME>#",alert.getTriggerRuleDesc())
+						.replace("#<VALUE>#",alert.getAlertValue())
+						.replace("#<WARN_TIME>#",d.format(alert.getWarnTime()))
+						.replace("#<MOBILE>#",user.getPhone()==null?"0000":user.getPhone())
+						.replace("#<MSG>#",body);
+				try {
+					Logger.info("执行脚本:"+cmd);
+					Process process = Runtime.getRuntime().exec(cmd);
+					BufferedReader reader=new BufferedReader(new InputStreamReader(process.getInputStream()));
+					String line;
+					while((line = reader.readLine()) != null) {
+						Logger.info(line);
+					}
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+					log.setActionResultStatus(MonitorAlertMethodProcessStatusEnum.FAILED.code());
+					log.setActionResult(e.getMessage());
+				}
+			}else if("api".equals(method.getType())){
+				log.setAlertMethod("接口");
+				Map<String, Object> params = new HashMap<String, Object>();
+				params.put("node",alert.getNodeShowName());
+				params.put("action","告警");
+				params.put("warn_level",EnumUtil.parseByCode(MonitorWarnLevelEnum.class,alert.getWarnLevel()).text());
+				params.put("trigger_name",alert.getTriggerName());
+				params.put("rule_name",alert.getTriggerRuleDesc());
+				params.put("value",alert.getAlertValue());
+				params.put("warn_time",d.format(alert.getWarnTime()));
+				params.put("mobile",user.getPhone()==null?"0000":user.getPhone());
+				Result<Object> res=CommonServiceProxy.api().callMagicAPIService("execute","POST",method.getCmd(),params);
+				if(res.success()){
+					Logger.info("接口返回:"+res.data().toString());
+					log.setActionResultStatus(MonitorAlertMethodProcessStatusEnum.SUCCESS.code());
+					if(res.data().toString().contains("success=true")){
+						log.setActionResultStatus(MonitorAlertMethodProcessStatusEnum.SUCCESS.code());
+					}else{
+						log.setActionResultStatus(MonitorAlertMethodProcessStatusEnum.FAILED.code());
+						log.setActionResult("调用异常");
+					}
+				}else{
+					log.setActionResultStatus(MonitorAlertMethodProcessStatusEnum.FAILED.code());
+					log.setActionResult(res.getMessage());
+				}
+			}
+			monitorAlertLogService.insert(log,true);
+		}
+		return ErrorDesc.success();
+	}
+
+
 	public Result collectTriggerNodeData(MonitorNode node,MonitorTplTrigger trigger) {
 		Result res=new Result();
 	 	String rule=trigger.getRule();
 		String ct=trigger.getContentValue();
 		Map<String, Object> map = new HashMap<String, Object>();
 		node.setCalIndicatorTplCode(trigger.getMonitorTplCode());
-		node.setUidList(new ArrayList<>());
+		node.setTriggerDataList(new ArrayList<>());
 		map.put("node", node);
 		Object result = calculationValue(rule,map);
+		String[] msg=trigger.getContentValue().split("#<");
+		List<String> keyList=new ArrayList<>();
+		for(int i=0;i<msg.length;i++){
+			if(msg[i].contains(">#")){
+				String[] key= msg[i].split(">#") ;
+				keyList.add(key[0]);
+			}
+		}
+
 		if("true".equals(result)){
 			res.success(true);
-			List<String> uidList=node.getUidList();
-			if(uidList!=null&&uidList.size()>0){
-				int listSize=uidList.size();
+			List<MonitorNodeTriggerLastData> triggerDataList=node.getTriggerDataList();
+			if(triggerDataList.size()>0){
 				ConditionExpr expr=new ConditionExpr();
-				expr.andIn("event_id",uidList);
+				List<String> ids=triggerDataList.stream().map(MonitorNodeTriggerLastData::getId).collect(Collectors.toList());
+				expr.andIn("event_id",ids);
 				List<MonitorAlertEvent> list= monitorAlertEventService.queryList(new MonitorAlertEventVO(),expr);
-				if(list.size()>=uidList.size()){
+				if(list.size()>=triggerDataList.size()){
 					Logger.info("当前Event已记录过");
-				}else{
+				}else {
 					Logger.info("当前Event需要告警");
-					Object alertValue = calculationValue(ct,map);
-					MonitorAlert alert=new MonitorAlert();
-					alert.setNodeId(node.getId());
-					alert.setNodeShowName(node.getNodeNameShow());
-					alert.setWarnTime(new Date());
-					alert.setTriggerId(trigger.getId());
-					alert.setTriggerName(trigger.getName());
-					alert.setTriggerRuleDesc(trigger.getName());
-					alert.setWarnLevel(trigger.getWarnLevel());
-					alert.setAlertValue(alertValue.toString());
-					alert.setStatus(MonitorWarnProcessStatusEnum.NOT_CONFIRM.code());
-					monitorAlertService.insert(alert,true);
-					for(int i=0;i<listSize;i++){
-						MonitorAlertEvent event=new MonitorAlertEvent();
-						event.setEventId(uidList.get(i));
+					for (int i = 0; i < triggerDataList.size(); i++) {
+						MonitorAlert alert = new MonitorAlert();
+						alert.setNodeId(node.getId());
+						alert.setNodeShowName(node.getNodeNameShow());
+						alert.setWarnTime(new Date());
+						alert.setTriggerId(trigger.getId());
+						alert.setTriggerName(trigger.getName());
+						alert.setTriggerRuleDesc(trigger.getName());
+						alert.setWarnLevel(trigger.getWarnLevel());
+						Logger.info("开始替换内容,triggerDataList.get(i)",triggerDataList.get(i).getSourceData());
+						Logger.info("开始替换内容,triggerDataList.get(i)2");
+						for(String key:keyList ){
+							Logger.info(key);
+							String keyValue=triggerDataList.get(i).getSourceData().getString(key);
+
+							if(keyValue!=null){
+								ct=ct.replaceAll("#<"+key+">#",keyValue);
+							}
+						}
+						alert.setAlertValue(ct);
+						alert.setStatus(MonitorWarnProcessStatusEnum.NOT_CONFIRM.code());
+						monitorAlertService.insert(alert, true);
+						actionToAlert(alert);
+						MonitorAlertEvent event = new MonitorAlertEvent();
+						event.setEventId(triggerDataList.get(i).getId());
 						event.setAlertId(alert.getId());
-						monitorAlertEventService.insert(event,true);
+						monitorAlertEventService.insert(event, true);
 					}
 				}
 			}
