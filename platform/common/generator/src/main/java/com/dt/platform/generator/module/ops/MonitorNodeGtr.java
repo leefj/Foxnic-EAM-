@@ -36,6 +36,8 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(MonitorNodeType.class,"monitorNodeType","节点类型","节点类型");
         cfg.getPoClassFile().addSimpleProperty(MonitorNodeSubtype.class,"monitorNodeSubType","节点子类型","节点子类型");
 
+        cfg.getPoClassFile().addListProperty(MonitorNodeTrigger.class,"triggerList","triggerList","triggerList");
+
         cfg.getPoClassFile().addListProperty(MonitorTpl.class,"monitorTplList","监控模版列表","监控模版列表");
         cfg.getPoClassFile().addListProperty(String.class,"monitorTplIds","监控模版Ids","监控模版Ids");
 
@@ -43,7 +45,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
 
         cfg.getPoClassFile().addListProperty(String.class,"uidList","uidList","uidList");
         cfg.getPoClassFile().addListProperty(MonitorNodeTriggerLastData.class,"triggerDataList","triggerDataList","triggerDataList");
-
+        cfg.getPoClassFile().addSimpleProperty(MonitorNodeTriggerLastData.class,"triggerData","triggerData","triggerData");
       //  cfg.getPoClassFile().addSimpleProperty(String.class,"uidProcess","uidProcess","uidProcess");
 
         cfg.view().search().rowsDisplay(1);

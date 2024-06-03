@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 节点VO类型
  * <p>节点 , 数据表 ops_monitor_node 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-02 10:29:46
+ * @since 2024-06-03 16:52:08
  * @sign 05DF7270C512DCD4908D3A955CF15039
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -438,12 +438,14 @@ public class MonitorNodeVO extends MonitorNode {
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setSshVoucher(this.getSshVoucher());
+			inst.setTriggerList(this.getTriggerList());
 			inst.setTriggerDataList(this.getTriggerDataList());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setMonitorNodeDb(this.getMonitorNodeDb());
+			inst.setTriggerData(this.getTriggerData());
 			inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setMonitorNodeType(this.getMonitorNodeType());
@@ -557,6 +559,7 @@ public class MonitorNodeVO extends MonitorNode {
 			this.setDataOrigin(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.QUERY_LOGIC)));
 			this.setMonitorNodeDb(DataParser.parse(MonitorNodeDb.class, map.get(MonitorNodeVOMeta.MONITOR_NODE_DB)));
+			this.setTriggerData(DataParser.parse(MonitorNodeTriggerLastData.class, map.get(MonitorNodeVOMeta.TRIGGER_DATA)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.REQUEST_ACTION)));
 			this.setMonitorNodeType(DataParser.parse(MonitorNodeType.class, map.get(MonitorNodeVOMeta.MONITOR_NODE_TYPE)));
 			this.setMonitorNodeGroup(DataParser.parse(MonitorNodeGroup.class, map.get(MonitorNodeVOMeta.MONITOR_NODE_GROUP)));
@@ -608,6 +611,7 @@ public class MonitorNodeVO extends MonitorNode {
 				this.setDataOrigin( (String)map.get(MonitorNodeVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(MonitorNodeVOMeta.QUERY_LOGIC));
 				this.setMonitorNodeDb( (MonitorNodeDb)map.get(MonitorNodeVOMeta.MONITOR_NODE_DB));
+				this.setTriggerData( (MonitorNodeTriggerLastData)map.get(MonitorNodeVOMeta.TRIGGER_DATA));
 				this.setRequestAction( (String)map.get(MonitorNodeVOMeta.REQUEST_ACTION));
 				this.setMonitorNodeType( (MonitorNodeType)map.get(MonitorNodeVOMeta.MONITOR_NODE_TYPE));
 				this.setMonitorNodeGroup( (MonitorNodeGroup)map.get(MonitorNodeVOMeta.MONITOR_NODE_GROUP));

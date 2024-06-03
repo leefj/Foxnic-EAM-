@@ -76,6 +76,10 @@ public class OpsRelationManager extends RelationManager {
     }
     public void setupMonitorNode() {
 
+        this.property(MonitorNodeMeta.TRIGGER_LIST_PROP)
+                .using(OpsTables.OPS_MONITOR_NODE.ID).join(OpsTables.OPS_MONITOR_NODE_TRIGGER.NODE_ID);
+
+
         this.property(MonitorNodeMeta.NODE_GROUP_LIST_PROP)
                 .using(OpsTables.OPS_MONITOR_NODE.ID).join(OpsTables.OPS_MONITOR_ALERT_BOOK_RULE.BOOK_ID)
                 .condition("type='node_group'")

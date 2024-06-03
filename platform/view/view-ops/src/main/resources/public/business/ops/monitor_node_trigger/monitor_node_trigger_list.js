@@ -1,7 +1,7 @@
 /**
- * 节点 列表页 JS 脚本
+ * 触发器 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-03 16:52:10
+ * @since 2024-06-03 14:41:51
  */
 
 
@@ -10,7 +10,7 @@ function ListPage() {
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	
 	//模块基础路径
-	const moduleURL="/service-ops/ops-monitor-node";
+	const moduleURL="/service-ops/ops-monitor-node-trigger";
 	const queryURL=moduleURL+'/query-paged-list';
 	const deleteURL=moduleURL+'/delete';
 	const batchDeleteURL=moduleURL+'/delete-by-ids';
@@ -84,13 +84,13 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'nodeIp', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('IP') , templet: function (d) { return templet('nodeIp',d.nodeIp,d);}  }
-					,{ field: 'nodeNameShow', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('可见主机名') , templet: function (d) { return templet('nodeNameShow',d.nodeNameShow,d);}  }
-					,{ field: 'nodeEnabled', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否启用'), templet:function (d){ return templet('nodeEnabled',fox.getEnumText(RADIO_NODEENABLED_DATA,d.nodeEnabled,'','nodeEnabled'),d);}}
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('监控状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'jdbcUrl', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('Jdbc地址') , templet: function (d) { return templet('jdbcUrl',d.jdbcUrl,d);}  }
-					,{ field: 'monitorTplIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('监控模版'), templet: function (d) { return templet('monitorTplIds' ,fox.joinLabel(d.monitorTplList,"name",',','','monitorTplIds'),d);}}
-					,{ field: 'nodeGroupIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('节点分组'), templet: function (d) { return templet('nodeGroupIds' ,fox.joinLabel(d.nodeGroupList,"name",',','','nodeGroupIds'),d);}}
+					,{ field: 'triggerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('触发器') , templet: function (d) { return templet('triggerId',d.triggerId,d);}  }
+					,{ field: 'ruleType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('规则类型'), templet:function (d){ return templet('ruleType',fox.getEnumText(RADIO_RULETYPE_DATA,d.ruleType,'','ruleType'),d);}}
+					,{ field: 'nodeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点') , templet: function (d) { return templet('nodeId',d.nodeId,d);}  }
+					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'warnLevel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('告警等级'), templet:function (d){ return templet('warnLevel',fox.getEnumText(SELECT_WARNLEVEL_DATA,d.warnLevel,'','warnLevel'),d);}}
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'monitorTplCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('监控模版'), templet: function (d) { return templet('monitorTplCode' ,fox.joinLabel(d.tpl,"name",',','','monitorTplCode'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -161,12 +161,8 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.nodeIp={ inputType:"button",value: $("#nodeIp").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.nodeNameShow={ inputType:"button",value: $("#nodeNameShow").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.nodeEnabled={ inputType:"radio_box", value: getSelectedValue("#nodeEnabled","value"), label:getSelectedValue("#nodeEnabled","nameStr") };
+		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.nodeGroupIds={ inputType:"select_box", value: getSelectedValue("#nodeGroupIds","value") ,fillBy:["nodeGroupList"]  , label:getSelectedValue("#nodeGroupIds","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -213,31 +209,6 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
-		//渲染 nodeEnabled 搜索框
-		fox.renderSelectBox({
-			el: "nodeEnabled",
-			size: "small",
-			radio: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("nodeEnabled",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("nodeEnabled",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
 		//渲染 status 搜索框
 		fox.renderSelectBox({
 			el: "status",
@@ -258,37 +229,6 @@ function ListPage() {
 						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 nodeGroupIds 下拉字段
-		fox.renderSelectBox({
-			el: "nodeGroupIds",
-			radio: true,
-			size: "small",
-			filterable: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("nodeGroupIds",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			paging: true,
-			pageRemote: true,
-			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("nodeGroupIds",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].id});
 					}
 				}
 				return opts;
@@ -341,14 +281,11 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
-					admin.putTempData('ops-monitor-node-form-data', {});
+					admin.putTempData('ops-monitor-node-trigger-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
 					batchDelete(selected);
-					break;
-				case 'tool-collect-batch-func':
-					window.pageExt.list.collectBatchFunc && window.pageExt.list.collectBatchFunc(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();
@@ -363,7 +300,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('ops-monitor-node-form-data-form-action', "create",true);
+			admin.putTempData('ops-monitor-node-trigger-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -377,11 +314,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'节点'+"!"));
+				top.layer.msg(fox.translate('请选择需要删除的'+'触发器'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'节点'+'吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'触发器'+'吗？'), function (i) {
                 top.layer.close(i);
 				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
@@ -416,14 +353,14 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('ops-monitor-node-form-data-form-action', "",true);
+			admin.putTempData('ops-monitor-node-trigger-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
 				top.layer.load(2);
 				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
 					top.layer.closeAll('loading');
 					if(data.success) {
-						admin.putTempData('ops-monitor-node-form-data-form-action', "edit",true);
+						admin.putTempData('ops-monitor-node-trigger-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
 						 fox.showMessage(data);
@@ -434,7 +371,7 @@ function ListPage() {
 				admin.post(getByIdURL, { id : data.id }, function (data) {
 					top.layer.closeAll('loading');
 					if(data.success) {
-						admin.putTempData('ops-monitor-node-form-data-form-action', "view",true);
+						admin.putTempData('ops-monitor-node-trigger-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
@@ -448,7 +385,7 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'节点'+'吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此'+'触发器'+'吗？'), function (i) {
 					top.layer.close(i);
 					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
@@ -465,15 +402,6 @@ function ListPage() {
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
-			else if (layEvent === 'collect-func') { // 采集
-				window.pageExt.list.collectFunc(data,this);
-			}
-			else if (layEvent === 'copy-func') { // 复制
-				window.pageExt.list.copyFunc(data,this);
-			}
-			else if (layEvent === 'last-func') { // 最新数据
-				window.pageExt.list.lastFunc(data,this);
-			}
 			
 		});
 
@@ -487,17 +415,17 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var action=admin.getTempData('ops-monitor-node-form-data-form-action');
+		var action=admin.getTempData('ops-monitor-node-trigger-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
-		admin.putTempData('ops-monitor-node-form-data', data);
-		var area=admin.getTempData('ops-monitor-node-form-area');
+		admin.putTempData('ops-monitor-node-trigger-form-data', data);
+		var area=admin.getTempData('ops-monitor-node-trigger-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('节点');
+		var title = fox.translate('触发器');
 		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
 		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
 		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
@@ -508,8 +436,8 @@ function ListPage() {
 			offset: [top,null],
 			area: ["85%",height+"px"],
 			type: 2,
-			id:"ops-monitor-node-form-data-win",
-			content: '/business/ops/monitor_node/monitor_node_form.html' + (queryString?("?"+queryString):""),
+			id:"ops-monitor-node-trigger-form-data-win",
+			content: '/business/ops/monitor_node_trigger/monitor_node_trigger_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
 				if(action=="create") {
 					refreshTableData();

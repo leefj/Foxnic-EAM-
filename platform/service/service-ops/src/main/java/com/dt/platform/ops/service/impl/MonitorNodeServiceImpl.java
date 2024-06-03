@@ -63,8 +63,10 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 
 
 	@Autowired
-	private IMonitorAlertBookRuleService monitorAlertBookRuleService;
+	IMonitorAlertBookRuleService monitorAlertBookRuleService;
 
+	@Autowired
+	IMonitorTplTriggerService monitorTplTriggerService;
 	/**
 	 * 获得 DAO 对象
 	 * */
@@ -137,8 +139,8 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 		monitorDataProcessJdbcService.collectNodeData(node,indicatorId,true);
 		monitorDataProcessCalculateService.collectNodeData(node,indicatorId,true);
 
-
-		MonitorTplTriggerServiceProxy.api().collectData();
+		//monitorTplTriggerService.createAllNodeTrigger();
+		//MonitorTplTriggerServiceProxy.api().collectData();
 		return ErrorDesc.success();
 	}
 

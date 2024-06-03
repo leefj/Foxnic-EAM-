@@ -2,18 +2,22 @@ package com.dt.platform.ops.service.impl;
 
 import javax.annotation.Resource;
 
+import com.alibaba.csp.sentinel.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.ops.MonitorAlertMethodProcessStatusEnum;
 import com.dt.platform.constants.enums.ops.MonitorWarnLevelEnum;
 import com.dt.platform.constants.enums.ops.MonitorWarnProcessStatusEnum;
 import com.dt.platform.domain.ops.*;
 import com.dt.platform.domain.ops.meta.MonitorAlertBookMeta;
+import com.dt.platform.domain.ops.meta.MonitorNodeMeta;
 import com.dt.platform.domain.ops.meta.MonitorTplTriggerMeta;
 import com.dt.platform.ops.service.*;
 import com.dt.platform.proxy.common.CommonServiceProxy;
 import com.github.foxnic.commons.concurrent.SimpleJoinForkTask;
 import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.commons.reflect.EnumUtil;
+import com.github.foxnic.dao.data.Rcd;
+import com.github.foxnic.dao.data.RcdSet;
 import com.mysql.jdbc.log.Log;
 import org.apache.commons.jexl3.*;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -90,6 +94,102 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 		return IDGenerator.getSnowflakeIdString();
 	}
 
+	@Autowired
+	private IMonitorNodeService monitorNodeService;
+
+	@Autowired
+	private IMonitorNodeTriggerService monitorNodeTriggerService;
+
+
+	@Override
+	public Result createAllNodeTrigger(){
+		String sql="select distinct d.id\n" +
+				"from \n" +
+				"ops_monitor_node_tpl_item a,\n" +
+				"ops_monitor_tpl b,\n" +
+				"ops_monitor_tpl_trigger c,\n" +
+				"ops_monitor_node d\n" +
+				"where a.tpl_code=b.code \n" +
+				"and b.status='enable'\n" +
+				"and c.status='enable'\n" +
+				"and c.monitor_tpl_code=a.tpl_code\n" +
+				"and d.id=a.node_id\n" +
+				"and d.deleted=0\n" +
+				"and a.deleted=0\n" +
+				"and b.deleted=0\n" +
+				"and c.deleted=0";
+		RcdSet rs=dao.query(sql);
+		Logger.info("createAllNodeTrigger count:"+rs.size());
+		for(int i=0;i<rs.size();i++){
+			Rcd rcd=rs.getRcd(i);
+			createNodeTrigger(rcd.getString("id"));
+		}
+		return ErrorDesc.success();
+	}
+	@Override
+	public Result createNodeTrigger(String nodeId){
+
+		//重建，不保留原来的指标
+		String sql="select c.id trigger_id,c.* from ops_monitor_node_tpl_item a,ops_monitor_tpl b,\n" +
+				"ops_monitor_tpl_trigger c \n" +
+				"where a.tpl_code=b.code and b.status='enable'\n" +
+				"and c.status='enable'\n" +
+				"and c.monitor_tpl_code=a.tpl_code\n" +
+				"and a.node_id=?";
+		RcdSet rs=dao.query(sql,nodeId);
+		dao.execute("delete from ops_monitor_node_trigger where node_id=?",nodeId);
+		for(int i=0;i<rs.size();i++){
+			Rcd rcd=rs.getRcd(i);
+			if("static".equals(rcd.getString("rule_type"))){
+				MonitorNodeTrigger trigger=new MonitorNodeTrigger();
+				trigger.setNodeId(nodeId);
+				trigger.setName(rcd.getString("name"));
+				trigger.setRuleType(rcd.getString("rule_type"));
+				trigger.setMonitorTplCode(rcd.getString("monitor_tpl_code"));
+				trigger.setWarnLevel(rcd.getString("warn_level"));
+				trigger.setRule(rcd.getString("rule"));
+				trigger.setContentValue(rcd.getString("content_value"));
+				trigger.setTriggerId(rcd.getString("trigger_id"));
+				trigger.setStatus(rcd.getString("status"));
+				monitorNodeTriggerService.insert(trigger,false);
+			}else if("dynamic".equals(rcd.getString("rule_type"))) {
+				String ctl = rcd.getString("rule_discovery");
+				JSONObject ctlJson = JSONObject.parseObject(ctl);
+				String source = ctlJson.getString("source");
+				String mapping = ctlJson.getString("mapping");
+				String sql2 = "select \n" +
+						"node_id,\n" +
+						mapping + ",\n" +
+						"max(record_time) rtime\n" +
+						"from ops_monitor_node_value where result_status='sucess' \n" +
+						"and deleted=0 and indicator_code=? and node_id=?\n" +
+						"group by node_id,\n" + mapping;
+				RcdSet rs2 = dao.query(sql2, source, nodeId);
+				for (int j = 0; j < rs2.size(); j++) {
+					Rcd rcd2 = rs2.getRcd(j);
+					MonitorNodeTrigger trigger2 = new MonitorNodeTrigger();
+					trigger2.setNodeId(nodeId);
+					trigger2.setStatus(rcd.getString("status"));
+					trigger2.setName(rcd.getString("name"));
+					trigger2.setRuleType(rcd.getString("rule_type"));
+					trigger2.setMonitorTplCode(rcd.getString("monitor_tpl_code"));
+					trigger2.setWarnLevel(rcd.getString("warn_level"));
+					String rule_value = rcd.getString("rule");
+					String mapping_value = rcd2.getString(mapping);
+					trigger2.setRule(rule_value.replaceAll("#<" + mapping + ">#", mapping_value));
+					trigger2.setContentValue(rcd.getString("content_value"));
+					trigger2.setTriggerId(rcd.getString("trigger_id"));
+					if(StringUtil.isBlank(mapping_value)){
+						Logger.info("node:"+nodeId+",mapping_value is null");
+					}else{
+						monitorNodeTriggerService.insert(trigger2, false);
+					}
+
+				}
+			}
+		}
+		return ErrorDesc.success();
+	}
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
@@ -277,21 +377,24 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 
 
 	public Result collectData() {
-		List<MonitorTplTrigger> nodeList=this.queryCollectDataList();
-		dao.fill(nodeList).with(MonitorTplTriggerMeta.MONITOR_NODE_LIST).execute();
-		Logger.info("collectData,find trigger number:"+nodeList.size());
+		MonitorNodeVO vo=new MonitorNodeVO();
+		ConditionExpr expr=new ConditionExpr();
+		expr.and("1=1");
+		List<MonitorNode> nodeList=monitorNodeService.queryList(vo,expr);
+		dao.fill(nodeList).with(MonitorNodeMeta.TRIGGER_LIST).execute();
+		Logger.info("collectData,find node number:"+nodeList.size());
 		// 创建 ForkJoin 工具，其中 输入一个 Integer 元素的 List ，输出 Long 元素的 List ，每个线程处理 若干元素 ，此处为 5 个
-		SimpleJoinForkTask<MonitorTplTrigger,Result> task=new SimpleJoinForkTask<>(nodeList,20);
+		SimpleJoinForkTask<MonitorNode,Result> task=new SimpleJoinForkTask<>(nodeList,20);
 		// 并行执行
 		List<Result> rvs=task.execute(els->{
 			// 打印当前线程信息
 			Logger.info(Thread.currentThread().getName());
 			// 处理当前分到的 若干元素，此处为 5 个
 			List<Result> rs=new ArrayList<>();
-			for (MonitorTplTrigger node : els) {
-				Result result=collectTriggerData(node);
+			for (MonitorNode node : els) {
+				Result result=collectMonitorTriggerData(node);
 				if(!result.isSuccess()){
-					Logger.info("trigger :"+node.getName()+",message:"+result.getMessage());
+					Logger.info("node :"+node.getNodeNameShow()+",message:"+result.getMessage());
 				}
 				rs.add(result);
 			}
@@ -324,10 +427,10 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 
 
 
-	public Result collectTriggerData(MonitorTplTrigger trigger) {
-		List<MonitorNode> nodeList=trigger.getMonitorNodeList();
-		if(nodeList!=null&& nodeList.size()>0){
-			for(MonitorNode node:nodeList){
+	public Result collectMonitorTriggerData(MonitorNode node) {
+		List<MonitorNodeTrigger> triggerList=node.getTriggerList();
+		if(triggerList!=null&& triggerList.size()>0){
+			for(MonitorNodeTrigger trigger:triggerList){
 				Result r=collectTriggerNodeData(node,trigger);
 			}
 		}
@@ -466,7 +569,11 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 	}
 
 
-	public Result collectTriggerNodeData(MonitorNode node,MonitorTplTrigger trigger) {
+	public Result collectTriggerNodeData(MonitorNode node,MonitorNodeTrigger trigger) {
+
+		if(!"enable".equals(trigger.getStatus())){
+			return ErrorDesc.success();
+		}
 		Result res=new Result();
 	 	String rule=trigger.getRule();
 		String ct=trigger.getContentValue();
@@ -483,20 +590,19 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 				keyList.add(key[0]);
 			}
 		}
-
 		if("true".equals(result)){
 			res.success(true);
-			List<MonitorNodeTriggerLastData> triggerDataList=node.getTriggerDataList();
-			if(triggerDataList.size()>0){
+			MonitorNodeTriggerLastData triggerData=node.getTriggerData();
+			if(triggerData!=null){
 				ConditionExpr expr=new ConditionExpr();
-				List<String> ids=triggerDataList.stream().map(MonitorNodeTriggerLastData::getId).collect(Collectors.toList());
-				expr.andIn("event_id",ids);
+				//List<String> ids=triggerDataList.stream().map(MonitorNodeTriggerLastData::getId).collect(Collectors.toList());
+				expr.and("event_id=?",triggerData.getId());
 				List<MonitorAlertEvent> list= monitorAlertEventService.queryList(new MonitorAlertEventVO(),expr);
-				if(list.size()>=triggerDataList.size()){
+				if(list.size()>0){
 					Logger.info("当前Event已记录过");
 				}else {
 					Logger.info("当前Event需要告警");
-					for (int i = 0; i < triggerDataList.size(); i++) {
+//					for (int i = 0; i < triggerDataList.size(); i++) {
 						MonitorAlert alert = new MonitorAlert();
 						alert.setNodeId(node.getId());
 						alert.setNodeShowName(node.getNodeNameShow());
@@ -505,12 +611,10 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 						alert.setTriggerName(trigger.getName());
 						alert.setTriggerRuleDesc(trigger.getName());
 						alert.setWarnLevel(trigger.getWarnLevel());
-						Logger.info("开始替换内容,triggerDataList.get(i)",triggerDataList.get(i).getSourceData());
-						Logger.info("开始替换内容,triggerDataList.get(i)2");
+						Logger.info("开始替换内容,triggerDataList.get(i)",triggerData.getSourceData());
 						for(String key:keyList ){
 							Logger.info(key);
-							String keyValue=triggerDataList.get(i).getSourceData().getString(key);
-
+							String keyValue=triggerData.getSourceData().getString(key);
 							if(keyValue!=null){
 								ct=ct.replaceAll("#<"+key+">#",keyValue);
 							}
@@ -520,11 +624,11 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 						monitorAlertService.insert(alert, true);
 						actionToAlert(alert);
 						MonitorAlertEvent event = new MonitorAlertEvent();
-						event.setEventId(triggerDataList.get(i).getId());
+						event.setEventId(triggerData.getId());
 						event.setAlertId(alert.getId());
 						monitorAlertEventService.insert(event, true);
 					}
-				}
+				//}
 			}
 		}else if("false".equals(result)){
 			res.success(false);

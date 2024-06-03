@@ -1,7 +1,7 @@
 /**
  * 触发器 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-02 13:15:56
+ * @since 2024-06-03 14:00:05
  */
 
 function FormPage() {
@@ -118,6 +118,13 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		form.on('radio(ruleType)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=ruleType]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("ruleType",data,checked);
+		});
 		//渲染 warnLevel 下拉字段
 		fox.renderSelectBox({
 			el: "warnLevel",

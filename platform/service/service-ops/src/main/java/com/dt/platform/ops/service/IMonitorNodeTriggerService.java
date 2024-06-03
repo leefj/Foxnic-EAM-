@@ -5,8 +5,8 @@ import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.dt.platform.domain.ops.MonitorTplTrigger;
-import com.dt.platform.domain.ops.MonitorTplTriggerVO;
+import com.dt.platform.domain.ops.MonitorNodeTrigger;
+import com.dt.platform.domain.ops.MonitorNodeTriggerVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -24,38 +24,34 @@ import java.util.Map;
  * 触发器服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 20:49:27
+ * @since 2024-06-03 13:51:44
 */
 
-public interface IMonitorTplTriggerService extends  ISimpleIdService<MonitorTplTrigger,String> {
+public interface IMonitorNodeTriggerService extends  ISimpleIdService<MonitorNodeTrigger,String> {
 
-	Result createNodeTrigger(String nodeId);
 
-	Result createAllNodeTrigger();
-
-	Result collectData();
 	/**
 	 * 添加，如果语句错误，则抛出异常
-	 * @param monitorTplTrigger 数据对象
+	 * @param monitorNodeTrigger 数据对象
 	 * @return 插入是否成功
 	 * */
-	Result insert(MonitorTplTrigger monitorTplTrigger);
+	Result insert(MonitorNodeTrigger monitorNodeTrigger);
 
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param monitorTplTrigger  数据对象
+	 * @param monitorNodeTrigger  数据对象
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果 , 如果失败返回 false，成功返回 true
 	 */
-	Result insert(MonitorTplTrigger monitorTplTrigger,boolean throwsException);
+	Result insert(MonitorNodeTrigger monitorNodeTrigger,boolean throwsException);
 
 	/**
 	 * 批量插入实体，事务内
-	 * @param monitorTplTriggerList 实体数据清单
+	 * @param monitorNodeTriggerList 实体数据清单
 	 * @return 插入是否成功
 	 * */
-	Result insertList(List<MonitorTplTrigger> monitorTplTriggerList);
+	Result insertList(List<MonitorNodeTrigger> monitorNodeTriggerList);
 
 
 		
@@ -100,103 +96,103 @@ public interface IMonitorTplTriggerService extends  ISimpleIdService<MonitorTplT
 
 	/**
 	 * 更新，如果执行错误，则抛出异常
-	 * @param monitorTplTrigger 数据对象
+	 * @param monitorNodeTrigger 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result update(MonitorTplTrigger monitorTplTrigger , SaveMode mode);
+	Result update(MonitorNodeTrigger monitorNodeTrigger , SaveMode mode);
 
 
 	/**
 	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param monitorTplTrigger 数据对象
+	 * @param monitorNodeTrigger 数据对象
 	 * @param mode SaveMode,数据更新的模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果
 	 */
-	Result update(MonitorTplTrigger monitorTplTrigger , SaveMode mode,boolean throwsException);
+	Result update(MonitorNodeTrigger monitorNodeTrigger , SaveMode mode,boolean throwsException);
 
 
 	/**
 	 * 更新实体集，事务内
-	 * @param monitorTplTriggerList 数据对象列表
+	 * @param monitorNodeTriggerList 数据对象列表
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result updateList(List<MonitorTplTrigger> monitorTplTriggerList, SaveMode mode);
+	Result updateList(List<MonitorNodeTrigger> monitorNodeTriggerList, SaveMode mode);
 
 	/**
 	 * 保存实体，根据 throwsException 参数抛出异常或返回 Result 对象
-	 * @param monitorTplTrigger 实体数据
+	 * @param monitorNodeTrigger 实体数据
 	 * @param mode 保存模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 保存是否成功
 	 * */
-	Result save(MonitorTplTrigger monitorTplTrigger , SaveMode mode,boolean throwsException);
+	Result save(MonitorNodeTrigger monitorNodeTrigger , SaveMode mode,boolean throwsException);
 
 	/**
 	 * 保存实体，如果语句错误，则抛出异常
-	 * @param monitorTplTrigger 实体数据
+	 * @param monitorNodeTrigger 实体数据
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result save(MonitorTplTrigger monitorTplTrigger , SaveMode mode);
+	Result save(MonitorNodeTrigger monitorNodeTrigger , SaveMode mode);
 
 	/**
 	 * 保存实体，如果主键值不为null，则更新，否则插入
-	 * @param monitorTplTriggerList 实体数据清单
+	 * @param monitorNodeTriggerList 实体数据清单
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result saveList(List<MonitorTplTrigger> monitorTplTriggerList , SaveMode mode);
+	Result saveList(List<MonitorNodeTrigger> monitorNodeTriggerList , SaveMode mode);
 
 	/**
 	 * 检查实体中的数据字段是否已经存在 . 判断 主键值不同，但指定字段的值相同的记录是否存在
-	 * @param monitorTplTrigger  实体对象
+	 * @param monitorNodeTrigger  实体对象
 	 * @param field  字段清单，至少指定一个
 	 * @return 是否已经存在
 	 * */
-	boolean checkExists(MonitorTplTrigger monitorTplTrigger,DBField... field);
+	boolean checkExists(MonitorNodeTrigger monitorNodeTrigger,DBField... field);
 
 		
 	/**
 	 * 按主键获取触发器
 	 *
 	 * @param id 主键
-	 * @return MonitorTplTrigger 数据对象
+	 * @return MonitorNodeTrigger 数据对象
 	 */
-	MonitorTplTrigger getById(String id);
+	MonitorNodeTrigger getById(String id);
 
 	/**
 	 * 按 id 获取多个对象
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<MonitorTplTrigger> queryListByIds(List<String> ids);
+	List<MonitorNodeTrigger> queryListByIds(List<String> ids);
 
 	/**
 	 * 按 id 列表查询 Map
 	 * @param ids  主键清单
 	 * */
-	Map<String, MonitorTplTrigger> queryMapByIds(List<String> ids);
+	Map<String, MonitorNodeTrigger> queryMapByIds(List<String> ids);
 
 
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
-	 * @param monitorTplTrigger 数据对象
+	 * @param monitorNodeTrigger 数据对象
 	 * @return 判断结果
 	 */
-	Boolean checkExists(MonitorTplTrigger monitorTplTrigger);
+	Boolean checkExists(MonitorNodeTrigger monitorNodeTrigger);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
 	 * @param sample 数据样例
 	 * @return ConditionExpr 条件表达式
 	 * */
-	ConditionExpr buildQueryCondition(MonitorTplTrigger sample);
+	ConditionExpr buildQueryCondition(MonitorNodeTrigger sample);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
@@ -204,14 +200,14 @@ public interface IMonitorTplTriggerService extends  ISimpleIdService<MonitorTplT
 	 * @param tableAliase 数据表别名
 	 * 	@return ConditionExpr 条件表达式
 	 * */
-	ConditionExpr buildQueryCondition(MonitorTplTrigger sample,String tableAliase);
+	ConditionExpr buildQueryCondition(MonitorNodeTrigger sample,String tableAliase);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<MonitorTplTrigger> queryList(MonitorTplTriggerVO sample);
+	List<MonitorNodeTrigger> queryList(MonitorNodeTriggerVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -220,7 +216,7 @@ public interface IMonitorTplTriggerService extends  ISimpleIdService<MonitorTplT
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	List<MonitorTplTrigger> queryList(MonitorTplTrigger sample,ConditionExpr condition,OrderBy orderBy);
+	List<MonitorNodeTrigger> queryList(MonitorNodeTrigger sample,ConditionExpr condition,OrderBy orderBy);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -228,7 +224,7 @@ public interface IMonitorTplTriggerService extends  ISimpleIdService<MonitorTplT
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	List<MonitorTplTrigger> queryList(MonitorTplTrigger sample,OrderBy orderBy);
+	List<MonitorNodeTrigger> queryList(MonitorNodeTrigger sample,OrderBy orderBy);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -236,14 +232,14 @@ public interface IMonitorTplTriggerService extends  ISimpleIdService<MonitorTplT
 	 * @param condition  其它条件
 	 * @return 查询结果
 	 * */
-	List<MonitorTplTrigger> queryList(MonitorTplTrigger sample,ConditionExpr condition);
+	List<MonitorNodeTrigger> queryList(MonitorNodeTrigger sample,ConditionExpr condition);
 
 	/**
 	 * 查询单个实体
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	MonitorTplTrigger queryEntity(MonitorTplTrigger sample);
+	MonitorNodeTrigger queryEntity(MonitorNodeTrigger sample);
 
 	/**
 	 * 分页查询实体集
@@ -252,7 +248,7 @@ public interface IMonitorTplTriggerService extends  ISimpleIdService<MonitorTplT
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<MonitorTplTrigger> queryPagedList(MonitorTplTriggerVO sample,int pageSize,int pageIndex);
+	PagedList<MonitorNodeTrigger> queryPagedList(MonitorNodeTriggerVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -263,7 +259,7 @@ public interface IMonitorTplTriggerService extends  ISimpleIdService<MonitorTplT
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	PagedList<MonitorTplTrigger> queryPagedList(MonitorTplTrigger sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
+	PagedList<MonitorNodeTrigger> queryPagedList(MonitorNodeTrigger sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -273,7 +269,7 @@ public interface IMonitorTplTriggerService extends  ISimpleIdService<MonitorTplT
 	 * @param condition  其它条件
 	 * @return 查询结果
 	 * */
-	PagedList<MonitorTplTrigger> queryPagedList(MonitorTplTrigger sample,ConditionExpr condition,int pageSize,int pageIndex);
+	PagedList<MonitorNodeTrigger> queryPagedList(MonitorNodeTrigger sample,ConditionExpr condition,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -283,7 +279,7 @@ public interface IMonitorTplTriggerService extends  ISimpleIdService<MonitorTplT
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	PagedList<MonitorTplTrigger> queryPagedList(MonitorTplTrigger sample,OrderBy orderBy,int pageSize,int pageIndex);
+	PagedList<MonitorNodeTrigger> queryPagedList(MonitorNodeTrigger sample,OrderBy orderBy,int pageSize,int pageIndex);
 
  	/**
 	 * 查询指定字段的数据清单

@@ -26,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 节点
  * <p>节点 , 数据表 ops_monitor_node 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-02 10:29:46
- * @sign 4BA1E2ED7BC3733286A708AAD376271B
+ * @since 2024-06-03 16:52:08
+ * @sign 0031B9078698500FBCFE05F46CD9B6FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -278,6 +278,12 @@ public class MonitorNode extends Entity {
 	private MonitorNodeSubtype monitorNodeSubType;
 	
 	/**
+	 * triggerList：triggerList
+	*/
+	@ApiModelProperty(required = false,value="triggerList" , notes = "triggerList")
+	private List<MonitorNodeTrigger> triggerList;
+	
+	/**
 	 * 监控模版列表：监控模版列表
 	*/
 	@ApiModelProperty(required = false,value="监控模版列表" , notes = "监控模版列表")
@@ -306,6 +312,12 @@ public class MonitorNode extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="triggerDataList" , notes = "triggerDataList")
 	private List<MonitorNodeTriggerLastData> triggerDataList;
+	
+	/**
+	 * triggerData：triggerData
+	*/
+	@ApiModelProperty(required = false,value="triggerData" , notes = "triggerData")
+	private MonitorNodeTriggerLastData triggerData;
 	
 	/**
 	 * 获得 主键<br>
@@ -1113,6 +1125,36 @@ public class MonitorNode extends Entity {
 	}
 	
 	/**
+	 * 获得 triggerList<br>
+	 * triggerList
+	 * @return triggerList
+	*/
+	public List<MonitorNodeTrigger> getTriggerList() {
+		return triggerList;
+	}
+	
+	/**
+	 * 设置 triggerList
+	 * @param triggerList triggerList
+	 * @return 当前对象
+	*/
+	public MonitorNode setTriggerList(List<MonitorNodeTrigger> triggerList) {
+		this.triggerList=triggerList;
+		return this;
+	}
+	
+	/**
+	 * 添加 triggerList
+	 * @param trigger triggerList
+	 * @return 当前对象
+	*/
+	public MonitorNode addTrigger(MonitorNodeTrigger... trigger) {
+		if(this.triggerList==null) triggerList=new ArrayList<>();
+		this.triggerList.addAll(Arrays.asList(trigger));
+		return this;
+	}
+	
+	/**
 	 * 获得 监控模版列表<br>
 	 * 监控模版列表
 	 * @return 监控模版列表
@@ -1250,6 +1292,25 @@ public class MonitorNode extends Entity {
 		this.triggerDataList.addAll(Arrays.asList(triggerData));
 		return this;
 	}
+	
+	/**
+	 * 获得 triggerData<br>
+	 * triggerData
+	 * @return triggerData
+	*/
+	public MonitorNodeTriggerLastData getTriggerData() {
+		return triggerData;
+	}
+	
+	/**
+	 * 设置 triggerData
+	 * @param triggerData triggerData
+	 * @return 当前对象
+	*/
+	public MonitorNode setTriggerData(MonitorNodeTriggerLastData triggerData) {
+		this.triggerData=triggerData;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1327,6 +1388,7 @@ public class MonitorNode extends Entity {
 		inst.setAgentPort(this.getAgentPort());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setTriggerData(this.getTriggerData());
 			inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
 			inst.setUidList(this.getUidList());
 			inst.setMonitorNodeType(this.getMonitorNodeType());
@@ -1336,6 +1398,7 @@ public class MonitorNode extends Entity {
 			inst.setSshVoucher(this.getSshVoucher());
 			inst.setMonitorTplIds(this.getMonitorTplIds());
 			inst.setMonitorNodeSubType(this.getMonitorNodeSubType());
+			inst.setTriggerList(this.getTriggerList());
 			inst.setNodeGroupList(this.getNodeGroupList());
 			inst.setTriggerDataList(this.getTriggerDataList());
 			inst.setCalIndicatorTplCode(this.getCalIndicatorTplCode());
@@ -1431,6 +1494,7 @@ public class MonitorNode extends Entity {
 			this.setAgentPort(DataParser.parse(Integer.class, map.get(MonitorNodeMeta.AGENT_PORT)));
 			this.setStatus(DataParser.parse(String.class, map.get(MonitorNodeMeta.STATUS)));
 			// others
+			this.setTriggerData(DataParser.parse(MonitorNodeTriggerLastData.class, map.get(MonitorNodeMeta.TRIGGER_DATA)));
 			this.setMonitorNodeType(DataParser.parse(MonitorNodeType.class, map.get(MonitorNodeMeta.MONITOR_NODE_TYPE)));
 			this.setMonitorNodeGroup(DataParser.parse(MonitorNodeGroup.class, map.get(MonitorNodeMeta.MONITOR_NODE_GROUP)));
 			this.setSshVoucher(DataParser.parse(MonitorVoucher.class, map.get(MonitorNodeMeta.SSH_VOUCHER)));
@@ -1472,6 +1536,7 @@ public class MonitorNode extends Entity {
 				this.setAgentPort( (Integer)map.get(MonitorNodeMeta.AGENT_PORT));
 				this.setStatus( (String)map.get(MonitorNodeMeta.STATUS));
 				// others
+				this.setTriggerData( (MonitorNodeTriggerLastData)map.get(MonitorNodeMeta.TRIGGER_DATA));
 				this.setMonitorNodeType( (MonitorNodeType)map.get(MonitorNodeMeta.MONITOR_NODE_TYPE));
 				this.setMonitorNodeGroup( (MonitorNodeGroup)map.get(MonitorNodeMeta.MONITOR_NODE_GROUP));
 				this.setSshVoucher( (MonitorVoucher)map.get(MonitorNodeMeta.SSH_VOUCHER));

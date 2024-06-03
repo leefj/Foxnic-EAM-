@@ -31,7 +31,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.*;
 
-@Service("MonitorDataProcessBaseService")
+@Service("MonitorDataProcessBaseService2")
 public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBaseService {
 
 
@@ -53,9 +53,9 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
     @Autowired
     private IMonitorTplService monitorTplService;
 
-
     @Autowired
     private IMonitorTplIndicatorService monitorTplIndicatorService;
+
 
     public static String NODE_VALUE_COLUMN_COLS_SPLIT=",";
 

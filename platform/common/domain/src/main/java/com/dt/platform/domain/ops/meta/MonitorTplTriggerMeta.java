@@ -12,8 +12,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-02 13:15:51
- * @sign 81C3AC5E12E245CB724DAE02C1CF9633
+ * @since 2024-06-03 14:00:04
+ * @sign DD46C3288E78CF628EBD8B8AA826DA11
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,6 +40,16 @@ public class MonitorTplTriggerMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTrigger,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTrigger.class ,NAME, java.lang.String.class, "触发器", "触发器", java.lang.String.class, null);
 	
 	/**
+	 * 规则类型 , 类型: java.lang.String
+	*/
+	public static final String RULE_TYPE="ruleType";
+	
+	/**
+	 * 规则类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTrigger,java.lang.String> RULE_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTrigger.class ,RULE_TYPE, java.lang.String.class, "规则类型", "规则类型", java.lang.String.class, null);
+	
+	/**
 	 * 告警等级 , 类型: java.lang.String
 	*/
 	public static final String WARN_LEVEL="warnLevel";
@@ -48,6 +58,26 @@ public class MonitorTplTriggerMeta {
 	 * 告警等级 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTrigger,java.lang.String> WARN_LEVEL_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTrigger.class ,WARN_LEVEL, java.lang.String.class, "告警等级", "告警等级", java.lang.String.class, null);
+	
+	/**
+	 * 发现规则 , 类型: java.lang.String
+	*/
+	public static final String RULE_DISCOVERY="ruleDiscovery";
+	
+	/**
+	 * 发现规则 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTrigger,java.lang.String> RULE_DISCOVERY_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTrigger.class ,RULE_DISCOVERY, java.lang.String.class, "发现规则", "发现规则", java.lang.String.class, null);
+	
+	/**
+	 * 间隔时间 , 类型: java.lang.Integer
+	*/
+	public static final String INTERVAL_TIME="intervalTime";
+	
+	/**
+	 * 间隔时间 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTrigger,java.lang.Integer> INTERVAL_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTrigger.class ,INTERVAL_TIME, java.lang.Integer.class, "间隔时间", "间隔时间", java.lang.Integer.class, null);
 	
 	/**
 	 * 告警规则 , 类型: java.lang.String
@@ -202,7 +232,7 @@ public class MonitorTplTriggerMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , WARN_LEVEL , RULE , CONTENT_VALUE , STATUS , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_NODE_LIST };
+	public static final String[] $PROPS={ ID , NAME , RULE_TYPE , WARN_LEVEL , RULE_DISCOVERY , INTERVAL_TIME , RULE , CONTENT_VALUE , STATUS , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_NODE_LIST };
 	
 	/**
 	 * 代理类
@@ -235,6 +265,17 @@ public class MonitorTplTriggerMeta {
 		}
 		
 		/**
+		 * 设置 规则类型
+		 * @param ruleType 规则类型
+		 * @return 当前对象
+		*/
+		public MonitorTplTrigger setRuleType(String ruleType) {
+			super.change(RULE_TYPE,super.getRuleType(),ruleType);
+			super.setRuleType(ruleType);
+			return this;
+		}
+		
+		/**
 		 * 设置 告警等级
 		 * @param warnLevel 告警等级
 		 * @return 当前对象
@@ -242,6 +283,28 @@ public class MonitorTplTriggerMeta {
 		public MonitorTplTrigger setWarnLevel(String warnLevel) {
 			super.change(WARN_LEVEL,super.getWarnLevel(),warnLevel);
 			super.setWarnLevel(warnLevel);
+			return this;
+		}
+		
+		/**
+		 * 设置 发现规则
+		 * @param ruleDiscovery 发现规则
+		 * @return 当前对象
+		*/
+		public MonitorTplTrigger setRuleDiscovery(String ruleDiscovery) {
+			super.change(RULE_DISCOVERY,super.getRuleDiscovery(),ruleDiscovery);
+			super.setRuleDiscovery(ruleDiscovery);
+			return this;
+		}
+		
+		/**
+		 * 设置 间隔时间
+		 * @param intervalTime 间隔时间
+		 * @return 当前对象
+		*/
+		public MonitorTplTrigger setIntervalTime(Integer intervalTime) {
+			super.change(INTERVAL_TIME,super.getIntervalTime(),intervalTime);
+			super.setIntervalTime(intervalTime);
 			return this;
 		}
 		
@@ -425,6 +488,7 @@ public class MonitorTplTriggerMeta {
 		@Transient
 		public MonitorTplTrigger duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setRuleDiscovery(this.getRuleDiscovery());
 			inst.setNotes(this.getNotes());
 			inst.setWarnLevel(this.getWarnLevel());
 			inst.setRule(this.getRule());
@@ -437,9 +501,11 @@ public class MonitorTplTriggerMeta {
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
+			inst.setRuleType(this.getRuleType());
 			inst.setName(this.getName());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setIntervalTime(this.getIntervalTime());
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setMonitorNodeList(this.getMonitorNodeList());

@@ -1,7 +1,7 @@
 /**
  * 触发器 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-02 13:15:55
+ * @since 2024-06-03 14:00:05
  */
 
 
@@ -85,7 +85,10 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('触发器') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'ruleType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('规则类型'), templet:function (d){ return templet('ruleType',fox.getEnumText(RADIO_RULETYPE_DATA,d.ruleType,'','ruleType'),d);}}
 					,{ field: 'warnLevel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('告警等级'), templet:function (d){ return templet('warnLevel',fox.getEnumText(SELECT_WARNLEVEL_DATA,d.warnLevel,'','warnLevel'),d);}}
+					,{ field: 'ruleDiscovery', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('发现规则') , templet: function (d) { return templet('ruleDiscovery',d.ruleDiscovery,d);}  }
+					,{ field: 'intervalTime', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('间隔时间') , templet: function (d) { return templet('intervalTime',d.intervalTime,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'monitorTplCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('监控模版'), templet: function (d) { return templet('monitorTplCode' ,fox.joinLabel(d.tpl,"name",',','','monitorTplCode'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}

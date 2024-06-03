@@ -1,9 +1,9 @@
 package com.dt.platform.domain.ops.meta;
 
 import com.github.foxnic.api.bean.BeanProperty;
-import com.dt.platform.domain.ops.MonitorTplTriggerVO;
+import com.dt.platform.domain.ops.MonitorNodeTriggerVO;
 import java.util.List;
-import com.dt.platform.domain.ops.MonitorTplTrigger;
+import com.dt.platform.domain.ops.MonitorNodeTrigger;
 import java.util.Date;
 import com.dt.platform.domain.ops.MonitorTpl;
 import com.dt.platform.domain.ops.MonitorNode;
@@ -13,12 +13,12 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-03 14:00:04
- * @sign 1CE0B46D4AE363891DE76A401E183965
+ * @since 2024-06-03 14:41:48
+ * @sign 1B4953AA8BF9CCE52FC29ED1B56C88BF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
+public class MonitorNodeTriggerVOMeta extends MonitorNodeTriggerMeta {
 	
 	/**
 	 * 页码 , 类型: java.lang.Integer
@@ -28,7 +28,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 页码 , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.Integer> PAGE_INDEX_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,PAGE_INDEX, java.lang.Integer.class, "页码", "", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.Integer> PAGE_INDEX_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,PAGE_INDEX, java.lang.Integer.class, "页码", "", java.lang.Integer.class, null);
 	
 	/**
 	 * 分页大小 , 类型: java.lang.Integer
@@ -38,7 +38,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 分页大小 , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.Integer> PAGE_SIZE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,PAGE_SIZE, java.lang.Integer.class, "分页大小", "", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.Integer> PAGE_SIZE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,PAGE_SIZE, java.lang.Integer.class, "分页大小", "", java.lang.Integer.class, null);
 	
 	/**
 	 * 搜索字段 , 类型: java.lang.String
@@ -48,7 +48,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 搜索字段 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> SEARCH_FIELD_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,SEARCH_FIELD, java.lang.String.class, "搜索字段", "", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> SEARCH_FIELD_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,SEARCH_FIELD, java.lang.String.class, "搜索字段", "", java.lang.String.class, null);
 	
 	/**
 	 * 模糊搜索字段 , 类型: java.lang.String
@@ -58,7 +58,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 模糊搜索字段 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> FUZZY_FIELD_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,FUZZY_FIELD, java.lang.String.class, "模糊搜索字段", "", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> FUZZY_FIELD_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,FUZZY_FIELD, java.lang.String.class, "模糊搜索字段", "", java.lang.String.class, null);
 	
 	/**
 	 * 搜索的值 , 类型: java.lang.String
@@ -68,7 +68,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 搜索的值 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> SEARCH_VALUE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,SEARCH_VALUE, java.lang.String.class, "搜索的值", "", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> SEARCH_VALUE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,SEARCH_VALUE, java.lang.String.class, "搜索的值", "", java.lang.String.class, null);
 	
 	/**
 	 * 已修改字段 , 集合类型: LIST , 类型: java.lang.String
@@ -78,7 +78,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 已修改字段 , 集合类型: LIST , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> DIRTY_FIELDS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,DIRTY_FIELDS, java.util.List.class, "已修改字段", "", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> DIRTY_FIELDS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,DIRTY_FIELDS, java.util.List.class, "已修改字段", "", java.lang.String.class, null);
 	
 	/**
 	 * 排序字段 , 类型: java.lang.String
@@ -88,7 +88,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 排序字段 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> SORT_FIELD_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,SORT_FIELD, java.lang.String.class, "排序字段", "", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> SORT_FIELD_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,SORT_FIELD, java.lang.String.class, "排序字段", "", java.lang.String.class, null);
 	
 	/**
 	 * 排序方式 , 类型: java.lang.String
@@ -98,7 +98,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 排序方式 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
 	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
@@ -108,7 +108,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
@@ -118,7 +118,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
 	
 	/**
 	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
@@ -128,7 +128,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -138,7 +138,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,IDS, java.util.List.class, "主键清单", "用于接收批量主键参数", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,IDS, java.util.List.class, "主键清单", "用于接收批量主键参数", java.lang.String.class, null);
 	
 	/**
 	 * 主键 , 类型: java.lang.String
@@ -148,27 +148,47 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 主键 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
 	 * 触发器 , 类型: java.lang.String
 	*/
-	public static final String NAME="name";
+	public static final String TRIGGER_ID="triggerId";
 	
 	/**
 	 * 触发器 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,NAME, java.lang.String.class, "触发器", "触发器", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> TRIGGER_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,TRIGGER_ID, java.lang.String.class, "触发器", "触发器", java.lang.String.class, null);
 	
 	/**
-	 * 规则类型 , 类型: java.lang.String
+	 * 规则类型 , 动态，静态 , 类型: java.lang.String
 	*/
 	public static final String RULE_TYPE="ruleType";
 	
 	/**
-	 * 规则类型 , 类型: java.lang.String
+	 * 规则类型 , 动态，静态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> RULE_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,RULE_TYPE, java.lang.String.class, "规则类型", "规则类型", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> RULE_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,RULE_TYPE, java.lang.String.class, "规则类型", "动态，静态", java.lang.String.class, null);
+	
+	/**
+	 * 节点 , 类型: java.lang.String
+	*/
+	public static final String NODE_ID="nodeId";
+	
+	/**
+	 * 节点 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> NODE_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,NODE_ID, java.lang.String.class, "节点", "节点", java.lang.String.class, null);
+	
+	/**
+	 * 名称 , 类型: java.lang.String
+	*/
+	public static final String NAME="name";
+	
+	/**
+	 * 名称 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
 	
 	/**
 	 * 告警等级 , 类型: java.lang.String
@@ -178,27 +198,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 告警等级 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> WARN_LEVEL_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,WARN_LEVEL, java.lang.String.class, "告警等级", "告警等级", java.lang.String.class, null);
-	
-	/**
-	 * 发现规则 , 类型: java.lang.String
-	*/
-	public static final String RULE_DISCOVERY="ruleDiscovery";
-	
-	/**
-	 * 发现规则 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> RULE_DISCOVERY_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,RULE_DISCOVERY, java.lang.String.class, "发现规则", "发现规则", java.lang.String.class, null);
-	
-	/**
-	 * 间隔时间 , 类型: java.lang.Integer
-	*/
-	public static final String INTERVAL_TIME="intervalTime";
-	
-	/**
-	 * 间隔时间 , 类型: java.lang.Integer
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.Integer> INTERVAL_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,INTERVAL_TIME, java.lang.Integer.class, "间隔时间", "间隔时间", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> WARN_LEVEL_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,WARN_LEVEL, java.lang.String.class, "告警等级", "告警等级", java.lang.String.class, null);
 	
 	/**
 	 * 告警规则 , 类型: java.lang.String
@@ -208,7 +208,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 告警规则 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> RULE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,RULE, java.lang.String.class, "告警规则", "告警规则", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> RULE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,RULE, java.lang.String.class, "告警规则", "告警规则", java.lang.String.class, null);
 	
 	/**
 	 * 告警内容 , 类型: java.lang.String
@@ -218,7 +218,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 告警内容 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> CONTENT_VALUE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,CONTENT_VALUE, java.lang.String.class, "告警内容", "告警内容", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> CONTENT_VALUE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,CONTENT_VALUE, java.lang.String.class, "告警内容", "告警内容", java.lang.String.class, null);
 	
 	/**
 	 * 状态 , 类型: java.lang.String
@@ -228,7 +228,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
 	
 	/**
 	 * 监控模版 , 类型: java.lang.String
@@ -238,7 +238,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 监控模版 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> MONITOR_TPL_CODE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,MONITOR_TPL_CODE, java.lang.String.class, "监控模版", "监控模版", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> MONITOR_TPL_CODE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,MONITOR_TPL_CODE, java.lang.String.class, "监控模版", "监控模版", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -248,7 +248,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 备注 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -258,7 +258,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> CREATE_BY_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,CREATE_BY, java.lang.String.class, "创建人ID", "创建人ID", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> CREATE_BY_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,CREATE_BY, java.lang.String.class, "创建人ID", "创建人ID", java.lang.String.class, null);
 	
 	/**
 	 * 创建时间 , 类型: java.util.Date
@@ -268,7 +268,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 创建时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.util.Date> CREATE_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,CREATE_TIME, java.util.Date.class, "创建时间", "创建时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.util.Date> CREATE_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,CREATE_TIME, java.util.Date.class, "创建时间", "创建时间", java.util.Date.class, null);
 	
 	/**
 	 * 修改人ID , 类型: java.lang.String
@@ -278,7 +278,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 修改人ID , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> UPDATE_BY_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,UPDATE_BY, java.lang.String.class, "修改人ID", "修改人ID", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> UPDATE_BY_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,UPDATE_BY, java.lang.String.class, "修改人ID", "修改人ID", java.lang.String.class, null);
 	
 	/**
 	 * 修改时间 , 类型: java.util.Date
@@ -288,7 +288,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 修改时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.util.Date> UPDATE_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,UPDATE_TIME, java.util.Date.class, "修改时间", "修改时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.util.Date> UPDATE_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,UPDATE_TIME, java.util.Date.class, "修改时间", "修改时间", java.util.Date.class, null);
 	
 	/**
 	 * 是否已删除 , 类型: java.lang.Integer
@@ -298,7 +298,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 是否已删除 , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.Integer> DELETED_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,DELETED, java.lang.Integer.class, "是否已删除", "是否已删除", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.Integer> DELETED_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,DELETED, java.lang.Integer.class, "是否已删除", "是否已删除", java.lang.Integer.class, null);
 	
 	/**
 	 * 删除人ID , 类型: java.lang.String
@@ -308,7 +308,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 删除人ID , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> DELETE_BY_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,DELETE_BY, java.lang.String.class, "删除人ID", "删除人ID", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.String> DELETE_BY_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,DELETE_BY, java.lang.String.class, "删除人ID", "删除人ID", java.lang.String.class, null);
 	
 	/**
 	 * 删除时间 , 类型: java.util.Date
@@ -318,7 +318,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 删除时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.util.Date> DELETE_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,DELETE_TIME, java.util.Date.class, "删除时间", "删除时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.util.Date> DELETE_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,DELETE_TIME, java.util.Date.class, "删除时间", "删除时间", java.util.Date.class, null);
 	
 	/**
 	 * 版本 , 类型: java.lang.Integer
@@ -328,7 +328,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 版本 , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,VERSION, java.lang.Integer.class, "版本", "版本", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,VERSION, java.lang.Integer.class, "版本", "版本", java.lang.Integer.class, null);
 	
 	/**
 	 * 节点模版 , 类型: com.dt.platform.domain.ops.MonitorTpl
@@ -338,7 +338,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 节点模版 , 类型: com.dt.platform.domain.ops.MonitorTpl
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,com.dt.platform.domain.ops.MonitorTpl> TPL_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,TPL, com.dt.platform.domain.ops.MonitorTpl.class, "节点模版", "节点模版", com.dt.platform.domain.ops.MonitorTpl.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,com.dt.platform.domain.ops.MonitorTpl> TPL_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,TPL, com.dt.platform.domain.ops.MonitorTpl.class, "节点模版", "节点模版", com.dt.platform.domain.ops.MonitorTpl.class, null);
 	
 	/**
 	 * monitorNodeList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorNode
@@ -348,17 +348,17 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * monitorNodeList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorNode
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,com.dt.platform.domain.ops.MonitorNode> MONITOR_NODE_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,MONITOR_NODE_LIST, java.util.List.class, "monitorNodeList", "monitorNodeList", com.dt.platform.domain.ops.MonitorNode.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,com.dt.platform.domain.ops.MonitorNode> MONITOR_NODE_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,MONITOR_NODE_LIST, java.util.List.class, "monitorNodeList", "monitorNodeList", com.dt.platform.domain.ops.MonitorNode.class, null);
 	
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , RULE_TYPE , WARN_LEVEL , RULE_DISCOVERY , INTERVAL_TIME , RULE , CONTENT_VALUE , STATUS , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_NODE_LIST };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TRIGGER_ID , RULE_TYPE , NODE_ID , NAME , WARN_LEVEL , RULE , CONTENT_VALUE , STATUS , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_NODE_LIST };
 	
 	/**
 	 * 代理类
 	*/
-	public static class $$proxy$$ extends com.dt.platform.domain.ops.MonitorTplTriggerVO {
+	public static class $$proxy$$ extends com.dt.platform.domain.ops.MonitorNodeTriggerVO {
 
 		private static final long serialVersionUID = 1L;
 
@@ -368,7 +368,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param pageIndex 页码
 		 * @return 当前对象
 		*/
-		public MonitorTplTriggerVO setPageIndex(Integer pageIndex) {
+		public MonitorNodeTriggerVO setPageIndex(Integer pageIndex) {
 			super.change(PAGE_INDEX,super.getPageIndex(),pageIndex);
 			super.setPageIndex(pageIndex);
 			return this;
@@ -379,7 +379,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param pageSize 分页大小
 		 * @return 当前对象
 		*/
-		public MonitorTplTriggerVO setPageSize(Integer pageSize) {
+		public MonitorNodeTriggerVO setPageSize(Integer pageSize) {
 			super.change(PAGE_SIZE,super.getPageSize(),pageSize);
 			super.setPageSize(pageSize);
 			return this;
@@ -390,7 +390,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param searchField 搜索字段
 		 * @return 当前对象
 		*/
-		public MonitorTplTriggerVO setSearchField(String searchField) {
+		public MonitorNodeTriggerVO setSearchField(String searchField) {
 			super.change(SEARCH_FIELD,super.getSearchField(),searchField);
 			super.setSearchField(searchField);
 			return this;
@@ -401,7 +401,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param fuzzyField 模糊搜索字段
 		 * @return 当前对象
 		*/
-		public MonitorTplTriggerVO setFuzzyField(String fuzzyField) {
+		public MonitorNodeTriggerVO setFuzzyField(String fuzzyField) {
 			super.change(FUZZY_FIELD,super.getFuzzyField(),fuzzyField);
 			super.setFuzzyField(fuzzyField);
 			return this;
@@ -412,7 +412,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param searchValue 搜索的值
 		 * @return 当前对象
 		*/
-		public MonitorTplTriggerVO setSearchValue(String searchValue) {
+		public MonitorNodeTriggerVO setSearchValue(String searchValue) {
 			super.change(SEARCH_VALUE,super.getSearchValue(),searchValue);
 			super.setSearchValue(searchValue);
 			return this;
@@ -423,7 +423,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param dirtyFields 已修改字段
 		 * @return 当前对象
 		*/
-		public MonitorTplTriggerVO setDirtyFields(List<String> dirtyFields) {
+		public MonitorNodeTriggerVO setDirtyFields(List<String> dirtyFields) {
 			super.change(DIRTY_FIELDS,super.getDirtyFields(),dirtyFields);
 			super.setDirtyFields(dirtyFields);
 			return this;
@@ -434,7 +434,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param sortField 排序字段
 		 * @return 当前对象
 		*/
-		public MonitorTplTriggerVO setSortField(String sortField) {
+		public MonitorNodeTriggerVO setSortField(String sortField) {
 			super.change(SORT_FIELD,super.getSortField(),sortField);
 			super.setSortField(sortField);
 			return this;
@@ -445,7 +445,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param sortType 排序方式
 		 * @return 当前对象
 		*/
-		public MonitorTplTriggerVO setSortType(String sortType) {
+		public MonitorNodeTriggerVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
 			return this;
@@ -456,7 +456,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param dataOrigin 数据来源
 		 * @return 当前对象
 		*/
-		public MonitorTplTriggerVO setDataOrigin(String dataOrigin) {
+		public MonitorNodeTriggerVO setDataOrigin(String dataOrigin) {
 			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
 			super.setDataOrigin(dataOrigin);
 			return this;
@@ -467,7 +467,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param queryLogic 查询逻辑
 		 * @return 当前对象
 		*/
-		public MonitorTplTriggerVO setQueryLogic(String queryLogic) {
+		public MonitorNodeTriggerVO setQueryLogic(String queryLogic) {
 			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
 			super.setQueryLogic(queryLogic);
 			return this;
@@ -478,7 +478,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param requestAction 请求动作
 		 * @return 当前对象
 		*/
-		public MonitorTplTriggerVO setRequestAction(String requestAction) {
+		public MonitorNodeTriggerVO setRequestAction(String requestAction) {
 			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
 			super.setRequestAction(requestAction);
 			return this;
@@ -489,7 +489,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param ids 主键清单
 		 * @return 当前对象
 		*/
-		public MonitorTplTriggerVO setIds(List<String> ids) {
+		public MonitorNodeTriggerVO setIds(List<String> ids) {
 			super.change(IDS,super.getIds(),ids);
 			super.setIds(ids);
 			return this;
@@ -500,7 +500,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param id 主键
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setId(String id) {
+		public MonitorNodeTrigger setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
 			return this;
@@ -508,12 +508,12 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		
 		/**
 		 * 设置 触发器
-		 * @param name 触发器
+		 * @param triggerId 触发器
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setName(String name) {
-			super.change(NAME,super.getName(),name);
-			super.setName(name);
+		public MonitorNodeTrigger setTriggerId(String triggerId) {
+			super.change(TRIGGER_ID,super.getTriggerId(),triggerId);
+			super.setTriggerId(triggerId);
 			return this;
 		}
 		
@@ -522,9 +522,31 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param ruleType 规则类型
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setRuleType(String ruleType) {
+		public MonitorNodeTrigger setRuleType(String ruleType) {
 			super.change(RULE_TYPE,super.getRuleType(),ruleType);
 			super.setRuleType(ruleType);
+			return this;
+		}
+		
+		/**
+		 * 设置 节点
+		 * @param nodeId 节点
+		 * @return 当前对象
+		*/
+		public MonitorNodeTrigger setNodeId(String nodeId) {
+			super.change(NODE_ID,super.getNodeId(),nodeId);
+			super.setNodeId(nodeId);
+			return this;
+		}
+		
+		/**
+		 * 设置 名称
+		 * @param name 名称
+		 * @return 当前对象
+		*/
+		public MonitorNodeTrigger setName(String name) {
+			super.change(NAME,super.getName(),name);
+			super.setName(name);
 			return this;
 		}
 		
@@ -533,31 +555,9 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param warnLevel 告警等级
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setWarnLevel(String warnLevel) {
+		public MonitorNodeTrigger setWarnLevel(String warnLevel) {
 			super.change(WARN_LEVEL,super.getWarnLevel(),warnLevel);
 			super.setWarnLevel(warnLevel);
-			return this;
-		}
-		
-		/**
-		 * 设置 发现规则
-		 * @param ruleDiscovery 发现规则
-		 * @return 当前对象
-		*/
-		public MonitorTplTrigger setRuleDiscovery(String ruleDiscovery) {
-			super.change(RULE_DISCOVERY,super.getRuleDiscovery(),ruleDiscovery);
-			super.setRuleDiscovery(ruleDiscovery);
-			return this;
-		}
-		
-		/**
-		 * 设置 间隔时间
-		 * @param intervalTime 间隔时间
-		 * @return 当前对象
-		*/
-		public MonitorTplTrigger setIntervalTime(Integer intervalTime) {
-			super.change(INTERVAL_TIME,super.getIntervalTime(),intervalTime);
-			super.setIntervalTime(intervalTime);
 			return this;
 		}
 		
@@ -566,7 +566,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param rule 告警规则
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setRule(String rule) {
+		public MonitorNodeTrigger setRule(String rule) {
 			super.change(RULE,super.getRule(),rule);
 			super.setRule(rule);
 			return this;
@@ -577,7 +577,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param contentValue 告警内容
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setContentValue(String contentValue) {
+		public MonitorNodeTrigger setContentValue(String contentValue) {
 			super.change(CONTENT_VALUE,super.getContentValue(),contentValue);
 			super.setContentValue(contentValue);
 			return this;
@@ -588,7 +588,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param status 状态
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setStatus(String status) {
+		public MonitorNodeTrigger setStatus(String status) {
 			super.change(STATUS,super.getStatus(),status);
 			super.setStatus(status);
 			return this;
@@ -599,7 +599,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param monitorTplCode 监控模版
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setMonitorTplCode(String monitorTplCode) {
+		public MonitorNodeTrigger setMonitorTplCode(String monitorTplCode) {
 			super.change(MONITOR_TPL_CODE,super.getMonitorTplCode(),monitorTplCode);
 			super.setMonitorTplCode(monitorTplCode);
 			return this;
@@ -610,7 +610,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param notes 备注
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setNotes(String notes) {
+		public MonitorNodeTrigger setNotes(String notes) {
 			super.change(NOTES,super.getNotes(),notes);
 			super.setNotes(notes);
 			return this;
@@ -621,7 +621,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param createBy 创建人ID
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setCreateBy(String createBy) {
+		public MonitorNodeTrigger setCreateBy(String createBy) {
 			super.change(CREATE_BY,super.getCreateBy(),createBy);
 			super.setCreateBy(createBy);
 			return this;
@@ -632,7 +632,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param createTime 创建时间
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setCreateTime(Date createTime) {
+		public MonitorNodeTrigger setCreateTime(Date createTime) {
 			super.change(CREATE_TIME,super.getCreateTime(),createTime);
 			super.setCreateTime(createTime);
 			return this;
@@ -643,7 +643,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param updateBy 修改人ID
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setUpdateBy(String updateBy) {
+		public MonitorNodeTrigger setUpdateBy(String updateBy) {
 			super.change(UPDATE_BY,super.getUpdateBy(),updateBy);
 			super.setUpdateBy(updateBy);
 			return this;
@@ -654,7 +654,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param updateTime 修改时间
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setUpdateTime(Date updateTime) {
+		public MonitorNodeTrigger setUpdateTime(Date updateTime) {
 			super.change(UPDATE_TIME,super.getUpdateTime(),updateTime);
 			super.setUpdateTime(updateTime);
 			return this;
@@ -665,7 +665,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param deleted 是否已删除
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setDeleted(Integer deleted) {
+		public MonitorNodeTrigger setDeleted(Integer deleted) {
 			super.change(DELETED,super.getDeleted(),deleted);
 			super.setDeleted(deleted);
 			return this;
@@ -676,7 +676,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param deleteBy 删除人ID
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setDeleteBy(String deleteBy) {
+		public MonitorNodeTrigger setDeleteBy(String deleteBy) {
 			super.change(DELETE_BY,super.getDeleteBy(),deleteBy);
 			super.setDeleteBy(deleteBy);
 			return this;
@@ -687,7 +687,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param deleteTime 删除时间
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setDeleteTime(Date deleteTime) {
+		public MonitorNodeTrigger setDeleteTime(Date deleteTime) {
 			super.change(DELETE_TIME,super.getDeleteTime(),deleteTime);
 			super.setDeleteTime(deleteTime);
 			return this;
@@ -698,7 +698,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param version 版本
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setVersion(Integer version) {
+		public MonitorNodeTrigger setVersion(Integer version) {
 			super.change(VERSION,super.getVersion(),version);
 			super.setVersion(version);
 			return this;
@@ -709,7 +709,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param tpl 节点模版
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setTpl(MonitorTpl tpl) {
+		public MonitorNodeTrigger setTpl(MonitorTpl tpl) {
 			super.change(TPL,super.getTpl(),tpl);
 			super.setTpl(tpl);
 			return this;
@@ -720,7 +720,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param monitorNodeList monitorNodeList
 		 * @return 当前对象
 		*/
-		public MonitorTplTrigger setMonitorNodeList(List<MonitorNode> monitorNodeList) {
+		public MonitorNodeTrigger setMonitorNodeList(List<MonitorNode> monitorNodeList) {
 			super.change(MONITOR_NODE_LIST,super.getMonitorNodeList(),monitorNodeList);
 			super.setMonitorNodeList(monitorNodeList);
 			return this;
@@ -730,7 +730,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * 克隆当前对象
 		*/
 		@Transient
-		public MonitorTplTriggerVO clone() {
+		public MonitorNodeTriggerVO clone() {
 			return duplicate(true);
 		}
 
@@ -739,11 +739,11 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
 		*/
 		@Transient
-		public MonitorTplTriggerVO duplicate(boolean all) {
+		public MonitorNodeTriggerVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setRuleDiscovery(this.getRuleDiscovery());
 			inst.setNotes(this.getNotes());
 			inst.setWarnLevel(this.getWarnLevel());
+			inst.setTriggerId(this.getTriggerId());
 			inst.setRule(this.getRule());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
@@ -758,7 +758,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 			inst.setName(this.getName());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
-			inst.setIntervalTime(this.getIntervalTime());
+			inst.setNodeId(this.getNodeId());
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setMonitorNodeList(this.getMonitorNodeList());

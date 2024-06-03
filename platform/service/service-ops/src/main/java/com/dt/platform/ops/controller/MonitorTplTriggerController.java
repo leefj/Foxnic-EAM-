@@ -79,7 +79,10 @@ public class MonitorTplTriggerController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.CONTENT_VALUE, value = "告警内容", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.RULE_TYPE, value = "规则类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.RULE_DISCOVERY, value = "发现规则", required = false, dataTypeClass = String.class, example = ""),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.INTERVAL_TIME, value = "间隔时间", required = false, dataTypeClass = Integer.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -114,6 +117,17 @@ public class MonitorTplTriggerController extends SuperController {
         }
         Result result = monitorTplTriggerService.deleteByIdLogical(id);
         return result;
+    }
+
+    /**
+     * 删除触发器
+     */
+    @ApiOperation(value = "删除触发器")
+    @ApiOperationSupport(order = 2, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = MonitorTplTriggerServiceProxy.CREATE_ALL_NODE_TRIGGER, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(MonitorTplTriggerServiceProxy.CREATE_ALL_NODE_TRIGGER)
+    public Result createAllNodeTrigger() {
+        return monitorTplTriggerService.createAllNodeTrigger();
     }
 
     /**
@@ -181,7 +195,10 @@ public class MonitorTplTriggerController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.CONTENT_VALUE, value = "告警内容", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.RULE_TYPE, value = "规则类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.RULE_DISCOVERY, value = "发现规则", required = false, dataTypeClass = String.class, example = ""),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.INTERVAL_TIME, value = "间隔时间", required = false, dataTypeClass = Integer.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { MonitorTplTriggerVOMeta.PAGE_INDEX, MonitorTplTriggerVOMeta.PAGE_SIZE, MonitorTplTriggerVOMeta.SEARCH_FIELD, MonitorTplTriggerVOMeta.FUZZY_FIELD, MonitorTplTriggerVOMeta.SEARCH_VALUE, MonitorTplTriggerVOMeta.DIRTY_FIELDS, MonitorTplTriggerVOMeta.SORT_FIELD, MonitorTplTriggerVOMeta.SORT_TYPE, MonitorTplTriggerVOMeta.DATA_ORIGIN, MonitorTplTriggerVOMeta.QUERY_LOGIC, MonitorTplTriggerVOMeta.REQUEST_ACTION, MonitorTplTriggerVOMeta.IDS })
@@ -205,7 +222,10 @@ public class MonitorTplTriggerController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.CONTENT_VALUE, value = "告警内容", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.RULE_TYPE, value = "规则类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.RULE_DISCOVERY, value = "发现规则", required = false, dataTypeClass = String.class, example = ""),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.INTERVAL_TIME, value = "间隔时间", required = false, dataTypeClass = Integer.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorTplTriggerVOMeta.PAGE_INDEX, MonitorTplTriggerVOMeta.PAGE_SIZE, MonitorTplTriggerVOMeta.SEARCH_FIELD, MonitorTplTriggerVOMeta.FUZZY_FIELD, MonitorTplTriggerVOMeta.SEARCH_VALUE, MonitorTplTriggerVOMeta.DIRTY_FIELDS, MonitorTplTriggerVOMeta.SORT_FIELD, MonitorTplTriggerVOMeta.SORT_TYPE, MonitorTplTriggerVOMeta.DATA_ORIGIN, MonitorTplTriggerVOMeta.QUERY_LOGIC, MonitorTplTriggerVOMeta.REQUEST_ACTION, MonitorTplTriggerVOMeta.IDS })
@@ -266,7 +286,10 @@ public class MonitorTplTriggerController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.CONTENT_VALUE, value = "告警内容", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.RULE_TYPE, value = "规则类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.RULE_DISCOVERY, value = "发现规则", required = false, dataTypeClass = String.class, example = ""),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.INTERVAL_TIME, value = "间隔时间", required = false, dataTypeClass = Integer.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { MonitorTplTriggerVOMeta.PAGE_INDEX, MonitorTplTriggerVOMeta.PAGE_SIZE })
     @SentinelResource(value = MonitorTplTriggerServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -291,7 +314,10 @@ public class MonitorTplTriggerController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.CONTENT_VALUE, value = "告警内容", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.RULE_TYPE, value = "规则类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.RULE_DISCOVERY, value = "发现规则", required = false, dataTypeClass = String.class, example = ""),
+		@ApiImplicitParam(name = MonitorTplTriggerVOMeta.INTERVAL_TIME, value = "间隔时间", required = false, dataTypeClass = Integer.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = MonitorTplTriggerServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

@@ -3,6 +3,7 @@ import com.dt.platform.constants.db.OpsTables;
 import com.dt.platform.constants.enums.ops.MonitorEnableEnum;
 import com.dt.platform.constants.enums.ops.MonitorTplGraphTypeEnum;
 import com.dt.platform.constants.enums.ops.MonitorWarnLevelEnum;
+import com.dt.platform.constants.enums.ops.OpsTriggerRuleTypeEnum;
 import com.dt.platform.domain.ops.MonitorNode;
 import com.dt.platform.domain.ops.MonitorTpl;
 import com.dt.platform.domain.ops.MonitorTplGraphItem;
@@ -47,7 +48,7 @@ public class MonitorTplTriggerGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.ID).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.CREATE_TIME).table().disable(true);
 
-        cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.STATUS).form().validate().required().form()
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.STATUS).form().validate().required().form()
                 .label("状态").radioBox().defaultIndex(0).enumType(MonitorEnableEnum.class);
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.NOTES).table().disable(true);
@@ -74,21 +75,27 @@ public class MonitorTplTriggerGtr extends BaseCodeGenerator{
                 fillWith(MonitorTplTriggerMeta.TPL).muliti(false);
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.NAME).form().validate().required();
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.RULE_TYPE).form().validate().required().form()
+                .radioBox().enumType(OpsTriggerRuleTypeEnum.class);
 
         cfg.view().formWindow().bottomSpace(80);
         cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_MONITOR_TPL_TRIGGER.NAME,
-                        OpsTables.OPS_MONITOR_TPL_TRIGGER.WARN_LEVEL,
+                        OpsTables.OPS_MONITOR_TPL_TRIGGER.STATUS,
+
                 },
                 new Object[] {
-                        OpsTables.OPS_MONITOR_TPL_TRIGGER.STATUS,
+                        OpsTables.OPS_MONITOR_TPL_TRIGGER.RULE_TYPE,
+                        OpsTables.OPS_MONITOR_TPL_TRIGGER.INTERVAL_TIME,
                 }
         );
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        OpsTables.OPS_MONITOR_TPL_TRIGGER.WARN_LEVEL,
                         OpsTables.OPS_MONITOR_TPL_TRIGGER.RULE,
+                        OpsTables.OPS_MONITOR_TPL_TRIGGER.RULE_DISCOVERY,
                         OpsTables.OPS_MONITOR_TPL_TRIGGER.CONTENT_VALUE,
                         OpsTables.OPS_MONITOR_TPL_TRIGGER.NOTES,
                 }

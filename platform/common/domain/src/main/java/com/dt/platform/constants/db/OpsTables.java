@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-06-02 14:19:23
+ * @since 2024-06-03 13:47:10
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -7636,8 +7636,9 @@ public class OpsTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
+		 * 名称
 		*/
-		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","name","name",false,false,true);
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
 		
 		/**
 		 * 类型
@@ -8636,6 +8637,117 @@ public class OpsTables {
 			this.init($NAME,"节点监控模版" , ID , NODE_ID , TPL_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_MONITOR_NODE_TPL_ITEM $TABLE=new OPS_MONITOR_NODE_TPL_ITEM();
+	}
+	
+	/**
+	 * 触发器
+	*/
+	public static class OPS_MONITOR_NODE_TRIGGER extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_monitor_node_trigger";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 触发器
+		*/
+		public static final DBField TRIGGER_ID = new DBField(DBDataType.STRING , "trigger_id","triggerId","触发器","触发器",false,false,true);
+		
+		/**
+		 * 节点
+		*/
+		public static final DBField NODE_ID = new DBField(DBDataType.STRING , "node_id","nodeId","节点","节点",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 规则类型,动态，静态
+		*/
+		public static final DBField RULE_TYPE = new DBField(DBDataType.STRING , "rule_type","ruleType","规则类型","动态，静态",false,false,true);
+		
+		/**
+		 * 告警等级
+		*/
+		public static final DBField WARN_LEVEL = new DBField(DBDataType.STRING , "warn_level","warnLevel","告警等级","告警等级",false,false,true);
+		
+		/**
+		 * 告警规则
+		*/
+		public static final DBField RULE = new DBField(DBDataType.STRING , "rule","rule","告警规则","告警规则",false,false,true);
+		
+		/**
+		 * 告警内容
+		*/
+		public static final DBField CONTENT_VALUE = new DBField(DBDataType.STRING , "content_value","contentValue","告警内容","告警内容",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 监控模版
+		*/
+		public static final DBField MONITOR_TPL_CODE = new DBField(DBDataType.STRING , "monitor_tpl_code","monitorTplCode","监控模版","监控模版",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		public OPS_MONITOR_NODE_TRIGGER() {
+			this.init($NAME,"触发器" , ID , TRIGGER_ID , NODE_ID , NAME , RULE_TYPE , WARN_LEVEL , RULE , CONTENT_VALUE , STATUS , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final OPS_MONITOR_NODE_TRIGGER $TABLE=new OPS_MONITOR_NODE_TRIGGER();
 	}
 	
 	/**
@@ -10664,9 +10776,24 @@ public class OpsTables {
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","触发器","触发器",false,false,true);
 		
 		/**
+		 * 规则类型
+		*/
+		public static final DBField RULE_TYPE = new DBField(DBDataType.STRING , "rule_type","ruleType","规则类型","规则类型",false,false,true);
+		
+		/**
 		 * 告警等级
 		*/
 		public static final DBField WARN_LEVEL = new DBField(DBDataType.STRING , "warn_level","warnLevel","告警等级","告警等级",false,false,true);
+		
+		/**
+		 * 发现规则
+		*/
+		public static final DBField RULE_DISCOVERY = new DBField(DBDataType.STRING , "rule_discovery","ruleDiscovery","发现规则","发现规则",false,false,true);
+		
+		/**
+		 * 间隔时间
+		*/
+		public static final DBField INTERVAL_TIME = new DBField(DBDataType.INTEGER , "interval_time","intervalTime","间隔时间","间隔时间",false,false,true);
 		
 		/**
 		 * 告警规则
@@ -10734,7 +10861,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
 		
 		public OPS_MONITOR_TPL_TRIGGER() {
-			this.init($NAME,"触发器" , ID , NAME , WARN_LEVEL , RULE , CONTENT_VALUE , STATUS , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"触发器" , ID , NAME , RULE_TYPE , WARN_LEVEL , RULE_DISCOVERY , INTERVAL_TIME , RULE , CONTENT_VALUE , STATUS , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_MONITOR_TPL_TRIGGER $TABLE=new OPS_MONITOR_TPL_TRIGGER();
 	}

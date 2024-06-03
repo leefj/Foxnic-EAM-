@@ -41,61 +41,62 @@ public class MonitorDataProcessUtilService {
 
 
 
-    public BigDecimal lastDouble(MonitorNode node,String code,String store,int minute){
-        String value=last(node,code,store,minute,"5");
+    public BigDecimal lastDouble(MonitorNode node,String code,String store,String subFilter,int minute){
+        String value=last(node,code,store,subFilter,minute,"5");
         return new BigDecimal(value);
     }
 
-    public BigDecimal lastDouble(MonitorNode node,String code,String store,int minute,String defValue){
-        String value=last(node,code,store,minute,defValue);
+    public BigDecimal lastDouble(MonitorNode node,String code,String store,String subFilter,int minute,String defValue){
+        String value=last(node,code,store,subFilter,minute,defValue);
         return new BigDecimal(value);
     }
 
-    public String lastString(MonitorNode node,String code,String store,int minute,String defValue){
-        return last(node,code,store,minute,defValue);
+    public String lastString(MonitorNode node,String code,String store,String subFilter,int minute,String defValue){
+        return last(node,code,store,subFilter,minute,defValue);
     }
 
-    public String lastString(MonitorNode node,String code,String store,int minute){
-        return last(node,code,store,minute,null);
+    public String lastString(MonitorNode node,String code,String store,String subFilter,int minute){
+        return last(node,code,store,subFilter,minute,null);
     }
-    public String last(MonitorNode node,String code,String store,int minute,String defValue){
+    public String last(MonitorNode node,String code,String store,String subFilter,int minute,String defValue){
         String curTplCode=node.getCalIndicatorTplCode();
         String res=defValue;
         String timestr="";
+
+        if(subFilter==null){
+            subFilter="";
+        }else{
+            subFilter=" and "+subFilter;
+        }
+
         if(minute>0){
             timestr=" and record_time>date_sub(now(), interval "+minute+" minute) ";
         }
         String sql="select "
                 +" (select value_column from ops_monitor_tpl_indicator where monitor_tpl_code=? and code=?) col,"
-                +" t.* from ops_monitor_node_value_last t"
-                +" where result_status='sucess' #<TIME># and monitor_tpl_code=? and indicator_code=? and node_id=? "
+                +" t.* from ops_monitor_node_value_last t "
+                +" where  result_status='sucess' #<TIME># and monitor_tpl_code=? and indicator_code=? and node_id=? " +subFilter
                 +" and record_time=(select max(t.record_time) from ops_monitor_node_value_last t where result_status='sucess' "
                 +" and monitor_tpl_code=? and indicator_code=? and node_id=?)";
-        RcdSet rs=dao.query(sql.replace("#<TIME>#",timestr),curTplCode,code,curTplCode,code,node.getId(),curTplCode,code,node.getId());
-        if(node.getTriggerDataList()==null){
-            node.setTriggerDataList(new ArrayList<>());
+        Rcd rcd=dao.queryRecord(sql.replace("#<TIME>#",timestr),curTplCode,code,curTplCode,code,node.getId(),curTplCode,code,node.getId());
+        if(node.getTriggerData()==null){
+            node.setTriggerData(new MonitorNodeTriggerLastData());
         }
-        if(rs!=null){
-            for(int i=0;i<rs.size();i++){
-                Rcd rcd=rs.getRcd(i);
-                //如果配置了store，则按照store获取，否则自动获取col
-                //在多个col时，需要配置store
-                String col="";
-                if(store==null){
-                    col=rcd.getString("col");
-                }else{
-                    col=store;
-                }
-                res=rcd.getString(col);
-                String id=rcd.getString("id");
-                MonitorNodeTriggerLastData data=new MonitorNodeTriggerLastData();
-                data.setId(id);
-                data.setValue(res);
-                data.setSourceData(rcd.toJSONObject());
-                node.getTriggerDataList().add(data);
-            }
+        //如果配置了store，则按照store获取，否则自动获取col
+        //在多个col时，需要配置store
+        String col="";
+        if(store==null){
+            col=rcd.getString("col");
+        }else{
+            col=store;
         }
-
+        res=rcd.getString(col);
+        String id=rcd.getString("id");
+//        MonitorNodeTriggerLastData data=new MonitorNodeTriggerLastData();
+        node.getTriggerData().setId(id);
+        node.getTriggerData().setValue(res);
+        node.getTriggerData().setSourceData(rcd.toJSONObject());
+//        node.getTriggerDataList().add(data);
         return res;
     }
 

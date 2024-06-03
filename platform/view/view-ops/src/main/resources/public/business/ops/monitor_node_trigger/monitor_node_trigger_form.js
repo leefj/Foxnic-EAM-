@@ -1,7 +1,7 @@
 /**
- * 节点 列表页 JS 脚本
+ * 触发器 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-03 16:52:11
+ * @since 2024-06-03 14:41:52
  */
 
 function FormPage() {
@@ -9,7 +9,7 @@ function FormPage() {
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
 	
 	// 接口地址
-	const moduleURL="/service-ops/ops-monitor-node";
+	const moduleURL="/service-ops/ops-monitor-node-trigger";
 	const queryURL=moduleURL+"/get-by-id";
 	const insertURL=moduleURL+"/insert";
 	const updateURL=moduleURL+"/update";
@@ -30,7 +30,7 @@ function FormPage() {
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
-		action=admin.getTempData('ops-monitor-node-form-data-form-action');
+		action=admin.getTempData('ops-monitor-node-trigger-form-data-form-action');
 		//如果没有修改和保存权限
 		if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
 			disableModify=true;
@@ -44,7 +44,7 @@ function FormPage() {
 		}
 
 		if(window.pageExt.form.beforeInit) {
-			window.pageExt.form.beforeInit(action,admin.getTempData('ops-monitor-node-form-data'));
+			window.pageExt.form.beforeInit(action,admin.getTempData('ops-monitor-node-trigger-form-data'));
 		}
 
 		//渲染表单组件
@@ -96,9 +96,9 @@ function FormPage() {
 				prevBodyHeight = bodyHeight;
 				return;
 			}
-			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-monitor-node-form-data-win');
+			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-monitor-node-trigger-form-data-win');
 			if(area==null) return;
-			admin.putTempData('ops-monitor-node-form-area', area);
+			admin.putTempData('ops-monitor-node-trigger-form-area', area);
 			window.adjustPopup=adjustPopup;
 			if(area.tooHeigh) {
 				var windowHeight=area.iframeHeight;
@@ -118,84 +118,45 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
-		//渲染 type 下拉字段
-		fox.renderSelectBox({
-			el: "type",
-			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("节点分类",'','cmp:form'),
-			filterable: true,
-			paging: true,
-			pageRemote: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("type",{data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 groupId 下拉字段
-		fox.renderSelectBox({
-			el: "groupId",
-			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("节点分组",'','cmp:form'),
-			filterable: true,
-			paging: true,
-			pageRemote: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("groupId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("groupId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
-			}
-		});
-		form.on('radio(nodeEnabled)', function(data){
+		form.on('radio(ruleType)', function(data){
 			var checked=[];
-			$('input[type=radio][lay-filter=nodeEnabled]:checked').each(function() {
+			$('input[type=radio][lay-filter=ruleType]:checked').each(function() {
 				checked.push($(this).val());
 			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("nodeEnabled",data,checked);
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("ruleType",data,checked);
+		});
+		//渲染 warnLevel 下拉字段
+		fox.renderSelectBox({
+			el: "warnLevel",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("告警等级",'','cmp:form'),
+			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("warnLevel",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("warnLevel",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
 		});
 		form.on('radio(status)', function(data){
 			var checked=[];
@@ -204,91 +165,19 @@ function FormPage() {
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
 		});
-		//渲染 sshVoucherId 下拉字段
+		//渲染 monitorTplCode 下拉字段
 		fox.renderSelectBox({
-			el: "sshVoucherId",
+			el: "monitorTplCode",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("凭证",'','cmp:form'),
-			filterable: true,
-			paging: true,
-			pageRemote: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("sshVoucherId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("sshVoucherId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 monitorTplIds 下拉字段
-		fox.renderSelectBox({
-			el: "monitorTplIds",
-			radio: false,
 			tips: fox.translate("请选择",'','cmp:form')+fox.translate("监控模版",'','cmp:form'),
 			filterable: true,
-			layVerify: 'required',
-			layVerType: 'msg',
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("monitorTplIds",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "0".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("monitorTplIds",{data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 nodeGroupIds 下拉字段
-		fox.renderSelectBox({
-			el: "nodeGroupIds",
-			radio: false,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("节点分组",'','cmp:form'),
-			filterable: true,
 			paging: true,
 			pageRemote: true,
 			layVerify: 'required',
 			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("nodeGroupIds",data.arr,data.change,data.isAdd);
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("monitorTplCode",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据
@@ -306,9 +195,9 @@ function FormPage() {
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
 					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("nodeGroupIds",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+						opts.push(window.pageExt.form.selectBoxDataTransform("monitorTplCode",{data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
 					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+						opts.push({data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
 					}
 				}
 				return opts;
@@ -345,7 +234,7 @@ function FormPage() {
       */
 	function fillFormData(formData) {
 		if(!formData) {
-			formData = admin.getTempData('ops-monitor-node-form-data');
+			formData = admin.getTempData('ops-monitor-node-trigger-form-data');
 		}
 		rawFormData=formData;
 
@@ -367,12 +256,8 @@ function FormPage() {
 
 
 
-			//设置  凭证 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#sshVoucherId",formData.sshVoucher);
-			//设置  监控模版 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#monitorTplIds",formData.monitorTplList);
-			//设置  节点分组 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#nodeGroupIds",formData.nodeGroupList);
+			//设置  告警等级 设置下拉框勾选
+			fox.setSelectValue4Enum("#warnLevel",formData.warnLevel,SELECT_WARNLEVEL_DATA);
 
 			//处理fillBy
 
@@ -425,7 +310,7 @@ function FormPage() {
 	 * */
 	function getRawFormData() {
 		if(!rawFormData) {
-			rawFormData = admin.getTempData('ops-monitor-node-form-data');
+			rawFormData = admin.getTempData('ops-monitor-node-trigger-form-data');
 		}
 		return rawFormData;
 	}
@@ -435,12 +320,8 @@ function FormPage() {
 
 
 
-		//获取 凭证 下拉框的值
-		data["sshVoucherId"]=fox.getSelectedValue("sshVoucherId",false);
-		//获取 监控模版 下拉框的值
-		data["monitorTplIds"]=fox.getSelectedValue("monitorTplIds",true);
-		//获取 节点分组 下拉框的值
-		data["nodeGroupIds"]=fox.getSelectedValue("nodeGroupIds",true);
+		//获取 告警等级 下拉框的值
+		data["warnLevel"]=fox.getSelectedValue("warnLevel",false);
 
 		return data;
 	}
@@ -477,7 +358,7 @@ function FormPage() {
 				}
 
 				if(doNext) {
-					admin.finishPopupCenterById('ops-monitor-node-form-data-win');
+					admin.finishPopupCenterById('ops-monitor-node-trigger-form-data-win');
 				}
 
 				// 调整状态为编辑
@@ -509,7 +390,7 @@ function FormPage() {
 
 
 	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('ops-monitor-node-form-data-win',this); });
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('ops-monitor-node-trigger-form-data-win',this); });
 
     }
 

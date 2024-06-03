@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 触发器VO类型
  * <p>触发器 , 数据表 ops_monitor_tpl_trigger 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-02 13:15:51
+ * @since 2024-06-03 14:00:04
  * @sign 1CE0B46D4AE363891DE76A401E183965
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -401,6 +401,7 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 	@Transient
 	public MonitorTplTriggerVO duplicate(boolean all) {
 		com.dt.platform.domain.ops.meta.MonitorTplTriggerVOMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.MonitorTplTriggerVOMeta.$$proxy$$();
+		inst.setRuleDiscovery(this.getRuleDiscovery());
 		inst.setNotes(this.getNotes());
 		inst.setWarnLevel(this.getWarnLevel());
 		inst.setRule(this.getRule());
@@ -413,9 +414,11 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setRuleType(this.getRuleType());
 		inst.setName(this.getName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setIntervalTime(this.getIntervalTime());
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setMonitorNodeList(this.getMonitorNodeList());
@@ -491,6 +494,7 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setRuleDiscovery(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.RULE_DISCOVERY)));
 			this.setNotes(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.NOTES)));
 			this.setWarnLevel(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.WARN_LEVEL)));
 			this.setRule(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.RULE)));
@@ -503,9 +507,11 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(MonitorTplTriggerVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(MonitorTplTriggerVOMeta.DELETE_TIME)));
+			this.setRuleType(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.RULE_TYPE)));
 			this.setName(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.ID)));
+			this.setIntervalTime(DataParser.parse(Integer.class, map.get(MonitorTplTriggerVOMeta.INTERVAL_TIME)));
 			this.setStatus(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.SEARCH_FIELD)));
@@ -522,6 +528,7 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 			return true;
 		} else {
 			try {
+				this.setRuleDiscovery( (String)map.get(MonitorTplTriggerVOMeta.RULE_DISCOVERY));
 				this.setNotes( (String)map.get(MonitorTplTriggerVOMeta.NOTES));
 				this.setWarnLevel( (String)map.get(MonitorTplTriggerVOMeta.WARN_LEVEL));
 				this.setRule( (String)map.get(MonitorTplTriggerVOMeta.RULE));
@@ -534,9 +541,11 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 				this.setCreateTime( (Date)map.get(MonitorTplTriggerVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(MonitorTplTriggerVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(MonitorTplTriggerVOMeta.DELETE_TIME));
+				this.setRuleType( (String)map.get(MonitorTplTriggerVOMeta.RULE_TYPE));
 				this.setName( (String)map.get(MonitorTplTriggerVOMeta.NAME));
 				this.setDeleteBy( (String)map.get(MonitorTplTriggerVOMeta.DELETE_BY));
 				this.setId( (String)map.get(MonitorTplTriggerVOMeta.ID));
+				this.setIntervalTime( (Integer)map.get(MonitorTplTriggerVOMeta.INTERVAL_TIME));
 				this.setStatus( (String)map.get(MonitorTplTriggerVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(MonitorTplTriggerVOMeta.SEARCH_FIELD));
@@ -566,6 +575,7 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setRuleDiscovery(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.RULE_DISCOVERY)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.NOTES)));
 			this.setWarnLevel(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.WARN_LEVEL)));
 			this.setRule(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.RULE)));
@@ -578,13 +588,16 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MonitorTplTriggerVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MonitorTplTriggerVOMeta.DELETE_TIME)));
+			this.setRuleType(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.RULE_TYPE)));
 			this.setName(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.ID)));
+			this.setIntervalTime(DataParser.parse(Integer.class, r.getValue(MonitorTplTriggerVOMeta.INTERVAL_TIME)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.STATUS)));
 			return true;
 		} else {
 			try {
+				this.setRuleDiscovery( (String)r.getValue(MonitorTplTriggerVOMeta.RULE_DISCOVERY));
 				this.setNotes( (String)r.getValue(MonitorTplTriggerVOMeta.NOTES));
 				this.setWarnLevel( (String)r.getValue(MonitorTplTriggerVOMeta.WARN_LEVEL));
 				this.setRule( (String)r.getValue(MonitorTplTriggerVOMeta.RULE));
@@ -597,9 +610,11 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 				this.setCreateTime( (Date)r.getValue(MonitorTplTriggerVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(MonitorTplTriggerVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(MonitorTplTriggerVOMeta.DELETE_TIME));
+				this.setRuleType( (String)r.getValue(MonitorTplTriggerVOMeta.RULE_TYPE));
 				this.setName( (String)r.getValue(MonitorTplTriggerVOMeta.NAME));
 				this.setDeleteBy( (String)r.getValue(MonitorTplTriggerVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(MonitorTplTriggerVOMeta.ID));
+				this.setIntervalTime( (Integer)r.getValue(MonitorTplTriggerVOMeta.INTERVAL_TIME));
 				this.setStatus( (String)r.getValue(MonitorTplTriggerVOMeta.STATUS));
 				return true;
 			} catch (Exception e) {
