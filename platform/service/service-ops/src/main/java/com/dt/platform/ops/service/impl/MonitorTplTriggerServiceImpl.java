@@ -68,6 +68,9 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
+	@Autowired
+	IMonitorTplTriggerService monitorTplTriggerService;
+
 
 	/**
 	 * 获得 DAO 对象
@@ -112,6 +115,7 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 				"where a.tpl_code=b.code \n" +
 				"and b.status='enable'\n" +
 				"and c.status='enable'\n" +
+				"and d.node_enabled='enable'\n" +
 				"and c.monitor_tpl_code=a.tpl_code\n" +
 				"and d.id=a.node_id\n" +
 				"and d.deleted=0\n" +
@@ -128,8 +132,7 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 	}
 	@Override
 	public Result createNodeTrigger(String nodeId){
-
-		//重建，不保留原来的指标
+		//重建，不保留原来的指标,全部重新
 		String sql="select c.id trigger_id,c.* from ops_monitor_node_tpl_item a,ops_monitor_tpl b,\n" +
 				"ops_monitor_tpl_trigger c \n" +
 				"where a.tpl_code=b.code and b.status='enable'\n" +
@@ -140,6 +143,7 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 		dao.execute("delete from ops_monitor_node_trigger where node_id=?",nodeId);
 		for(int i=0;i<rs.size();i++){
 			Rcd rcd=rs.getRcd(i);
+			List<MonitorNodeTrigger> triggerList=new ArrayList<>();
 			if("static".equals(rcd.getString("rule_type"))){
 				MonitorNodeTrigger trigger=new MonitorNodeTrigger();
 				trigger.setNodeId(nodeId);
@@ -151,7 +155,8 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 				trigger.setContentValue(rcd.getString("content_value"));
 				trigger.setTriggerId(rcd.getString("trigger_id"));
 				trigger.setStatus(rcd.getString("status"));
-				monitorNodeTriggerService.insert(trigger,false);
+				triggerList.add(trigger);
+
 			}else if("dynamic".equals(rcd.getString("rule_type"))) {
 				String ctl = rcd.getString("rule_discovery");
 				JSONObject ctlJson = JSONObject.parseObject(ctl);
@@ -159,9 +164,9 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 				String mapping = ctlJson.getString("mapping");
 				String sql2 = "select \n" +
 						"node_id,\n" +
-						mapping + ",\n" +
+						mapping + " map_col,\n" +
 						"max(record_time) rtime\n" +
-						"from ops_monitor_node_value where result_status='sucess' \n" +
+						"from ops_monitor_node_value_last where result_status='sucess' \n" +
 						"and deleted=0 and indicator_code=? and node_id=?\n" +
 						"group by node_id,\n" + mapping;
 				RcdSet rs2 = dao.query(sql2, source, nodeId);
@@ -174,19 +179,21 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 					trigger2.setRuleType(rcd.getString("rule_type"));
 					trigger2.setMonitorTplCode(rcd.getString("monitor_tpl_code"));
 					trigger2.setWarnLevel(rcd.getString("warn_level"));
-					String rule_value = rcd.getString("rule");
-					String mapping_value = rcd2.getString(mapping);
-					trigger2.setRule(rule_value.replaceAll("#<" + mapping + ">#", mapping_value));
 					trigger2.setContentValue(rcd.getString("content_value"));
 					trigger2.setTriggerId(rcd.getString("trigger_id"));
+					String rule_value = rcd.getString("rule");
+					String mapping_value = rcd2.getString("map_col");
 					if(StringUtil.isBlank(mapping_value)){
-						Logger.info("node:"+nodeId+",mapping_value is null");
+						Logger.info("node:"+nodeId+",mapping_value is:"+mapping_value);
 					}else{
-						monitorNodeTriggerService.insert(trigger2, false);
+						Logger.info("node:"+nodeId+",mapping_value is:"+mapping_value);
+						trigger2.setRule(rule_value.replaceAll("#<" + mapping + ">#", mapping_value));
+						triggerList.add(trigger2);
+						//monitorNodeTriggerService.insert(trigger2,false);
 					}
-
 				}
 			}
+			monitorNodeTriggerService.insertList(triggerList);
 		}
 		return ErrorDesc.success();
 	}
@@ -290,6 +297,9 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 	@Override
 	public Result update(MonitorTplTrigger monitorTplTrigger , SaveMode mode,boolean throwsException) {
 		Result r=super.update(monitorTplTrigger , mode , throwsException);
+		if(r.isSuccess()){
+		//	monitorTplTriggerService.createAllNodeTrigger();
+		}
 		return r;
 	}
 
@@ -407,25 +417,32 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 
 
 	private String calculationValue(String jexlExp, Map<String, Object> map){
-		JexlBuilder jb=new JexlBuilder();
-		Map<String, Object> funcs =new HashMap<>();
-		funcs.put("cF",monitorDataProcessUtilService);
-		jb.namespaces(funcs);
-		JexlEngine jexl =jb.create();
-		JexlExpression expression = jexl.createExpression(jexlExp);
-		JexlContext jc = new MapContext();
-		for (String key : map.keySet()) {
-			jc.set(key, map.get(key));
-		}
-		Object r=expression.evaluate(jc);
-		Logger.info("calculationValue"+r);
-		if (null ==r) {
-			return "";
+		Object r="false";
+		try {
+			JexlBuilder jb=new JexlBuilder();
+			Map<String, Object> funcs =new HashMap<>();
+			funcs.put("cF",monitorDataProcessUtilService);
+			jb.namespaces(funcs);
+			JexlEngine jexl =jb.create();
+			JexlExpression expression = jexl.createExpression(jexlExp);
+			JexlContext jc = new MapContext();
+			for (String key : map.keySet()) {
+				jc.set(key, map.get(key));
+			}
+			r=expression.evaluate(jc);
+			Logger.info("calculationValue "+r);
+			if (null ==r) {
+				return "";
+			}
+		} catch (NullPointerException c) {
+			Logger.error("calculation Value error",c);
+			r="false";
+		} catch (Exception e) {
+			Logger.error("calculation Value error",e);
+			r="false";
 		}
 		return r.toString();
 	}
-
-
 
 	public Result collectMonitorTriggerData(MonitorNode node) {
 		List<MonitorNodeTrigger> triggerList=node.getTriggerList();

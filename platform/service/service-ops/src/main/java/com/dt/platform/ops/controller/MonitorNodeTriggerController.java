@@ -31,7 +31,6 @@ import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.ops.meta.MonitorNodeTriggerMeta;
 import com.dt.platform.domain.ops.MonitorTpl;
-import com.dt.platform.domain.ops.MonitorNode;
 import com.dt.platform.domain.ops.meta.MonitorTplTriggerMeta;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -47,7 +46,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 触发器接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-03 13:51:44
+ * @since 2024-06-04 06:12:55
 */
 
 @InDoc
@@ -63,16 +62,16 @@ public class MonitorNodeTriggerController extends SuperController {
 	*/
 	@ApiOperation(value = "添加触发器")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.TRIGGER_ID , value = "触发器" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE_TYPE , value = "规则类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.WARN_LEVEL , value = "告警等级" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE , value = "告警规则" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.CONTENT_VALUE , value = "告警内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "850097923822714880"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.TRIGGER_ID , value = "触发器" , required = false , dataTypeClass=String.class , example = "849370866545328128"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE_TYPE , value = "规则类型" , required = false , dataTypeClass=String.class , example = "static"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "848718802559434752"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "物理内存使用率"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.WARN_LEVEL , value = "告警等级" , required = false , dataTypeClass=String.class , example = "high"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE , value = "告警规则" , required = false , dataTypeClass=String.class , example = "cF:lastDouble(node,\"os.memory_used\",\"p_memory_used\",null,0,\"0\")>10"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.CONTENT_VALUE , value = "告警内容" , required = false , dataTypeClass=String.class , example = "当前物理内存使用率:#<pMemoryUsed>#"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class , example = "tpl_host_linux_script"),
 		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
@@ -93,7 +92,7 @@ public class MonitorNodeTriggerController extends SuperController {
 	*/
 	@ApiOperation(value = "删除触发器")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "850097923822714880")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = MonitorNodeTriggerServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -176,16 +175,16 @@ public class MonitorNodeTriggerController extends SuperController {
 	*/
 	@ApiOperation(value = "更新触发器")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.TRIGGER_ID , value = "触发器" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE_TYPE , value = "规则类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.WARN_LEVEL , value = "告警等级" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE , value = "告警规则" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.CONTENT_VALUE , value = "告警内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "850097923822714880"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.TRIGGER_ID , value = "触发器" , required = false , dataTypeClass=String.class , example = "849370866545328128"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE_TYPE , value = "规则类型" , required = false , dataTypeClass=String.class , example = "static"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "848718802559434752"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "物理内存使用率"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.WARN_LEVEL , value = "告警等级" , required = false , dataTypeClass=String.class , example = "high"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE , value = "告警规则" , required = false , dataTypeClass=String.class , example = "cF:lastDouble(node,\"os.memory_used\",\"p_memory_used\",null,0,\"0\")>10"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.CONTENT_VALUE , value = "告警内容" , required = false , dataTypeClass=String.class , example = "当前物理内存使用率:#<pMemoryUsed>#"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class , example = "tpl_host_linux_script"),
 		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
@@ -205,16 +204,16 @@ public class MonitorNodeTriggerController extends SuperController {
 	*/
 	@ApiOperation(value = "保存触发器")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.TRIGGER_ID , value = "触发器" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE_TYPE , value = "规则类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.WARN_LEVEL , value = "告警等级" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE , value = "告警规则" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.CONTENT_VALUE , value = "告警内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "850097923822714880"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.TRIGGER_ID , value = "触发器" , required = false , dataTypeClass=String.class , example = "849370866545328128"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE_TYPE , value = "规则类型" , required = false , dataTypeClass=String.class , example = "static"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "848718802559434752"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "物理内存使用率"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.WARN_LEVEL , value = "告警等级" , required = false , dataTypeClass=String.class , example = "high"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE , value = "告警规则" , required = false , dataTypeClass=String.class , example = "cF:lastDouble(node,\"os.memory_used\",\"p_memory_used\",null,0,\"0\")>10"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.CONTENT_VALUE , value = "告警内容" , required = false , dataTypeClass=String.class , example = "当前物理内存使用率:#<pMemoryUsed>#"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class , example = "tpl_host_linux_script"),
 		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
@@ -277,16 +276,16 @@ public class MonitorNodeTriggerController extends SuperController {
 	*/
 	@ApiOperation(value = "查询触发器")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.TRIGGER_ID , value = "触发器" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE_TYPE , value = "规则类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.WARN_LEVEL , value = "告警等级" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE , value = "告警规则" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.CONTENT_VALUE , value = "告警内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "850097923822714880"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.TRIGGER_ID , value = "触发器" , required = false , dataTypeClass=String.class , example = "849370866545328128"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE_TYPE , value = "规则类型" , required = false , dataTypeClass=String.class , example = "static"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "848718802559434752"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "物理内存使用率"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.WARN_LEVEL , value = "告警等级" , required = false , dataTypeClass=String.class , example = "high"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE , value = "告警规则" , required = false , dataTypeClass=String.class , example = "cF:lastDouble(node,\"os.memory_used\",\"p_memory_used\",null,0,\"0\")>10"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.CONTENT_VALUE , value = "告警内容" , required = false , dataTypeClass=String.class , example = "当前物理内存使用率:#<pMemoryUsed>#"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class , example = "tpl_host_linux_script"),
 		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
@@ -307,16 +306,16 @@ public class MonitorNodeTriggerController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询触发器")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.TRIGGER_ID , value = "触发器" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE_TYPE , value = "规则类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.WARN_LEVEL , value = "告警等级" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE , value = "告警规则" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.CONTENT_VALUE , value = "告警内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "850097923822714880"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.TRIGGER_ID , value = "触发器" , required = false , dataTypeClass=String.class , example = "849370866545328128"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE_TYPE , value = "规则类型" , required = false , dataTypeClass=String.class , example = "static"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "848718802559434752"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "物理内存使用率"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.WARN_LEVEL , value = "告警等级" , required = false , dataTypeClass=String.class , example = "high"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.RULE , value = "告警规则" , required = false , dataTypeClass=String.class , example = "cF:lastDouble(node,\"os.memory_used\",\"p_memory_used\",null,0,\"0\")>10"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.CONTENT_VALUE , value = "告警内容" , required = false , dataTypeClass=String.class , example = "当前物理内存使用率:#<pMemoryUsed>#"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class , example = "tpl_host_linux_script"),
 		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MonitorNodeTriggerVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})

@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 模版指标VO类型
  * <p>模版指标 , 数据表 ops_monitor_tpl_indicator 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-09 18:46:58
+ * @since 2024-06-07 23:22:00
  * @sign A30CF0E8E3F7E78C68BEB54048A66F1B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

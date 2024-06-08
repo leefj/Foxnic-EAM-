@@ -151,6 +151,19 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        triggerFuc:function (data, it){
+            admin.popupCenter({
+                title: "触发器",
+                resize: false,
+                offset: [20,null],
+                area: ["90%","90%"],
+                type: 2,
+                id:"ops-monitor-node-trigger-list-data-win",
+                content: '/business/ops/monitor_node_trigger/monitor_node_trigger_list.html?nodeId' +data.id,
+                finish: function () {
+                }
+            });
+        },
         collectBatchFunc:function (selected, it){
             console.log("collectBatchFunc",selected,it);
             var btnClass="batch-collect-button";

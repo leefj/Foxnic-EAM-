@@ -144,7 +144,7 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
         }else if(MonitorMethodEnum.ORACLE_JDBC.code().equals(me)){
             dbType="oracle";
             driver="oracle.jdbc.driver.OracleDriver";
-        }else if(MonitorMethodEnum.MYSQL_JDBC.code().equals(me)){
+        }else if(MonitorMethodEnum.MYSQL_JDBC.code().equals(me)||MonitorMethodEnum.OB_MYSQL_JDBC.code().equals(me)){
             dbType="mysql"; //mysql 5.7
             driver="com.mysql.jdbc.Driver";
         }else if(MonitorMethodEnum.SQLSERVER_JDBC.code().equals(me)){

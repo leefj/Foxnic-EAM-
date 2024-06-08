@@ -12,14 +12,15 @@ import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.ops.CiphertextBoxData;
 import com.dt.platform.domain.ops.ServiceCategory;
 import com.dt.platform.domain.ops.DbEnvInfo;
+import com.dt.platform.domain.ops.MonitorNode;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-26 19:17:22
- * @sign 43F0E4EA0927EB2A90CB57732D608C72
+ * @since 2024-06-08 15:55:45
+ * @sign CDBF59E4195F7D7FEA84D16D0D5F1A13
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -74,6 +75,16 @@ public class DbInfoMeta {
 	 * 库状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,STATUS, java.lang.String.class, "库状态", "库状态", java.lang.String.class, null);
+	
+	/**
+	 * 关联监控 , 类型: java.lang.String
+	*/
+	public static final String REL_MONITOR_NODE_ID="relMonitorNodeId";
+	
+	/**
+	 * 关联监控 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> REL_MONITOR_NODE_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,REL_MONITOR_NODE_ID, java.lang.String.class, "关联监控", "关联监控", java.lang.String.class, null);
 	
 	/**
 	 * 备份状态 , 类型: java.lang.String
@@ -426,6 +437,16 @@ public class DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,com.dt.platform.domain.ops.Host> HOST_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,HOST, com.dt.platform.domain.ops.Host.class, "host", "host", com.dt.platform.domain.ops.Host.class, null);
 	
 	/**
+	 * hostIp , 类型: java.lang.String
+	*/
+	public static final String HOST_IP="hostIp";
+	
+	/**
+	 * hostIp , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> HOST_IP_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,HOST_IP, java.lang.String.class, "hostIp", "hostIp", java.lang.String.class, null);
+	
+	/**
 	 * type , 类型: com.dt.platform.domain.ops.ServiceInfo
 	*/
 	public static final String TYPE="type";
@@ -546,9 +567,29 @@ public class DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,org.github.foxnic.web.domain.system.DictItem> PWD_STRAGEGY_DICT_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,PWD_STRAGEGY_DICT, java.util.List.class, "pwdStragegyDict", "pwdStragegyDict", org.github.foxnic.web.domain.system.DictItem.class, null);
 	
 	/**
+	 * monitorNode , 类型: com.dt.platform.domain.ops.MonitorNode
+	*/
+	public static final String MONITOR_NODE="monitorNode";
+	
+	/**
+	 * monitorNode , 类型: com.dt.platform.domain.ops.MonitorNode
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,com.dt.platform.domain.ops.MonitorNode> MONITOR_NODE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,MONITOR_NODE, com.dt.platform.domain.ops.MonitorNode.class, "monitorNode", "monitorNode", com.dt.platform.domain.ops.MonitorNode.class, null);
+	
+	/**
+	 * monitorNodeStatus , 类型: java.lang.String
+	*/
+	public static final String MONITOR_NODE_STATUS="monitorNodeStatus";
+	
+	/**
+	 * monitorNodeStatus , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> MONITOR_NODE_STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,MONITOR_NODE_STATUS, java.lang.String.class, "monitorNodeStatus", "monitorNodeStatus", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , PWD_STRAGEGY , PWD_STRAGEGY_NOTES , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , FILE_IDS , NOTES , UID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS , DATA_LOC_DATA , DATA_LOC_IDS , CIPHERTEXT_BOX_DATA , DB_TYPE_LIST , DB_TYPE_IDS , OTHER_ENV_INFO_LIST , OTHER_ENV_INFO_COUNT , PWD_STRAGEGY_DICT };
+	public static final String[] $PROPS={ ID , HOST_ID , TYPE_ID , NAME , STATUS , REL_MONITOR_NODE_ID , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , PWD_STRAGEGY , PWD_STRAGEGY_NOTES , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , FILE_IDS , NOTES , UID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , HOST_IP , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS , DATA_LOC_DATA , DATA_LOC_IDS , CIPHERTEXT_BOX_DATA , DB_TYPE_LIST , DB_TYPE_IDS , OTHER_ENV_INFO_LIST , OTHER_ENV_INFO_COUNT , PWD_STRAGEGY_DICT , MONITOR_NODE , MONITOR_NODE_STATUS };
 	
 	/**
 	 * 代理类
@@ -610,6 +651,17 @@ public class DbInfoMeta {
 		public DbInfo setStatus(String status) {
 			super.change(STATUS,super.getStatus(),status);
 			super.setStatus(status);
+			return this;
+		}
+		
+		/**
+		 * 设置 关联监控
+		 * @param relMonitorNodeId 关联监控
+		 * @return 当前对象
+		*/
+		public DbInfo setRelMonitorNodeId(String relMonitorNodeId) {
+			super.change(REL_MONITOR_NODE_ID,super.getRelMonitorNodeId(),relMonitorNodeId);
+			super.setRelMonitorNodeId(relMonitorNodeId);
 			return this;
 		}
 		
@@ -999,6 +1051,17 @@ public class DbInfoMeta {
 		}
 		
 		/**
+		 * 设置 hostIp
+		 * @param hostIp hostIp
+		 * @return 当前对象
+		*/
+		public DbInfo setHostIp(String hostIp) {
+			super.change(HOST_IP,super.getHostIp(),hostIp);
+			super.setHostIp(hostIp);
+			return this;
+		}
+		
+		/**
 		 * 设置 type
 		 * @param type type
 		 * @return 当前对象
@@ -1129,6 +1192,28 @@ public class DbInfoMeta {
 			super.setPwdStragegyDict(pwdStragegyDict);
 			return this;
 		}
+		
+		/**
+		 * 设置 monitorNode
+		 * @param monitorNode monitorNode
+		 * @return 当前对象
+		*/
+		public DbInfo setMonitorNode(MonitorNode monitorNode) {
+			super.change(MONITOR_NODE,super.getMonitorNode(),monitorNode);
+			super.setMonitorNode(monitorNode);
+			return this;
+		}
+		
+		/**
+		 * 设置 monitorNodeStatus
+		 * @param monitorNodeStatus monitorNodeStatus
+		 * @return 当前对象
+		*/
+		public DbInfo setMonitorNodeStatus(String monitorNodeStatus) {
+			super.change(MONITOR_NODE_STATUS,super.getMonitorNodeStatus(),monitorNodeStatus);
+			super.setMonitorNodeStatus(monitorNodeStatus);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1162,6 +1247,7 @@ public class DbInfoMeta {
 			inst.setUserUseInfo(this.getUserUseInfo());
 			inst.setDisasterRecoveryStrategy(this.getDisasterRecoveryStrategy());
 			inst.setToolStrategy(this.getToolStrategy());
+			inst.setRelMonitorNodeId(this.getRelMonitorNodeId());
 			inst.setAppUserList(this.getAppUserList());
 			inst.setDeployMode(this.getDeployMode());
 			inst.setOpsUserList(this.getOpsUserList());
@@ -1183,6 +1269,7 @@ public class DbInfoMeta {
 			inst.setTypeId(this.getTypeId());
 			inst.setStatus(this.getStatus());
 			if(all) {
+				inst.setHostIp(this.getHostIp());
 				inst.setBackupInfoList(this.getBackupInfoList());
 				inst.setOtherEnvInfoList(this.getOtherEnvInfoList());
 				inst.setType(this.getType());
@@ -1192,12 +1279,14 @@ public class DbInfoMeta {
 				inst.setLabelList(this.getLabelList());
 				inst.setLabelIds(this.getLabelIds());
 				inst.setDataLocData(this.getDataLocData());
+				inst.setMonitorNodeStatus(this.getMonitorNodeStatus());
 				inst.setHost(this.getHost());
 				inst.setBackupInfoIds(this.getBackupInfoIds());
 				inst.setDeployModeDict(this.getDeployModeDict());
 				inst.setDataLocIds(this.getDataLocIds());
 				inst.setCiphertextBoxData(this.getCiphertextBoxData());
 				inst.setDbTypeList(this.getDbTypeList());
+				inst.setMonitorNode(this.getMonitorNode());
 			}
 			inst.clearModifies();
 			return inst;

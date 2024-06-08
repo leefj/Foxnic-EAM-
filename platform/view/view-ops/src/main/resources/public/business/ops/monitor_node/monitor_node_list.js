@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-03 16:52:10
+ * @since 2024-06-07 16:43:52
  */
 
 
@@ -163,6 +163,7 @@ function ListPage() {
 		var value = {};
 		value.nodeIp={ inputType:"button",value: $("#nodeIp").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.nodeNameShow={ inputType:"button",value: $("#nodeNameShow").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.type={ inputType:"select_box", value: getSelectedValue("#type","value") ,fillBy:["monitorNodeType"]  , label:getSelectedValue("#type","nameStr") };
 		value.nodeEnabled={ inputType:"radio_box", value: getSelectedValue("#nodeEnabled","value"), label:getSelectedValue("#nodeEnabled","nameStr") };
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
@@ -213,6 +214,37 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 type 下拉字段
+		fox.renderSelectBox({
+			el: "type",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("type",{data:data[i],name:data[i].name,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
 		//渲染 nodeEnabled 搜索框
 		fox.renderSelectBox({
 			el: "nodeEnabled",
@@ -464,6 +496,9 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
+			}
+			else if (layEvent === 'trigger-fuc') { // 触发器
+				window.pageExt.list.triggerFuc(data,this);
 			}
 			else if (layEvent === 'collect-func') { // 采集
 				window.pageExt.list.collectFunc(data,this);

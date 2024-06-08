@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-06-03 13:47:10
+ * @since 2024-06-07 23:37:08
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -5026,6 +5026,11 @@ public class OpsTables {
 		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","库状态","库状态",false,false,true);
 		
 		/**
+		 * 关联监控
+		*/
+		public static final DBField REL_MONITOR_NODE_ID = new DBField(DBDataType.STRING , "rel_monitor_node_id","relMonitorNodeId","关联监控","关联监控",false,false,true);
+		
+		/**
 		 * 备份状态
 		*/
 		public static final DBField BACKUP_STATUS = new DBField(DBDataType.STRING , "backup_status","backupStatus","备份状态","备份状态",false,false,true);
@@ -5185,7 +5190,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_INFO() {
-			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , PWD_STRAGEGY , PWD_STRAGEGY_NOTES , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , FILE_IDS , NOTES , UID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , REL_MONITOR_NODE_ID , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , PWD_STRAGEGY , PWD_STRAGEGY_NOTES , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , FILE_IDS , NOTES , UID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_DB_INFO $TABLE=new OPS_DB_INFO();
 	}
@@ -8660,6 +8665,11 @@ public class OpsTables {
 		public static final DBField TRIGGER_ID = new DBField(DBDataType.STRING , "trigger_id","triggerId","触发器","触发器",false,false,true);
 		
 		/**
+		 * 规则类型,动态，静态
+		*/
+		public static final DBField RULE_TYPE = new DBField(DBDataType.STRING , "rule_type","ruleType","规则类型","动态，静态",false,false,true);
+		
+		/**
 		 * 节点
 		*/
 		public static final DBField NODE_ID = new DBField(DBDataType.STRING , "node_id","nodeId","节点","节点",false,false,true);
@@ -8668,11 +8678,6 @@ public class OpsTables {
 		 * 名称
 		*/
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
-		
-		/**
-		 * 规则类型,动态，静态
-		*/
-		public static final DBField RULE_TYPE = new DBField(DBDataType.STRING , "rule_type","ruleType","规则类型","动态，静态",false,false,true);
 		
 		/**
 		 * 告警等级
@@ -8745,7 +8750,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
 		
 		public OPS_MONITOR_NODE_TRIGGER() {
-			this.init($NAME,"触发器" , ID , TRIGGER_ID , NODE_ID , NAME , RULE_TYPE , WARN_LEVEL , RULE , CONTENT_VALUE , STATUS , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"触发器" , ID , TRIGGER_ID , RULE_TYPE , NODE_ID , NAME , WARN_LEVEL , RULE , CONTENT_VALUE , STATUS , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_MONITOR_NODE_TRIGGER $TABLE=new OPS_MONITOR_NODE_TRIGGER();
 	}

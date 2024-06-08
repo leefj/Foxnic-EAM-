@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 触发器模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-03 13:51:45
+ * @since 2024-06-04 06:12:55
 */
 
 @Controller("OpsMonitorNodeTriggerPageController")
@@ -41,7 +41,8 @@ public class MonitorNodeTriggerPageController extends ViewController {
 	 * 触发器 功能主页面
 	 */
 	@RequestMapping("/monitor_node_trigger_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String nodeId) {
+		model.addAttribute("nodeId", nodeId);
 		return getTemplatePath(prefix,"monitor_node_trigger_list");
 	}
 

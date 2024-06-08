@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 触发器VO类型
  * <p>触发器 , 数据表 ops_monitor_node_trigger 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-03 14:41:48
+ * @since 2024-06-04 06:55:48
  * @sign 1B4953AA8BF9CCE52FC29ED1B56C88BF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -421,7 +421,6 @@ public class MonitorNodeTriggerVO extends MonitorNodeTrigger {
 		inst.setNodeId(this.getNodeId());
 		inst.setStatus(this.getStatus());
 		if(all) {
-			inst.setMonitorNodeList(this.getMonitorNodeList());
 			inst.setSearchField(this.getSearchField());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());

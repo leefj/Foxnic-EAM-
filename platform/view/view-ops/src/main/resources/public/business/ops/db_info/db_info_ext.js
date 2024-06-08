@@ -102,18 +102,23 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     return 0;
                 }
             }
+
+            if(field=="monitorNodeStatus" ){
+                if(value=="online"){
+                    value="在线"
+                }else if(value=="offline"){
+                    value="离线"
+                }
+            }
             if(r.status&&r.status=="not_online"){
                 value="<span style=\"color: blue; font-weight: bold\" >"+value+"</span>";
             }
             if(r.status&&r.status=="offline"){
                 value="<span style=\"color: red; font-weight: bold\" >"+value+"</span>";
             }
-
             if(r.status&&r.status=="stop"){
-                value="<span style=\"color: gray; font-weight: bold\" >"+value+"</span>";
+                value="<span style=\"color: #FF00CC; font-weight: bold\" >"+value+"</span>";
             }
-
-
             if(value==null) return "";
             return value;
         },
@@ -181,6 +186,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 this.boxWindow(data,it);
             }else if (menu.id=="env"){
                 this.actionEnv(data,it);
+            }else if (menu.id=="monitor"){
+                this.monitorNodeData(data,it);
             }
         },
         softList:function (data,it){
@@ -196,6 +203,20 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
                 }
             });
+        },
+        detailMonitorFuc:function (data,it){
+            admin.popupCenter({
+                title: "监控数据",
+                resize: false,
+                offset: [20,null],
+                area: ["95%","95%"],
+                type: 2,
+                id:"ops-db-test-monitor-list-data-win",
+                content: '/business/common/page_info/page_info_apply.html?code=ops_db_info_monitor_data&businessId='+data.relMonitorNodeId+"&businessId1="+data.id,
+                finish: function () {
+                }
+            });
+
         },
         testEvnList:function (data,it){
             admin.popupCenter({

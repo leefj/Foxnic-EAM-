@@ -55,7 +55,11 @@ public class PageInfoPageController extends ViewController {
 
 
 	@RequestMapping("/page_info_apply.html")
-	public String apply(Model model,HttpServletRequest request,String code,String id,String type,String page) {
+	public String apply(Model model,HttpServletRequest request,String code,String id,String type,String page,String businessId,String businessId1,String businessId2,String businessId3) {
+		model.addAttribute("businessId", businessId);
+		model.addAttribute("businessId1", businessId1);
+		model.addAttribute("businessId2", businessId2);
+		model.addAttribute("businessId3", businessId3);
 		model.addAttribute("id", id);
 		model.addAttribute("code", code);
 		model.addAttribute("type", type);

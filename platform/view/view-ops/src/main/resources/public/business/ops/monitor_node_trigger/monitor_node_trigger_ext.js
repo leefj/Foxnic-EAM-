@@ -1,7 +1,7 @@
 /**
  * 触发器 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-03 13:51:45
+ * @since 2024-06-04 06:12:55
  */
 
 layui.config({
@@ -28,6 +28,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+            var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+            operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+            operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
+            document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+
+            var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+            toolHtml=toolHtml.replace(/lay-event="batch-del"/i, "style=\"display:none\"")
+            toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+            document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
         },
         /**
          * 按事件名称移除表格按钮栏的按钮
@@ -261,6 +272,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
+            if(data&&data.NODE_ID){
+                data.nodeId=NODE_ID;
+            }
             return true;
         },
         /**

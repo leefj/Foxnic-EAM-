@@ -2,7 +2,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-26 19:17:24
+ * @since 2024-06-08 15:55:46
  */
  -->
  <!DOCTYPE html>
@@ -42,6 +42,7 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 主机名称 , hostId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 库类型 , typeId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 关联监控 , relMonitorNodeId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 大小 , dbSize ,typeName=number_input, isHideInSearch=true -->
                     <!-- 日志模式 , logMethod ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 管理员账户 , adminUserList ,typeName=text_input, isHideInSearch=true -->
@@ -68,7 +69,8 @@
                         <div id="dbTypeIds" th:data="${'/service-ops/ops-service-category/query-list?groupId=db'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 其他环境数量 , otherEnvInfoCount ,typeName=text_input, isHideInSearch=true -->
-                    <!-- IP , resHostIp ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 监控状态 , monitorNodeStatus ,typeName=text_input, isHideInSearch=true -->
+                    <!-- IP , hostIp ,typeName=text_input, isHideInSearch=true -->
                     <!-- 数据存放 , dataLocIds ,typeName=select_box, isHideInSearch=true -->
                     <!-- 库状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
@@ -119,7 +121,7 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
                         <input id="notes" class="layui-input search-input" style="width: 180px" type="text" />
@@ -160,9 +162,8 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('ops_db_info:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
-        <button id="soft-list"  class="layui-btn icon-btn layui-btn-sm  soft_list " lay-event="tool-soft-list"><span th:text="${lang.translate('软件列表','','cmp:table.button')}">软件列表</span></button>
-        <button id="test-evn-list"  class="layui-btn icon-btn layui-btn-sm  test_env_list " lay-event="tool-test-evn-list"><span th:text="${lang.translate('测试环境列表','','cmp:table.button')}">测试环境列表</span></button>
-        <button id="db-search"  class="layui-btn icon-btn layui-btn-sm " lay-event="tool-db-search"><span th:text="${lang.translate('搜索','','cmp:table.button')}">搜索</span></button>
+        <button id="soft-list"  class="layui-btn icon-btn layui-btn-sm  soft_list " lay-event="tool-soft-list"><span th:text="${lang.translate('数据库主机','','cmp:table.button')}">数据库主机</span></button>
+        <button id="test-evn-list"  class="layui-btn icon-btn layui-btn-sm  test_env_list " lay-event="tool-test-evn-list"><span th:text="${lang.translate('测试环境','','cmp:table.button')}">测试环境</span></button>
     </div>
 </script>
 
@@ -175,6 +176,7 @@
 
     <button th:if="${perm.checkAuth('ops_db_info:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
+    <button class="layui-btn layui-btn-xs  ops_db_info:monitor " lay-event="detail-monitor-fuc" data-id="{{d.id}}"><span th:text="${lang.translate('数据库详情','','cmp:table.ops')}">数据库详情</span></button>
 
     <button class="layui-btn layui-btn-xs layui-btn-primary layui-border-blue" lay-event="ops-more" data-id="{{d.id}}"><span th:text="${lang.translate('更多','','cmp:table.ops')}">更多</span><i class="layui-icon layui-icon-down"></i></button>
 </script>

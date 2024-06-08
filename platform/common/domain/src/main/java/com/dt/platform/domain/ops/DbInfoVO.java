@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库VO类型
  * <p>数据库 , 数据表 ops_db_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-26 19:17:22
+ * @since 2024-06-08 15:55:45
  * @sign 072C5A86F75E9E21D5871FA491A60284
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -420,6 +420,7 @@ public class DbInfoVO extends DbInfo {
 		inst.setUserUseInfo(this.getUserUseInfo());
 		inst.setDisasterRecoveryStrategy(this.getDisasterRecoveryStrategy());
 		inst.setToolStrategy(this.getToolStrategy());
+		inst.setRelMonitorNodeId(this.getRelMonitorNodeId());
 		inst.setAppUserList(this.getAppUserList());
 		inst.setDeployMode(this.getDeployMode());
 		inst.setOpsUserList(this.getOpsUserList());
@@ -452,6 +453,7 @@ public class DbInfoVO extends DbInfo {
 			inst.setPwdStragegyDict(this.getPwdStragegyDict());
 			inst.setLabelIds(this.getLabelIds());
 			inst.setDataLocData(this.getDataLocData());
+			inst.setMonitorNodeStatus(this.getMonitorNodeStatus());
 			inst.setHost(this.getHost());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
@@ -460,6 +462,8 @@ public class DbInfoVO extends DbInfo {
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setDeployModeDict(this.getDeployModeDict());
 			inst.setCiphertextBoxData(this.getCiphertextBoxData());
+			inst.setMonitorNode(this.getMonitorNode());
+			inst.setHostIp(this.getHostIp());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setLabelList(this.getLabelList());
 			inst.setPageIndex(this.getPageIndex());
@@ -544,6 +548,7 @@ public class DbInfoVO extends DbInfo {
 			this.setUserUseInfo(DataParser.parse(String.class, map.get(DbInfoVOMeta.USER_USE_INFO)));
 			this.setDisasterRecoveryStrategy(DataParser.parse(String.class, map.get(DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY)));
 			this.setToolStrategy(DataParser.parse(String.class, map.get(DbInfoVOMeta.TOOL_STRATEGY)));
+			this.setRelMonitorNodeId(DataParser.parse(String.class, map.get(DbInfoVOMeta.REL_MONITOR_NODE_ID)));
 			this.setAppUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.APP_USER_LIST)));
 			this.setDeployMode(DataParser.parse(String.class, map.get(DbInfoVOMeta.DEPLOY_MODE)));
 			this.setOpsUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.OPS_USER_LIST)));
@@ -570,12 +575,15 @@ public class DbInfoVO extends DbInfo {
 			this.setPageSize(DataParser.parse(Integer.class, map.get(DbInfoVOMeta.PAGE_SIZE)));
 			this.setType(DataParser.parse(ServiceInfo.class, map.get(DbInfoVOMeta.TYPE)));
 			this.setOtherEnvInfoCount(DataParser.parse(String.class, map.get(DbInfoVOMeta.OTHER_ENV_INFO_COUNT)));
+			this.setMonitorNodeStatus(DataParser.parse(String.class, map.get(DbInfoVOMeta.MONITOR_NODE_STATUS)));
 			this.setHost(DataParser.parse(Host.class, map.get(DbInfoVOMeta.HOST)));
 			this.setSortField(DataParser.parse(String.class, map.get(DbInfoVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(DbInfoVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(DbInfoVOMeta.QUERY_LOGIC)));
 			this.setDeployModeDict(DataParser.parse(DictItem.class, map.get(DbInfoVOMeta.DEPLOY_MODE_DICT)));
 			this.setCiphertextBoxData(DataParser.parse(CiphertextBoxData.class, map.get(DbInfoVOMeta.CIPHERTEXT_BOX_DATA)));
+			this.setMonitorNode(DataParser.parse(MonitorNode.class, map.get(DbInfoVOMeta.MONITOR_NODE)));
+			this.setHostIp(DataParser.parse(String.class, map.get(DbInfoVOMeta.HOST_IP)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(DbInfoVOMeta.REQUEST_ACTION)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(DbInfoVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(DbInfoVOMeta.SORT_TYPE)));
@@ -600,6 +608,7 @@ public class DbInfoVO extends DbInfo {
 				this.setUserUseInfo( (String)map.get(DbInfoVOMeta.USER_USE_INFO));
 				this.setDisasterRecoveryStrategy( (String)map.get(DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY));
 				this.setToolStrategy( (String)map.get(DbInfoVOMeta.TOOL_STRATEGY));
+				this.setRelMonitorNodeId( (String)map.get(DbInfoVOMeta.REL_MONITOR_NODE_ID));
 				this.setAppUserList( (String)map.get(DbInfoVOMeta.APP_USER_LIST));
 				this.setDeployMode( (String)map.get(DbInfoVOMeta.DEPLOY_MODE));
 				this.setOpsUserList( (String)map.get(DbInfoVOMeta.OPS_USER_LIST));
@@ -626,12 +635,15 @@ public class DbInfoVO extends DbInfo {
 				this.setPageSize( (Integer)map.get(DbInfoVOMeta.PAGE_SIZE));
 				this.setType( (ServiceInfo)map.get(DbInfoVOMeta.TYPE));
 				this.setOtherEnvInfoCount( (String)map.get(DbInfoVOMeta.OTHER_ENV_INFO_COUNT));
+				this.setMonitorNodeStatus( (String)map.get(DbInfoVOMeta.MONITOR_NODE_STATUS));
 				this.setHost( (Host)map.get(DbInfoVOMeta.HOST));
 				this.setSortField( (String)map.get(DbInfoVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(DbInfoVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(DbInfoVOMeta.QUERY_LOGIC));
 				this.setDeployModeDict( (DictItem)map.get(DbInfoVOMeta.DEPLOY_MODE_DICT));
 				this.setCiphertextBoxData( (CiphertextBoxData)map.get(DbInfoVOMeta.CIPHERTEXT_BOX_DATA));
+				this.setMonitorNode( (MonitorNode)map.get(DbInfoVOMeta.MONITOR_NODE));
+				this.setHostIp( (String)map.get(DbInfoVOMeta.HOST_IP));
 				this.setRequestAction( (String)map.get(DbInfoVOMeta.REQUEST_ACTION));
 				this.setPageIndex( (Integer)map.get(DbInfoVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(DbInfoVOMeta.SORT_TYPE));
@@ -669,6 +681,7 @@ public class DbInfoVO extends DbInfo {
 			this.setUserUseInfo(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.USER_USE_INFO)));
 			this.setDisasterRecoveryStrategy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY)));
 			this.setToolStrategy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.TOOL_STRATEGY)));
+			this.setRelMonitorNodeId(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.REL_MONITOR_NODE_ID)));
 			this.setAppUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.APP_USER_LIST)));
 			this.setDeployMode(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.DEPLOY_MODE)));
 			this.setOpsUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.OPS_USER_LIST)));
@@ -709,6 +722,7 @@ public class DbInfoVO extends DbInfo {
 				this.setUserUseInfo( (String)r.getValue(DbInfoVOMeta.USER_USE_INFO));
 				this.setDisasterRecoveryStrategy( (String)r.getValue(DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY));
 				this.setToolStrategy( (String)r.getValue(DbInfoVOMeta.TOOL_STRATEGY));
+				this.setRelMonitorNodeId( (String)r.getValue(DbInfoVOMeta.REL_MONITOR_NODE_ID));
 				this.setAppUserList( (String)r.getValue(DbInfoVOMeta.APP_USER_LIST));
 				this.setDeployMode( (String)r.getValue(DbInfoVOMeta.DEPLOY_MODE));
 				this.setOpsUserList( (String)r.getValue(DbInfoVOMeta.OPS_USER_LIST));

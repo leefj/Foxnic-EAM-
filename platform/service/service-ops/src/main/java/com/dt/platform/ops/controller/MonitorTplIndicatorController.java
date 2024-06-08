@@ -46,7 +46,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 模版指标接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-09 18:46:59
+ * @since 2024-06-07 23:22:01
 */
 
 @InDoc
@@ -75,7 +75,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_MAP , value = "数值字段映射" , required = false , dataTypeClass=String.class , example = "os_load"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_NAME , value = "字段名称" , required = false , dataTypeClass=String.class , example = "系统负载"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.TIME_OUT , value = "超时时间" , required = false , dataTypeClass=Integer.class , example = "15"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INTERVAL_TIME , value = "间隔时间" , required = false , dataTypeClass=Integer.class , example = "180"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INTERVAL_TIME , value = "间隔时间" , required = false , dataTypeClass=Integer.class , example = "600"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.DATA_KEEP_DAY , value = "数据保留天数" , required = false , dataTypeClass=Integer.class , example = "365"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.COMMAND , value = "命令" , required = false , dataTypeClass=String.class , example = "uptime|awk -F \":\" '{print $NF}'|awk -F \",\" '{print $1}'"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.COMMAND_VALUE , value = "命令值" , required = false , dataTypeClass=String.class),
@@ -84,6 +84,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.ITEM_SORT , value = "排序" , required = false , dataTypeClass=Integer.class , example = "800"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "系统负载"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -198,7 +199,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_MAP , value = "数值字段映射" , required = false , dataTypeClass=String.class , example = "os_load"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_NAME , value = "字段名称" , required = false , dataTypeClass=String.class , example = "系统负载"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.TIME_OUT , value = "超时时间" , required = false , dataTypeClass=Integer.class , example = "15"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INTERVAL_TIME , value = "间隔时间" , required = false , dataTypeClass=Integer.class , example = "180"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INTERVAL_TIME , value = "间隔时间" , required = false , dataTypeClass=Integer.class , example = "600"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.DATA_KEEP_DAY , value = "数据保留天数" , required = false , dataTypeClass=Integer.class , example = "365"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.COMMAND , value = "命令" , required = false , dataTypeClass=String.class , example = "uptime|awk -F \":\" '{print $NF}'|awk -F \",\" '{print $1}'"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.COMMAND_VALUE , value = "命令值" , required = false , dataTypeClass=String.class),
@@ -207,6 +208,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.ITEM_SORT , value = "排序" , required = false , dataTypeClass=Integer.class , example = "800"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "系统负载"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { MonitorTplIndicatorVOMeta.PAGE_INDEX , MonitorTplIndicatorVOMeta.PAGE_SIZE , MonitorTplIndicatorVOMeta.SEARCH_FIELD , MonitorTplIndicatorVOMeta.FUZZY_FIELD , MonitorTplIndicatorVOMeta.SEARCH_VALUE , MonitorTplIndicatorVOMeta.DIRTY_FIELDS , MonitorTplIndicatorVOMeta.SORT_FIELD , MonitorTplIndicatorVOMeta.SORT_TYPE , MonitorTplIndicatorVOMeta.DATA_ORIGIN , MonitorTplIndicatorVOMeta.QUERY_LOGIC , MonitorTplIndicatorVOMeta.REQUEST_ACTION , MonitorTplIndicatorVOMeta.IDS } )
@@ -237,7 +239,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_MAP , value = "数值字段映射" , required = false , dataTypeClass=String.class , example = "os_load"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_NAME , value = "字段名称" , required = false , dataTypeClass=String.class , example = "系统负载"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.TIME_OUT , value = "超时时间" , required = false , dataTypeClass=Integer.class , example = "15"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INTERVAL_TIME , value = "间隔时间" , required = false , dataTypeClass=Integer.class , example = "180"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INTERVAL_TIME , value = "间隔时间" , required = false , dataTypeClass=Integer.class , example = "600"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.DATA_KEEP_DAY , value = "数据保留天数" , required = false , dataTypeClass=Integer.class , example = "365"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.COMMAND , value = "命令" , required = false , dataTypeClass=String.class , example = "uptime|awk -F \":\" '{print $NF}'|awk -F \",\" '{print $1}'"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.COMMAND_VALUE , value = "命令值" , required = false , dataTypeClass=String.class),
@@ -246,6 +248,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.ITEM_SORT , value = "排序" , required = false , dataTypeClass=Integer.class , example = "800"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "系统负载"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { MonitorTplIndicatorVOMeta.PAGE_INDEX , MonitorTplIndicatorVOMeta.PAGE_SIZE , MonitorTplIndicatorVOMeta.SEARCH_FIELD , MonitorTplIndicatorVOMeta.FUZZY_FIELD , MonitorTplIndicatorVOMeta.SEARCH_VALUE , MonitorTplIndicatorVOMeta.DIRTY_FIELDS , MonitorTplIndicatorVOMeta.SORT_FIELD , MonitorTplIndicatorVOMeta.SORT_TYPE , MonitorTplIndicatorVOMeta.DATA_ORIGIN , MonitorTplIndicatorVOMeta.QUERY_LOGIC , MonitorTplIndicatorVOMeta.REQUEST_ACTION , MonitorTplIndicatorVOMeta.IDS } )
@@ -320,7 +323,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_MAP , value = "数值字段映射" , required = false , dataTypeClass=String.class , example = "os_load"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_NAME , value = "字段名称" , required = false , dataTypeClass=String.class , example = "系统负载"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.TIME_OUT , value = "超时时间" , required = false , dataTypeClass=Integer.class , example = "15"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INTERVAL_TIME , value = "间隔时间" , required = false , dataTypeClass=Integer.class , example = "180"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INTERVAL_TIME , value = "间隔时间" , required = false , dataTypeClass=Integer.class , example = "600"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.DATA_KEEP_DAY , value = "数据保留天数" , required = false , dataTypeClass=Integer.class , example = "365"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.COMMAND , value = "命令" , required = false , dataTypeClass=String.class , example = "uptime|awk -F \":\" '{print $NF}'|awk -F \",\" '{print $1}'"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.COMMAND_VALUE , value = "命令值" , required = false , dataTypeClass=String.class),
@@ -329,6 +332,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.ITEM_SORT , value = "排序" , required = false , dataTypeClass=Integer.class , example = "800"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "系统负载"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { MonitorTplIndicatorVOMeta.PAGE_INDEX , MonitorTplIndicatorVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = MonitorTplIndicatorServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -360,7 +364,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_MAP , value = "数值字段映射" , required = false , dataTypeClass=String.class , example = "os_load"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_NAME , value = "字段名称" , required = false , dataTypeClass=String.class , example = "系统负载"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.TIME_OUT , value = "超时时间" , required = false , dataTypeClass=Integer.class , example = "15"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INTERVAL_TIME , value = "间隔时间" , required = false , dataTypeClass=Integer.class , example = "180"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INTERVAL_TIME , value = "间隔时间" , required = false , dataTypeClass=Integer.class , example = "600"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.DATA_KEEP_DAY , value = "数据保留天数" , required = false , dataTypeClass=Integer.class , example = "365"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.COMMAND , value = "命令" , required = false , dataTypeClass=String.class , example = "uptime|awk -F \":\" '{print $NF}'|awk -F \",\" '{print $1}'"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.COMMAND_VALUE , value = "命令值" , required = false , dataTypeClass=String.class),
@@ -369,6 +373,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.ITEM_SORT , value = "排序" , required = false , dataTypeClass=Integer.class , example = "800"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "系统负载"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = MonitorTplIndicatorServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

@@ -1,7 +1,7 @@
 /**
  * 触发器 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-03 14:41:51
+ * @since 2024-06-04 06:55:50
  */
 
 
@@ -84,9 +84,7 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'triggerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('触发器') , templet: function (d) { return templet('triggerId',d.triggerId,d);}  }
 					,{ field: 'ruleType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('规则类型'), templet:function (d){ return templet('ruleType',fox.getEnumText(RADIO_RULETYPE_DATA,d.ruleType,'','ruleType'),d);}}
-					,{ field: 'nodeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点') , templet: function (d) { return templet('nodeId',d.nodeId,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'warnLevel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('告警等级'), templet:function (d){ return templet('warnLevel',fox.getEnumText(SELECT_WARNLEVEL_DATA,d.warnLevel,'','warnLevel'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
@@ -421,6 +419,7 @@ function ListPage() {
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
+		console.log(11111)
 		admin.putTempData('ops-monitor-node-trigger-form-data', data);
 		var area=admin.getTempData('ops-monitor-node-trigger-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
@@ -429,7 +428,7 @@ function ListPage() {
 		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
 		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
 		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
-
+		console.log(22222)
 		admin.popupCenter({
 			title: title,
 			resize: false,

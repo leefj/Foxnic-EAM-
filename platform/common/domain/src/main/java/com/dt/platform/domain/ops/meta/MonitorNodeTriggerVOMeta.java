@@ -6,14 +6,13 @@ import java.util.List;
 import com.dt.platform.domain.ops.MonitorNodeTrigger;
 import java.util.Date;
 import com.dt.platform.domain.ops.MonitorTpl;
-import com.dt.platform.domain.ops.MonitorNode;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-03 14:41:48
+ * @since 2024-06-04 06:55:48
  * @sign 1B4953AA8BF9CCE52FC29ED1B56C88BF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -341,19 +340,9 @@ public class MonitorNodeTriggerVOMeta extends MonitorNodeTriggerMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,com.dt.platform.domain.ops.MonitorTpl> TPL_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,TPL, com.dt.platform.domain.ops.MonitorTpl.class, "节点模版", "节点模版", com.dt.platform.domain.ops.MonitorTpl.class, null);
 	
 	/**
-	 * monitorNodeList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorNode
-	*/
-	public static final String MONITOR_NODE_LIST="monitorNodeList";
-	
-	/**
-	 * monitorNodeList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorNode
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeTriggerVO,com.dt.platform.domain.ops.MonitorNode> MONITOR_NODE_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeTriggerVO.class ,MONITOR_NODE_LIST, java.util.List.class, "monitorNodeList", "monitorNodeList", com.dt.platform.domain.ops.MonitorNode.class, null);
-	
-	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TRIGGER_ID , RULE_TYPE , NODE_ID , NAME , WARN_LEVEL , RULE , CONTENT_VALUE , STATUS , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_NODE_LIST };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TRIGGER_ID , RULE_TYPE , NODE_ID , NAME , WARN_LEVEL , RULE , CONTENT_VALUE , STATUS , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL };
 	
 	/**
 	 * 代理类
@@ -714,17 +703,6 @@ public class MonitorNodeTriggerVOMeta extends MonitorNodeTriggerMeta {
 			super.setTpl(tpl);
 			return this;
 		}
-		
-		/**
-		 * 设置 monitorNodeList
-		 * @param monitorNodeList monitorNodeList
-		 * @return 当前对象
-		*/
-		public MonitorNodeTrigger setMonitorNodeList(List<MonitorNode> monitorNodeList) {
-			super.change(MONITOR_NODE_LIST,super.getMonitorNodeList(),monitorNodeList);
-			super.setMonitorNodeList(monitorNodeList);
-			return this;
-		}
 
 		/**
 		 * 克隆当前对象
@@ -761,7 +739,6 @@ public class MonitorNodeTriggerVOMeta extends MonitorNodeTriggerMeta {
 			inst.setNodeId(this.getNodeId());
 			inst.setStatus(this.getStatus());
 			if(all) {
-				inst.setMonitorNodeList(this.getMonitorNodeList());
 				inst.setSearchField(this.getSearchField());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());

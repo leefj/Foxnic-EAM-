@@ -1,21 +1,19 @@
 package com.dt.platform.generator.module.ops;
 
-import com.dt.platform.constants.db.EAMTables;
-import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
-import com.dt.platform.constants.enums.ops.*;
+
+
+import com.dt.platform.constants.enums.ops.MonitorEnableEnum;
+import com.dt.platform.constants.enums.ops.MonitorIndicatorColumnRowColTypeEnum;
+import com.dt.platform.constants.enums.ops.MonitorIndicatorValueColumnTypeEnum;
+import com.dt.platform.constants.enums.ops.MonitorMethodEnum;
 import com.dt.platform.domain.ops.MonitorTpl;
 import com.dt.platform.domain.ops.MonitorTplIndicatorType;
-import com.dt.platform.domain.ops.MonitorVoucher;
 import com.dt.platform.domain.ops.meta.MonitorTplIndicatorMeta;
 import com.dt.platform.domain.ops.meta.MonitorTplIndicatorTypeMeta;
 import com.dt.platform.domain.ops.meta.MonitorTplMeta;
-import com.dt.platform.domain.ops.meta.MonitorVoucherMeta;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.ops.page.MonitorTplIndicatorPageController;
-import com.dt.platform.proxy.ops.MonitorTplIndicatorServiceProxy;
 import com.dt.platform.proxy.ops.MonitorTplIndicatorTypeServiceProxy;
 import com.dt.platform.proxy.ops.MonitorTplServiceProxy;
-import com.dt.platform.proxy.ops.MonitorVoucherServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import com.dt.platform.constants.db.OpsTables;
 public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
@@ -65,7 +63,7 @@ public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.ID).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.LABEL).table().disable(true);
 
-
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.UPDATE_BY).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.COMMAND_VALUE).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.COMMAND_VALUE).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.CREATE_TIME).table().disable(true);

@@ -2,7 +2,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-03 16:52:10
+ * @since 2024-06-07 16:43:52
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-7989-content">
+        <div class="layui-row form-row" id="random-0183-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -57,6 +57,14 @@
                     <div class="layui-form-label "><div th:text="${lang.translate('IP')}">IP</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
                         <input lay-filter="nodeIp" id="nodeIp" name="nodeIp" th:placeholder="${ lang.translate('请输入'+'IP') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            
+                <!-- select_box : 节点分类 ,  type  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('节点分类')}">节点分类</div></div>
+                    <div class="layui-input-block ">
+                        <div id="type" input-type="select" th:data="${'/service-ops/ops-service-group/query-paged-list'}" extraParam="{}"></div>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -107,11 +115,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4173-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6237-fieldset">
             <legend>数据采集</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-4173-content">
+        <div class="layui-row form-row" id="random-6237-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -205,7 +213,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-3424-content">
+        <div class="layui-row form-row" id="random-1949-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->

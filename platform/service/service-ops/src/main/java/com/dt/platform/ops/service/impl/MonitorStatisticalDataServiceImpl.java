@@ -602,37 +602,42 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
         JSONObject resultData=new JSONObject();
         MonitorNode monitorNode=monitorNodeService.getById(nodeId);
 
+        if(monitorNode==null){
+            return result.success(false).message("节点不存在");
+        }
         // join 关联的对象
         monitorNodeService.dao().fill(monitorNode)
                 .with(MonitorNodeMeta.MONITOR_TPL_LIST)
-                .with(MonitorNodeMeta.SSH_VOUCHER)
-                .with(MonitorNodeMeta.MONITOR_NODE_GROUP)
-                .with(MonitorNodeMeta.MONITOR_NODE_TYPE)
+               // .with(MonitorNodeMeta.SSH_VOUCHER)
+               // .with(MonitorNodeMeta.MONITOR_NODE_GROUP)
+              //  .with(MonitorNodeMeta.MONITOR_NODE_TYPE)
                 .execute();
-
         JSONArray nodeCollectData=new JSONArray();
         List<MonitorTpl> nodeTplList=monitorNode.getMonitorTplList();
-        if(nodeTplList!=null&&nodeTplList.size()>0)
-        for(MonitorTpl tpl:nodeTplList){
-            String tplCode=tpl.getCode();
-            String dataSql="select \n" +
-                    "(select node_ip from ops_monitor_node where id=a2.node_id)node_ip,\n" +
-                    "(select node_name_show from ops_monitor_node where id=a2.node_id)node_name_show,\n" +
-                    "a1.* ,a2.* from " +
-                   "(select * from ops_monitor_tpl_indicator where monitor_tpl_code='"+tplCode+"' and status='enable'\n" +
-                   ") a1 left join \n" +
-                   "(\n" +
-                   "select * from ops_monitor_node_value_last where node_id='"+nodeId+"' and (indicator_code,record_time) \n" +
-                   "in(\n" +
-                   "select indicator_code,max(record_time) max_record_time from (select * from ops_monitor_node_value_last where node_id='"+nodeId+"' and result_status='sucess' and monitor_tpl_code='"+tplCode+"') t group by node_id,indicator_code\n" +
-                   "))a2 on a1.monitor_tpl_code=a2.monitor_tpl_code and a1.code=a2.indicator_code order by a1.monitor_tpl_code, a1.code\n";
-           RcdSet rs=dao.query(dataSql);
-           for(Rcd r:rs){
-               JSONObject data=parseCollectData(r.toJSONObject());
-               nodeCollectData.add(data);
-           }
+        if(nodeTplList!=null&&nodeTplList.size()>0){
+            for(MonitorTpl tpl:nodeTplList){
+                String tplCode=tpl.getCode();
+                if(!"enable".equals(tpl.getStatus())){
+                    continue;
+                }
+                String dataSql="select \n" +
+                        "(select node_ip from ops_monitor_node where id=a2.node_id)node_ip,\n" +
+                        "(select node_name_show from ops_monitor_node where id=a2.node_id)node_name_show,\n" +
+                        "a1.* ,a2.* from " +
+                        "(select * from ops_monitor_tpl_indicator where monitor_tpl_code=? and deleted=0 and status='enable'\n" +
+                        ") a1 left join \n" +
+                        "(\n" +
+                        "select * from ops_monitor_node_value_last where node_id=? and (indicator_code,record_time) \n" +
+                        "in(\n" +
+                        "select indicator_code,max(record_time) max_record_time from (select * from ops_monitor_node_value_last where node_id=? and result_status='sucess' and monitor_tpl_code=? )  t group by node_id,indicator_code\n" +
+                        "))a2 on a1.monitor_tpl_code=a2.monitor_tpl_code and a1.code=a2.indicator_code order by a1.monitor_tpl_code, a1.code\n";
+                RcdSet rs=dao.query(dataSql,tplCode,nodeId,nodeId,tplCode);
+                for(Rcd r:rs){
+                    JSONObject data=parseCollectData(r.toJSONObject());
+                    nodeCollectData.add(data);
+                }
+            }
         }
-
         resultData.put("nodeCollectDataList",nodeCollectData);
         resultData.put("nodeInfo",BeanUtil.toJSONObject(monitorNode));
         return result.success(true).data(resultData);

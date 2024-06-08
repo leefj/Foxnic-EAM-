@@ -416,17 +416,19 @@ public class MonitorNodeController extends SuperController {
         expr.and("1=1");
         String searchValue=sample.getSearchValue();
         if(StringUtil.isNotBlank(searchValue)){
-            JSONObject valueJson=JSONObject.parseObject(searchValue);
-            if(valueJson!=null){
-                JSONObject nodeGroupIdsJson=valueJson.getJSONObject("nodeGroupIds");
-                if(nodeGroupIdsJson!=null){
-                    JSONArray nodeGroupIdsValue=nodeGroupIdsJson.getJSONArray("value");
-                    String nodeGrouId="";
-                    if(nodeGroupIdsValue!=null&&nodeGroupIdsValue.size()>0){
-                        nodeGrouId=nodeGroupIdsValue.get(0).toString();
-                    }
-                    if(StringUtil.isNotBlank(nodeGrouId)){
-                        expr.and("id in (select distinct book_id from ops_monitor_alert_book_rule where deleted=0 and value=? and type='node_group')",nodeGrouId);
+            if(searchValue.startsWith("{")) {
+                JSONObject valueJson = JSONObject.parseObject(searchValue);
+                if (valueJson != null) {
+                    JSONObject nodeGroupIdsJson = valueJson.getJSONObject("nodeGroupIds");
+                    if (nodeGroupIdsJson != null) {
+                        JSONArray nodeGroupIdsValue = nodeGroupIdsJson.getJSONArray("value");
+                        String nodeGrouId = "";
+                        if (nodeGroupIdsValue != null && nodeGroupIdsValue.size() > 0) {
+                            nodeGrouId = nodeGroupIdsValue.get(0).toString();
+                        }
+                        if (StringUtil.isNotBlank(nodeGrouId)) {
+                            expr.and("id in (select distinct book_id from ops_monitor_alert_book_rule where deleted=0 and value=? and type='node_group')", nodeGrouId);
+                        }
                     }
                 }
             }

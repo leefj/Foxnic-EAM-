@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-03 16:52:11
+ * @since 2024-06-07 16:43:53
  */
 
 function FormPage() {
@@ -367,6 +367,8 @@ function FormPage() {
 
 
 
+			//设置  节点分类 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#type",formData.monitorNodeType);
 			//设置  凭证 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#sshVoucherId",formData.sshVoucher);
 			//设置  监控模版 设置下拉框勾选
@@ -435,6 +437,8 @@ function FormPage() {
 
 
 
+		//获取 节点分类 下拉框的值
+		data["type"]=fox.getSelectedValue("type",false);
 		//获取 凭证 下拉框的值
 		data["sshVoucherId"]=fox.getSelectedValue("sshVoucherId",false);
 		//获取 监控模版 下拉框的值

@@ -1,11 +1,13 @@
 package com.dt.platform.ops.service.impl;
 
 
+import com.alibaba.csp.sentinel.util.StringUtil;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.ops.MonitorNode;
 import com.dt.platform.domain.ops.MonitorNodeTriggerLastData;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.cache.CacheProperties;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
@@ -23,6 +25,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.*;
+
 
 @Service("MonitorDataProcessUtilService")
 public class MonitorDataProcessUtilService {
@@ -79,9 +82,16 @@ public class MonitorDataProcessUtilService {
                 +" and record_time=(select max(t.record_time) from ops_monitor_node_value_last t where result_status='sucess' "
                 +" and monitor_tpl_code=? and indicator_code=? and node_id=?)";
         Rcd rcd=dao.queryRecord(sql.replace("#<TIME>#",timestr),curTplCode,code,curTplCode,code,node.getId(),curTplCode,code,node.getId());
+
         if(node.getTriggerData()==null){
             node.setTriggerData(new MonitorNodeTriggerLastData());
         }
+        //如果没有记录，则返回默认值
+        if(rcd==null){
+            Logger.info("no record for:"+code+" node_name:"+node.getNodeNameShow());
+            return res;
+        }
+
         //如果配置了store，则按照store获取，否则自动获取col
         //在多个col时，需要配置store
         String col="";
@@ -90,13 +100,15 @@ public class MonitorDataProcessUtilService {
         }else{
             col=store;
         }
-        res=rcd.getString(col);
+        if(StringUtil.isBlank(rcd.getString(col))){
+            Logger.info("to set default:" + defValue + "node_name:" + node.getNodeNameShow());
+        }else{
+            res=rcd.getString(col);
+        }
         String id=rcd.getString("id");
-//        MonitorNodeTriggerLastData data=new MonitorNodeTriggerLastData();
         node.getTriggerData().setId(id);
         node.getTriggerData().setValue(res);
         node.getTriggerData().setSourceData(rcd.toJSONObject());
-//        node.getTriggerDataList().add(data);
         return res;
     }
 

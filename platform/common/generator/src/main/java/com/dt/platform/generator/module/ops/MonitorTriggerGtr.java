@@ -8,6 +8,8 @@ import com.dt.platform.domain.ops.MonitorTpl;
 import com.dt.platform.domain.ops.meta.MonitorTplMeta;
 import com.dt.platform.domain.ops.meta.MonitorTplTriggerMeta;
 import com.dt.platform.generator.config.Config;
+import com.dt.platform.ops.page.MonitorNodeTriggerPageController;
+import com.dt.platform.proxy.ops.MonitorNodeTriggerServiceProxy;
 import com.dt.platform.proxy.ops.MonitorTplServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 
@@ -23,7 +25,6 @@ public class MonitorTriggerGtr extends BaseCodeGenerator{
 
 
         cfg.getPoClassFile().addSimpleProperty(MonitorTpl.class,"tpl","节点模版","节点模版");
-        cfg.getPoClassFile().addListProperty(MonitorNode.class,"monitorNodeList","monitorNodeList","monitorNodeList");
 
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -50,8 +51,10 @@ public class MonitorTriggerGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_NODE_TRIGGER.UPDATE_BY).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE_TRIGGER.CONTENT_VALUE).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE_TRIGGER.CONTENT_VALUE).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE_TRIGGER.MONITOR_TPL_CODE).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE_TRIGGER.RULE).table().disable(true);
-
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE_TRIGGER.NODE_ID).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE_TRIGGER.TRIGGER_ID).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE_TRIGGER.RULE).form().validate().required().form().textArea().height(Config.textAreaHeight);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE_TRIGGER.NOTES).form().textArea().height(Config.textAreaHeight);
 
@@ -119,7 +122,7 @@ public class MonitorTriggerGtr extends BaseCodeGenerator{
         g.generateCode();
 
         //移除之前生成的菜单，视情况执行
-       //3 g.generateMenu(MonitorTplTriggerServiceProxy.class, MonitorTplTriggerPageController.class);
+      //  g.generateMenu(MonitorNodeTriggerServiceProxy.class, MonitorNodeTriggerPageController.class);
 
 
     }

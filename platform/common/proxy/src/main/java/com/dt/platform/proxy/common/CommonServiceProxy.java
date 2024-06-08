@@ -37,6 +37,9 @@ public interface CommonServiceProxy {
     public static final String API_PREFIX = "/" + API_BASIC_PATH + "/" + API_CONTEXT_PATH + "/";
 
 
+//    public static final String ALERT_NOTICE = API_PREFIX + "alert-notice";
+
+
     /**
      * 更新员工导入
      */

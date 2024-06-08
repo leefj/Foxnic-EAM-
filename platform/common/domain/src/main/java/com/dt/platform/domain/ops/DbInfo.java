@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库
  * <p>数据库 , 数据表 ops_db_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-26 19:17:22
- * @sign 43F0E4EA0927EB2A90CB57732D608C72
+ * @since 2024-06-08 15:55:45
+ * @sign CDBF59E4195F7D7FEA84D16D0D5F1A13
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -69,8 +69,14 @@ public class DbInfo extends Entity {
 	/**
 	 * 库状态：库状态
 	*/
-	@ApiModelProperty(required = false,value="库状态" , notes = "库状态" , example = "not_onine")
+	@ApiModelProperty(required = false,value="库状态" , notes = "库状态" , example = "stop")
 	private String status;
+	
+	/**
+	 * 关联监控：关联监控
+	*/
+	@ApiModelProperty(required = false,value="关联监控" , notes = "关联监控" , example = "none")
+	private String relMonitorNodeId;
 	
 	/**
 	 * 备份状态：备份状态
@@ -213,7 +219,7 @@ public class DbInfo extends Entity {
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1712546776000")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1717776483000")
 	private String selectedCode;
 	
 	/**
@@ -237,7 +243,7 @@ public class DbInfo extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-04-08 11:26:27")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-06-08 12:08:07")
 	private Date updateTime;
 	
 	/**
@@ -264,7 +270,7 @@ public class DbInfo extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
 	private Integer version;
 	
 	/**
@@ -284,6 +290,12 @@ public class DbInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="host" , notes = "host")
 	private Host host;
+	
+	/**
+	 * hostIp：hostIp
+	*/
+	@ApiModelProperty(required = false,value="hostIp" , notes = "hostIp")
+	private String hostIp;
 	
 	/**
 	 * type：type
@@ -356,6 +368,18 @@ public class DbInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="pwdStragegyDict" , notes = "pwdStragegyDict")
 	private List<DictItem> pwdStragegyDict;
+	
+	/**
+	 * monitorNode：monitorNode
+	*/
+	@ApiModelProperty(required = false,value="monitorNode" , notes = "monitorNode")
+	private MonitorNode monitorNode;
+	
+	/**
+	 * monitorNodeStatus：monitorNodeStatus
+	*/
+	@ApiModelProperty(required = false,value="monitorNodeStatus" , notes = "monitorNodeStatus")
+	private String monitorNodeStatus;
 	
 	/**
 	 * 获得 主键<br>
@@ -449,6 +473,25 @@ public class DbInfo extends Entity {
 	*/
 	public DbInfo setStatus(String status) {
 		this.status=status;
+		return this;
+	}
+	
+	/**
+	 * 获得 关联监控<br>
+	 * 关联监控
+	 * @return 关联监控
+	*/
+	public String getRelMonitorNodeId() {
+		return relMonitorNodeId;
+	}
+	
+	/**
+	 * 设置 关联监控
+	 * @param relMonitorNodeId 关联监控
+	 * @return 当前对象
+	*/
+	public DbInfo setRelMonitorNodeId(String relMonitorNodeId) {
+		this.relMonitorNodeId=relMonitorNodeId;
 		return this;
 	}
 	
@@ -1171,6 +1214,25 @@ public class DbInfo extends Entity {
 	}
 	
 	/**
+	 * 获得 hostIp<br>
+	 * hostIp
+	 * @return hostIp
+	*/
+	public String getHostIp() {
+		return hostIp;
+	}
+	
+	/**
+	 * 设置 hostIp
+	 * @param hostIp hostIp
+	 * @return 当前对象
+	*/
+	public DbInfo setHostIp(String hostIp) {
+		this.hostIp=hostIp;
+		return this;
+	}
+	
+	/**
 	 * 获得 type<br>
 	 * type
 	 * @return type
@@ -1485,6 +1547,44 @@ public class DbInfo extends Entity {
 		this.pwdStragegyDict.addAll(Arrays.asList(entity));
 		return this;
 	}
+	
+	/**
+	 * 获得 monitorNode<br>
+	 * monitorNode
+	 * @return monitorNode
+	*/
+	public MonitorNode getMonitorNode() {
+		return monitorNode;
+	}
+	
+	/**
+	 * 设置 monitorNode
+	 * @param monitorNode monitorNode
+	 * @return 当前对象
+	*/
+	public DbInfo setMonitorNode(MonitorNode monitorNode) {
+		this.monitorNode=monitorNode;
+		return this;
+	}
+	
+	/**
+	 * 获得 monitorNodeStatus<br>
+	 * monitorNodeStatus
+	 * @return monitorNodeStatus
+	*/
+	public String getMonitorNodeStatus() {
+		return monitorNodeStatus;
+	}
+	
+	/**
+	 * 设置 monitorNodeStatus
+	 * @param monitorNodeStatus monitorNodeStatus
+	 * @return 当前对象
+	*/
+	public DbInfo setMonitorNodeStatus(String monitorNodeStatus) {
+		this.monitorNodeStatus=monitorNodeStatus;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1547,6 +1647,7 @@ public class DbInfo extends Entity {
 		inst.setUserUseInfo(this.getUserUseInfo());
 		inst.setDisasterRecoveryStrategy(this.getDisasterRecoveryStrategy());
 		inst.setToolStrategy(this.getToolStrategy());
+		inst.setRelMonitorNodeId(this.getRelMonitorNodeId());
 		inst.setAppUserList(this.getAppUserList());
 		inst.setDeployMode(this.getDeployMode());
 		inst.setOpsUserList(this.getOpsUserList());
@@ -1568,6 +1669,7 @@ public class DbInfo extends Entity {
 		inst.setTypeId(this.getTypeId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setHostIp(this.getHostIp());
 			inst.setBackupInfoList(this.getBackupInfoList());
 			inst.setOtherEnvInfoList(this.getOtherEnvInfoList());
 			inst.setType(this.getType());
@@ -1577,12 +1679,14 @@ public class DbInfo extends Entity {
 			inst.setLabelList(this.getLabelList());
 			inst.setLabelIds(this.getLabelIds());
 			inst.setDataLocData(this.getDataLocData());
+			inst.setMonitorNodeStatus(this.getMonitorNodeStatus());
 			inst.setHost(this.getHost());
 			inst.setBackupInfoIds(this.getBackupInfoIds());
 			inst.setDeployModeDict(this.getDeployModeDict());
 			inst.setDataLocIds(this.getDataLocIds());
 			inst.setCiphertextBoxData(this.getCiphertextBoxData());
 			inst.setDbTypeList(this.getDbTypeList());
+			inst.setMonitorNode(this.getMonitorNode());
 		}
 		inst.clearModifies();
 		return inst;
@@ -1659,6 +1763,7 @@ public class DbInfo extends Entity {
 			this.setUserUseInfo(DataParser.parse(String.class, map.get(DbInfoMeta.USER_USE_INFO)));
 			this.setDisasterRecoveryStrategy(DataParser.parse(String.class, map.get(DbInfoMeta.DISASTER_RECOVERY_STRATEGY)));
 			this.setToolStrategy(DataParser.parse(String.class, map.get(DbInfoMeta.TOOL_STRATEGY)));
+			this.setRelMonitorNodeId(DataParser.parse(String.class, map.get(DbInfoMeta.REL_MONITOR_NODE_ID)));
 			this.setAppUserList(DataParser.parse(String.class, map.get(DbInfoMeta.APP_USER_LIST)));
 			this.setDeployMode(DataParser.parse(String.class, map.get(DbInfoMeta.DEPLOY_MODE)));
 			this.setOpsUserList(DataParser.parse(String.class, map.get(DbInfoMeta.OPS_USER_LIST)));
@@ -1680,11 +1785,14 @@ public class DbInfo extends Entity {
 			this.setTypeId(DataParser.parse(String.class, map.get(DbInfoMeta.TYPE_ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(DbInfoMeta.STATUS)));
 			// others
+			this.setHostIp(DataParser.parse(String.class, map.get(DbInfoMeta.HOST_IP)));
 			this.setType(DataParser.parse(ServiceInfo.class, map.get(DbInfoMeta.TYPE)));
 			this.setOtherEnvInfoCount(DataParser.parse(String.class, map.get(DbInfoMeta.OTHER_ENV_INFO_COUNT)));
+			this.setMonitorNodeStatus(DataParser.parse(String.class, map.get(DbInfoMeta.MONITOR_NODE_STATUS)));
 			this.setHost(DataParser.parse(Host.class, map.get(DbInfoMeta.HOST)));
 			this.setDeployModeDict(DataParser.parse(DictItem.class, map.get(DbInfoMeta.DEPLOY_MODE_DICT)));
 			this.setCiphertextBoxData(DataParser.parse(CiphertextBoxData.class, map.get(DbInfoMeta.CIPHERTEXT_BOX_DATA)));
+			this.setMonitorNode(DataParser.parse(MonitorNode.class, map.get(DbInfoMeta.MONITOR_NODE)));
 			return true;
 		} else {
 			try {
@@ -1705,6 +1813,7 @@ public class DbInfo extends Entity {
 				this.setUserUseInfo( (String)map.get(DbInfoMeta.USER_USE_INFO));
 				this.setDisasterRecoveryStrategy( (String)map.get(DbInfoMeta.DISASTER_RECOVERY_STRATEGY));
 				this.setToolStrategy( (String)map.get(DbInfoMeta.TOOL_STRATEGY));
+				this.setRelMonitorNodeId( (String)map.get(DbInfoMeta.REL_MONITOR_NODE_ID));
 				this.setAppUserList( (String)map.get(DbInfoMeta.APP_USER_LIST));
 				this.setDeployMode( (String)map.get(DbInfoMeta.DEPLOY_MODE));
 				this.setOpsUserList( (String)map.get(DbInfoMeta.OPS_USER_LIST));
@@ -1726,11 +1835,14 @@ public class DbInfo extends Entity {
 				this.setTypeId( (String)map.get(DbInfoMeta.TYPE_ID));
 				this.setStatus( (String)map.get(DbInfoMeta.STATUS));
 				// others
+				this.setHostIp( (String)map.get(DbInfoMeta.HOST_IP));
 				this.setType( (ServiceInfo)map.get(DbInfoMeta.TYPE));
 				this.setOtherEnvInfoCount( (String)map.get(DbInfoMeta.OTHER_ENV_INFO_COUNT));
+				this.setMonitorNodeStatus( (String)map.get(DbInfoMeta.MONITOR_NODE_STATUS));
 				this.setHost( (Host)map.get(DbInfoMeta.HOST));
 				this.setDeployModeDict( (DictItem)map.get(DbInfoMeta.DEPLOY_MODE_DICT));
 				this.setCiphertextBoxData( (CiphertextBoxData)map.get(DbInfoMeta.CIPHERTEXT_BOX_DATA));
+				this.setMonitorNode( (MonitorNode)map.get(DbInfoMeta.MONITOR_NODE));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -1764,6 +1876,7 @@ public class DbInfo extends Entity {
 			this.setUserUseInfo(DataParser.parse(String.class, r.getValue(DbInfoMeta.USER_USE_INFO)));
 			this.setDisasterRecoveryStrategy(DataParser.parse(String.class, r.getValue(DbInfoMeta.DISASTER_RECOVERY_STRATEGY)));
 			this.setToolStrategy(DataParser.parse(String.class, r.getValue(DbInfoMeta.TOOL_STRATEGY)));
+			this.setRelMonitorNodeId(DataParser.parse(String.class, r.getValue(DbInfoMeta.REL_MONITOR_NODE_ID)));
 			this.setAppUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.APP_USER_LIST)));
 			this.setDeployMode(DataParser.parse(String.class, r.getValue(DbInfoMeta.DEPLOY_MODE)));
 			this.setOpsUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.OPS_USER_LIST)));
@@ -1804,6 +1917,7 @@ public class DbInfo extends Entity {
 				this.setUserUseInfo( (String)r.getValue(DbInfoMeta.USER_USE_INFO));
 				this.setDisasterRecoveryStrategy( (String)r.getValue(DbInfoMeta.DISASTER_RECOVERY_STRATEGY));
 				this.setToolStrategy( (String)r.getValue(DbInfoMeta.TOOL_STRATEGY));
+				this.setRelMonitorNodeId( (String)r.getValue(DbInfoMeta.REL_MONITOR_NODE_ID));
 				this.setAppUserList( (String)r.getValue(DbInfoMeta.APP_USER_LIST));
 				this.setDeployMode( (String)r.getValue(DbInfoMeta.DEPLOY_MODE));
 				this.setOpsUserList( (String)r.getValue(DbInfoMeta.OPS_USER_LIST));

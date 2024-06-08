@@ -67,6 +67,8 @@ public class OpsRelationManager extends RelationManager {
         this.setupMonitorNode();
 
         this.setupMonitorAlertLog();
+        this.setupMonitorNodeTrigger();
+
     }
 
     public void setupMonitorAlertLog() {
@@ -75,6 +77,8 @@ public class OpsRelationManager extends RelationManager {
 
     }
     public void setupMonitorNode() {
+
+
 
         this.property(MonitorNodeMeta.TRIGGER_LIST_PROP)
                 .using(OpsTables.OPS_MONITOR_NODE.ID).join(OpsTables.OPS_MONITOR_NODE_TRIGGER.NODE_ID);
@@ -174,6 +178,7 @@ public class OpsRelationManager extends RelationManager {
 
     }
 
+
     public void setupMonitorTpl() {
         this.property(MonitorTplMeta.TRIGGER_LIST_PROP)
                 .using(OpsTables.OPS_MONITOR_TPL.CODE).join(OpsTables.OPS_MONITOR_TPL_TRIGGER.MONITOR_TPL_CODE);
@@ -188,6 +193,11 @@ public class OpsRelationManager extends RelationManager {
                 .using(OpsTables.OPS_MONITOR_TPL.TYPE).join(OpsTables.OPS_MONITOR_TPL_TYPE.CODE);
 
     }
+    public void setupMonitorNodeTrigger() {
+        this.property(MonitorNodeTriggerMeta.TPL_PROP)
+                .using(OpsTables.OPS_MONITOR_NODE_TRIGGER.MONITOR_TPL_CODE).join(OpsTables.OPS_MONITOR_TPL.ID);
+    }
+
     public void setupMonitorTrigger() {
         this.property(MonitorTplTriggerMeta.TPL_PROP)
                 .using(OpsTables.OPS_MONITOR_TPL_TRIGGER.MONITOR_TPL_CODE).join(OpsTables.OPS_MONITOR_TPL.ID);
@@ -378,6 +388,10 @@ public class OpsRelationManager extends RelationManager {
 
 
     public void setupDbInfo() {
+
+        this.property(DbInfoMeta.MONITOR_NODE_PROP)
+                .using(OpsTables.OPS_DB_INFO.REL_MONITOR_NODE_ID).join(OpsTables.OPS_MONITOR_NODE.ID);
+
 
         this.property(DbInfoMeta.PWD_STRAGEGY_DICT_PROP)
                 .using(OpsTables.OPS_DB_INFO.PWD_STRAGEGY).join(FoxnicWeb.SYS_DICT_ITEM.CODE)

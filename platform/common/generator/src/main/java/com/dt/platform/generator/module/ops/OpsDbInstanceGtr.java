@@ -8,6 +8,7 @@ import com.dt.platform.domain.common.meta.CodeRuleMeta;
 import com.dt.platform.domain.ops.Host;
 import com.dt.platform.domain.ops.HostPosition;
 
+import com.dt.platform.domain.ops.MonitorNode;
 import com.dt.platform.domain.ops.ServiceInfo;
 
 import com.dt.platform.domain.ops.meta.DbInstanceMeta;

@@ -48,6 +48,19 @@ public class CommonController extends SuperController {
     }
 
 
+//    /**
+//     * 获取当前用户
+//     */
+//    @ApiOperation(value = "获取当前用户")
+//    @ApiOperationSupport(order = 2, author = "金杰 , maillank@qq.com")
+//    @SentinelResource(value = CommonServiceProxy.ALERT_NOTICE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+//    @PostMapping(CommonServiceProxy.ALERT_NOTICE)
+//    public Result alertNotice(String ct,String url) {
+//        return commonService.alertNotice(ct,url);
+//    }
+//
+
+
     /**
      * 获取当前用户
      */
@@ -62,4 +75,6 @@ public class CommonController extends SuperController {
         result.data(commonService.callMagicAPIService( execType,  reqType,  path, params));
         return result;
     }
+
+
 }

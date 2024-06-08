@@ -10,11 +10,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.dt.platform.domain.ops.meta.MonitorNodeTriggerMeta;
@@ -26,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 触发器
  * <p>触发器 , 数据表 ops_monitor_node_trigger 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-06-03 14:41:47
- * @sign FB575CB43ED8FE23CC37780A8AAB000B
+ * @since 2024-06-04 06:55:48
+ * @sign 1EF1D813865A03F86D21424850A0DDF4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -43,61 +40,61 @@ public class MonitorNodeTrigger extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "850097923822714880")
 	private String id;
 	
 	/**
 	 * 触发器：触发器
 	*/
-	@ApiModelProperty(required = false,value="触发器" , notes = "触发器")
+	@ApiModelProperty(required = false,value="触发器" , notes = "触发器" , example = "849370866545328128")
 	private String triggerId;
 	
 	/**
 	 * 规则类型：动态，静态
 	*/
-	@ApiModelProperty(required = false,value="规则类型" , notes = "动态，静态")
+	@ApiModelProperty(required = false,value="规则类型" , notes = "动态，静态" , example = "static")
 	private String ruleType;
 	
 	/**
 	 * 节点：节点
 	*/
-	@ApiModelProperty(required = false,value="节点" , notes = "节点")
+	@ApiModelProperty(required = false,value="节点" , notes = "节点" , example = "848718802559434752")
 	private String nodeId;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "物理内存使用率")
 	private String name;
 	
 	/**
 	 * 告警等级：告警等级
 	*/
-	@ApiModelProperty(required = false,value="告警等级" , notes = "告警等级")
+	@ApiModelProperty(required = false,value="告警等级" , notes = "告警等级" , example = "high")
 	private String warnLevel;
 	
 	/**
 	 * 告警规则：告警规则
 	*/
-	@ApiModelProperty(required = false,value="告警规则" , notes = "告警规则")
+	@ApiModelProperty(required = false,value="告警规则" , notes = "告警规则" , example = "cF:lastDouble(node,\"os.memory_used\",\"p_memory_used\",null,0,\"0\")>10")
 	private String rule;
 	
 	/**
 	 * 告警内容：告警内容
 	*/
-	@ApiModelProperty(required = false,value="告警内容" , notes = "告警内容")
+	@ApiModelProperty(required = false,value="告警内容" , notes = "告警内容" , example = "当前物理内存使用率:#<pMemoryUsed>#")
 	private String contentValue;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
 	private String status;
 	
 	/**
 	 * 监控模版：监控模版
 	*/
-	@ApiModelProperty(required = false,value="监控模版" , notes = "监控模版")
+	@ApiModelProperty(required = false,value="监控模版" , notes = "监控模版" , example = "tpl_host_linux_script")
 	private String monitorTplCode;
 	
 	/**
@@ -109,13 +106,13 @@ public class MonitorNodeTrigger extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-06-03 07:45:39")
 	private Date createTime;
 	
 	/**
@@ -133,7 +130,7 @@ public class MonitorNodeTrigger extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -154,7 +151,7 @@ public class MonitorNodeTrigger extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "1")
 	private Integer version;
 	
 	/**
@@ -162,12 +159,6 @@ public class MonitorNodeTrigger extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="节点模版" , notes = "节点模版")
 	private MonitorTpl tpl;
-	
-	/**
-	 * monitorNodeList：monitorNodeList
-	*/
-	@ApiModelProperty(required = false,value="monitorNodeList" , notes = "monitorNodeList")
-	private List<MonitorNode> monitorNodeList;
 	
 	/**
 	 * 获得 主键<br>
@@ -579,36 +570,6 @@ public class MonitorNodeTrigger extends Entity {
 		this.tpl=tpl;
 		return this;
 	}
-	
-	/**
-	 * 获得 monitorNodeList<br>
-	 * monitorNodeList
-	 * @return monitorNodeList
-	*/
-	public List<MonitorNode> getMonitorNodeList() {
-		return monitorNodeList;
-	}
-	
-	/**
-	 * 设置 monitorNodeList
-	 * @param monitorNodeList monitorNodeList
-	 * @return 当前对象
-	*/
-	public MonitorNodeTrigger setMonitorNodeList(List<MonitorNode> monitorNodeList) {
-		this.monitorNodeList=monitorNodeList;
-		return this;
-	}
-	
-	/**
-	 * 添加 monitorNodeList
-	 * @param monitorNode monitorNodeList
-	 * @return 当前对象
-	*/
-	public MonitorNodeTrigger addMonitorNode(MonitorNode... monitorNode) {
-		if(this.monitorNodeList==null) monitorNodeList=new ArrayList<>();
-		this.monitorNodeList.addAll(Arrays.asList(monitorNode));
-		return this;
-	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -674,7 +635,6 @@ public class MonitorNodeTrigger extends Entity {
 		inst.setNodeId(this.getNodeId());
 		inst.setStatus(this.getStatus());
 		if(all) {
-			inst.setMonitorNodeList(this.getMonitorNodeList());
 			inst.setTpl(this.getTpl());
 		}
 		inst.clearModifies();

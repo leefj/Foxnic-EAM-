@@ -28,6 +28,7 @@ import java.util.Map;
 
 public interface ICommonService extends  ISimpleIdService<UserImport,String> {
 
+	 Result alertNotice(String ct,String url);
 
 	 Result<JSONObject> queryCurrentUserInfo();
 

@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 模版指标
  * <p>模版指标 , 数据表 ops_monitor_tpl_indicator 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-09 18:46:58
+ * @since 2024-06-07 23:22:00
  * @sign 3457572487F39496B05022BDCF4F1C52
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -118,7 +118,7 @@ public class MonitorTplIndicator extends Entity {
 	/**
 	 * 间隔时间：秒）
 	*/
-	@ApiModelProperty(required = false,value="间隔时间" , notes = "秒）" , example = "180")
+	@ApiModelProperty(required = false,value="间隔时间" , notes = "秒）" , example = "600")
 	private Integer intervalTime;
 	
 	/**

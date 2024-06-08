@@ -57,7 +57,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                         OpsTables.OPS_MONITOR_NODE.NODE_NAME_SHOW,
                 },
                 new Object[]{
-//                        OpsTables.OPS_MONITOR_NODE.TYPE,
+                        OpsTables.OPS_MONITOR_NODE.TYPE,
                         OpsTables.OPS_MONITOR_NODE.NODE_IP,
                         OpsTables.OPS_MONITOR_NODE.NOTES
                 }
@@ -165,9 +165,9 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                 .valueField(ServiceGroupMeta.CODE).
                 textField(ServiceGroupMeta.NAME).
                 fillWith(MonitorNodeMeta.MONITOR_NODE_TYPE).muliti(false);
-
+//
 //        cfg.view().field(OpsTables.OPS_MONITOR_NODE.SUB_TYPE)
-//                .basic().label("节点子分类")
+//                .basic().label("节点分类")
 //                .form().selectBox().queryApi(ServiceInfoServiceProxy.QUERY_PAGED_LIST)
 //                .paging(true).filter(true).toolbar(false)
 //                .valueField(ServiceInfoMeta.NAME).
@@ -180,6 +180,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                 new Object[] {
                         OpsTables.OPS_MONITOR_NODE.NODE_NAME_SHOW,
                         OpsTables.OPS_MONITOR_NODE.NODE_IP,
+                        OpsTables.OPS_MONITOR_NODE.TYPE,
 
                 },
                 new Object[] {
@@ -189,7 +190,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                 new Object[] {
                         OpsTables.OPS_MONITOR_NODE.NODE_ENABLED,
                         OpsTables.OPS_MONITOR_NODE.STATUS,
-//                        OpsTables.OPS_MONITOR_NODE.SUB_TYPE,
+//
                 }
         );
 
@@ -219,6 +220,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                 }
         );
         cfg.view().list().addToolButton("采集","collectBatchFunc","batch-collect-button","ops_monitor_node:collect");
+        cfg.view().list().operationColumn().addActionButton("触发器","triggerFuc","trigger-button");
         cfg.view().list().operationColumn().addActionButton("采集","collectFunc","collect-button","ops_monitor_node:collect");
         cfg.view().list().operationColumn().addActionButton("复制","copyFunc","copy-button","ops_monitor_node:copy");
         cfg.view().list().operationColumn().addActionButton("最新数据","lastFunc","last-button");

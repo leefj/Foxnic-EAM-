@@ -35,9 +35,9 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addListProperty(DbBackupInfo.class,"backupInfoList","backupInfoList","backupInfoList");
         cfg.getPoClassFile().addListProperty(String.class,"backupInfoIds","backupInfoIds","backupInfoIds");
         cfg.getPoClassFile().addSimpleProperty(Host.class,"host","host","host");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"hostIp","hostIp","hostIp");
         cfg.getPoClassFile().addSimpleProperty(ServiceInfo.class,"type","type","type");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"deployModeDict","deployModeDict","deployModeDict");
-
         cfg.getPoClassFile().addListProperty(DictItem.class,"labelList","labelList","labelList");
         cfg.getPoClassFile().addListProperty(String.class,"labelIds","labelIds","labelIds");
         cfg.getPoClassFile().addListProperty(DictItem.class,"dataLocData","dataLocData","dataLocData");
@@ -53,6 +53,8 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
 
         cfg.getPoClassFile().addListProperty(DictItem.class,"pwdStragegyDict","pwdStragegyDict","pwdStragegyDict");
 
+        cfg.getPoClassFile().addSimpleProperty(MonitorNode.class,"monitorNode","monitorNode","monitorNode");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"monitorNodeStatus","monitorNodeStatus","monitorNodeStatus");
         cfg.view().field(OpsTables.OPS_DB_INFO.NAME).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_INFO.CREATE_TIME).search().range();
@@ -141,7 +143,7 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_INFO.USER_INFO).table().hidden(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.ADMIN_USER_LIST).table().hidden(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.DISASTER_RECOVERY_STRATEGY).table().hidden(true);
-        cfg.view().field(OpsTables.OPS_DB_INFO.USER_USE_INFO).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.USER_USE_INFO).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.CLEAR_STRATEGY).table().hidden(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.BACKUP_INFO).table().hidden(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.DEPLOY_MODE).table().hidden(true);
@@ -154,9 +156,12 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_INFO.BACKUP_INFO).form().textArea().height(100);
         cfg.view().field(OpsTables.OPS_DB_INFO.UPDATE_BY).table().disable(true);
 
+        cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).table().disable(true);
+
         cfg.view().field(OpsTables.OPS_DB_INFO.ID).table().hidden(true);
 
         cfg.view().field(OpsTables.OPS_DB_INFO.NAME).form().validate().required();
+        cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).form().textArea().height(120);
         cfg.view().field(OpsTables.OPS_DB_INFO.DB_SIZE).form().numberInput().defaultValue(0.0).integer();
         cfg.view().field(OpsTables.OPS_DB_INFO.STATUS).form().validate().required().form()
                  .radioBox().enumType(OpsDbStatusEnum.class).defaultIndex(0);
@@ -165,12 +170,14 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                 .radioBox().enumType(OpsDbBackupStatusEnum.class).defaultIndex(0);
 
         cfg.view().field(OpsTables.OPS_DB_INFO.LOG_METHOD).basic().label("日志模式")
-                .form().validate().required().form().radioBox().dict(DictEnum.OPS_DB_LOG_METHOD).defaultIndex(0);
+                 .form().radioBox().dict(DictEnum.OPS_DB_LOG_METHOD).defaultIndex(0);
 
-        String resourceNameField="res_"+OpsTables.OPS_HOST.HOST_IP;
-        cfg.view().field(resourceNameField)
-                .basic().label("IP")
-                .table().fillBy(DbInfoMeta.HOST, HostMeta.HOST_IP);
+        cfg.view().field(DbInfoMeta.MONITOR_NODE_STATUS).basic().label("监控状态").table().disable(false).table().fillBy(DbInfoMeta.MONITOR_NODE, "status");
+        cfg.view().field(DbInfoMeta.HOST_IP).basic().label("IP").table().disable(false).table().fillBy(DbInfoMeta.HOST, HostMeta.HOST_IP);
+//        String resourceNameField="res_"+OpsTables.OPS_HOST.HOST_IP;
+//        cfg.view().field(resourceNameField)
+//                .basic().label("IP")
+//                .table().fillBy(DbInfoMeta.HOST, HostMeta.HOST_IP);
 
         cfg.view().field(DbInfoMeta.LABEL_IDS)
                 .basic().label("标签")
@@ -191,7 +198,10 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                 .toolbar(false).paging(false).
                 fillWith(DbInfoMeta.DB_TYPE_LIST).muliti(false);
 
-
+        cfg.view().field(OpsTables.OPS_DB_INFO.REL_MONITOR_NODE_ID)
+                .form().selectBox().queryApi(MonitorNodeServiceProxy.QUERY_PAGED_LIST)
+                .valueField(MonitorNodeMeta.ID).textField(MonitorNodeMeta.NODE_NAME_SHOW)
+                .toolbar(false).filter(true).paging(true).muliti(false).fillWith(DbInfoMeta.MONITOR_NODE);
 
 
         cfg.view().field(DbInfoMeta.DATA_LOC_IDS)
@@ -217,25 +227,24 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                         OpsTables.OPS_DB_INFO.NAME,
                         OpsTables.OPS_DB_INFO.STATUS,
                         OpsTables.OPS_DB_INFO.TYPE_ID,
-                        DbInfoMeta.LABEL_IDS,
+
                 },
                 new Object[] {
-
                         OpsTables.OPS_DB_INFO.DEPLOY_MODE,
-                        OpsTables.OPS_DB_INFO.LOG_METHOD,
                         OpsTables.OPS_DB_INFO.DB_PORT,
-                        OpsTables.OPS_DB_INFO.DB_SIZE,
-
+                        DbInfoMeta.LABEL_IDS,
+                    //    OpsTables.OPS_DB_INFO.DB_SIZE,
+                        //     OpsTables.OPS_DB_INFO.LOG_METHOD,
+                        OpsTables.OPS_DB_INFO.REL_MONITOR_NODE_ID,
                 }
         );
 
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_DB_INFO.NOTES,
-                },
-                new Object[] {
                         OpsTables.OPS_DB_INFO.FILE_IDS,
                 }
+
         );
 
         cfg.view().form().addGroup("用户及凭证",
@@ -254,9 +263,8 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         );
         cfg.view().form().addGroup(null,
                 new Object[]{
-                        OpsTables.OPS_DB_INFO.USER_USE_INFO,
+                  //      OpsTables.OPS_DB_INFO.USER_USE_INFO,
                         OpsTables.OPS_DB_INFO.VOUCHER_STR,
-
                         OpsTables.OPS_DB_INFO.USER_INFO,
                 }
         );
@@ -291,19 +299,18 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         );
 
 
-
-
 //        cfg.view().list().operationColumn().addActionButton("备份记录","openBackupWindow",null,"ops_db_info:backup");
 //        cfg.view().list().operationColumn().addActionButton("密文箱","boxWindow",null,"ops_db_info:box");
-        cfg.view().list().operationColumn().addActionMenu("backup","备份记录","ops_db_info:backup");
+      //  cfg.view().list().operationColumn().addActionMenu("backup","备份记录","ops_db_info:backup");
         cfg.view().list().operationColumn().addActionMenu("box","密文箱","ops_db_info:box");
         cfg.view().list().operationColumn().addActionMenu("boxhistory","密文历史","ops_db_info:boxhistory");
-        cfg.view().list().operationColumn().addActionMenu("env","环境信息","ops_db_info:env");
+       // cfg.view().list().operationColumn().addActionMenu("env","环境信息","ops_db_info:env");
+        cfg.view().list().operationColumn().addActionButton("数据库详情","detailMonitorFuc","ops_db_info:monitor");
         cfg.view().form().addPage("备份情况","backInfoList");
       //  cfg.view().list().operationColumn().addActionButton("备份记录","backupRecord","backupRecord","ops_auto_task:check");
-        cfg.view().list().addToolButton("软件列表","softList","soft_list");
-        cfg.view().list().addToolButton("测试环境列表","testEvnList","test_env_list");
-        cfg.view().list().addToolButton("搜索","dbSearch",null);
+        cfg.view().list().addToolButton("数据库主机","softList","soft_list");
+        cfg.view().list().addToolButton("测试环境","testEvnList","test_env_list");
+       // cfg.view().list().addToolButton("搜索","dbSearch",null);
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口

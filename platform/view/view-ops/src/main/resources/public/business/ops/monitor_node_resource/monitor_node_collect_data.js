@@ -85,12 +85,23 @@ function ListPage() {
                     // ,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
                 ]],
                 parseData:function(res){
-                    return {
-                        "code": res.code == "00" ? 0 : -1, //解析接口状态
-                        "msg": res.message, //解析提示文本
-                        "count": res.data.nodeCollectDataList.length, //解析数据长度
-                        "data": res.data.nodeCollectDataList //解析数据列表
-                    };
+
+                    if(res.success){
+                        return {
+                            "code": res.code == "00" ? 0 : -1, //解析接口状态
+                            "msg": res.message, //解析提示文本
+                            "count": res.data.nodeCollectDataList.length, //解析数据长度
+                            "data": res.data.nodeCollectDataList //解析数据列表
+                        };
+                    }else{
+                        return {
+                            "code": res.code == "00" ? 0 : -1, //解析接口状态
+                            "msg": res.message, //解析提示文本
+                            "count":0, //解析数据长度
+                            "data": []
+                        };
+                    }
+
                 },
                 done: function (data) {
                     window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },

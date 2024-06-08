@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-26 19:17:25
+ * @since 2024-06-08 15:55:47
  */
 
 function FormPage() {
@@ -196,6 +196,42 @@ function FormPage() {
 				checked.push($(this).val());
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		});
+		//渲染 relMonitorNodeId 下拉字段
+		fox.renderSelectBox({
+			el: "relMonitorNodeId",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("关联监控",'','cmp:form'),
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("relMonitorNodeId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "nodeNameShow", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("relMonitorNodeId",{data:data[i],name:data[i].nodeNameShow,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].nodeNameShow,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
 		});
 		form.on('radio(backupStatus)', function(data){
 			var checked=[];
@@ -468,6 +504,8 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#hostId",formData.host);
 			//设置  库类型 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#typeId",formData.type);
+			//设置  关联监控 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#relMonitorNodeId",formData.monitorNode);
 			//设置  部署模式 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#deployMode",formData.deployModeDict);
 			//设置  密码策略 设置下拉框勾选
@@ -542,6 +580,8 @@ function FormPage() {
 		data["hostId"]=fox.getSelectedValue("hostId",false);
 		//获取 库类型 下拉框的值
 		data["typeId"]=fox.getSelectedValue("typeId",false);
+		//获取 关联监控 下拉框的值
+		data["relMonitorNodeId"]=fox.getSelectedValue("relMonitorNodeId",false);
 		//获取 部署模式 下拉框的值
 		data["deployMode"]=fox.getSelectedValue("deployMode",false);
 		//获取 密码策略 下拉框的值
