@@ -1,6 +1,7 @@
 ###########101.35.255.173###########
 set dbname:foxnic
-start to backup,dbname:foxnic,file:/app/app/backup/db/foxnic_backup_20240608_09_39_24.tar.gz
+start to backup,dbname:foxnic,file:/app/app/backup/db/foxnic_backup_20240608_16_05_38.tar.gz
+/app/db/mysql/bin/mysqldump -R -P3308 -uroot -pP@sswOracle123456 -h127.0.0.1 foxnic
 mysqldump: [Warning] Using a password on the command line interface can be insecure.
 ./db.sql
 backup finish
