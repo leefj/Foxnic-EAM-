@@ -23,6 +23,7 @@ public enum MonitorMethodEnum implements CodeTextEnum {
     SQLSERVER_JDBC("sqlserver_jdbc" , "SqlServer_JDBC"),
     SNMP("snmp" , "SNMP"),
     SCRIPT("script" , "脚本取数"),
+    API("api" , "接口方式"),
     CALCULATED_BY_CODE("calculated_by_code" , "计算取数");
     private String code;
     private String text;

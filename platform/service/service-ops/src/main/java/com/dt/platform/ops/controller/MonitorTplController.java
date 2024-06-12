@@ -214,7 +214,7 @@ public class MonitorTplController extends SuperController {
         Result<MonitorTpl> result = new Result<>();
         MonitorTpl monitorTpl = monitorTplService.getById(id);
         // join 关联的对象
-        monitorTplService.dao().fill(monitorTpl).with(MonitorTplMeta.TPL_TYPE).execute();
+        monitorTplService.dao().fill(monitorTpl).with(MonitorTplMeta.TPL_TYPE).with(MonitorTplMeta.TPL_INDICATOR_LIST).execute();
         result.success(true).data(monitorTpl);
         return result;
     }

@@ -41,17 +41,7 @@ public class MonitorDataProcessCalculateServiceImpl implements IMonitorDataProce
     public DAO dao() { return dao; }
 
 
-    @Autowired
-    private IMonitorNodeService monitorNodeService;
 
-    @Autowired
-    private IMonitorTplService monitorTplService;
-
-    @Autowired
-    private IMonitorNodeValueService monitorNodeValueService;
-
-    @Autowired
-    private IMonitorTplIndicatorService monitorTplIndicatorService;
 
 
     @Autowired

@@ -35,6 +35,8 @@ public class CommonPageController extends ViewController {
 	/**
 	 * 主页面
 	 */
+
+
 	@RequestMapping("/back_to_portal.html")
 	public String backToPortal(Model model,HttpServletRequest request) {
 
@@ -109,16 +111,22 @@ public class CommonPageController extends ViewController {
 
 	@RequestMapping("/iframe_dashboard.html")
 	public String iframe2(Model model,HttpServletRequest request,String code,String path) {
+		String json="";
+		String id="";
 		if(!StringUtil.isBlank(code)){
 			ScreenVO vo=new ScreenVO();
 			vo.setCode(code);
 			Result<List<Screen>> res= ScreenServiceProxy.api().queryList(vo);
 			if(res.isSuccess()){
 				if(res.getData().size()>0){
+					id=res.getData().get(0).getId();
 					path="/business/common/screen/dataview/dist/index.html#/chart/preview/"+res.getData().get(0).getId();
+					json=res.getData().get(0).getJsonData();
 				}
 			}
 		}
+		model.addAttribute("id",id);
+		model.addAttribute("json",json);
 		model.addAttribute("code",code);
 		model.addAttribute("path",path);
 		return prefix+"/iframe_dashboard";

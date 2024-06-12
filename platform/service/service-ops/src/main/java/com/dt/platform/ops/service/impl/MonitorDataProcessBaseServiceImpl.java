@@ -205,7 +205,7 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
             }catch(UncategorizedSQLException e){
                 e.printStackTrace();
                 Logger.info("Sql execute error,sql:"+insert.getSQL());
-                Insert errInsert=new Insert("ops_monitor_node_value");
+                Insert errInsert=new Insert("ops_monitor_node_value_last");
                 errInsert.set("id",IDGenerator.getSnowflakeIdString());
                 errInsert.setIf("result_status","failed");
                 errInsert.setIf("result_message","error execute sql");
@@ -213,9 +213,18 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
                 errInsert.setIf("node_id",insert.getValue("node_id"));
                 errInsert.setIf("monitor_tpl_code",insert.getValue("monitor_tpl_code"));
                 errInsert.setIf("record_time",new Date());
+
+//                Insert errInsert2=new Insert("ops_monitor_node_value_last");
+//                errInsert2.set("id",IDGenerator.getSnowflakeIdString());
+//                errInsert2.setIf("result_status","failed");
+//                errInsert2.setIf("result_message","error execute sql");
+//                errInsert2.setIf("indicator_code",insert.getValue("indicator_code"));
+//                errInsert2.setIf("node_id",insert.getValue("node_id"));
+//                errInsert2.setIf("monitor_tpl_code",insert.getValue("monitor_tpl_code"));
+//                errInsert2.setIf("record_time",new Date());
                 try {
                     dao.execute(errInsert);
-                    errInsert.into("ops_monitor_node_value_last");
+                    errInsert.into("ops_monitor_node_value");
                     dao.execute(errInsert);
                 }catch(UncategorizedSQLException e2){
                     e2.printStackTrace();

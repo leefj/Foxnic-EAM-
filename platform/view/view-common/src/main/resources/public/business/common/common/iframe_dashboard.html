@@ -27,7 +27,12 @@
 <script th:inline="javascript" type="text/javascript">
     var code = [[${code}]];
     var path = [[${path}]];
-    window.location.href=path;
+    var id = [[${id}]];
+    var json = [[${json}]];
+
+    sessionStorage.setItem('GO_CHART_STORAGE_LIST', json);
+    window.open("/business/common/screen/dataview/dist/index.html#/chart/preview/"+id,"_blank")
+    // window.location.href=path;
 </script>
 </body>
 </html>

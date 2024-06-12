@@ -96,12 +96,14 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 		if(r.success()) {
 			monitorNodeTplItemServiceImpl.saveRelation(monitorNode.getId(), monitorNode.getMonitorTplIds());
 			dao.execute("delete from ops_monitor_alert_book_rule where book_id=? and type in ('node_group')",monitorNode.getId());
-			for(String value:monitorNode.getNodeGroupIds()){
-				MonitorAlertBookRule rule=new MonitorAlertBookRule();
-				rule.setBookId(monitorNode.getId());
-				rule.setValue(value);
-				rule.setType("node_group");
-				monitorAlertBookRuleService.insert(rule,true);
+			if(monitorNode.getNodeGroupIds()!=null){
+				for(String value:monitorNode.getNodeGroupIds()){
+					MonitorAlertBookRule rule=new MonitorAlertBookRule();
+					rule.setBookId(monitorNode.getId());
+					rule.setValue(value);
+					rule.setType("node_group");
+					monitorAlertBookRuleService.insert(rule,true);
+				}
 			}
 		}
 		return r;

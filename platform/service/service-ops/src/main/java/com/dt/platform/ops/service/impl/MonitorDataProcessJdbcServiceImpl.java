@@ -37,17 +37,7 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
     public DAO dao() { return dao; }
 
 
-    @Autowired
-    private IMonitorNodeService monitorNodeService;
 
-    @Autowired
-    private IMonitorTplService monitorTplService;
-
-    @Autowired
-    private IMonitorNodeValueService monitorNodeValueService;
-
-    @Autowired
-    private IMonitorTplIndicatorService monitorTplIndicatorService;
 
     @Autowired
     private MonitorDataProcessBaseServiceImpl monitorDataProcessBaseService;
@@ -164,21 +154,35 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
             MonitorTplIndicator indicator=monitorTplIndicatorList.get(0);
             Insert errInsert=new Insert("ops_monitor_node_value");
             errInsert.set("id", IDGenerator.getSnowflakeId());
-            errInsert.setIf("result_status","failed");
-            errInsert.setIf("result_message","dao create failed");
             errInsert.setIf("indicator_code",indicator.getCode());
             errInsert.setIf("node_id",node.getId());
-            errInsert.setIf("is_connected",1);
+            if("db.connect".equals(indicator.getCode())){
+                errInsert.setIf("is_connected",0);
+                errInsert.setIf("result_status","sucess");
+                errInsert.setIf("result_message","dao create failed");
+            }else{
+                errInsert.setIf("is_connected",1);
+                errInsert.setIf("result_status","failed");
+                errInsert.setIf("result_message","dao create failed");
+            }
             errInsert.setIf("monitor_tpl_code",indicator.getMonitorTplCode());
             errInsert.setIf("record_time",new Date());
             dao.execute(errInsert);
+
+
             Insert errInsertLast=new Insert("ops_monitor_node_value_last");
             errInsertLast.set("id", IDGenerator.getSnowflakeId());
-            errInsertLast.setIf("result_status","failed");
-            errInsertLast.setIf("result_message","dao create failed");
             errInsertLast.setIf("indicator_code",indicator.getCode());
             errInsertLast.setIf("node_id",node.getId());
-            errInsertLast.setIf("is_connected",1);
+            if("db.connect".equals(indicator.getCode())){
+                errInsert.setIf("is_connected",0);
+                errInsertLast.setIf("result_status","sucess");
+                errInsertLast.setIf("result_message","dao create failed");
+            }else{
+                errInsert.setIf("is_connected",1);
+                errInsertLast.setIf("result_status","failed");
+                errInsertLast.setIf("result_message","dao create failed");
+            }
             errInsertLast.setIf("monitor_tpl_code",indicator.getMonitorTplCode());
             errInsertLast.setIf("record_time",new Date());
             dao.execute(errInsertLast);
@@ -206,44 +210,86 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
     }
     public List<Insert> queryIndicatorData(DAO dbDao,MonitorTplIndicator indicator,MonitorNode node){
         List<Insert> list=new ArrayList<>();
-        RcdSet rs=dbDao.query(indicator.getCommand());
         if(!indicator.getStatus().equals("enable")){
             return list;
         }
-        if(rs==null){
-            Insert valueInsert=new Insert("ops_monitor_node_value");
+        RcdSet rs=null;
+        try{
+            rs=dbDao.query(indicator.getCommand());
+            if(rs==null){
+                Insert valueInsert=new Insert("ops_monitor_node_value");
+                valueInsert.set("id", IDGenerator.getSnowflakeId());
+                valueInsert.setIf("result_status","failed");
+                valueInsert.setIf("result_message","result is null");
+                valueInsert.setIf("indicator_code",indicator.getCode());
+                valueInsert.setIf("node_id",node.getId());
+                valueInsert.setIf("is_connected",1);
+                valueInsert.setIf("monitor_tpl_code",indicator.getMonitorTplCode());
+                valueInsert.setIf("record_time",new Date());
+                Insert valueInsert2=new Insert("ops_monitor_node_value_last");
+                valueInsert2.set("id", IDGenerator.getSnowflakeId());
+                valueInsert2.setIf("result_status","failed");
+                valueInsert2.setIf("result_message","result is null");
+                valueInsert2.setIf("indicator_code",indicator.getCode());
+                valueInsert2.setIf("node_id",node.getId());
+                valueInsert2.setIf("is_connected",1);
+                valueInsert2.setIf("monitor_tpl_code",indicator.getMonitorTplCode());
+                valueInsert2.setIf("record_time",new Date());
+                list.add(valueInsert2);
+            }else{
+                String[] mapArr=indicator.getValueColumnMap().split(",");
+                String content="";
+                for(int i=0;i<rs.size();i++){
+                    String e="";
+                    for(int j=0;j<mapArr.length;j++){
+                        if(j==0){
+                            e=rs.getRcd(i).getString(mapArr[j]);
+                        }else{
+                            e=e+","+rs.getRcd(i).getString(mapArr[j]);
+                        }
+                    }
+                    if(i==0){
+                        content=e;
+                    }else{
+                        content=content+"\n"+e;
+                    }
+                }
+                Logger.info("content:\n"+content);
+                Result<Object> insertResult=monitorDataProcessBaseService.convertToInsertData(indicator,content,node);
+                if(insertResult.isSuccess()){
+                    list=(List<Insert>)insertResult.getData();
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            Insert valueInsert=new Insert("ops_monitor_node_value_last");
             valueInsert.set("id", IDGenerator.getSnowflakeId());
             valueInsert.setIf("result_status","failed");
-            valueInsert.setIf("result_message","result is null");
+            if(e.getMessage().length()>1024){
+                valueInsert.setIf("result_message",e.getMessage().substring(0,1000));
+            }else{
+                valueInsert.setIf("result_message",e.getMessage());
+            }
             valueInsert.setIf("indicator_code",indicator.getCode());
             valueInsert.setIf("node_id",node.getId());
             valueInsert.setIf("is_connected",1);
             valueInsert.setIf("monitor_tpl_code",indicator.getMonitorTplCode());
             valueInsert.setIf("record_time",new Date());
-            list.add(valueInsert);
-        }else{
-            String[] mapArr=indicator.getValueColumnMap().split(",");
-            String content="";
-            for(int i=0;i<rs.size();i++){
-                String e="";
-                for(int j=0;j<mapArr.length;j++){
-                    if(j==0){
-                        e=rs.getRcd(i).getString(mapArr[j]);
-                    }else{
-                        e=e+","+rs.getRcd(i).getString(mapArr[j]);
-                    }
-                }
-                if(i==0){
-                    content=e;
-                }else{
-                    content=content+"\n"+e;
-                }
+
+            Insert valueInsert2=new Insert("ops_monitor_node_value");
+            valueInsert2.set("id", IDGenerator.getSnowflakeId());
+            valueInsert2.setIf("result_status","failed");
+            if(e.getMessage().length()>1024){
+                valueInsert2.setIf("result_message",e.getMessage().substring(0,1000));
+            }else{
+                valueInsert2.setIf("result_message",e.getMessage());
             }
-            Logger.info("content:\n"+content);
-            Result<Object> insertResult=monitorDataProcessBaseService.convertToInsertData(indicator,content,node);
-            if(insertResult.isSuccess()){
-                list=(List<Insert>)insertResult.getData();
-            }
+            valueInsert2.setIf("indicator_code",indicator.getCode());
+            valueInsert2.setIf("node_id",node.getId());
+            valueInsert2.setIf("is_connected",1);
+            valueInsert2.setIf("monitor_tpl_code",indicator.getMonitorTplCode());
+            valueInsert2.setIf("record_time",new Date());
+            list.add(valueInsert2);
         }
         return list;
     }
@@ -262,6 +308,8 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
             dbType=DBType.SQLSVR;
         }else if("pg".equals(type)){
             dbType=DBType.PG;
+        }else if("dm".equals(type)){
+            dbType=DBType.DM;
         }
         if(dbType==null){
             dbType=DBType.parseFromURL(url);

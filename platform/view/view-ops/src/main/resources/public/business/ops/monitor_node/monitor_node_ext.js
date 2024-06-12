@@ -159,7 +159,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 area: ["90%","90%"],
                 type: 2,
                 id:"ops-monitor-node-trigger-list-data-win",
-                content: '/business/ops/monitor_node_trigger/monitor_node_trigger_list.html?nodeId' +data.id,
+                content: '/business/ops/monitor_node_trigger/monitor_node_trigger_list.html?nodeId=' +data.id,
                 finish: function () {
                 }
             });

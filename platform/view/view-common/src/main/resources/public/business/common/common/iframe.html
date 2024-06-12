@@ -26,7 +26,6 @@
 </div>
  <script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
 <script th:inline="javascript" type="text/javascript">
-
     document.getElementById("mainFrame").style.height = "0px";//最好设置为minHeight
     var url = [[${path}]];
     var ip = [[${ip}]];
@@ -34,9 +33,7 @@
     var result = [[${result}]];
     var page = [[${page}]];
     var id = [[${id}]];
-
     if(page=="jump"){
-        console.log(123,path);
         window.location.href="/business/common/screen/dataview/dist/index.html#/chart/preview/770337750971842560";
     }else{
         if(result=="0"){
