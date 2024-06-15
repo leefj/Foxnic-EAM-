@@ -1,10 +1,13 @@
 package com.dt.platform.common.page;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.constants.enums.oa.NetDiskFileTypeEnum;
 import com.dt.platform.domain.common.*;
+import com.dt.platform.domain.oa.NetdiskOriginFile;
 import com.dt.platform.proxy.common.ReportAclServiceProxy;
 import com.dt.platform.proxy.common.ReportServiceProxy;
 import com.dt.platform.proxy.common.ScreenServiceProxy;
+import com.dt.platform.proxy.oa.NetdiskOriginFileServiceProxy;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
@@ -12,7 +15,9 @@ import org.github.foxnic.web.constants.enums.SystemConfigEnum;
 import org.github.foxnic.web.constants.enums.system.SSOConstants;
 import org.github.foxnic.web.constants.enums.system.SSOResponseFormat;
 import org.github.foxnic.web.constants.enums.system.VersionType;
+import org.github.foxnic.web.domain.storage.File;
 import org.github.foxnic.web.framework.view.controller.ViewController;
+import org.github.foxnic.web.proxy.storage.FileServiceProxy;
 import org.github.foxnic.web.proxy.system.ConfigServiceProxy;
 import org.github.foxnic.web.proxy.utils.SystemConfigProxyUtil;
 import org.github.foxnic.web.session.SessionUser;
@@ -108,6 +113,70 @@ public class CommonPageController extends ViewController {
 		model.addAttribute("id",id);
 		return prefix+"/iframe_acl";
 	}
+
+	/**
+	 * 预览
+	 */
+	@RequestMapping("/view.html")
+	public String view(Model model,HttpServletRequest request , String id) {
+
+		Result<File> originFileResult= FileServiceProxy.api().getById(id);
+		if(!originFileResult.isSuccess()){
+			model.addAttribute("message",originFileResult.getMessage());
+			return getTemplatePath(prefix,"view");
+		}
+		File originFile=originFileResult.getData();
+		String ext=originFile.getFileType();
+		String fileType=originFile.getFileType();
+		model.addAttribute("id",id);
+		model.addAttribute("fd",originFile);
+		model.addAttribute("fileExt",ext);
+		if("doc".equals(ext)
+				||"docx".equals(ext)
+				||"xls".equals(ext)
+				||"ppt".equals(ext)
+				||"pptx".equals(ext)
+				||"xlsx".equals(ext)){
+			return getTemplatePath(prefix,"view_office_to_html");
+		}
+		if("pdf".equals(ext)){
+			return getTemplatePath(prefix,"view_pdf");
+		}
+
+		if("mp4".equals(ext)){
+			return getTemplatePath(prefix,"view_video");
+		}
+		if("txt".equals(ext)
+				|"text".equals(ext)
+				||"sql".equals(ext)
+				||"sh".equals(ext)
+				||"md".equals(ext)
+				||"json".equals(ext)
+				||"conf".equals(ext)
+				||"js".equals(ext)
+				||"css".equals(ext)
+				||"java".equals(ext)
+				||"php".equals(ext)
+				||"py".equals(ext)
+				||"yml".equals(ext)
+				||"xml".equals(ext)){
+			return getTemplatePath(prefix,"view_txt");
+		}
+		if(NetDiskFileTypeEnum.FILE_MUSIC.code().equals(fileType)){
+			return getTemplatePath(prefix,"view_music");
+		}
+		if(NetDiskFileTypeEnum.FILE_VIDEO.code().equals(fileType)){
+			return getTemplatePath(prefix,"view_video");
+		}
+		if("png".equals(ext)
+				||"jpg".equals(ext)
+				||"jpeg".equals(ext)
+			){
+			return getTemplatePath(prefix,"view_photo");
+		}
+		return getTemplatePath(prefix,"view");
+	}
+
 
 	@RequestMapping("/iframe_dashboard.html")
 	public String iframe2(Model model,HttpServletRequest request,String code,String path) {

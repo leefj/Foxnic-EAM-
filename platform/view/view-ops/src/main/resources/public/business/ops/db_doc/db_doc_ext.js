@@ -116,7 +116,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         templet:function (field,value,r) {
             if(field=="fileId"){
                 if(value&&value.length>5){
-                    return "<a href=\"/service-storage/sys-file/download?id="+value+"\">下载</a>"
+                    return "<a href=\"/service-storage/sys-file/download?id="+value+"\">下载</a><a style='margin-left:10px' target=\"_blank\" href=\"/business/common/common/view.html?id="+value+"\">预览</a>"
                 }
             }
 

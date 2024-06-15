@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+    <title th:text="${lang.translate('预览')}">预览</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/ckplayer/css/ckplayer.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+<body>
+<div style="height: 120px;"></div>
+<div style="width:100%;display: flex;justify-content: center;align-items: center">
+    <div class="video" style="width: 600px;height: 400px;">播放器容器</div>
+</div>
+</body>
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<script th:inline="javascript">
+    var ID = [[${id}]];
+    var TYPE = [[${type}]];
+    var FD = [[${fd}]];
+    var FILE_EXT = [[${fileExt}]]
+    var AUTH_PREFIX="oa_netdisk_video";
+</script>
+<script th:src="'/assets/ckplayer/js/ckplayer.min.js?'+${cacheKey}"></script>
+<script th:src="'/business/oa/netdisk_file/view_video.js?'+${cacheKey}"></script>
+<script th:src="'/business/oa/netdisk_file/view_video_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/oa/netdisk_file/view_video.js?'+${cacheKey}"></script>
+<script>
+    var url="/service-storage/sys-file/download?id="+ID+"&fdType=file";
+    //定义一个变量：videoObject，用来做为视频初始化配置
+    var videoObject = {
+        container: '.video', //“#”代表容器的ID，“.”或“”代表容器的class
+        video: url//视频地址
+    };
+    var player = new ckplayer(videoObject);//初始化播放器
+
+</script>
+</body>
+</html>
