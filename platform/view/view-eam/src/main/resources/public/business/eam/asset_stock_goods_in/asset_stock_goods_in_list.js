@@ -90,7 +90,7 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('单据名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'batchCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('批次号') , templet: function (d) { return templet('batchCode',d.batchCode,d);}  }
 					,{ field: 'stockType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('单据类型'), templet: function (d) { return templet('stockType' ,fox.joinLabel(d.stockTypeDict,"label",',','','stockType'),d);}}
-					,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName",',','','warehouseId'),d);}}
+				//	,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName",',','','warehouseId'),d);}}
 					,{ field: 'managerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('管理人') , templet: function (d) { return templet('managerId',fox.getProperty(d,["manager","name"],0,'','managerId'),d);} }
 					,{ field: 'receiverUserName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('接收人') , templet: function (d) { return templet('receiverUserName',d.receiverUserName,d);}  }
 					,{ field: 'supplierName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('供应商') , templet: function (d) { return templet('supplierName',d.supplierName,d);}  }

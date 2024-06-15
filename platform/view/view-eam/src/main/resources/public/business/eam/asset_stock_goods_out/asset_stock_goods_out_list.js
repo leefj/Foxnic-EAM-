@@ -90,7 +90,7 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('单据名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'stockType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('单据类型'), templet: function (d) { return templet('stockType' ,fox.joinLabel(d.stockTypeDict,"label",',','','stockType'),d);}}
 					,{ field: 'useUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('领用人员') , templet: function (d) { return templet('useUserId',fox.getProperty(d,["useUser","name"],0,'','useUserId'),d);} }
-					,{ field: 'positionDetail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('出库位置') , templet: function (d) { return templet('positionDetail',d.positionDetail,d);}  }
+				//	,{ field: 'positionDetail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('出库位置') , templet: function (d) { return templet('positionDetail',d.positionDetail,d);}  }
 					,{ field: 'collectionDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('出库日期') ,templet: function (d) { return templet('collectionDate',fox.dateFormat(d.collectionDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'originatorId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
