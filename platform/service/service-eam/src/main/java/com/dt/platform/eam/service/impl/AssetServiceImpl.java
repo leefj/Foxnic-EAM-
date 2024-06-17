@@ -386,7 +386,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				}else{
 					continue;
 				}
-
 			}else if(AssetAttributeValueTypeEnum.ENTITY.code().equals(valueType) || AssetAttributeValueTypeEnum.DICT.code().equals(valueType) ){
 				if(!StringUtil.isBlank(valuePath)){
 					String[] valuePathArr=valuePath.split(",");
