@@ -164,7 +164,10 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 			AssetCollection bill=new AssetCollection();
 			bill.setId(id);
 			bill.setStatus(status);
+
+
 			return super.update(bill,SaveMode.NOT_NULL_FIELDS);
+
 		}else if(AssetHandleConfirmOperationEnum.FAILED.code().equals(result)){
 			return ErrorDesc.failureMessage(message);
 		}else{
@@ -194,13 +197,12 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 
 
 
-	private Result saveBorrowData(String id){
-		return ErrorDesc.success();
-	}
 
 	private Result applyChange(String id){
 		AssetCollection billData=getById(id);
 		join(billData, AssetCollectionMeta.ASSET_LIST);
+
+		//
 		dao.execute("update eam_asset_item a,eam_asset b set b.collection_id=? where a.asset_id=b.id and a.handle_id=?",id,id);
 		HashMap<String,Object> map=new HashMap<>();
 		map.put("asset_status",AssetStatusEnum.USING.code());
@@ -208,7 +210,6 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 		map.put("position_id",billData.getPositionId());
 		map.put("position_detail",billData.getPositionDetail());
 		map.put("use_organization_id",billData.getUseOrganizationId());
-
 		HashMap<String,List<SQL>> resultMap=assetService.parseAssetChangeRecordWithChangeAsset(billData.getAssetList(),map,billData.getBusinessCode(),AssetOperateEnum.EAM_ASSET_COLLECTION.code(),"");
 		for(String key:resultMap.keySet()){
 			List<SQL> sqls=resultMap.get(key);
@@ -217,7 +218,8 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 			}
 		}
 
-		//保存快照
+
+
 		AssetCollection afterData=getById(id);
 		join(afterData, AssetCollectionMeta.ASSET_LIST);
 		for(Asset asset:afterData.getAssetList()){
@@ -226,9 +228,11 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 			asset.setId(newAssetId);
 			asset.setOwnerCode(AssetOwnerCodeEnum.ASSET_DATE_AFTER.code());
 			asset.setCollectionId(id);
+			asset.setAssetStatus(asset.getAssetStatus());
 			assetService.sourceInsert(asset);
 			dao.execute("update eam_asset_item a set r_asset_id=?,a.asset_id=?,flag=? where a.asset_id=? and a.handle_id=?",oldAssetId,newAssetId,oldAssetId,oldAssetId,id);
 		}
+
 		return ErrorDesc.success();
 	}
 

@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产VO类型
  * <p>资产 , 数据表 eam_asset 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-30 19:46:25
+ * @since 2024-06-17 08:45:52
  * @sign 740673009F6EFF378B232C887D6576FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -560,6 +560,7 @@ public class AssetVO extends Asset {
 			inst.setRack(this.getRack());
 			inst.setManager(this.getManager());
 			inst.setRequestAction(this.getRequestAction());
+			inst.setAssetStatusData(this.getAssetStatusData());
 			inst.setWarehouse(this.getWarehouse());
 			inst.setPcmData(this.getPcmData());
 			inst.setPartAssetList(this.getPartAssetList());
@@ -790,6 +791,7 @@ public class AssetVO extends Asset {
 			this.setRack(DataParser.parse(AssetRack.class, map.get(AssetVOMeta.RACK)));
 			this.setManager(DataParser.parse(Employee.class, map.get(AssetVOMeta.MANAGER)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(AssetVOMeta.REQUEST_ACTION)));
+			this.setAssetStatusData(DataParser.parse(AssetStatus.class, map.get(AssetVOMeta.ASSET_STATUS_DATA)));
 			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(AssetVOMeta.WAREHOUSE)));
 			this.setGoodsStock(DataParser.parse(GoodsStock.class, map.get(AssetVOMeta.GOODS_STOCK)));
 			this.setUseOrganization(DataParser.parse(Organization.class, map.get(AssetVOMeta.USE_ORGANIZATION)));
@@ -960,6 +962,7 @@ public class AssetVO extends Asset {
 				this.setRack( (AssetRack)map.get(AssetVOMeta.RACK));
 				this.setManager( (Employee)map.get(AssetVOMeta.MANAGER));
 				this.setRequestAction( (String)map.get(AssetVOMeta.REQUEST_ACTION));
+				this.setAssetStatusData( (AssetStatus)map.get(AssetVOMeta.ASSET_STATUS_DATA));
 				this.setWarehouse( (Warehouse)map.get(AssetVOMeta.WAREHOUSE));
 				this.setGoodsStock( (GoodsStock)map.get(AssetVOMeta.GOODS_STOCK));
 				this.setUseOrganization( (Organization)map.get(AssetVOMeta.USE_ORGANIZATION));

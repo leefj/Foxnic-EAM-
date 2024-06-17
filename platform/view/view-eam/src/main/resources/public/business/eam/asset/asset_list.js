@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-30 19:46:35
+ * @since 2024-06-17 08:45:54
  */
 
 
@@ -868,7 +868,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["85%",height+"px"],
 			type: 2,
 			id:"eam-asset-form-data-win",
 			content: '/business/eam/asset/asset_form.html' + (queryString?("?"+queryString):""),

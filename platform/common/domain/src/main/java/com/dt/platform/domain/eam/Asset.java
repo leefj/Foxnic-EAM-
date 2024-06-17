@@ -34,8 +34,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-30 19:46:25
- * @sign AC160EDCBA59CF80D2F77801EFB74602
+ * @since 2024-06-17 08:45:52
+ * @sign 3C98E65332771AF7A6941E4B41AE50BA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -189,7 +189,7 @@ public class Asset extends Entity {
 	/**
 	 * 所属公司：所属公司
 	*/
-	@ApiModelProperty(required = false,value="所属公司" , notes = "所属公司" , example = "2")
+	@ApiModelProperty(required = false,value="所属公司" , notes = "所属公司" , example = "788871090188320766")
 	private String ownCompanyId;
 	
 	/**
@@ -303,7 +303,7 @@ public class Asset extends Entity {
 	/**
 	 * 资产备注：资产备注
 	*/
-	@ApiModelProperty(required = false,value="资产备注" , notes = "资产备注")
+	@ApiModelProperty(required = false,value="资产备注" , notes = "资产备注" , example = "121212kk")
 	private String assetNotes;
 	
 	/**
@@ -699,7 +699,7 @@ public class Asset extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-29 07:25:48")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-05-20 08:32:41")
 	private Date updateTime;
 	
 	/**
@@ -726,7 +726,7 @@ public class Asset extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "2")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "5")
 	private Integer version;
 	
 	/**
@@ -1010,6 +1010,12 @@ public class Asset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="partGoodsStockList" , notes = "partGoodsStockList")
 	private List<Asset> partGoodsStockList;
+	
+	/**
+	 * assetStatusData：assetStatusData
+	*/
+	@ApiModelProperty(required = false,value="assetStatusData" , notes = "assetStatusData")
+	private AssetStatus assetStatusData;
 	
 	/**
 	 * 获得 主键<br>
@@ -4126,6 +4132,25 @@ public class Asset extends Entity {
 		this.partGoodsStockList.addAll(Arrays.asList(partGoodsStock));
 		return this;
 	}
+	
+	/**
+	 * 获得 assetStatusData<br>
+	 * assetStatusData
+	 * @return assetStatusData
+	*/
+	public AssetStatus getAssetStatusData() {
+		return assetStatusData;
+	}
+	
+	/**
+	 * 设置 assetStatusData
+	 * @param assetStatusData assetStatusData
+	 * @return 当前对象
+	*/
+	public Asset setAssetStatusData(AssetStatus assetStatusData) {
+		this.assetStatusData=assetStatusData;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -4316,6 +4341,7 @@ public class Asset extends Entity {
 			inst.setAssetCycleStatus(this.getAssetCycleStatus());
 			inst.setRack(this.getRack());
 			inst.setManager(this.getManager());
+			inst.setAssetStatusData(this.getAssetStatusData());
 			inst.setWarehouse(this.getWarehouse());
 			inst.setPcmData(this.getPcmData());
 			inst.setPartAssetList(this.getPartAssetList());
@@ -4535,6 +4561,7 @@ public class Asset extends Entity {
 			this.setAssetCycleStatus(DataParser.parse(AssetStatus.class, map.get(AssetMeta.ASSET_CYCLE_STATUS)));
 			this.setRack(DataParser.parse(AssetRack.class, map.get(AssetMeta.RACK)));
 			this.setManager(DataParser.parse(Employee.class, map.get(AssetMeta.MANAGER)));
+			this.setAssetStatusData(DataParser.parse(AssetStatus.class, map.get(AssetMeta.ASSET_STATUS_DATA)));
 			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(AssetMeta.WAREHOUSE)));
 			this.setGoodsStock(DataParser.parse(GoodsStock.class, map.get(AssetMeta.GOODS_STOCK)));
 			this.setUseOrganization(DataParser.parse(Organization.class, map.get(AssetMeta.USE_ORGANIZATION)));
@@ -4695,6 +4722,7 @@ public class Asset extends Entity {
 				this.setAssetCycleStatus( (AssetStatus)map.get(AssetMeta.ASSET_CYCLE_STATUS));
 				this.setRack( (AssetRack)map.get(AssetMeta.RACK));
 				this.setManager( (Employee)map.get(AssetMeta.MANAGER));
+				this.setAssetStatusData( (AssetStatus)map.get(AssetMeta.ASSET_STATUS_DATA));
 				this.setWarehouse( (Warehouse)map.get(AssetMeta.WAREHOUSE));
 				this.setGoodsStock( (GoodsStock)map.get(AssetMeta.GOODS_STOCK));
 				this.setUseOrganization( (Organization)map.get(AssetMeta.USE_ORGANIZATION));

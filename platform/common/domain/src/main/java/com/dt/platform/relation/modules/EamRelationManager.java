@@ -2506,7 +2506,8 @@ public class EamRelationManager extends RelationManager {
     }
     public void setupAsset() {
 
-
+        this.property(AssetMeta.ASSET_STATUS_DATA_PROP)
+                .using(EAMTables.EAM_ASSET.ASSET_STATUS).join(EAMTables.EAM_ASSET_STATUS.CODE);
 
 
         this.property(AssetMeta.PART_ASSET_LIST_PROP)

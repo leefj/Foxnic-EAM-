@@ -90,6 +90,8 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(Asset.class,"partGoodsStockList","partGoodsStockList","partGoodsStockList");
 
 
+        cfg.getPoClassFile().addSimpleProperty(AssetStatus.class,"assetStatusData","assetStatusData","assetStatusData");
+
         cfg.view().field(EAMTables.EAM_ASSET.NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET.ASSET_NOTES).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET.SERIAL_NUMBER).search().fuzzySearch();

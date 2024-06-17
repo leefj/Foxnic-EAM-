@@ -325,6 +325,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		JSONObject assetJsonBefore=BeanUtil.toJSONObject(assetBefore);
 		Logger.info("assetJsonBefore:\n"+assetJsonBefore);
 		Logger.info("assetJsonAfter:\n"+assetJsonAfter);
+		Logger.info("changeMap:\n"+changeMap);
 		Update ups=new Update("eam_asset");
 		String ct="";
 		String useUserId="";
@@ -337,21 +338,21 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			String before="-";
 			String after="-";
 			if(AssetAttributeValueTypeEnum.ENUM.code().equals(valueType)){
-				if("asset_status".equals(key)){
-					if(!StringUtil.isBlank(assetJsonBefore.getString(rkey))){
-						CodeTextEnum v=EnumUtil.parseByCode(AssetStatusEnum.class,assetJsonBefore.getString(rkey));
-						if(v!=null){
-							before=v.text();
-						}
-					}
-					if(!StringUtil.isBlank(assetJsonAfter.getString(rkey))){
-						CodeTextEnum v=EnumUtil.parseByCode(AssetStatusEnum.class,assetJsonAfter.getString(rkey));
-						if(v!=null){
-							after=v.text();
-						}
-					}
-
-				}
+//				if("asset_status".equals(key)){
+//					if(!StringUtil.isBlank(assetJsonBefore.getString(rkey))){
+//						CodeTextEnum v=EnumUtil.parseByCode(AssetStatusEnum.class,assetJsonBefore.getString(rkey));
+//						if(v!=null){
+//							before=v.text();
+//						}
+//					}
+//					if(!StringUtil.isBlank(assetJsonAfter.getString(rkey))){
+//						CodeTextEnum v=EnumUtil.parseByCode(AssetStatusEnum.class,assetJsonAfter.getString(rkey));
+//						if(v!=null){
+//							after=v.text();
+//						}
+//					}
+//
+//				}
 				if("equipment_status".equals(key)){
 					if(!StringUtil.isBlank(assetJsonBefore.getString(rkey))){
 						CodeTextEnum v=EnumUtil.parseByCode(AssetEquipmentStatusEnum.class,assetJsonBefore.getString(rkey));
@@ -456,7 +457,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			ins.set(dbTreaty.getDeletedField(), dbTreaty.getFalseValue());
 		}
 		Logger.info("update:\n"+ups.getSQL());
-
 		Logger.info("change:\n"+ins.getSQL());
 		data.put("update",ups);
 		if(StringUtil.isBlank(ct)||ct.length()<3){
@@ -634,6 +634,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.MAINTENANCE_METHOD_DATA)
 				.with(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA)
 				.with(AssetMeta.FINANCIAL_OPTION_DICT)
+				.with(AssetMeta.ASSET_STATUS_DATA)
 				.execute();
 		dao().join(assetAfter.getManager(), Person.class);
 		dao().join(assetAfter.getUseUser(), Person.class);
@@ -677,6 +678,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.MAINTENANCE_METHOD_DATA)
 				.with(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA)
 				.with(AssetMeta.FINANCIAL_OPTION_DICT)
+				.with(AssetMeta.ASSET_STATUS_DATA)
 				.execute();
 		List<Employee> managers= CollectorUtil.collectList(assetBefore,Asset::getManager);
 		dao().join(managers, Person.class);
