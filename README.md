@@ -47,7 +47,6 @@ curl -s 'http://resource.rainbooow.com:30001/deploy.sh'|bash
 ```
 ### 安装包
 - https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.42-linux-glibc2.12-x86_64.tar.gz
-- http://121.43.103.102/upload/app_release_last.tar.gz
 
 #### 正常一键安装结束后输出内容
 ![输入图片说明](https://foruda.gitee.com/images/1705383748841564969/53e711f8_448530.jpeg "install.jpg")
@@ -68,6 +67,7 @@ curl -s 'http://resource.rainbooow.com:30001/deploy.sh'|bash
 - Redis:5.0.14(可选)
 - Java:JDK 1.8.200 (小版本200以上,但仅支持1.8)
 - SQL文件:/eam/platform/deploy/bin/sql/db.tar.gz.bak  ( **导入时必须必须使用source命令导入！！！！！** )。
+- SQL文件:如果项目里没有找到，从一键部署里提取。  
 - 社区版本一键安装是最新全的，也是最全的（全部都在），数据库并未有删除操作，需要全功能版，自行通过调试yml权限机制，和RBCA权限机制调试，功能数量依旧受限于版本许可，怎么调看文档视频去
 - 折腾源代码开发经验建议三年以上，新人绕道！
 - 如果这些IDEA，基础环境配置，提取SQL自行解决，群主没时间回答这么基础的问题。
