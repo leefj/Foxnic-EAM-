@@ -1,14 +1,9 @@
 package com.dt.platform.relation.modules;
 
-import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.IotTables;
-import com.dt.platform.constants.db.WmsTables;
-import com.dt.platform.domain.eam.VirtEquipment;
-import com.dt.platform.domain.eam.meta.AssetScanSceneMeta;
 import com.dt.platform.domain.eam.meta.EquipmentMeta;
 import com.dt.platform.domain.eam.meta.ProductMeta;
 import com.dt.platform.domain.eam.meta.VirtEquipmentMeta;
-import com.dt.platform.domain.wms.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
 
