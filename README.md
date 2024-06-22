@@ -54,7 +54,7 @@ curl -s 'http://resource.rainbooow.com:30001/deploy.sh'|bash
 
 # 二开说明（折腾源代码的请特别注意！！！）
 #### 1、【【源代码已包含所有的涉及的源代码，数据库表结构也已发布，整个项目构建需要一定的开发经验】】
-#### 2、【【SQL文件 /eam/platform/deploy/bin/sql/db.tar.gz.bak】】或者【【从一键安装中提取】】
+#### 2、【【SQL文件 /eam/platform/deploy/bin/sql/db.tar.gz.bak】】或者【【从一键安装中提取】】，无需向群主索要
 #### 3、二开前先看文档、文档很重要、文档很重要
 #### 4、二次开发原则上必须有3年Java开发经验或者自认为能力可以
 #### 5、不推荐新手用IDEA打开本项目,本项目非标准项目，没有学习意义
