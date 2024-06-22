@@ -12,7 +12,7 @@
 
 # 白嫖说明
 - 允许白嫖，范围社区免费版本,具体哪些功能以固定资产系统一键安装后的功能，功能已足够满足中小企业使用。
-- 对于有三年以上研发能力的客户，可以基于社区版定制满足自身企业需求，未经同意绝不允许修改后和衍生的代码做软件发布和销售。
+- 可以基于社区版定制满足自身企业需求，在二开的过程中对开发人员有一定要求，最好三年以上经验的开发人员，未经同意绝不允许修改后和衍生的代码做软件发布和销售。
 - 对于免费使用场景，有能力二开的使用者，已提供足够的各类文档，请自行解决项目过程中遇到的各类问题，群主没这个精力，还来指导你怎么部署mysql，怎么配置maven。
 
 
@@ -54,7 +54,7 @@ curl -s 'http://resource.rainbooow.com:30001/deploy.sh'|bash
 
 # 二开说明（折腾源代码的请特别注意！！！）
 #### 1、【【源代码已包含所有的涉及的源代码，数据库表结构也已发布，整个项目构建需要一定的开发经验】】
-#### 2、【【SQL文件 /eam/platform/deploy/bin/sql/db.tar.gz.bak】】
+#### 2、【【SQL文件 /eam/platform/deploy/bin/sql/db.tar.gz.bak】】或者【【从一键安装中提取】】
 #### 3、二开前先看文档、文档很重要、文档很重要
 #### 4、二次开发原则上必须有3年Java开发经验或者自认为能力可以
 #### 5、不推荐新手用IDEA打开本项目,本项目非标准项目，没有学习意义
@@ -119,52 +119,8 @@ curl -s 'http://resource.rainbooow.com:30001/deploy.sh'|bash
 - [Demo] 固定资产管理员(账户):eamadmin 密码:123456
 - [Demo] 固定资产普通员工(账户):eamuser 密码:123456
 - [Demo] 流程测试账号,统一密码 123456
-- ----------------------------------------------------------------- 
-- [Demo]-------------Foxnic-EAM 资产管理账户-------------
-- [Demo]管理员:eamadmin 123456
-- [Demo]员工1:eamuser1 123456
-- [Demo]员工2:eamuser2 123456
-- [Demo]查询:eamquery 123456
-
-- [Demo]-------------Foxnic-KN 知识库账户-------------
-- [Demo]管理员:knadmin 123456
-- [Demo]查询:knquery 123456
-
-- [Demo]-------------Foxnic-OPS 运维账户-------------
-- [Demo]管理员:opsadmin 123456
-- [Demo]查询:opsquery 123456
-
-- [Demo]-------------Foxnic-OPS-MONITOR 监控-------------
-- [Demo]管理员:opsmonitoradmin 123456
-- [Demo]查询:opsmonitorquery 123456
-
-- [Demo]-------------Foxnic-Inspect合同(开发中)-------------
-- [Demo]管理员:inspctadmin 123456
-- [Demo]查询:inspctquery 123456
-  
-- [Demo]-------------Foxnic-Contract合同(开发中)-------------
-- [Demo]管理员:contractadmin 123456
-- [Demo]查询:contractquery 123456
-
-| 类型 | 账户  | 姓名  |
-|---|---|---|
-| 流程管理员  | k3 | 王军 |
-| 流程测试员  | qiaof  | 乔峰  |
-| 流程测试员  |wangjt|	汪剑通|
-| 流程测试员  |mady|	马大元|
-| 流程测试员  |xuanc|	玄慈|	
-| 流程测试员  |xuz|	虚竹|			
-| 流程测试员  |duanzc|	段正淳|		
-| 流程测试员  |duany|	段誉|	
-| 流程测试员  |duanyq|	段延庆|		
-| 流程测试员  |nanhes|	南海鳄神|
- 
-
 # 系统演示预览
-
-
 ![输入图片说明](https://foruda.gitee.com/images/1715334667829189669/bf1b5bec_448530.png "551715334616_.pic.png")
-
 ![输入图片说明](https://foruda.gitee.com/images/1684211929402666916/6e6746d0_448530.jpeg "9.jpg")
 ![输入图片说明](https://foruda.gitee.com/images/1684212033095305227/399a4c16_448530.png "10.png")
 ![输入图片说明](https://foruda.gitee.com/images/1684211684098779220/734b0293_448530.png "2.png")
