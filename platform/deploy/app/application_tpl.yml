@@ -413,7 +413,7 @@ magic-api:
 
 liteflow:
   rule-source-ext-data-map:
-    url: jdbc:mysql://localhost:3306/poseidon
+    url: jdbc:mysql://localhost:3306/liteflow
     driverClassName: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456

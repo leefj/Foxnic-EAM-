@@ -1,7 +1,7 @@
 /**
  * 数据库备份 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 16:14:44
+ * @since 2024-07-23 17:26:08
  */
 
 
@@ -499,7 +499,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["85%",height+"px"],
 			type: 2,
 			id:"ops-db-backup-info-form-data-win",
 			content: '/business/ops/db_backup_info/db_backup_info_form.html' + (queryString?("?"+queryString):""),

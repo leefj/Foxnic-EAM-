@@ -1,0 +1,111 @@
+version: '3'
+services:
+  app_mysql:
+    image: registry.cn-hangzhou.aliyuncs.com/lank/mysql:fapp_db_2.9.2
+    restart: always
+    hostname: app_mysql
+    container_name: app_mysql
+    ports:
+      - "13306:3306"
+    volumes:
+      - /app/docker/mysql/log:/var/log
+      - /app/docker/mysql/data:/var/lib/mysql
+      - /app/docker/mysql/conf.d:/etc/mysql/conf.d
+      - /etc/localtime:/etc/localtime:ro
+    command:
+      --max_connections=2048
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --lower_case_table_names=1
+      --max_allowed_packet=100M
+      --sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+      --server-id=1
+      --log-bin=mysql-bin
+      --expire_logs_days=3
+      --binlog-format=ROW
+      --binlog_cache_size=128m
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: 'P@ssw0rd123456'
+      MYSQL_DATABASE: 'app'
+      MYSQL_USER: 'app'
+      MYSQL_PASSWORD: 'P@ssw0rd123456'
+      TZ: 'Asia/Shanghai'
+    networks:
+      app_docker_network:
+        ipv4_address: 16.88.88.89
+  app_nginx:
+    image: registry.cn-hangzhou.aliyuncs.com/lank/nginx:fapp_nginx_2.9.2
+    restart: always
+    hostname: app_nginx
+    container_name: app_nginx
+    ports:
+      - "8091:8091"
+      - "8090:8090"
+      - "18899:8899"
+    user: root
+    privileged: true
+    networks:
+      app_docker_network:
+        ipv4_address: 16.88.88.86
+  app_redis:
+    image: registry.cn-hangzhou.aliyuncs.com/lank/redis:fapp_redis_2.9.2
+    restart: always
+    hostname: app_redis
+    container_name: app_redis
+    ports:
+      - "16379:6379"
+    user: root
+    privileged: true
+    networks:
+      app_docker_network:
+        ipv4_address: 16.88.88.90
+  app_app:
+    image: registry.cn-hangzhou.aliyuncs.com/lank/app:fapp_app_2.9.2
+    restart: always
+    hostname: app_app
+    container_name: app_app
+    ports:
+      - "8089:8089"
+    working_dir: /home
+    volumes:
+      - /app/docker/app/home:/home
+      - /app/docker/app/netdisk:/app/app/app/netdisk
+      - /app/docker/app/upload:/app/app/app/upload
+    networks:
+      app_docker_network:
+        ipv4_address: 16.88.88.88
+    environment:
+      MYSQL_HOST: app_mysql
+      TZ: 'Asia/Shanghai'
+    depends_on:
+      - app_mysql
+  app_bpm:
+    image: registry.cn-hangzhou.aliyuncs.com/lank/app:fapp_bpm_2.9.2
+    restart: always
+    hostname: app_bpm
+    container_name: app_bpm
+    ports:
+      - "18099:8099"
+    working_dir: /home
+    user: root
+    privileged: true
+    volumes:
+      - /app/docker/bpm/home:/home
+    networks:
+      app_docker_network:
+        ipv4_address: 16.88.88.87
+    environment:
+      MYSQL_HOST: app_mysql
+      TZ: 'Asia/Shanghai'
+    depends_on:
+      - app_mysql
+networks:
+  app_docker_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 16.88.88.0/24
+
+

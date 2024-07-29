@@ -17,6 +17,7 @@ import com.github.foxnic.api.swagger.ApiParamSupport;
 import com.github.foxnic.api.swagger.InDoc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -54,7 +55,7 @@ public class AppSystemController extends SuperController {
     @PostMapping(AppSystemServiceProxy.SSO_CHECK)
     public Result<JSONObject> ssoCheck(String clientName, String token) {
         Result<JSONObject> res=new Result<>();
-        System.out.println("ssoCheck,clientName:"+clientName+",token:"+token);
+        Logger.info("ssoCheck,clientName:"+clientName+",token:"+token);
         JSONObject data=new JSONObject();
         data.put("empNo","15728000002");
         res.data(data);

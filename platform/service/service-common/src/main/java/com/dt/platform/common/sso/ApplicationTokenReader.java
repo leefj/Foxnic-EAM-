@@ -6,6 +6,7 @@ import com.dt.platform.constants.enums.common.AppLanguage;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
+import com.mysql.jdbc.log.Log;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -82,13 +83,14 @@ public class ApplicationTokenReader extends TokenReader {
     private String getUserIdByToken(String token) {
 
         initIf();
+        Logger.info("token:"+token);
         HttpPost post = new HttpPost(tokenValidateUrl);
         post.setHeader("Content-Type","application/json");
         post.setHeader("Authorization",token);
         JSONObject data=new JSONObject();
         data.put("clientName",clientName);
         data.put("Authorization",token);
-
+        data.put("token",token);
         try {
             post.setEntity(new StringEntity(data.toJSONString()));
             String httpResponse = execute(post);

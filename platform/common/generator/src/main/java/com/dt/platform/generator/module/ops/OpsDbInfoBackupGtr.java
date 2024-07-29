@@ -62,7 +62,6 @@ public class OpsDbInfoBackupGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.BACKUP_METHOD).basic().label("备份方式")
                 .form().validate().required().form().selectBox().dict(DictEnum.OPS_DB_BACKUP_METHOD).paging(false).defaultIndex(0);
 
-        cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.NAME).form().validate().required();
 
         cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.BACKUP_RESULT).basic().label("备份结果")
                 .form().selectBox().enumType(OpsDbBackupResultEnum.class);
@@ -81,6 +80,9 @@ public class OpsDbInfoBackupGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.CREATE_TIME).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.NOTES).table().disable(true);
 
+
+        cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.UPDATE_TIME).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.UPDATE_BY).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.UPDATE_BY).table().disable(true);
 
 
@@ -127,7 +129,6 @@ public class OpsDbInfoBackupGtr extends BaseCodeGenerator{
 
         cfg.view().form().addGroup("基本信息",
                 new Object[] {
-                        OpsTables.OPS_DB_BACKUP_INFO.NAME,
                         OpsTables.OPS_DB_BACKUP_INFO.UID,
                         OpsTables.OPS_DB_BACKUP_INFO.BACKUP_TYPE,
                         OpsTables.OPS_DB_BACKUP_INFO.BACKUP_METHOD,

@@ -1,0 +1,68 @@
+sudo tee /etc/docker/daemon.json <<EOF
+{
+    "registry-mirrors": [
+        "https://hub.uuuadc.top",
+        "https://docker.anyhub.us.kg",
+        "https://dockerhub.jobcher.com",
+        "https://dockerhub.icu",
+        "https://docker.ckyl.me",
+        "https://docker.awsl9527.cn"
+    ]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+
+
+docker run -it -d registry.cn-hangzhou.aliyuncs.com/lank/nginx:fapp_nginx_2.9.2
+
+docker exec -it /bin/sh
+
+docker run -it -d registry.cn-hangzhou.aliyuncs.com/lank/nginx:latest
+
+docker tag 240a4911a42f docker.io/openjdk:bpm5
+
+
+docker tag 744fc214fcbb docker.io/openjdk:app5
+
+echo "172.20.0.2 app_mysql">>/etc/hosts
+
+sed app_mysql
+sed 's/app_mysql/elephon/'  application.yml
+
+docker tag 605c77e624dd registry.cn-hangzhou.aliyuncs.com/lank/nginx:latest
+
+###################################
+docker stop app_bpm
+docker rm app_bpm
+
+docker stop app_app
+docker rm app_app
+
+docker stop app_nginx
+docker rm app_nginx
+
+docker stop app_redis
+docker rm app_redis
+
+docker stop app_minio
+docker rm app_minio
+
+docker stop app_mysql
+docker rm app_mysql
+
+rm -rf /app/docker/
+echo "clear finish"
+
+docker-compose up -d
+
+docker network ls
+
+java -noverify -Dfile.encoding=UTF-8 -Djava.io.tmpdir=/tmp -Dloader.path=/app/app/app/lib -jar /app/app/app/app.jar --spring.config.location=/app/app/app/application.yml
+
+
+/usr/bin/java -noverify -Dfile.encoding=UTF-8 -Djava.io.tmpdir=/app/app/bin/../tmp -Dloader.path=./lib/ -jar bpm.jar -dprocess_Mark=app01_bpm.jar_app --Dspring.config.location=application.yml
+[root@VM-12-9-centos app]#
+
+jdbc:mysql://127.0.0.1:3308/mysql?useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8|22|root|P@sswOracle123456|hostname=db

@@ -128,58 +128,66 @@ function ListPage() {
            layer.closeAll('loading');
             if (data.success) {
                 var tplData=data.data.tplData;
+                var nodata=true;
                 var html="";
                 $("#chartList").html(html);
-                for(var i=0;i<tplData.length;i++){
-                    var graphData=tplData[i];
-                    for(var j=0;j<graphData.length;j++){
-                        if(j==0){
-                        }
-                        // var gap="<div class=\"gap\"></div>";
-                        var gap=" "
-                        $("#chartList").append(gap);
-                        var gData=graphData[j];
-                        var graphType=gData.graphInfo.graphType;
-                        if(graphType=="line" || graphType=="line_calculation"){
-                            var gid="graph"+gData.graphInfo.id;
-                            var html="<div class=\"card\" id=\""+gid+"\" style=\"width:50%;height:300px;margin-top:20px;padding-top:20px\"></div>";
-                            $("#chartList").append(html);
-                            lineOption.legend.data=gData.legendData;
-                            lineOption.title.text=gData.graphInfo.name;
-                            lineOption.series=gData.seriesData;
-                            var gChart = echarts.init(document.getElementById(gid));
-                            gChart.setOption(lineOption, true);
-                        }else if(graphType=="table"){
-                            // if(!(gData.tableData.header&&gData.tableData.route&&gData.tableData.data&&gData.tableData.name)){
-                            //     continue;
-                            // }
-                            // var header=gData.tableData.header;
-                            // var route=gData.tableData.route;
-                            // var tableData=gData.tableData.data;
-                            // var title=gData.graphInfo.name;
-                            // var html="<div class=\"card_table\" style='width:50%;'> " +
-                            //     "<div class=\"card_table_title\"> "+title+"</div>" +
-                            //     "<table class=\"pure-table pure-table-bordered\" id=\"dataCpu\" style=\"width:50%;text-align:left;\">"
-                            // html=html+"<tr>";
-                            // for(var i=0;i<header.length;i++){
-                            //     html=html+"<th>"+header[i]+"</th>";
-                            // }
-                            // html=html+"</tr>";
-                            // for(var i=0;i<tableData.length;i++){
-                            //     var obj=tableData[i];
-                            //     html=html+"<tr>";
-                            //     for(var k=0;k<route.length;k++){
-                            //          html=html+"<td>"+obj[route[k]]+"</td>";
-                            //     }
-                            //     html=html+"</tr>";
-                            // }
-                            // html=html+"</table></div>";
-                            // $("#chartList").append(html);
-                        }
+                if(tplData.length>0){
+                    for(var i=0;i<tplData.length;i++){
+                        var graphData=tplData[i];
+                        for(var j=0;j<graphData.length;j++){
+                            if(j==0){
+                            }
+                            nodata=false;
+                            // var gap="<div class=\"gap\"></div>";
+                            var gap=" "
+                            $("#chartList").append(gap);
+                            var gData=graphData[j];
+                            var graphType=gData.graphInfo.graphType;
+                            if(graphType=="line" || graphType=="line_calculation"){
+                                var gid="graph"+gData.graphInfo.id;
+                                var html="<div class=\"card\" id=\""+gid+"\" style=\"width:50%;height:300px;margin-top:20px;padding-top:20px\"></div>";
+                                $("#chartList").append(html);
+                                lineOption.legend.data=gData.legendData;
+                                lineOption.title.text=gData.graphInfo.name;
+                                lineOption.series=gData.seriesData;
+                                var gChart = echarts.init(document.getElementById(gid));
+                                gChart.setOption(lineOption, true);
+                            }else if(graphType=="table"){
+                                // if(!(gData.tableData.header&&gData.tableData.route&&gData.tableData.data&&gData.tableData.name)){
+                                //     continue;
+                                // }
+                                // var header=gData.tableData.header;
+                                // var route=gData.tableData.route;
+                                // var tableData=gData.tableData.data;
+                                // var title=gData.graphInfo.name;
+                                // var html="<div class=\"card_table\" style='width:50%;'> " +
+                                //     "<div class=\"card_table_title\"> "+title+"</div>" +
+                                //     "<table class=\"pure-table pure-table-bordered\" id=\"dataCpu\" style=\"width:50%;text-align:left;\">"
+                                // html=html+"<tr>";
+                                // for(var i=0;i<header.length;i++){
+                                //     html=html+"<th>"+header[i]+"</th>";
+                                // }
+                                // html=html+"</tr>";
+                                // for(var i=0;i<tableData.length;i++){
+                                //     var obj=tableData[i];
+                                //     html=html+"<tr>";
+                                //     for(var k=0;k<route.length;k++){
+                                //          html=html+"<td>"+obj[route[k]]+"</td>";
+                                //     }
+                                //     html=html+"</tr>";
+                                // }
+                                // html=html+"</table></div>";
+                                // $("#chartList").append(html);
+                            }
 
+                        }
                     }
+                }else{
                 }
             } else {
+            }
+            if(nodata){
+                $("#chartList").append("<span style='margin-top:50px;margin-left:50px;margin-bottom: 50px'>当前无数据</span>");
             }
         });
 
@@ -268,7 +276,7 @@ function ListPage() {
             elem: '#sTime-begin',
             max:0,
             type:'datetime',
-            value:getRecentDay(-1),
+            value:getRecentDay(0),
             trigger:"click",
             done:function(value,date) {
                 if (value && (value > $("#sTime-end").val())) {
