@@ -4,13 +4,65 @@
 #
 #################################################################################
 cur_dir=$(cd `dirname $0`; pwd)
-build_version="2.9.2"
+
 build_db=1
 build_redis=1
 build_nginx=1
 build_app=1
 build_bpm=1
 #################################################################################
+
+build_select=""
+build_version="2.9.2"
+
+if [[ -n $1 ]];then
+  build_select=$1
+  build_db=0
+  build_redis=0
+  build_nginx=0
+  build_app=0
+  build_bpm=0
+else
+  echo "sh build.sh all 2.9.2"
+  echo "sh build.sh app"
+  exit 1
+fi
+
+if [[ $build_select == "help" ]];then
+  echo "sh build.sh all 2.9.2"
+  echo "sh build.sh app"
+  exit 1
+fi
+
+if [[ $build_select == "db" ]];then
+  build_db=1
+fi
+if [[ $build_select == "redis" ]];then
+  build_redis=1
+fi
+if [[ $build_select == "nginx" ]];then
+  build_nginx=1
+fi
+if [[ $build_select == "app" ]];then
+  build_app=1
+fi
+if [[ $build_select == "bpm" ]];then
+  build_bpm=1
+fi
+if [[ $build_select == "all" ]];then
+  build_db=1
+  build_redis=1
+  build_nginx=1
+  build_app=1
+  build_bpm=1
+fi
+
+if [[ -n $2 ]];then
+  build_version=$2
+fi
+echo "build verson:$build_version"
+echo "build_db:$build_db,build_redis:$build_redis,build_nginx:$build_nginx,build_app:$build_app,build_bpm:$build_bpm"
+
 if [[ $build_db -eq 1 ]];then
   echo "build db...."
   cd $cur_dir
