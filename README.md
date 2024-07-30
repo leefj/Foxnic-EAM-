@@ -39,21 +39,17 @@
 - 安装目录:/app
 - 应用访问地址为:http://ip-address:8089
 - 管理员账户:admin,默认密码:123456
+- mysql安装包:https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.42-linux-glibc2.12-x86_64.tar.gz
 ```
 #满足前置条件后，一键安装命令
 curl -s 'http://resource.rainbooow.com:30001/deploy.sh'|bash
 ```
-
 ### 方式二 Docker方式
 - docker-compose文件位置platform/deploy/docker
 - 部署命令:docker-compose up -d
 
-### 安装包
-- https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.42-linux-glibc2.12-x86_64.tar.gz
-
 #### 正常一键安装结束后输出内容
 ![输入图片说明](https://foruda.gitee.com/images/1705383748841564969/53e711f8_448530.jpeg "install.jpg")
-
 
 # 二开说明（折腾源代码的请特别注意！！！）
 #### 1、【【源代码已包含所有的涉及的源代码，数据库表结构也已发布，整个项目构建需要一定的开发经验】】
