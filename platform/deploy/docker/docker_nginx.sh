@@ -28,6 +28,11 @@ events {
 http {
     include       mime.types;
     default_type  application/octet-stream;
+    log_format  main  '\$remote_addr - \$remote_user [\$time_local] "\$request" '
+                  '\$status \$body_bytes_sent "\$http_referer" '
+                  '"\$http_user_agent" "\$http_x_forwarded_for"';
+    access_log  /var/log/nginx/access.log main;
+    error_log   /var/log/nginx/error.log warn;
     client_max_body_size 50m;
     sendfile        on;
     keepalive_timeout  65;
@@ -102,6 +107,7 @@ FROM registry.cn-hangzhou.aliyuncs.com/lank/nginx:s_1.21.5
 MAINTAINER NGINX
 RUN mkdir -p              /nginx/cert
 RUN mkdir -p              /nginx/html
+RUN mkdir -p              /var/log/nginx
 COPY nginx_docker.conf    /etc/nginx/nginx.conf
 ADD 8803285_app.com.pem   /nginx/cert
 ADD 8803285_app.com.key   /nginx/cert

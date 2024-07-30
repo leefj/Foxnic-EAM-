@@ -43,6 +43,8 @@ services:
       - "8091:8091"
       - "8090:8090"
       - "18899:8899"
+    volumes:
+      - /app/docker/nginx/log:/var/log/nginx
     user: root
     privileged: true
     networks:

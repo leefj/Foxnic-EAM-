@@ -33,6 +33,7 @@ if [[ -f $app_dir/tengine/conf/nginx.conf ]];then
 	help
 	exit 1
 fi
+mkdir -p /var/log/nginx
 yum -y install gcc wget gcc-c++ automake autoconf libtool libxml2-devel libxslt-devel perl-devel perl-ExtUtils-Embed pcre-devel openssl-devel
 cd $app_dir/tengine
 app_name=`ls -rtl|grep tengine|grep tar.gz|awk '{print $NF}'`
