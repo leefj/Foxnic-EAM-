@@ -1,7 +1,15 @@
 ###########101.35.255.173###########
 set dbname:foxnic
-start to backup,dbname:foxnic,file:/app/app/backup/db/foxnic_backup_20240729_09_09_43.tar.gz
+start to backup,dbname:foxnic,file:/app/app/backup/db/foxnic_backup_20240730_14_47_40.tar.gz
 mysqldump: [Warning] Using a password on the command line interface can be insecure.
 ./db.sql
 backup finish
 /app/app/backup/db/db.sql
+run sql file:/app/app/bin/../backup/db/db.sql
+run dbname:foxnic_demo
+mysql: [Warning] Using a password on the command line interface can be insecure.
+cp: cannot stat ‘/tmp/app_release_last.tar.gz’: No such file or directory
+tar: app_release_last.tar.gz: Cannot open: No such file or directory
+tar: Error is not recoverable: exiting now
+/tmp/auto_ops_execute.sh: line 13: cd: /tmp/20240730_14_47_39/bin/: No such file or directory
+sh: deployAppUpdate.sh: No such file or directory

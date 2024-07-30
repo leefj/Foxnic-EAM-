@@ -6,7 +6,6 @@
 cur_dir=$(cd `dirname $0`; pwd)
 cd $cur_dir
 
-
 docker_image_version=2.9.2
 if [[ -n $1 ]];then
   docker_image_version=$1

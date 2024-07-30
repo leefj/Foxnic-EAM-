@@ -13,7 +13,6 @@ fi
 docker_image_flag=fapp_app_${docker_image_version}
 echo "docker image:$docker_image_flag"
 
-
 ###### 修改配置文件
 nginx_ip=16.88.88.86
 bpm_ip=16.88.88.87

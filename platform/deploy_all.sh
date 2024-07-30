@@ -1,7 +1,7 @@
 #!/bin/sh
 ds=`date`
 echo $ds>>/tmp/all.log
-sh deploy_replace_local_db.sh
+#sh deploy_replace_local_db.sh
 sh deploy_release.sh
 sh deploy_upload_release_file.sh
 sh deploy_release_tomcat.sh

@@ -39,8 +39,10 @@
 - 安装目录:/app
 - 应用访问地址为:http://ip-address:8089
 - 管理员账户:admin,默认密码:123456
-- 不支持Docker，需要自行解决
 
+### Docker方式
+- docker-compose文件位置platform/deploy/docker
+- 部署命令:docker-compose up -d
 ```
 #满足前置条件后，一键安装命令
 curl -s 'http://resource.rainbooow.com:30001/deploy.sh'|bash

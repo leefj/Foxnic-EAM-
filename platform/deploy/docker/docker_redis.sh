@@ -6,7 +6,6 @@
 cur_dir=$(cd `dirname $0`; pwd)
 cd $cur_dir
 
-
 docker_image_version=2.9.2
 if [[ -n $1 ]];then
   docker_image_version=$1
@@ -19,7 +18,6 @@ cat << EOF > Dockerfile
 FROM registry.cn-hangzhou.aliyuncs.com/lank/redis:s_5.0.14
 MAINTAINER REDIS
 EOF
-
 
 ##build 生成image
 docker build ./ -t registry.cn-hangzhou.aliyuncs.com/lank/redis:$docker_image_flag

@@ -4,7 +4,7 @@
 #
 #################################################################################
 cur_dir=$(cd `dirname $0`; pwd)
-
+cd $cur_dir
 build_db=1
 build_redis=1
 build_nginx=1
@@ -25,12 +25,14 @@ if [[ -n $1 ]];then
 else
   echo "sh build.sh all 2.9.2"
   echo "sh build.sh app"
+  echo "sh build.sh setv 2.9.3"
   exit 1
 fi
 
 if [[ $build_select == "help" ]];then
   echo "sh build.sh all 2.9.2"
   echo "sh build.sh app"
+  echo "sh build.sh setv 2.9.3"
   exit 1
 fi
 
@@ -56,6 +58,19 @@ if [[ $build_select == "all" ]];then
   build_app=1
   build_bpm=1
 fi
+
+if [[ $build_select == "setv" ]];then
+  curV=`cat docker-compose.yml |grep fapp|head -1|awk -F ':' '{print $NF}'|awk -F '_' '{print $NF}'`
+  newV=`echo $curV`
+  if [[ -n $2 ]];then
+    newV=$2
+  fi
+  echo "curV:$curV,newV:$newV"
+  sed -i "s/$curV/$newV/g" docker-compose.yml
+  exit 1
+fi
+
+
 
 if [[ -n $2 ]];then
   build_version=$2

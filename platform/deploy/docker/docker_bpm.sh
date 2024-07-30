@@ -43,7 +43,6 @@ sed -i "s/127.0.0.1:3306/${db_ip}:${db_port}/g"     $application_yml
 sed -i "s/127.0.0.1:8089/${app_ip}:${app_port}/g"   $application_yml
 sed -i "s/127.0.0.1:8099/${bpm_ip}:${bpm_port}/g"   $application_yml
 
-
 cat << EOF > entrypoint.sh
 #!/bin/bash
 touch cmd.conf
