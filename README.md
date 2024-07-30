@@ -31,7 +31,7 @@
 # 系统部署
 #### 一键部署是社区版本的功能，其他没看到的属于非社区版本，有啥功能就用啥，
 #### 简单方便，已屏蔽了所有其他不相关的业务（通过权限等方式屏蔽，数据库并未删除，需要全功能版，自行调试yml权限机制，和RBCA权限机制）
-### 一键安装系统
+### 方式一 一键安装系统
 - 自动安装Mysql,Java,应用，Mysql从官方下载，因此整体安装速度会慢
 - 安装环境前先确认
 - 操作系统支持:RedHat 7.9-8.0 较为干净的系统，同时支持CentOS、麒麟、欧拉。yum源配置需正确(unzip,wget,zip等包需要安装)，公有云的默认yum配置一般没问题
@@ -39,14 +39,15 @@
 - 安装目录:/app
 - 应用访问地址为:http://ip-address:8089
 - 管理员账户:admin,默认密码:123456
-
-### Docker方式
-- docker-compose文件位置platform/deploy/docker
-- 部署命令:docker-compose up -d
 ```
 #满足前置条件后，一键安装命令
 curl -s 'http://resource.rainbooow.com:30001/deploy.sh'|bash
 ```
+
+### 方式二 Docker方式
+- docker-compose文件位置platform/deploy/docker
+- 部署命令:docker-compose up -d
+
 ### 安装包
 - https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.42-linux-glibc2.12-x86_64.tar.gz
 
